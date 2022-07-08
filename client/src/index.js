@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx'
 
 var App = () => {
+
+
+
   return(
     <div>
-      Hello Wrld
+      Overview
+      <br/>
+      RelatedItems
+      <br/>
+      <QnaIndex/>
+      <br/>
+      RatingsAndReviews
     </div>
   )
 }
