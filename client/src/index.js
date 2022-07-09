@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx'
-import RInC from './Components/RatingsAndReviews/RelatedItemsAndComparison.jsx'
+import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
+import RInC from './Components/RelatedItemsAndComparison/RInC.jsx';
+
 var App = () => {
 
 
