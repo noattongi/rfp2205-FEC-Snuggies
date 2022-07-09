@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { ProductOverviewContainer, ProductInformationDescription } from './StyledComponents/Containers.jsx';
 
 var Overview = (props) => {
 
 
   return (
     <div>
-      Product Overview
+      <ProductOverviewContainer>
+        Product Overview Container
+      </ProductOverviewContainer>
+      <ProductInformationDescription>
+        Product Information
+      </ProductInformationDescription>
     </div>
   );
 

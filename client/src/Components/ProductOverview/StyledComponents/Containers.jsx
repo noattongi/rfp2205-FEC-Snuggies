@@ -1,5 +1,13 @@
-/* Need the following containers:
+import styled from 'styled-components';
 
-flexbox, flex-direction row
+const ProductOverviewContainer = styled.section`
+  display: flex;
+  background-color: lightblue;
+`;
 
-flexbox, flex-direction column */
+const ProductInformationDescription = styled.section`
+  display: flex;
+  background-color: cyan;
+`;
+
+export { ProductOverviewContainer, ProductInformationDescription };
