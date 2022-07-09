@@ -10,13 +10,63 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/src/Components/QuestionsAndAnswers/Form/SearchQuestions.jsx":
+/*!****************************************************************************!*\
+  !*** ./client/src/Components/QuestionsAndAnswers/Form/SearchQuestions.jsx ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar SearchQuestions = function SearchQuestions() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"text\"\n  }));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchQuestions);\n\n//# sourceURL=webpack://fec/./client/src/Components/QuestionsAndAnswers/Form/SearchQuestions.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Components/QuestionsAndAnswers/QnaIndex.jsx":
+/*!****************************************************************!*\
+  !*** ./client/src/Components/QuestionsAndAnswers/QnaIndex.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Form_SearchQuestions_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Form/SearchQuestions.jsx */ \"./client/src/Components/QuestionsAndAnswers/Form/SearchQuestions.jsx\");\n/* harmony import */ var _QuestionWithAnswers_QuestionsList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionWithAnswers/QuestionsList.jsx */ \"./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/QuestionsList.jsx\");\n/* harmony import */ var _QuestionWithAnswers_MoreAnsweredQuestions_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuestionWithAnswers/MoreAnsweredQuestions.jsx */ \"./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/MoreAnsweredQuestions.jsx\");\n/* harmony import */ var _QuestionWithAnswers_AddQuestion_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuestionWithAnswers/AddQuestion.jsx */ \"./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/AddQuestion.jsx\");\n\n\n\n\n\n\nvar QnaIndex = function QnaIndex(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Form_SearchQuestions_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuestionWithAnswers_QuestionsList_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuestionWithAnswers_MoreAnsweredQuestions_jsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QuestionWithAnswers_AddQuestion_jsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], null)));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnaIndex);\n\n//# sourceURL=webpack://fec/./client/src/Components/QuestionsAndAnswers/QnaIndex.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/AddQuestion.jsx":
+/*!***************************************************************************************!*\
+  !*** ./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/AddQuestion.jsx ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar AddQuestion = function AddQuestion() {\n  return null;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddQuestion);\n\n//# sourceURL=webpack://fec/./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/AddQuestion.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/MoreAnsweredQuestions.jsx":
+/*!*************************************************************************************************!*\
+  !*** ./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/MoreAnsweredQuestions.jsx ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar MoreAnsweredQuestions = function MoreAnsweredQuestions() {\n  return null;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MoreAnsweredQuestions);\n\n//# sourceURL=webpack://fec/./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/MoreAnsweredQuestions.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/QuestionsList.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/QuestionsList.jsx ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar QuestionsList = function QuestionsList() {\n  return null;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionsList);\n\n//# sourceURL=webpack://fec/./client/src/Components/QuestionsAndAnswers/QuestionWithAnswers/QuestionsList.jsx?");
+
+/***/ }),
+
 /***/ "./client/src/index.js":
 /*!*****************************!*\
   !*** ./client/src/index.js ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Hello Wrld\");\n};\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null), document.getElementById('root'));\n\n//# sourceURL=webpack://fec/./client/src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _Components_QuestionsAndAnswers_QnaIndex_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/QuestionsAndAnswers/QnaIndex.jsx */ \"./client/src/Components/QuestionsAndAnswers/QnaIndex.jsx\");\n\n\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Overview\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"br\", null), \"RelatedItems\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"br\", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Components_QuestionsAndAnswers_QnaIndex_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"br\", null), \"RatingsAndReviews\");\n};\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null), document.getElementById('root'));\n\n//# sourceURL=webpack://fec/./client/src/index.js?");
 
 /***/ }),
 
