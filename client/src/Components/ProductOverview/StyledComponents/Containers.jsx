@@ -6,6 +6,7 @@ import styled from 'styled-components';
 // Container to hold the Image Gallery and Product Information (except description) component containers
 const ProductOverviewContainer = styled.section`
   display: flex;
+  flex-direction: row;
   background-color: lightblue;
 `;
 
