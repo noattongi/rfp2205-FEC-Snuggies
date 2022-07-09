@@ -11,7 +11,6 @@ var Gallery = (props) => {
 
   return (
     <div>
-      <div>Image Thumbnails</div>
       <ImageGalleryContainer>
         <ImageThumbnails>
           <Thumbnail></Thumbnail><Thumbnail></Thumbnail><Thumbnail></Thumbnail>
