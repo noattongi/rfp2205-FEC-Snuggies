@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ProductOverviewContainer, ProductInformationDescription } from './StyledComponents/Containers.jsx';
+import Gallery from './ImageGallery/Gallery.jsx';
 
 var Overview = (props) => {
 
@@ -7,7 +8,7 @@ var Overview = (props) => {
   return (
     <div>
       <ProductOverviewContainer>
-        Product Overview Container
+        <Gallery />
       </ProductOverviewContainer>
       <ProductInformationDescription>
         Product Information
