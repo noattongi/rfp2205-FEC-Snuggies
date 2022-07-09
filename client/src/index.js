@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx'
+import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
+import RInC from './Components/RelatedItemsAndComparison/RInC.jsx';
 
 var App = () => {
 
@@ -10,7 +11,7 @@ var App = () => {
     <div>
       Overview
       <br/>
-      RelatedItems
+      <RInC/>
       <br/>
       <QnaIndex/>
       <br/>
