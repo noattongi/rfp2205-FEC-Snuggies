@@ -16,6 +16,12 @@ const ImageGalleryContainer = styled.section`
   flex-direction: row;
 `;
 
+// Product Information container (does not include Product Description)
+const ProductInformationContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
 // Container to hold the Product Information description component
 const ProductInformationDescription = styled.section`
   display: flex;
@@ -23,4 +29,4 @@ const ProductInformationDescription = styled.section`
 `;
 
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationDescription };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductInformationDescription };
