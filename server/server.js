@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 var router = require('./routes.js');
 // routing
-// app.use('/snuggie', router);
+app.use('/snuggie', router);
 
 app.listen(process.env.PORT);
 console.log(`You are listening to ${process.env.PORT}`);
