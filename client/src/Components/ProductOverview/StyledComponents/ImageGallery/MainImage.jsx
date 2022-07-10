@@ -1,4 +1,4 @@
-// The Main Image
+// The Main Image styling
 
 // Import any relevant methods from the styled-components library
 import styled from 'styled-components';
