@@ -1,5 +1,57 @@
-/* Need the following containers:
+// All of the styled components here are flexbox containers to organize their respective contents in certain ways
 
-flexbox, flex-direction row
+// Import any relevant methods from the styled-components library
+import styled from 'styled-components';
 
-flexbox, flex-direction column */
+// Container to hold the Image Gallery and Product Information (except description) component containers
+const ProductOverviewContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  background-color: lightblue;
+`;
+
+// Image Gallery container
+const ImageGalleryContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
+// Product Information container (does not include Product Description)
+const ProductInformationContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+// Container to hold the Star Rating shared component and Read [#] Reviews link in Product Information section
+const ProductOverviewStarContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+// Container to hold the Style Thumbnails in Product Information section
+const StyleThumbnailContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+// Container for the size and count buttons in Product Information section
+const SizeAndCountContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
+// Container for the add to cart and favorite buttons in Product Information section
+const AddToCartContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
+// Container to hold the Product Information description component
+const ProductInformationDescription = styled.section`
+  display: flex;
+  background-color: cyan;
+`;
+
+// Export the styled components
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
