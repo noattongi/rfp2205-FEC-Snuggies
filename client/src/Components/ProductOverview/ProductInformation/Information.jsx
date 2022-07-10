@@ -2,14 +2,15 @@
 
 // Import stuff
 import React, { useState } from 'react';
-import { ProductInformationContainer } from '../StyledComponents/Containers.jsx';
+import { ProductInformationContainer, StyleThumbnailContainer, SizeAndCountContainer, AddToCartContainer } from '../StyledComponents/Containers.jsx';
+import OverviewStars from './OverviewStarRating.jsx';
 
 // The component
 var Information = (props) => {
 
   return (
     <ProductInformationContainer>
-      <div>Star</div>
+      <OverviewStars />
       <div>Category</div>
       <div>Name</div>
       <div>Price</div>

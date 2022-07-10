@@ -22,6 +22,31 @@ const ProductInformationContainer = styled.section`
   flex-direction: column;
 `;
 
+// Container to hold the Star Rating shared component and Read [#] Reviews link in Product Information section
+const ProductOverviewStarContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+// Container to hold the Style Thumbnails in Product Information section
+const StyleThumbnailContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+// Container for the size and count buttons in Product Information section
+const SizeAndCountContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
+// Container for the add to cart and favorite buttons in Product Information section
+const AddToCartContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
 // Container to hold the Product Information description component
 const ProductInformationDescription = styled.section`
   display: flex;
@@ -29,4 +54,4 @@ const ProductInformationDescription = styled.section`
 `;
 
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductInformationDescription };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
