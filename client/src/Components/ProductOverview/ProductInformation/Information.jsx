@@ -2,8 +2,10 @@
 
 // Import stuff
 import React, { useState } from 'react';
-import { ProductInformationContainer, StyleThumbnailContainer, SizeAndCountContainer, AddToCartContainer } from '../StyledComponents/Containers.jsx';
+import { ProductInformationContainer } from '../StyledComponents/Containers.jsx';
 import OverviewStars from './OverviewStarRating.jsx';
+import Styles from './StyleSelector.jsx';
+import CartButtons from './AddToCart.jsx';
 
 // The component
 var Information = (props) => {
@@ -15,9 +17,8 @@ var Information = (props) => {
       <div>Name</div>
       <div>Price</div>
       <div>Style > Selected Style</div>
-      <div>StylesContainer</div>
-      <div> Size and Count buttons</div>
-      <div>Add to cart/favorite buttons</div>
+      <Styles />
+      <CartButtons />
     </ProductInformationContainer>
   );
 }
