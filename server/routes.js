@@ -41,7 +41,21 @@ router.get('/styles', (request, response) => {
       });
   }
 });
-
+//RATINGS AND REVIEWS
+router.get('/reviews/', (request, response) => {
+  if (!request.query.product_id) {
+    response.sendStatus(500);
+  } else {
+    API.getProductReviews(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data);
+      })
+      .catch((error) => {
+        console.log('Error in getting all the products', error);
+        response.send(500);
+      });
+  }
+});
 
 
 module.exports = router;

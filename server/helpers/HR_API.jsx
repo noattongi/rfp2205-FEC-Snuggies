@@ -31,6 +31,14 @@ var getProductStyles = (id) => {
   });
 }
 
+//RATINGS AND REVIEWS
+var getProductReviews = () => {
+  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/', {
+    headers: headers
+  });
+}
+
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
+module.exports.getProductReviews = getProductReviews
