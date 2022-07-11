@@ -11,7 +11,7 @@ var QnaIndex = (props) => {
   const [question, setQuestion] = useState({});
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40377}})
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40377, count: 4}})
     .then((response) => {
       setQuestion(response.data);
     })
@@ -25,7 +25,7 @@ var QnaIndex = (props) => {
         <SearchQuestions/>
         <QuestionsList questions={question} />
       <BottomTabContainer>
-         <MoreAnsweredQuestions />
+      <MoreAnsweredQuestions />
          <AddQuestion />
       </BottomTabContainer>
     </QnAContainer>

@@ -58,10 +58,11 @@ router.get('*/related', (request, response) => {
 });
 
 router.get('/qa/questions', (request, response) => {
+  console.log(request.query.count)
   if (!request.query.product_id) {
     response.send(500);
   } else {
-    API.getProductQuestion(request.query.product_id)
+    API.getProductQuestion(request.query.product_id, request.query.count)
     .then((results) => {
       response.status(200).send(results.data)
     })
