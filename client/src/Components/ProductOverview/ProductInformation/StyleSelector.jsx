@@ -18,7 +18,7 @@ var Styles = (props) => {
           if (style.style_id === props.chosenStyle.style_id) {
             return (
               <ChosenStyleContainer>
-                <ChosenIcon src="https://media.istockphoto.com/photos/green-checkmark-picture-id503451933?k=20&m=503451933&s=612x612&w=0&h=5X5bKop-YhMgPI5YgPOvroGXlbRX1shmtsGUM948cZo=" ></ChosenIcon>
+                <ChosenIcon className="fa-solid fa-check"></ChosenIcon>
                 <StyleThumbnail src={style.photos[0].thumbnail_url} ></StyleThumbnail>
               </ChosenStyleContainer>
             );

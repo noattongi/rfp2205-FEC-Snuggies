@@ -15,13 +15,18 @@ const StyleThumbnail = styled.img`
 `;
 
 // An icon that indicates that the thumbnail is the chosen one
-const ChosenIcon = styled.img`
+const ChosenIcon = styled.i`
   position: absolute;
-  top: 7%;
-  right: 7%;
+  top: 5%;
+  right: 5%;
   object-fit: fill;
   width: 15px;
   height: 15px;
+  background-color: white;
+  padding: 3px;
+  border: solid;
+  border-color: black;
+  border-radius: 50%;
 `;
 
 // Export the styled components
