@@ -38,8 +38,10 @@ var getRelatedProducts = (id) => {
 }
 
 var getProductQuestion = (id) => {
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/hr-rfp/qa/questions/${id}`)
-}
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${id}`, {
+    headers: headers
+  });
+};
 
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;

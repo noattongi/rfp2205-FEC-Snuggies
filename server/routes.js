@@ -66,7 +66,7 @@ router.get('/qa/questions', (request, response) => {
       response.status(200).send(results.data)
     })
     .catch((error) => {
-      console.log('Error in getting product question', error);
+      console.log('Error in getting product question');
       response.send(500);
     })
   }
