@@ -41,6 +41,20 @@ router.get('/styles', (request, response) => {
   }
 });
 
+router.get('*/related', (request, response) => {
+  if (!request.query.product_id) {
+    response.send(500);
+  } else {
+    API.getRelatedProducts(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data)
+      })
+      .catch((error) => {
+        console.log('Error in getting related products', error);
+        response.send(500);
+      })
+  }
 
+})
 
 module.exports = router;

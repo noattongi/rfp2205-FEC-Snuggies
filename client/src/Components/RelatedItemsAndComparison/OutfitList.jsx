@@ -7,8 +7,12 @@ import Add from './Add.jsx';
 
 const OutfitList = () => {
   return (
-    <Add />
-    <Cards />
-    <Carousel />
+    <div>
+      <Add />
+      <Cards />
+      <Carousel />
+    </div>
   )
 }
+
+export default OutfitList;
