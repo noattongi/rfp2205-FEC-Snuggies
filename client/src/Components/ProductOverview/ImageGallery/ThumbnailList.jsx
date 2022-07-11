@@ -9,12 +9,10 @@ import Thumbnail from './Thumbnail.jsx';
 var ThumbnailList = (props) => {
 
   // const [chosenThumbnail, setChosenThumbnail] = useState('');
-  // An index to use as the keys of the thumbnails
-  var index = 0;
 
   return (
     <ImageThumbnails>
-      {props.imageThumbnails.map((thumbnail) => {
+      {props.imageThumbnails.map((thumbnail, index = 0) => {
         return (
           <Thumbnail thumbnail_url={thumbnail.thumbnail_url} key={index++} />
           // If the thumbnail is the chosen one, render a bar under it to indicate that it's the chosen one
