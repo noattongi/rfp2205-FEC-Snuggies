@@ -55,6 +55,21 @@ router.get('*/related', (request, response) => {
       })
   }
 
+});
+
+router.get('/qa/questions', (request, response) => {
+  if (!request.query.product_id) {
+    response.send(500);
+  } else {
+    API.getProductQuestion(request.query.product_id)
+    .then((results) => {
+      response.status(200).send(results.data)
+    })
+    .catch((error) => {
+      console.log('Error in getting product question', error);
+      response.send(500);
+    })
+  }
 })
 
 module.exports = router;
