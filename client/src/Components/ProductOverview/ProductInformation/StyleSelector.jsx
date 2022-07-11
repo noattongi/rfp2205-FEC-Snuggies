@@ -17,14 +17,14 @@ var Styles = (props) => {
           // If the style is the chosen one, render a special thumbnail (it has a border around it that indicates that it's the selected one)
           if (style.style_id === props.chosenStyle.style_id) {
             return (
-              <ChosenStyleContainer>
-                <ChosenIcon className="fa-solid fa-check"></ChosenIcon>
-                <StyleThumbnail src={style.photos[0].thumbnail_url} onClick={() => {props.setChosenStyle(style)}} ></StyleThumbnail>
+              <ChosenStyleContainer key="ChosenStyleContainer" >
+                <ChosenIcon className="fa-solid fa-check" key="ChosenStyleIcon"></ChosenIcon>
+                <StyleThumbnail key={style.style_id} src={style.photos[0].thumbnail_url} onClick={() => {props.setChosenStyle(style)}} ></StyleThumbnail>
               </ChosenStyleContainer>
             );
           }
           // Else just render the thumbnail without the special border
-          return (<StyleThumbnail src={style.photos[0].thumbnail_url} onClick={() => {props.setChosenStyle(style)}} ></StyleThumbnail>);
+          return (<StyleThumbnail key={style.style_id} src={style.photos[0].thumbnail_url} onClick={() => {props.setChosenStyle(style)}} ></StyleThumbnail>);
         })}
       </StyleThumbnailContainer>
     </div>
