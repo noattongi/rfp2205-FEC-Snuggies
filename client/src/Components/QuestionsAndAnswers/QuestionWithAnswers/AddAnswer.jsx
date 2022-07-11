@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import AddAnswerButton from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import {AddAnswerButton} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
 // modal
 
 var AddAnswer = () => {

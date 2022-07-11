@@ -18,11 +18,9 @@ const ImageContainer = styled.div`
 const BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-//adjust
-const LoadMoreAnswersButton = styled.button`
-  border-radius: 5px
+  justify-content: space-around;
+  width: 20%;
+  font-size: 12px;
 `;
 
 //adjust
@@ -42,7 +40,8 @@ const ReportSpan = styled.span`
 
 //adjust
 const AddAnswerButton = styled.button`
+  background-color: orange;
   border-radius: 5px;
 `;
 
-export {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, LoadMoreAnswersButton, ReportSpan, AnswerHelpfulnessSpan, PosterAndDateSpan, AddAnswerButton }
+export {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, PosterAndDateSpan, AddAnswerButton }

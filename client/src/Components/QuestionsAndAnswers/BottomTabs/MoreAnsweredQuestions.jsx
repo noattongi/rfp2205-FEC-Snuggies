@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import MoreAnsweredQuestionsButton from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
+import {MoreAnsweredQuestionsButton} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
 
 var MoreAnsweredQuestions = () => {
   return (

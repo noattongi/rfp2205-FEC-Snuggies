@@ -39,4 +39,17 @@ const MoreAnsweredQuestionsButton = styled.button`
   border-radius: 5px;
 `;
 
-export {QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, MoreAnsweredQuestionsButton, AddQuestionButton}
+//adjust??
+const LoadMoreAnswersButton = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+  width: 9%;
+
+`;
+
+const QuestionSpan = styled.span`
+  display: flex;
+`;
+
+export {QuestionSpan, QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, LoadMoreAnswersButton, MoreAnsweredQuestionsButton, AddQuestionButton}

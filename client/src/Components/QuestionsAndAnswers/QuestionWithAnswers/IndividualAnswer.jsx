@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, LoadMoreAnswersButton, PosterAndDateSpan, ReportSpan, AnswerHelpfulnessSpan} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, PosterAndDateSpan, ReportSpan, AnswerHelpfulnessSpan} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
 
 // one container (column)
 // four items inside - Answer, Photos(situational), Bottom Info Container, Load More Answers
@@ -16,14 +16,15 @@ import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContain
 export default function IndividualAnswer() {
   return (
     <IndividualAnswerContainer>
-      <AnswerSpan></AnswerSpan>
+      <AnswerSpan> Our Answer </AnswerSpan>
       <ImageContainer></ImageContainer>
       <BottomInfoContainer>
         <PosterAndDateSpan> Insert Poster and Date </PosterAndDateSpan>
+        <span> | </span>
         <AnswerHelpfulnessSpan>  Helpful? Yes </AnswerHelpfulnessSpan>
+        <span> | </span>
         <ReportSpan> Report </ReportSpan>
       </BottomInfoContainer>
-      <LoadMoreAnswersButton> Load More Answers</LoadMoreAnswersButton>
     </IndividualAnswerContainer>
   )
 }

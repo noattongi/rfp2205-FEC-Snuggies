@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import AddQuestionButton from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
+import {AddQuestionButton} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
 
 
 var AddQuestion = () => {
