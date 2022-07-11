@@ -28,7 +28,7 @@ var Information = (props) => {
       <div>{props.product.name}</div>
       <div>{props.chosenStyle.original_price /* Will have to do some math here and calculate the price (in case theres a sale) */}</div>
       <div>Style > {props.chosenStyle.name || "Selected Style"}</div>
-      <Styles styles={props.styles} chosenStyle={props.chosenStyle} />
+      <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
       <CartButtons />
     </ProductInformationContainer>
   );
