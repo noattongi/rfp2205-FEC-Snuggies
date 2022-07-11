@@ -11,11 +11,13 @@ const ImageThumbnails = styled.section`
 `;
 
 // An image thumbnail
-const Thumbnail = styled.img`
+const ThumbnailImage = styled.img`
+  object-fit: cover;
+  overflow: hidden;
   width: 50px;
   height: 50px;
   background-color: gray;
 `;
 
 // Export the styled components
-export { ImageThumbnails, Thumbnail };
+export { ImageThumbnails, ThumbnailImage };
