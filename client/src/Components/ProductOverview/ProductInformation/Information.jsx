@@ -10,26 +10,24 @@ import CartButtons from './AddToCart.jsx';
 // The component
 var Information = (props) => {
 
-  const [chosenStyle, setChosenStyle] = useState({});
-  console.log(props.styles);
-
+  // Iterate and choose the default style whenever the style list changes (e.g. choose new product)
   useEffect(() => {
     // For each of the styles in the passed in styles prop, iterate until we find the default one and set that as the displayed style
     for (let i = 0; i < props.styles.length; i++) {
       if (props.styles[i]["default?"]) {
-        setChosenStyle(props.styles[i]);
+        props.setChosenStyle(props.styles[i]);
         break;
       }
     }
-  });
+  }, [props.styles]);
 
   return (
     <ProductInformationContainer>
       <OverviewStars />
       <div>{props.product.category}</div>
       <div>{props.product.name}</div>
-      <div>{chosenStyle.original_price /* Will have to do some math here and calculate the price (in case theres a sale) */}</div>
-      <div>Style > {chosenStyle.name}</div>
+      <div>{props.chosenStyle.original_price /* Will have to do some math here and calculate the price (in case theres a sale) */}</div>
+      <div>Style > {props.chosenStyle.name}</div>
       <Styles styles={props.styles || "Selected Style"} />
       <CartButtons />
     </ProductInformationContainer>

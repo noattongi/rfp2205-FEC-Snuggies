@@ -8,6 +8,7 @@ var Overview = (props) => {
 
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
+  const [chosenStyle, setChosenStyle] = useState({});
   const [reviews, setReviews] = useState({});
 
   // Upon component mounting, send a GET request and get all the relevant data (this may need to be refactored if the team decides to house all client-side request handling in the main App file)
@@ -17,7 +18,7 @@ var Overview = (props) => {
     axios.get('/snuggie/products', { params: { product_id: 40344 } }) // Right now, we have a placeholder for the specific product
       // Then set the products state
       .then((results) => {
-        setProduct(results.data);
+        return setProduct(results.data);
       })
       // Send axios request to get all styles
       .then(() => {
@@ -25,7 +26,7 @@ var Overview = (props) => {
       })
       // Then set the styles state
       .then((results) => {
-        setStyles(results.data.results);
+        return setStyles(results.data.results);
       })
       // Send axios request to get all the review data that is relevant for the specific product
       // Then set the reviews state
@@ -37,11 +38,11 @@ var Overview = (props) => {
   return (
     <div>
       <ProductOverviewContainer>
-        <Gallery product={product} styles={styles} />
-        <Information product={product} styles={styles} reveiws={reviews} />
+        <Gallery product={product} styles={styles} chosenStyle={chosenStyle} />
+        <Information product={product} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reveiws={reviews} />
       </ProductOverviewContainer>
       <ProductInformationDescription>
-        Product Information
+        {product.description}
       </ProductInformationDescription>
     </div>
   );
