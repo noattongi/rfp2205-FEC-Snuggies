@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
+import AddAnswerButton from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+// modal
 
 var AddAnswer = () => {
-  return null;
+  return (
+    <AddAnswerButton> Add Answer </AddAnswerButton>
+  )
 }
 
 export default AddAnswer
