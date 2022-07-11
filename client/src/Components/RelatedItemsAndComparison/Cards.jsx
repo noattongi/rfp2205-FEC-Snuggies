@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 
-const Cards = () => {
+const Cards = ({productId}) => {
   return (
     <div>
       Product Category
@@ -12,3 +12,5 @@ const Cards = () => {
     </div>
   )
 }
+
+export default Cards;

@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import Cards from './Cards.jsx';
-import Carousel from './Carousel.jsx';
-import Add from './Add.jsx';
 
-const OutfitList = () => {
+const ComparisonModal = () => {
   return (
-    <Add />
-    <Cards />
-    <Carousel />
+  <div>
+    Comparison Modal
+  </div>
   )
 }
+
+export default ComparisonModal;

@@ -31,6 +31,13 @@ var getProductStyles = (id) => {
   });
 }
 
+var getRelatedProducts = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`, {
+    headers: headers
+  });
+}
+
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
+module.exports.getRelatedProducts = getRelatedProducts;

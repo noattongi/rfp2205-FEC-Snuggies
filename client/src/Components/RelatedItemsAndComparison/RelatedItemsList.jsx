@@ -4,9 +4,15 @@ import ReactDOM from 'react-dom';
 import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
 
-const RelatedItemsList = () => {
+const RelatedItemsList = ({product, getProduct, getRelated, related}) => {
   return (
-    <Cards />
-    <Carousel />
+    <div>
+      {related.map((id) => {
+        <Cards key = {product.id} productId = {product.id} related ={related}/>
+      })}
+      <Carousel />
+    </div>
   )
 }
+
+export default RelatedItemsList;
