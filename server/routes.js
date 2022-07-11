@@ -24,7 +24,23 @@ router.get('/products', (request, response) => {
     });
 });
 
-
+// GETs a specific product's styles
+// Request parameters: product_id
+router.get('/styles', (request, response) => {
+  // If there is no product_id as the parameter, return bad response
+  if (!request.query.product_id) {
+    response.send(500);
+  } else {
+    API.getProductStyles(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data);
+      })
+      .catch((error) => {
+        console.log('Error in getting all the products', error);
+        response.send(500);
+      });
+  }
+});
 
 
 

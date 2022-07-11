@@ -23,5 +23,14 @@ var getProduct = (id) => {
   });
 }
 
+// Function that sends a GET request to the API to get a specific product's styles
+// Input: the product ID of the specific product
+var getProductStyles = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`, {
+    headers: headers
+  });
+}
+
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
+module.exports.getProductStyles = getProductStyles;
