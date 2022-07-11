@@ -3,8 +3,8 @@
 // Import stuff
 import React, { useState, useEffect } from 'react';
 import { ImageGalleryContainer } from '../StyledComponents/Containers.jsx';
-import { ImageThumbnails, Thumbnail } from '../StyledComponents/ImageGallery/ImageThumbnails.jsx';
 import MainImage from './MainImage.jsx';
+import ThumbnailList from './ThumbnailList.jsx';
 
 // The component
 var Gallery = (props) => {
@@ -23,9 +23,7 @@ var Gallery = (props) => {
   return (
 
     <ImageGalleryContainer>
-      <ImageThumbnails>
-        <Thumbnail></Thumbnail><Thumbnail></Thumbnail><Thumbnail></Thumbnail>
-      </ImageThumbnails>
+      <ThumbnailList imageThumbnails={imageThumbnails} />
       <MainImage chosenImageUrl={chosenImageUrl} />
     </ImageGalleryContainer>
 
