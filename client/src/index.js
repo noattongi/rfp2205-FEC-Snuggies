@@ -4,6 +4,7 @@ import Overview from './Components/ProductOverview/Overview.jsx';
 import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 // import RInC from './Components/RelatedItemsAndComparison/RInC.jsx';
+import RInC from '/client/src/Components/RelatedItemsAndComparison/RInCIndex.jsx';
 
 var App = () => {
 
@@ -13,7 +14,7 @@ var App = () => {
     <div>
       <Overview />
       <br/>
-      {/* <RInC/> */}
+      <RInC/>
       <br/>
       <QnaIndex/>
       <br/>

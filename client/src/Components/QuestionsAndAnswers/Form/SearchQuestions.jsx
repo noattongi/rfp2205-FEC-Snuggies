@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
+import {FormInput} from '../StyledComponents/Containers.jsx';
 
 var SearchQuestions = () => {
   return (
-    <section>
-      <input type="text" ></input>
-    </section>
+    <FormInput placeholder="Have a Question? Search for answers..."/>
   )
 }
 
