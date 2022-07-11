@@ -35,6 +35,11 @@ const StyleThumbnailContainer = styled.section`
   flex-wrap: wrap;
 `;
 
+// Container to hold the chosen Style Thumbnail and the icon that indicates that it's the chosen one
+const ChosenStyleContainer = styled.section`
+  position: relative;
+`;
+
 // Container for the size and count buttons in Product Information section
 const SizeAndCountContainer = styled.section`
   display: flex;
@@ -54,4 +59,4 @@ const ProductInformationDescription = styled.section`
 `;
 
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, ChosenStyleContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
