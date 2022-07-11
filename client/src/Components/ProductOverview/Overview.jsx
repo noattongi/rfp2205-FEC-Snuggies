@@ -38,7 +38,7 @@ var Overview = (props) => {
   return (
     <div>
       <ProductOverviewContainer>
-        <Gallery product={product} styles={styles} chosenStyle={chosenStyle} />
+        <Gallery chosenStyle={chosenStyle} />
         <Information product={product} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reveiws={reviews} />
       </ProductOverviewContainer>
       <ProductInformationDescription>
