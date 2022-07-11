@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 
 var ReviewList = (props) => {
-
+  console.log(props.productReviews)
   return (
     <div>
     <ReviewTile/>

@@ -51,7 +51,7 @@ router.get('/reviews/', (request, response) => {
         response.status(200).send(results.data);
       })
       .catch((error) => {
-        console.log('Error in getting all the products', error);
+        console.log('Error in getting all the reviews', error);
         response.send(500);
       });
   }

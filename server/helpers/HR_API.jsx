@@ -32,8 +32,8 @@ var getProductStyles = (id) => {
 }
 
 //RATINGS AND REVIEWS
-var getProductReviews = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/', {
+var getProductReviews = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}`, {
     headers: headers
   });
 }
