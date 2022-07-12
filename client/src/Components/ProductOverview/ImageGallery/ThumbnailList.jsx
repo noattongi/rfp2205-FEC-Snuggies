@@ -21,14 +21,14 @@ var ThumbnailList = (props) => {
 
   return (
     <ImageThumbnails>
-      {index > 0 && <Arrow className="fa-solid fa-arrow-up" /> /* If the starting index is > 0, render an up arrow */}
+      {index > 0 && <Arrow className="fa-solid fa-arrow-up" onClick={() => {setIndex(index - 1)}} /> /* If the starting index is > 0, render an up arrow */}
       {shown.map((thumbnail, keyIndex = 0) => {
         return (
           <Thumbnail thumbnail={thumbnail} key={keyIndex++} setChosenImageUrl={props.setChosenImageUrl} />
           // If the thumbnail is the chosen one, render a bar under it to indicate that it's the chosen one
         );
       })}
-      {index + 7 < props.imageThumbnails.length && <Arrow className="fa-solid fa-arrow-down" />/* If the starting index + 7 is < props.imageThumbnails.length, render a down arrow */}
+      {index + 7 < props.imageThumbnails.length && <Arrow className="fa-solid fa-arrow-down" onClick={() => {setIndex(index + 1)}} />/* If the starting index + 7 is < props.imageThumbnails.length, render a down arrow */}
     </ImageThumbnails>
   );
 }
