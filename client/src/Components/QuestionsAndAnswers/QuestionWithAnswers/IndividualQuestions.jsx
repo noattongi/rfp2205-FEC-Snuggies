@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
-import {QuestionSpan, HelpfulAnswerSpan, AnswerListContainer, LoadMoreAnswersButton, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
+import {YesButton, QuestionSpan, HelpfulAnswerSpan, AnswerListContainer, LoadMoreAnswersButton, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
 
 import IndividualAnswer from './IndividualAnswer.jsx';
 
@@ -17,7 +17,7 @@ var IndividualQuestions = ({question}) => {
         <QuestionSpan> Q: {question.question_body} </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
           <AddAnswer/>
-          <HelpfulAnswerSpan> Helpful? Yes ({question.question_helpfulness}) </HelpfulAnswerSpan>
+          <HelpfulAnswerSpan> Helpful? <YesButton> Yes </YesButton>  ({question.question_helpfulness}) </HelpfulAnswerSpan>
         </HelpfulAndAddAnswerContainer>
       </QuestionHeaderContainer>
 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, PosterAndDateSpan, ReportSpan, AnswerHelpfulnessSpan} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, PosterAndDateSpan, ReportSpan, AnswerHelpfulnessSpan, ReportButton} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
 import { format, parseISO } from 'date-fns';
+import {YesButton} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx'
 // one container (column)
 // four items inside - Answer, Photos(situational), Bottom Info Container, Load More Answers
 
@@ -20,7 +21,7 @@ export default function IndividualAnswer({answer}) {
 
     return format(dateISO, "MMMM dd, yyyy")
   };
-  console.log('da answers', answer)
+
   return (
     <IndividualAnswerContainer>
       <AnswerSpan> {answer.body} </AnswerSpan>
@@ -28,9 +29,9 @@ export default function IndividualAnswer({answer}) {
       <BottomInfoContainer>
         <PosterAndDateSpan> {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
         <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? Yes </AnswerHelpfulnessSpan>
+        <AnswerHelpfulnessSpan>  Helpful? <YesButton>Yes</YesButton>({answer.helpfulness}) </AnswerHelpfulnessSpan>
         <span> | </span>
-        <ReportSpan> Report </ReportSpan>
+        <ReportSpan> <ReportButton> Report </ReportButton> </ReportSpan>
       </BottomInfoContainer>
     </IndividualAnswerContainer>
   )

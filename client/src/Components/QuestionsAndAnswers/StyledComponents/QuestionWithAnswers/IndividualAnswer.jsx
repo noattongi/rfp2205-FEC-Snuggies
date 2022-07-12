@@ -18,7 +18,7 @@ const ImageContainer = styled.div`
 const BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 23%;
   font-size: 12px;
 `;
@@ -40,8 +40,12 @@ const ReportSpan = styled.span`
 
 //adjust
 const AddAnswerButton = styled.button`
-  background-color: orange;
-  border-radius: 5px;
+  padding: 0;
+  border: none;
+  background: none;
+  width: 40%;
+  text-decoration: underline;
+  color: blue;
 `;
 
 const CollapseAnswerButton = styled.button`
@@ -62,4 +66,10 @@ const LoadMoreAnswersButton = styled.button`
   color: blue;
 `;
 
-export {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, PosterAndDateSpan, AddAnswerButton, CollapseAnswerButton, LoadMoreAnswersButton }
+const ReportButton = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+`;
+export {ReportButton, IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, PosterAndDateSpan, AddAnswerButton, CollapseAnswerButton, LoadMoreAnswersButton }

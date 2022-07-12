@@ -19,11 +19,24 @@ const QuestionHeaderContainer = styled.div`
 const HelpfulAndAddAnswerContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: 20%;
+  position: absolute;
+  left: 40%
 `;
 
 const HelpfulAnswerSpan = styled.div`
   display: flex;
   padding-right: 7px;
+  width: 50%
+`;
+
+const YesButton = styled.button`
+  text-decoration: underline;
+  padding: 0;
+  border: none;
+  background: none;
+
 `;
 
 const AnswerListContainer = styled.div`
@@ -48,4 +61,4 @@ const QuestionSpan = styled.span`
   font-weight: bold;
 `;
 
-export {QuestionSpan, QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, MoreAnsweredQuestionsButton, AddQuestionButton}
+export {YesButton, QuestionSpan, QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, MoreAnsweredQuestionsButton, AddQuestionButton}

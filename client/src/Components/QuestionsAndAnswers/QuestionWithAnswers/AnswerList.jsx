@@ -10,6 +10,12 @@ export default function AnswerList ({answerList}) {
     answer.push(answerList[key])
   };
 
+  var ascending = (a, b) => {
+    return b.helpfulness - a.helpfulness
+  };
+
+  var sortAnswer = answer.sort(ascending);
+
   const [len, setLen] = useState(2)
 
   var showMoreAnswers = (e) => {
@@ -24,12 +30,12 @@ export default function AnswerList ({answerList}) {
   return (
     <div>
       <AnswerSpan> Our Answer </AnswerSpan>
-      {answer.slice(0, len).map((each) => {
+      {sortAnswer.slice(0, len).map((each) => {
         return (
           <IndividualAnswer key={each.id} answer={each} />
         )
       })}
-       {answer.length > 2 && len < answer.length && <LoadMoreAnswersButton onClick={showMoreAnswers} > Load More Answers </LoadMoreAnswersButton>}
+       {sortAnswer.length > 2 && len < sortAnswer.length && <LoadMoreAnswersButton onClick={showMoreAnswers} > Load More Answers </LoadMoreAnswersButton>}
        {len > 2 && <CollapseAnswerButton onClick={collapseAnswers}> Collapse Answers </CollapseAnswerButton> }
     </div>
   )
