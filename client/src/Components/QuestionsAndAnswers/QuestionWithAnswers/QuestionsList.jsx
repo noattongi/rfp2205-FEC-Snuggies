@@ -5,7 +5,7 @@ import IndividualQuestions from './IndividualQuestions.jsx'
 // need to map each question
 
 var QuestionsList = ({questions}) => {
-  console.log('questions loggerindividual', questions.results)
+  // console.log('questions loggerindividual', questions.results)
 
   return (
     <QnAListContainer>

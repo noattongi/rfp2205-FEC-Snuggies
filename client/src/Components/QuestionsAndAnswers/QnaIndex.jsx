@@ -9,12 +9,14 @@ const axios = require('axios');
 var QnaIndex = (props) => {
 
   const [question, setQuestion] = useState([]);
+  const [defaultQ, setDefaultQ] = useState([]);
   // const [answer, setAnswer] = useState({});
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40344, count: 4}})
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40378, count: 4}})
     .then((response) => {
       setQuestion(response.data);
+      setDefaultQ(response.data);
       // axios.get('/snuggie/answers', {params: {product_id: 1, count: 2}})
       // .then((response) => {
       //   setAnswer(response.data);
@@ -30,11 +32,18 @@ var QnaIndex = (props) => {
   }, []);
 
   var search = (query) => {
-    console.log(query)
-  }
+    if (query.length > 2) {
+      var filtered = defaultQ.results.filter((e) => e.question_body.includes(query));
+      setQuestion(filtered);
+      console.log('filterd', filtered)
+      console.log('log the question', question)
+      console.log('defaultq', defaultQ)
+    }
+  };
+
   return (
     <QnAContainer>
-        <SearchQuestions />
+        <SearchQuestions search={search}/>
         <QuestionsList questions={question} />
       <BottomTabContainer>
       <MoreAnsweredQuestions />

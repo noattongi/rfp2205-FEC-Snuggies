@@ -5,6 +5,7 @@ import {AnswerSpan, CollapseAnswerButton, LoadMoreAnswersButton} from '../Styled
 // add Individual Answer
 export default function AnswerList ({answerList}) {
 
+
   var answer = [];
   for (var key in answerList) {
     answer.push(answerList[key])
