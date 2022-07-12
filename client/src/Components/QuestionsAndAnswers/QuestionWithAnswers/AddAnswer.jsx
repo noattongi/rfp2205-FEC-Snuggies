@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {AddAnswerButton} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import styled from 'styled-components'
 // modal
 
 var AddAnswer = () => {
@@ -7,5 +7,14 @@ var AddAnswer = () => {
     <AddAnswerButton> Add Answer </AddAnswerButton>
   )
 }
+
+const AddAnswerButton = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+  width: 40%;
+  text-decoration: underline;
+  color: blue;
+`;
 
 export default AddAnswer

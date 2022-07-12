@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {QnAListContainer, IndividualQuestDiv} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx'
-import IndividualQuestions from './IndividualQuestions.jsx'
+import IndividualQuestions from './IndividualQuestions.jsx';
+import styled from 'styled-components';
 
 // need to map each question
 
@@ -18,6 +18,17 @@ var QuestionsList = ({questions}) => {
       </IndividualQuestDiv>
     </QnAListContainer>
   )
-}
+};
+
+const QnAListContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+//questionable?
+const IndividualQuestDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default QuestionsList

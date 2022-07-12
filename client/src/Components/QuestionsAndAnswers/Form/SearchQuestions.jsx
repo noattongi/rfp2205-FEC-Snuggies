@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FormInput} from '../StyledComponents/Containers.jsx';
+import styled from 'styled-components';
 
 var SearchQuestions = ({search}) => {
 
@@ -13,6 +13,11 @@ var SearchQuestions = ({search}) => {
   return (
     <FormInput value={entry} onChange={handleChange} placeholder="Have a Question? Search for answers..."/>
   )
-}
+};
+
+const FormInput = styled.input`
+  width: 19.85%;
+  padding: 5px;
+`;
 
 export default SearchQuestions

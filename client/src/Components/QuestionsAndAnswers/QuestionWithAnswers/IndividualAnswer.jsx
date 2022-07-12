@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContainer, PosterAndDateSpan, ReportSpan, AnswerHelpfulnessSpan, ReportButton} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
 import { format, parseISO } from 'date-fns';
-import {YesButton} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx'
+import styled from 'styled-components'
+
 // one container (column)
 // four items inside - Answer, Photos(situational), Bottom Info Container, Load More Answers
 
@@ -35,4 +35,56 @@ export default function IndividualAnswer({answer}) {
       </BottomInfoContainer>
     </IndividualAnswerContainer>
   )
-}
+};
+
+const IndividualAnswerContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+const YesButton = styled.button`
+  text-decoration: underline;
+  padding: 0;
+  border: none;
+  background: none;
+
+`;
+
+const AnswerSpan = styled.span`
+  height: 1rem;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const BottomInfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 23%;
+  font-size: 12px;
+`;
+
+//adjust
+const PosterAndDateSpan = styled.span`
+  height: 1.2rem;
+`;
+
+//adjust
+const AnswerHelpfulnessSpan = styled.span`
+  height: 1rem;
+`;
+
+//adjust
+const ReportSpan = styled.span`
+  height: 1rem;
+`;
+
+const ReportButton = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+`;

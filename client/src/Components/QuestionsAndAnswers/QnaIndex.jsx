@@ -3,7 +3,8 @@ import SearchQuestions from './Form/SearchQuestions.jsx';
 import QuestionsList from './QuestionWithAnswers/QuestionsList.jsx';
 import MoreAnsweredQuestions from './BottomTabs/MoreAnsweredQuestions.jsx';
 import AddQuestion from './BottomTabs/AddQuestion.jsx';
-import {QnAContainer, FormInput, BottomTabContainer} from './StyledComponents/Containers.jsx';
+// import {QnAContainer, BottomTabContainer} from './StyledComponents/Containers.jsx';
+import styled from 'styled-components'
 const axios = require('axios');
 
 var QnaIndex = (props) => {
@@ -51,6 +52,19 @@ var QnaIndex = (props) => {
       </BottomTabContainer>
     </QnAContainer>
   )
-}
+};
+
+const QnAContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
+const BottomTabContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
 
 export default QnaIndex
+
+
