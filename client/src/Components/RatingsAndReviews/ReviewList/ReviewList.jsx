@@ -12,16 +12,6 @@ var ReviewList = (props) => {
   }
   var limitReviews = props.productReviews.results?.slice(0,reviewCount)
 
-  var moreReviewToggle = (reviewLength) => {
-    var moreReviewbutton;
-    if(reviewLength > 2 && reviewCount < reviewLength) {
-      moreReviewbutton = <button onClick={moreReviewClick} >More Reviews</button>
-      return moreReviewbutton
-    } else {
-      return moreReviewbutton;
-    }
-  }
-
   return (
     <div>
     <ul>
@@ -30,7 +20,7 @@ var ReviewList = (props) => {
                   reviews={review}/>
       )}
     </ul>
-    {moreReviewToggle(props.productReviews.results?.length)}
+    {props.productReviews.results?.length > 2 && reviewCount < props.productReviews.results?.length && <button onClick={moreReviewClick} >More Reviews</button>}
     <button>Add A Review</button>
     </div>
   )

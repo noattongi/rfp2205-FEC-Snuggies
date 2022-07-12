@@ -62,6 +62,6 @@ module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviews = getProductReviews;
-module.exports.postProductReviews = postProductReviews;
+// module.exports.postProductReviews = postProductReviews;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;
