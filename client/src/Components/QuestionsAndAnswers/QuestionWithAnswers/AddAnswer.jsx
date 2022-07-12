@@ -8,7 +8,8 @@ var AddAnswer = () => {
   )
 }
 
-const AddAnswerButton = styled.button`
+// styled components
+var AddAnswerButton = styled.button`
   padding: 0;
   border: none;
   background: none;

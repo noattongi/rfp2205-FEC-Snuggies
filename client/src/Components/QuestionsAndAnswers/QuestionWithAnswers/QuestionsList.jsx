@@ -10,7 +10,7 @@ var QuestionsList = ({questions}) => {
   return (
     <QnAListContainer>
       <IndividualQuestDiv>
-       {questions.results?.map((each) => {
+       {questions?.map((each) => {
          return (
            <IndividualQuestions key={each.question_id} question={each}/>
          )
@@ -20,13 +20,14 @@ var QuestionsList = ({questions}) => {
   )
 };
 
-const QnAListContainer = styled.section`
+// styled components
+var QnAListContainer = styled.section`
   display: flex;
   flex-direction: column;
 `;
 
 //questionable?
-const IndividualQuestDiv = styled.div`
+var IndividualQuestDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;

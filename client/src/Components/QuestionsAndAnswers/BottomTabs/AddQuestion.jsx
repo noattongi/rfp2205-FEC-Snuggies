@@ -7,7 +7,8 @@ var AddQuestion = () => {
   )
 };
 
-const AddQuestionButton = styled.button`
+// styled components
+var AddQuestionButton = styled.button`
   border-radius: 5px;
 `;
 

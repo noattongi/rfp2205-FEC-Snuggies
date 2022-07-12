@@ -29,7 +29,8 @@ var IndividualQuestions = ({question}) => {
   )
 };
 
-const YesButton = styled.button`
+// styled components
+var YesButton = styled.button`
   text-decoration: underline;
   padding: 0;
   border: none;
@@ -37,28 +38,28 @@ const YesButton = styled.button`
 
 `;
 
-const QuestionSpan = styled.span`
+var QuestionSpan = styled.span`
   display: flex;
   font-weight: bold;
 `;
 
-const HelpfulAnswerSpan = styled.div`
+var HelpfulAnswerSpan = styled.div`
   display: flex;
   padding-right: 7px;
   width: 50%
 `;
 
-const AnswerListContainer = styled.div`
+var AnswerListContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const QuestionHeaderContainer = styled.div`
+var QuestionHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const HelpfulAndAddAnswerContainer = styled.div`
+var HelpfulAndAddAnswerContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

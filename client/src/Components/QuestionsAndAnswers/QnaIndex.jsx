@@ -3,7 +3,6 @@ import SearchQuestions from './Form/SearchQuestions.jsx';
 import QuestionsList from './QuestionWithAnswers/QuestionsList.jsx';
 import MoreAnsweredQuestions from './BottomTabs/MoreAnsweredQuestions.jsx';
 import AddQuestion from './BottomTabs/AddQuestion.jsx';
-// import {QnAContainer, BottomTabContainer} from './StyledComponents/Containers.jsx';
 import styled from 'styled-components'
 const axios = require('axios');
 
@@ -11,10 +10,13 @@ var QnaIndex = (props) => {
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
+  const [len, setLen] = useState(4)
   // const [answer, setAnswer] = useState({});
+  console.log('num of q', question.results)
+  var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40378, count: 4}})
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40325, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
@@ -37,30 +39,34 @@ var QnaIndex = (props) => {
       var filtered = defaultQ.results.filter((e) => e.question_body.includes(query));
       setQuestion(filtered);
       console.log('filterd', filtered)
-      console.log('log the question', question)
+      console.log('log the question', questionSort)
       console.log('defaultq', defaultQ)
     }
   };
 
+  var loadQ = () => {
+    return setLen(len + 2)
+  }
   return (
     <QnAContainer>
         <SearchQuestions search={search}/>
-        <QuestionsList questions={question} />
+        <QuestionsList questions={questionSort} />
       <BottomTabContainer>
-      <MoreAnsweredQuestions />
+      {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
          <AddQuestion />
       </BottomTabContainer>
     </QnAContainer>
   )
 };
 
-const QnAContainer = styled.section`
+// styled components
+var QnAContainer = styled.section`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
 `;
 
-const BottomTabContainer = styled.section`
+var BottomTabContainer = styled.section`
   display: flex;
   flex-direction: row;
 `;

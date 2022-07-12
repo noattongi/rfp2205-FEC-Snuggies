@@ -37,12 +37,13 @@ export default function IndividualAnswer({answer}) {
   )
 };
 
-const IndividualAnswerContainer = styled.section`
+// styled components
+var IndividualAnswerContainer = styled.section`
   display: flex;
   flex-direction: column;
 `;
 
-const YesButton = styled.button`
+var YesButton = styled.button`
   text-decoration: underline;
   padding: 0;
   border: none;
@@ -50,16 +51,16 @@ const YesButton = styled.button`
 
 `;
 
-const AnswerSpan = styled.span`
+var AnswerSpan = styled.span`
   height: 1rem;
 `;
 
-const ImageContainer = styled.div`
+var ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
-const BottomInfoContainer = styled.div`
+var BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -68,21 +69,21 @@ const BottomInfoContainer = styled.div`
 `;
 
 //adjust
-const PosterAndDateSpan = styled.span`
+var PosterAndDateSpan = styled.span`
   height: 1.2rem;
 `;
 
 //adjust
-const AnswerHelpfulnessSpan = styled.span`
+var AnswerHelpfulnessSpan = styled.span`
   height: 1rem;
 `;
 
 //adjust
-const ReportSpan = styled.span`
+var ReportSpan = styled.span`
   height: 1rem;
 `;
 
-const ReportButton = styled.button`
+var ReportButton = styled.button`
   padding: 0;
   border: none;
   background: none;

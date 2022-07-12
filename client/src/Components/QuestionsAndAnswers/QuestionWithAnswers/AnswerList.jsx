@@ -54,11 +54,12 @@ export default function AnswerList ({answerList}) {
 //   padding: 20px;
 // `;
 
-const AnswerSpan = styled.span`
+// styled components
+var AnswerSpan = styled.span`
   height: 1rem;
 `;
 
-const CollapseAnswerButton = styled.button`
+var CollapseAnswerButton = styled.button`
   padding: 0;
   border: none;
   background: none;
@@ -67,7 +68,7 @@ const CollapseAnswerButton = styled.button`
   color: blue;
 `;
 
-const LoadMoreAnswersButton = styled.button`
+var LoadMoreAnswersButton = styled.button`
   padding: 0;
   border: none;
   background: none;
