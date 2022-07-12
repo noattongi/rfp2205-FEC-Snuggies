@@ -57,6 +57,17 @@ router.get('/reviews/', (request, response) => {
   }
 });
 
+router.post('/reviews', (request, response) => {
+    API.postProductReviews(request.body)
+      .then((results) => {
+        response.status(201).send('send from router.post worked')
+      })
+      .catch((error) => {
+        console.log('Error in posting the reviews', error);
+        response.send(500);
+      });
+});
+
 
 router.get('*/related', (request, response) => {
   if (!request.query.product_id) {

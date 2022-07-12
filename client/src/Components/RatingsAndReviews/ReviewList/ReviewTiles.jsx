@@ -5,7 +5,7 @@ import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 
 var ReviewTiles = (props) => {
- console.log(props.reviews.photos, 'hellooo')
+ console.log(props.reviews, 'hellooo')
 
 
   var formatDate = (date) => {
@@ -38,7 +38,7 @@ var ReviewTiles = (props) => {
     </div>
     <div>Recommend: {recommendFilter(props.reviews.recommend.toString())}</div>
     <div>Reviewer Name: {props.reviews.reviewer_name}</div>
-    <div>Response to Review: {props.reviews.response}</div>
+    <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
     <div>Helpful? yes ({props.reviews.helpfulness})</div>
    </div>
   )

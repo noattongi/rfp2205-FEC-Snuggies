@@ -11,7 +11,7 @@ var ReviewList = (props) => {
     setReviewCount(reviewCount + 2)
   }
   var limitReviews = props.productReviews.results?.slice(0,reviewCount)
-  // console.log(props.productReviews.results)
+
   var moreReviewToggle = (reviewLength) => {
     var moreReviewbutton;
     if(reviewLength > 2 && reviewCount < reviewLength) {
