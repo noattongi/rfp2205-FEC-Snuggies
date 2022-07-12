@@ -58,7 +58,7 @@ router.get('/reviews/', (request, response) => {
 });
 
 
-router.get('*/related', (request, response) => {
+router.get('/related', (request, response) => {
   if (!request.query.product_id) {
     response.send(500);
   } else {

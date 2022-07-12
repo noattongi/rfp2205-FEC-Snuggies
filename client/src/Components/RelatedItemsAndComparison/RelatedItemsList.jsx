@@ -4,12 +4,14 @@ import ReactDOM from 'react-dom';
 import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
 
-const RelatedItemsList = ({getProduct, relatedProd}) => {
+const RelatedItemsList = (props) => {
+  useEffect(() => {
+    console.log('related products', props.relatedProd)
+  }, [props.relatedProd])
   return (
     <div>
-      {/* {relatedProd?.map((prod) => {
-        <Cards key = {prod.id} prod ={prod}/>
-      })} */}
+      {/* {console.log(relatedProd)} */}
+      <Cards relatedProd = {props.relatedProd}/>
       <Carousel />
     </div>
   )

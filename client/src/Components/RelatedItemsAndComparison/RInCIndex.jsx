@@ -36,8 +36,17 @@ const RInCIndex = () => {
   useEffect(() => {
     getRelated(40344)
     .then((data) => {
+      var temp = []
       data.forEach((id) => {
-        getProduct(id)
+        temp.push(axios.get('/snuggie/products', {params: {product_id: id}})
+        .then((res) => { return res.data}))
+      })
+      return temp;
+    })
+    .then((array) => {
+      Promise.all(array)
+      .then((values) => {
+        setRelatedProd(values)
       })
     })
     .catch((error) => {
@@ -46,9 +55,9 @@ const RInCIndex = () => {
   }, [])
   return (
     <div>
-      {/* {console.log('related id', relatedId)}
-      {console.log('related prod', relatedProd)} */}
-      <RelatedItemsList relatedProd = {relatedProd} getProduct = {getProduct}/>
+      {console.log('related id', relatedId)}
+      {console.log('related prod', relatedProd)}
+      <RelatedItemsList relatedProd = {relatedProd}/>
       <OutfitList />
     </div>
   )
