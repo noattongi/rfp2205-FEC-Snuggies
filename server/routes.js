@@ -1,7 +1,6 @@
 var router = require('express').Router()
 var API = require('./helpers/HR_API.jsx');
 
-// import yo controllers
 
 // GETs either a specific product or all the products
 // Request parameters: [OPTIONAL product_id]
@@ -42,6 +41,23 @@ router.get('/styles', (request, response) => {
   }
 });
 
+//RATINGS AND REVIEWS
+router.get('/reviews/', (request, response) => {
+  if (!request.query.product_id) {
+    response.sendStatus(500);
+  } else {
+    API.getProductReviews(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data);
+      })
+      .catch((error) => {
+        console.log('Error in getting all the reviews', error);
+        response.send(500);
+      });
+  }
+});
+
+
 router.get('*/related', (request, response) => {
   if (!request.query.product_id) {
     response.send(500);
@@ -56,6 +72,22 @@ router.get('*/related', (request, response) => {
       })
   }
 
+});
+
+router.get('/qa/questions', (request, response) => {
+  console.log(request.query.count)
+  if (!request.query.product_id) {
+    response.send(500);
+  } else {
+    API.getProductQuestion(request.query.product_id, request.query.count)
+    .then((results) => {
+      response.status(200).send(results.data)
+    })
+    .catch((error) => {
+      console.log('Error in getting product question');
+      response.send(500);
+    })
+  }
 })
 
 module.exports = router;
