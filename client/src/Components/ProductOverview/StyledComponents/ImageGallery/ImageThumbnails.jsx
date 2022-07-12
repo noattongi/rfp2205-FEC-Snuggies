@@ -7,6 +7,7 @@ import styled from 'styled-components';
 const ImageThumbnails = styled.section`
   display: flex;
   flex-direction: column;
+  padding: 32px;
   background-color: teal;
 `;
 
@@ -14,9 +15,13 @@ const ImageThumbnails = styled.section`
 const ThumbnailImage = styled.img`
   object-fit: cover;
   overflow: hidden;
-  width: 50px;
-  height: 50px;
-  background-color: gray;
+  width: 62px;
+  height: 62px;
+  background-color: white;
+
+  border: solid;
+  border-color: black;
+  margin-bottom: 20px;
 `;
 
 // Export the styled components

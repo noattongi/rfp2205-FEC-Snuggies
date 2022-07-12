@@ -13,8 +13,8 @@ const Image = styled.img`
 const DefaultView = styled.div`
   display: flex;
   justify-content: center;
-  width: 300px;
-  height: 300px;
+  width: 642px;
+  height: 628px;
   background-color: black;
 `;
 
