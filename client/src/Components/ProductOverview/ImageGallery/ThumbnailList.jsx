@@ -14,7 +14,7 @@ var ThumbnailList = (props) => {
     <ImageThumbnails>
       {props.imageThumbnails.map((thumbnail, index = 0) => {
         return (
-          <Thumbnail thumbnail_url={thumbnail.thumbnail_url} key={index++} />
+          <Thumbnail thumbnail={thumbnail} key={index++} setChosenImageUrl={props.setChosenImageUrl} />
           // If the thumbnail is the chosen one, render a bar under it to indicate that it's the chosen one
         );
       })}

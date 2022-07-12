@@ -23,7 +23,7 @@ var Gallery = (props) => {
   return (
 
     <ImageGalleryContainer>
-      <ThumbnailList imageThumbnails={imageThumbnails} />
+      <ThumbnailList imageThumbnails={imageThumbnails} setChosenImageUrl={setChosenImageUrl} />
       <MainImage chosenImageUrl={chosenImageUrl} />
     </ImageGalleryContainer>
 

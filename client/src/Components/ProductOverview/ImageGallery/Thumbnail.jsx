@@ -9,7 +9,7 @@ var Thumbnail = (props) => {
 
 
   return (
-    <ThumbnailImage src={props.thumbnail_url} />
+    <ThumbnailImage src={props.thumbnail.thumbnail_url} onClick={() => {props.setChosenImageUrl(props.thumbnail.url)}} />
   );
 }
 
