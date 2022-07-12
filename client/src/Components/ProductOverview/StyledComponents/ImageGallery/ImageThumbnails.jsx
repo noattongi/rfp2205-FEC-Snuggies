@@ -24,5 +24,18 @@ const ThumbnailImage = styled.img`
   margin-bottom: 20px;
 `;
 
+{/* <i class="fa-solid fa-arrow-down"></i> */}
+// The up/down arrow icon that shifts the shown thumbnails up/down
+const Arrow = styled.i`
+  object-fit: fill;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  padding: 3px;
+  border: solid;
+  border-color: black;
+  border-radius: 10%;
+`;
+
 // Export the styled components
-export { ImageThumbnails, ThumbnailImage };
+export { ImageThumbnails, ThumbnailImage, Arrow };
