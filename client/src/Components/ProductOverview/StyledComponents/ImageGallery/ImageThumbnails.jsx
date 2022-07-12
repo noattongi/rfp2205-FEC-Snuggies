@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const ImageThumbnails = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 32px 16px 16px 16px;
   background-color: teal;
 `;
 
@@ -21,10 +21,20 @@ const ThumbnailImage = styled.img`
 
   border: solid;
   border-color: black;
-  margin-bottom: 20px;
 `;
 
-{/* <i class="fa-solid fa-arrow-down"></i> */}
+// A regular div element
+const Div = styled.div`
+  margin: 0 16px 20px 16px;
+`;
+
+// A div element that wraps around the chosen (selected) image thumbnail
+const ChosenDiv = styled.div`
+  margin: 0 16px 20px 16px;
+  border-bottom: solid;
+  border-color: white;
+`;
+
 // The up/down arrow icon that shifts the shown thumbnails up/down
 const Arrow = styled.i`
   object-fit: fill;
@@ -38,4 +48,4 @@ const Arrow = styled.i`
 `;
 
 // Export the styled components
-export { ImageThumbnails, ThumbnailImage, Arrow };
+export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow };
