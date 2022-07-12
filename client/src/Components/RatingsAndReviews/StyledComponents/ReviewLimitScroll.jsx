@@ -4,7 +4,7 @@ const Scroll = styled.ul`
 font: bold 14px Arial;
 width:90%% ;
 color:#616D7E;
-height:400px;
+height:300px;
 overflow:scroll;
 overflow-y:scroll;
 overflow-x:hidden;

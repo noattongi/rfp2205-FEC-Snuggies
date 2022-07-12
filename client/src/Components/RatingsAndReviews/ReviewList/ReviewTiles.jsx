@@ -6,13 +6,15 @@ import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
 
 var ReviewTiles = (props) => {
-
+  const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body.substr(0, 250))
+  const [seeMore, setSeeMore] = useState(true)
 
   var formatDate = (date) => {
     var dateISO = parseISO(date.slice(0, 10))
     var formattedDate = (`${format(dateISO, 'MMMM, dd, yyyy')}`)
     return formattedDate
   }
+
   var recommendFilter = (recommended) => {
     var recommend;
     if(recommended === 'true') {
@@ -22,6 +24,10 @@ var ReviewTiles = (props) => {
     }
   }
 
+  var seeMoreClick = (event) => {
+    setReviewBodyRender(props.reviews.body)
+    setSeeMore(false)
+  }
 
 
 
@@ -31,7 +37,8 @@ var ReviewTiles = (props) => {
     <div>⭐️⭐️⭐️⭐️⭐️ Star Rating</div>
     <div>Date Of Review: {formatDate(props.reviews.date)}</div>
     <div>Summary: {props.reviews.summary.substr(0, 60)}</div>
-    <div><b>Review Body: {props.reviews.body.substr(0, 250)}</b>
+    <div><b>Review Body: {reviewBodyRender}</b>
+    <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
     {props.reviews.photos.map((photo, index) =>
         <ImagePool key={index}
                   photo={photo}/>
