@@ -7,7 +7,7 @@ var IndividualQuestions = ({question}) => {
   // contains QuestionDiv AnswerListContainer,
   // Question div has Question and Helpful/Add Answer Section
   // AnswerListDiv has IndividualAnswers
-  console.log(question.question_helpfulness)
+
   return (
     <div>
       <QuestionHeaderContainer>

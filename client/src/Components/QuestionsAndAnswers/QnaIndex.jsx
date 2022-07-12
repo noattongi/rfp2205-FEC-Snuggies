@@ -8,7 +8,8 @@ const axios = require('axios');
 
 var QnaIndex = (props) => {
 
-  const [question, setQuestion] = useState({});
+  const [question, setQuestion] = useState([]);
+  const [answer, setAnswer] = useState({});
 
   useEffect(() => {
     axios.get('/snuggie/qa/questions', {params : {product_id: 40377, count: 4}})
@@ -17,6 +18,15 @@ var QnaIndex = (props) => {
     })
     .catch((error) => {
       console.log('Error in retrieving question list from server', error);
+    });
+
+    axios.get('/snuggie/answers', {params: {product_id: 40344, count: 2}})
+    .then((response) => {
+      setAnswer(response.data);
+      console.log('answers', response.data)
+    })
+    .catch((error) => {
+      console.log('Error in retrieving answers list from server', error)
     });
   }, []);
 

@@ -43,8 +43,15 @@ var getProductQuestion = (id, count) => {
   });
 };
 
+var getProductAnswer = (id, count) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/answers/?count=${count}`, {
+    headers: headers
+  });
+};
+
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;
+module.exports.getProductAnswer = getProductAnswer;
