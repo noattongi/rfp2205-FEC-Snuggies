@@ -9,10 +9,10 @@ const axios = require('axios');
 var QnaIndex = (props) => {
 
   const [question, setQuestion] = useState([]);
-  const [answer, setAnswer] = useState({});
+  // const [answer, setAnswer] = useState({});
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40377, count: 4}})
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40344, count: 4}})
     .then((response) => {
       setQuestion(response.data);
       // axios.get('/snuggie/answers', {params: {product_id: 1, count: 2}})
@@ -29,9 +29,12 @@ var QnaIndex = (props) => {
     });
   }, []);
 
+  var search = (query) => {
+    console.log(query)
+  }
   return (
     <QnAContainer>
-        <SearchQuestions/>
+        <SearchQuestions />
         <QuestionsList questions={question} />
       <BottomTabContainer>
       <MoreAnsweredQuestions />
