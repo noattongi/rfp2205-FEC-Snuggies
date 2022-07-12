@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
+import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
 
 var ReviewTiles = (props) => {
 
@@ -15,7 +16,7 @@ var ReviewTiles = (props) => {
   var recommendFilter = (recommended) => {
     var recommend;
     if(recommended === 'true') {
-      return recommend = '✅ I reccomend this product'
+      return recommend = '✅ I recommend this product'
     } else {
       return recommend
     }
@@ -25,6 +26,7 @@ var ReviewTiles = (props) => {
 
 
   return (
+    <ReviewTile>
    <div>
     <div>⭐️⭐️⭐️⭐️⭐️ Star Rating</div>
     <div>Date Of Review: {formatDate(props.reviews.date)}</div>
@@ -40,6 +42,7 @@ var ReviewTiles = (props) => {
     <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
     <div>Helpful? yes ({props.reviews.helpfulness})</div>
    </div>
+   </ReviewTile>
   )
 }
 export default ReviewTiles

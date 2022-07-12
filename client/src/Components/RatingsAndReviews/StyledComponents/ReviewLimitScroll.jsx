@@ -10,4 +10,10 @@ overflow-y:scroll;
 overflow-x:hidden;
 `;
 
-export { Scroll };
+const ReviewTile = styled.div`
+border-bottom: 2px solid grey;
+`
+
+
+
+export { Scroll , ReviewTile};
