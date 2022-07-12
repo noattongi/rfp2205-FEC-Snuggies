@@ -14,7 +14,6 @@ var ReviewList = (props) => {
   // console.log(props.productReviews.results)
   var moreReviewToggle = (reviewLength) => {
     var moreReviewbutton;
-    console.log(reviewCount, 'lesss athan ',reviewLength, 'hellooo')
     if(reviewLength > 2 && reviewCount < reviewLength) {
       moreReviewbutton = <button onClick={moreReviewClick} >More Reviews</button>
       return moreReviewbutton

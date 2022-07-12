@@ -16,7 +16,7 @@ var RatingsAndReviewsIndex = (props) => {
     })
   }
   useEffect (() => {
-    getProductReviews(40344)
+    getProductReviews(40347)
   }, [])
 
 
