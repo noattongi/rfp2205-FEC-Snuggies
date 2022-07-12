@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
- import { StyleBackground, Container, ModalBody } from '../StyledComponents.jsx/AddReviewModal.jsx';
+ import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
 
 var AddReviewModal = (props) => {
 

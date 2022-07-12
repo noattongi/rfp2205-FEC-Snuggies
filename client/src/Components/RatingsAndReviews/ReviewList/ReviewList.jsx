@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 import AddReviewModal from './AddReviewModal.jsx'
+import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
 
 var ReviewList = (props) => {
   const [reviewCount, setReviewCount] = useState(2);
@@ -20,12 +21,16 @@ var ReviewList = (props) => {
 
   return (
     <div>
+      <Scroll>
     <ul>
+
       {limitReviews?.map((review, index) =>
         <ReviewTile key={index}
                   reviews={review}/>
       )}
+
     </ul>
+    </Scroll>
     {props.productReviews.results?.length > 2 && reviewCount < props.productReviews.results?.length && <button onClick={moreReviewClick} >More Reviews</button>}
     <button
       className="openModalBtn"
