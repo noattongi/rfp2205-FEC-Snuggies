@@ -31,6 +31,13 @@ var getProductStyles = (id) => {
   });
 }
 
+//RATINGS AND REVIEWS
+var getProductReviews = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}`, {
+    headers: headers
+  });
+}
+
 var getRelatedProducts = (id) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`, {
     headers: headers
@@ -52,6 +59,7 @@ var getProductAnswer = (id, count) => {
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
+module.exports.getProductReviews = getProductReviews
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;
 module.exports.getProductAnswer = getProductAnswer;
