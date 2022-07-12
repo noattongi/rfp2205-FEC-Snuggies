@@ -7,7 +7,7 @@ var RatingsAndReviewsIndex = (props) => {
   const [reviews, setReviews] = useState({});
 
   const getProductReviews = (productId) => {
-    return axios.get('/snuggie/reviews/', {params: {product_id: productId}})
+    return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 50}})
     .then((response) => {
       return setReviews(response.data);
     })

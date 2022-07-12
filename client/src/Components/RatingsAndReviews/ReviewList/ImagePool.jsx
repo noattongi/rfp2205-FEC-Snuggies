@@ -1,7 +1,6 @@
-
-
-// Import stuff
-import React, { useState, useEffect } from 'React';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ReactDOM from 'react-dom';
 
 var ImagePool = (props) => {
 

@@ -46,7 +46,7 @@ router.get('/reviews/', (request, response) => {
   if (!request.query.product_id) {
     response.sendStatus(500);
   } else {
-    API.getProductReviews(request.query.product_id)
+    API.getProductReviews(request.query.product_id, request.query.count)
       .then((results) => {
         response.status(200).send(results.data);
       })

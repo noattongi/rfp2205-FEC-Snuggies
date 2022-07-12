@@ -5,7 +5,6 @@ import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 
 var ReviewTiles = (props) => {
- console.log(props.reviews, 'hellooo')
 
 
   var formatDate = (date) => {
