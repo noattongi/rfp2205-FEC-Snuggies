@@ -12,7 +12,12 @@ const RInCIndex = () => {
   const getProduct = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId}})
     .then((response) => {
-      return response.data;
+      var temp = relatedProd;
+      temp.push(response.data);
+      return temp;
+    })
+    .then((relProd) => {
+      return setRelatedProd(relProd)
     })
     .catch((error) => {
       console.log('Error in getProduct', error)
@@ -31,19 +36,19 @@ const RInCIndex = () => {
   useEffect(() => {
     getRelated(40344)
     .then((data) => {
-      getProduct(40344)
-    }).then((prod) => {
-      setRelatedProd(prod);
-      return prod;
-    }).then((item) => {
-      console.log('item', relatedProd)
+      data.forEach((id) => {
+        getProduct(id)
+      })
+    })
+    .catch((error) => {
+      console.log('useEffect error', error)
     })
   }, [])
   return (
     <div>
-      {console.log('related id', relatedId)}
-      {console.log('related prod', relatedProd)}
-      <RelatedItemsList product = {product} getProduct = {getProduct}/>
+      {/* {console.log('related id', relatedId)}
+      {console.log('related prod', relatedProd)} */}
+      <RelatedItemsList relatedProd = {relatedProd} getProduct = {getProduct}/>
       <OutfitList />
     </div>
   )
