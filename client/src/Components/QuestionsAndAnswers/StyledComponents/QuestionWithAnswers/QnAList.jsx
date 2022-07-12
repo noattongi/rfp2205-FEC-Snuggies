@@ -41,17 +41,11 @@ const MoreAnsweredQuestionsButton = styled.button`
 `;
 
 //adjust??
-const LoadMoreAnswersButton = styled.button`
-  padding: 0;
-  border: none;
-  background: none;
-  width: 9%;
 
-`;
 
 const QuestionSpan = styled.span`
   display: flex;
   font-weight: bold;
 `;
 
-export {QuestionSpan, QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, LoadMoreAnswersButton, MoreAnsweredQuestionsButton, AddQuestionButton}
+export {QuestionSpan, QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, MoreAnsweredQuestionsButton, AddQuestionButton}

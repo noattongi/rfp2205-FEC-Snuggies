@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
-import {QuestionSpan, HelpfulAnswerSpan, AnswerListContainer, LoadMoreAnswersButton, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx'
+import {QuestionSpan, HelpfulAnswerSpan, AnswerListContainer, LoadMoreAnswersButton, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
+
+import IndividualAnswer from './IndividualAnswer.jsx';
 
 var IndividualQuestions = ({question}) => {
   // contains QuestionDiv AnswerListContainer,
   // Question div has Question and Helpful/Add Answer Section
   // AnswerListDiv has IndividualAnswers
+
 
   return (
     <div>
@@ -19,8 +22,8 @@ var IndividualQuestions = ({question}) => {
       </QuestionHeaderContainer>
 
       <AnswerListContainer>
-        <AnswerList/>
-      <LoadMoreAnswersButton> Load More Answers</LoadMoreAnswersButton>
+        <AnswerList key={question.question_id} answerList={question.answers} />
+
       </AnswerListContainer>
     </div>
 
