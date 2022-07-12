@@ -1,6 +1,6 @@
 // The Thumbnail component
 // Import stuff
-import React, { useEffect } from 'React';
+import React, { useEffect } from 'react';
 import { ThumbnailImage } from '../StyledComponents/ImageGallery/ImageThumbnails.jsx';
 
 // The list component itself
