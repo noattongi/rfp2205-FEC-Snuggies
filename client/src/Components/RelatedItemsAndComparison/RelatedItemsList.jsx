@@ -10,7 +10,6 @@ const RelatedItemsList = (props) => {
   }, [props.relatedProd])
   return (
     <div>
-      {/* {console.log(relatedProd)} */}
       <Cards relatedProd = {props.relatedProd}/>
       <Carousel />
     </div>
