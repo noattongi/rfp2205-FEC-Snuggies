@@ -9,7 +9,6 @@ var RatingsAndReviewsIndex = (props) => {
   const getProductReviews = (productId) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId}})
     .then((response) => {
-      console.log(response.data)
       return setReviews(response.data);
     })
     .catch((error) => {
@@ -20,9 +19,11 @@ var RatingsAndReviewsIndex = (props) => {
     getProductReviews(40344)
   }, [])
 
+
+
   return (
     <div>
-    <ReviewList />
+    <ReviewList productReviews={reviews}/>
     </div>
   )
 }

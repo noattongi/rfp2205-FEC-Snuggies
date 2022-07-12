@@ -4,10 +4,15 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 
 var ReviewList = (props) => {
-  console.log(props.productReviews)
+  var limitReviews = props.productReviews.results?.slice(0,2)
   return (
     <div>
-    <ReviewTile/>
+    <ul>
+      {limitReviews?.map((review, index) =>
+        <ReviewTile key={index}
+                  reviews={review} />
+      )}
+    </ul>
     <button>More Reviews</button>
     <button>Add A Review</button>
     </div>
