@@ -16,7 +16,6 @@ import {IndividualAnswerContainer, AnswerSpan, ImageContainer, BottomInfoContain
 export default function IndividualAnswer() {
   return (
     <IndividualAnswerContainer>
-      <AnswerSpan> Our Answer </AnswerSpan>
       <ImageContainer></ImageContainer>
       <BottomInfoContainer>
         <PosterAndDateSpan> Insert Poster and Date </PosterAndDateSpan>

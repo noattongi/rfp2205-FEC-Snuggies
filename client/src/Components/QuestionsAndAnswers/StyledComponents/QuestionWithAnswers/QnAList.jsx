@@ -23,6 +23,7 @@ const HelpfulAndAddAnswerContainer = styled.div`
 
 const HelpfulAnswerSpan = styled.div`
   display: flex;
+  padding-right: 7px;
 `;
 
 const AnswerListContainer = styled.div`
@@ -50,6 +51,7 @@ const LoadMoreAnswersButton = styled.button`
 
 const QuestionSpan = styled.span`
   display: flex;
+  font-weight: bold;
 `;
 
 export {QuestionSpan, QnAListContainer, AnswerListContainer, HelpfulAnswerSpan, IndividualQuestDiv, HelpfulAndAddAnswerContainer, QuestionHeaderContainer, LoadMoreAnswersButton, MoreAnsweredQuestionsButton, AddQuestionButton}
