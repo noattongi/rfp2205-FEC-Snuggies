@@ -70,7 +70,6 @@ router.post('/reviews', (request, response) => {
 
 
 router.get('*/related', (request, response) => {
-  console.log(request.query, 'requesttttttttttt')
   if (!request.query.product_id) {
     response.send(500);
   } else {
