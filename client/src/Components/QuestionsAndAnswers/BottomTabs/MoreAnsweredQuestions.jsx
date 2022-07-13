@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
-import {MoreAnsweredQuestionsButton} from '../StyledComponents/QuestionWithAnswers/QnAList.jsx';
+import styled from 'styled-components';
 
-var MoreAnsweredQuestions = () => {
+var MoreAnsweredQuestions = ({loadMore}) => {
+
+
   return (
-    <MoreAnsweredQuestionsButton> More Answered Questions </MoreAnsweredQuestionsButton>
+    <MoreAnsweredQuestionsButton onClick={loadMore}> More Answered Questions </MoreAnsweredQuestionsButton>
   )
-}
+};
+
+// styled components
+var MoreAnsweredQuestionsButton = styled.button`
+  border-radius: 5px;
+`;
 
 export default MoreAnsweredQuestions
