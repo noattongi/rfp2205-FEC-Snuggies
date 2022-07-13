@@ -12,6 +12,9 @@ const StyleThumbnail = styled.img`
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 // An icon that indicates that the thumbnail is the chosen one
