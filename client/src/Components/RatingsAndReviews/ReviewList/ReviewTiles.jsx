@@ -5,7 +5,7 @@ import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
 import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
-import {TopContainer, UserandDate} from '../StyledComponents/ReviewTile.jsx'
+import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody} from '../StyledComponents/ReviewTile.jsx'
 
 var ReviewTiles = (props) => {
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body.substr(0, 250))
@@ -43,15 +43,15 @@ var ReviewTiles = (props) => {
           <span> {`,  ${formatDate(props.reviews.date)}`}</span>
         </UserandDate>
       </TopContainer>
-    <div><b>{props.reviews.summary.substr(0, 60)}</b></div>
-    <div>{reviewBodyRender}
+    <Summary>{props.reviews.summary.substr(0, 60)}</Summary>
+    <ReviewBody>{reviewBodyRender}
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
     {props.reviews.photos.map((photo, index) =>
         <ImagePool key={index}
                   photo={photo}/>
       )}
-    </div>
-    <div>{recommendFilter(props.reviews.recommend.toString())}</div>
+    </ReviewBody>
+    <RecommendProduct>{recommendFilter(props.reviews.recommend.toString())}</RecommendProduct>
     <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
     <BottomInfoContainer>
     <AnswerHelpfulnessSpan>Helpful? Yes ({props.reviews.helpfulness})</AnswerHelpfulnessSpan>
@@ -62,5 +62,6 @@ var ReviewTiles = (props) => {
    </ReviewTile>
   )
 }
+
 
 export default ReviewTiles

@@ -10,6 +10,8 @@ overflow-x:hidden;
 
 const ReviewTile = styled.div`
 border-bottom: 2px solid grey;
+padding-top: 20px;
+padding-bottom: 20px;
 `
 
 
