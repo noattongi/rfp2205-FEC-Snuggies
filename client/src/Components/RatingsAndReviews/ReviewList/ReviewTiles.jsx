@@ -37,14 +37,14 @@ var ReviewTiles = (props) => {
     <ReviewTile>
    <div>
      <TopContainer>
-        <div>⭐️⭐️⭐️⭐️⭐️ Star Rating</div>
+        <div>⭐️⭐️⭐️⭐️⭐️</div>
         <UserandDate>
-          <span>Reviewer Name: {props.reviews.reviewer_name}</span>
-          <span>Date Of Review: {formatDate(props.reviews.date)}</span>
+          <span>{props.reviews.reviewer_name}   </span>
+          <span> {`,  ${formatDate(props.reviews.date)}`}</span>
         </UserandDate>
       </TopContainer>
-    <div>Summary: {props.reviews.summary.substr(0, 60)}</div>
-    <div><b>Review Body: {reviewBodyRender}</b>
+    <div><b>{props.reviews.summary.substr(0, 60)}</b></div>
+    <div>{reviewBodyRender}
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
     {props.reviews.photos.map((photo, index) =>
         <ImagePool key={index}
