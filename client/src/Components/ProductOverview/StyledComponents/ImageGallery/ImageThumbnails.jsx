@@ -21,6 +21,9 @@ const ThumbnailImage = styled.img`
 
   border: solid;
   border-color: black;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 // A regular div element
@@ -31,7 +34,7 @@ const Div = styled.div`
 // A div element that wraps around the chosen (selected) image thumbnail
 const ChosenDiv = styled.div`
   margin: 0 16px 20px 16px;
-  border-bottom: solid;
+  border: solid;
   border-color: white;
 `;
 
