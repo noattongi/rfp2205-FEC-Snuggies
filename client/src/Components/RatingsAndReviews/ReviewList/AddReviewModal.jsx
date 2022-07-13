@@ -10,6 +10,11 @@ var AddReviewModal = (props) => {
   const [email, setEmail] =  useState('')
   const [selectedImage, setSelectedImage] = useState(null)
 
+  //Modal Input
+  const [recommendInput, setRecommendInput] = useState(null)
+  const [charCountSummary, setCharCountSummary] = useState(0)
+  const [charCountBody, setCharCountBody] = useState(50)
+
   var toggleModal = (e) => {
     setIsOpen(!isOpen)
   }
@@ -26,20 +31,30 @@ var AddReviewModal = (props) => {
 
     var handleReviewBodyChange =(event) => {
       setReviewBody(event.target.value)
-      console.log(reviewBody)
+      if(charCountBody > 0) {
+        setCharCountBody(50 - event.target.value.length)
+      }
     }
 
     var handleSummaryChange = (event) => {
       setbodySummary(event.target.value)
-      console.log(bodySummary)
+      setCharCountSummary(event.target.value.length)
     }
 
-    var   onImageChange = event => {
+    var onImageChange = event => {
       if (event.target.files && event.target.files[0]) {
         let img = event.target.files[0];
         setSelectedImage(URL.createObjectURL(img))
       }
     };
+
+    var recommendOnChange = (event) => {
+      if(event.target.value === 'Yes') {
+        return setRecommendInput(true)
+      } else if(event.target.value === 'No') {
+        return setRecommendInput(false)
+      }
+    }
 
     return (
       <StyleBackground> <div className="modalBackground">
@@ -48,19 +63,20 @@ var AddReviewModal = (props) => {
             <button onClick={props.closeModal}> X </button>
           </div>
           <div className="title">
-            <h2>About the [Product Name Here]</h2>
+            <h1>Write Your Review</h1>
+            <h4>About the [Product Name Here]</h4>
           </div>
           <ModalBody><div className="body">
-            <p>Star Rating: ⭐️⭐️⭐️⭐️⭐️</p>
+            <p>*Star Rating: ⭐️⭐️⭐️⭐️⭐️</p>
             <div>
             <label>
-              Recommend:
-            <input type="radio" value="Yes" name="recommend" /> Yes
-            <input type="radio" value="No" name="recommend" /> No
+              *Recommend:
+            <input type="radio" id='Yess' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes
+            <input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No
             </label>
             </div>
             <label>
-            Characteristic:
+            *Characteristic:
             <input type="radio" value="1" name="Characteristic" /> A size too small
             <input type="radio" value="2" name="Characteristic" /> ½ a size too small
             <input type="radio" value="3" name="Characteristic" /> Perfect
@@ -70,14 +86,15 @@ var AddReviewModal = (props) => {
             <form >
               <label>
                 Review Summary:
-                <input type="text" placeholder="Example: Best purchase ever!" value={bodySummary} onChange={handleSummaryChange}/>
-              </label>
-              char count[count]
+                <input type="text" placeholder="Example: Best purchase ever!" value={bodySummary} maxLength = "60" onChange={handleSummaryChange}/>
+                {charCountSummary}/60
+                </label>
             </form>
             <form >
               <label>
-                Review Body:
-                <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} onChange={handleReviewBodyChange}/>
+                *Review Body:
+                <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
+                Minimum required characters left: [{charCountBody}]
               </label>
 
             </form>
@@ -87,13 +104,13 @@ var AddReviewModal = (props) => {
             </label>
             <form >
               <label>
-                Nickname:
+                *Nickname:
                 <input type="text" placeholder="Example: jackson11!" value={nickname} onChange={handleNicknameChange}/>
               </label>
             </form>
             <form >
               <label>
-                Email:
+                *Email:
                 <input type="text" placeholder="Example: jackson11@email.com" value={email} onChange={handleEmailChange}/>
               </label>
             </form>

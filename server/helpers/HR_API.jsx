@@ -17,12 +17,11 @@ var getAllProducts = () => {
 
 // Function that sends a GET request to the API to get a specific product
 // Input: the product ID of the specific product
-// Error being logged bug to be fixed
-// var getProduct = (id) => {
-//   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, {
-//     headers: headers
-//   });
-// }
+var getProduct = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, {
+    headers: headers
+  });
+}
 
 // Function that sends a GET request to the API to get a specific product's styles
 // Input: the product ID of the specific product
