@@ -46,7 +46,7 @@ router.get('/reviews/', (request, response) => {
   if (!request.query.product_id) {
     response.sendStatus(500);
   } else {
-    API.getProductReviews(request.query.product_id, request.query.count)
+    API.getProductReviews(request.query.product_id, request.query.count, request.query.sort)
       .then((results) => {
         response.status(200).send(results.data);
       })
@@ -60,7 +60,7 @@ router.get('/reviews/', (request, response) => {
 router.post('/reviews', (request, response) => {
     API.postProductReviews(request.body)
       .then((results) => {
-        response.status(201).send('send from router.post worked')
+        response.status(201).send('send from router.post reviews worked')
       })
       .catch((error) => {
         console.log('Error in posting the reviews', error);
@@ -70,6 +70,7 @@ router.post('/reviews', (request, response) => {
 
 
 router.get('*/related', (request, response) => {
+  console.log(request.query, 'requesttttttttttt')
   if (!request.query.product_id) {
     response.send(500);
   } else {

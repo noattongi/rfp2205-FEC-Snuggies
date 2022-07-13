@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
 
 var AddReviewModal = (props) => {
-  console.log(props, 'helloprops')
   const [isOpen, setIsOpen] = useState(false)
   const [bodySummary, setbodySummary] =  useState('')
   const [reviewBody, setReviewBody] =  useState('')

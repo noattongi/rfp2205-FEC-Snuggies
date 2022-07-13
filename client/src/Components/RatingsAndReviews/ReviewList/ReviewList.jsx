@@ -17,18 +17,29 @@ var ReviewList = (props) => {
     setReviewCount(reviewCount + 2)
   }
 
-  var limitReviews = props.productReviews.results?.slice(0,reviewCount)
+  var changeSortClick = (event) => {
+    props.changeSortedBy(event.target.value)
+    console.log(event.target.value)
+    console.log
+  }
 
+  var limitReviews = props.productReviews.results?.slice(0,reviewCount)
   return (
     <div>
+      <div>
+      {props.productReviews.results?.length} reviews, sorted by
+      <select onChange={changeSortClick}>
+        <option value="relevant" >Relevance</option>
+        <option value="helpful" >Helpful</option>
+        <option value="newest" >Newest</option>
+      </select>
+      </div>
       <Scroll>
     <ul>
-
       {limitReviews?.map((review, index) =>
         <ReviewTile key={index}
                   reviews={review}/>
       )}
-
     </ul>
     </Scroll>
     {props.productReviews.results?.length > 2 && reviewCount < props.productReviews.results?.length && <button onClick={moreReviewClick} >More Reviews</button>}
