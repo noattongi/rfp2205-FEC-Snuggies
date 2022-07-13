@@ -13,8 +13,5 @@ color: grey
 opacity: 0.7;
 `;
 
-
-
-
 export { TopContainer, UserandDate};
 
