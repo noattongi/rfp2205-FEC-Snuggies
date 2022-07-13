@@ -1,16 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import RelatedItemsList from './RelatedItemsList.jsx';
 import OutfitList from './OutfitList.jsx';
+import  {RelatedContainer, OutfitContainer} from './StyledComponents/Containers.jsx'
 
 const RInCIndex = () => {
   const [product, setProduct] = useState({});
-  const [related, setRelated] = useState([])
+  const [relatedId, setRelatedId] = useState([]);
+  const [relatedProd, setRelatedProd] = useState([]);
+
   const getProduct = (productId) => {
-    return axios.get('/snuggie/products/', {params: {product_id: productId}})
+    return axios.get('/snuggie/products', {params: {product_id: productId}})
     .then((response) => {
-      setProduct(response.data);
+      var temp = relatedProd;
+      temp.push(response.data);
+      return temp;
+    })
+    .then((relProd) => {
+      return setRelatedProd(relProd)
     })
     .catch((error) => {
       console.log('Error in getProduct', error)
@@ -19,19 +27,41 @@ const RInCIndex = () => {
   const getRelated = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId + '/related'}})
     .then((response) => {
-      setRelated(response.data);
+      setRelatedId(response.data);
+      return response.data
     })
     .catch((error) => {
       console.log('Error in getRelated', error)
     })
   }
+  useEffect(() => {
+    getRelated(40344)
+    .then((data) => {
+      var temp = []
+      data.forEach((id) => {
+        temp.push(axios.get('/snuggie/products', {params: {product_id: id}})
+        .then((res) => { return res.data}))
+      })
+      return temp;
+    })
+    .then((array) => {
+      Promise.all(array)
+      .then((values) => {
+        setRelatedProd(values)
+      })
+    })
+    .catch((error) => {
+      console.log('useEffect error', error)
+    })
+  }, [])
   return (
     <div>
-      {/* invoke functions */}
-      {console.log('product', product)}
-      {console.log('related', related)}
-      <RelatedItemsList product = {product} getProduct = {getProduct} getRelated = {getRelated} related = {related}/>
-      <OutfitList />
+      <RelatedContainer>
+        <RelatedItemsList relatedProd = {relatedProd}/>
+      </RelatedContainer>
+      <OutfitContainer>
+        <OutfitList />
+      </OutfitContainer>
     </div>
   )
 }
