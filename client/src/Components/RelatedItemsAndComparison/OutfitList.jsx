@@ -5,9 +5,14 @@ import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
 import Add from './Add.jsx';
 
-const OutfitList = () => {
+const OutfitList = (props) => {
+  const [outfitProd, setOutfitProd] = useState([]);
+  const handleAdd = (e) => {
+
+  }
   return (
     <div>
+      <h3>Outfit List</h3>
       <Add />
       <Cards />
       <Carousel />
