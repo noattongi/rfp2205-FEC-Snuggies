@@ -29,7 +29,7 @@ export default function AnswerList ({answerList}) {
   }
   return (
     <div>
-      <AnswerSpan> Our Answer </AnswerSpan>
+      <AnswerSpan> A: </AnswerSpan>
       {/* <ScrollAnswers> */}
       {sortAnswer.slice(0, len).map((each) => {
         return (
@@ -37,8 +37,8 @@ export default function AnswerList ({answerList}) {
         )
       })}
        {sortAnswer.length > 2 && len < sortAnswer.length && <LoadMoreAnswersButton onClick={showMoreAnswers} > Load More Answers </LoadMoreAnswersButton>}
-       {len > 2 && <CollapseAnswerButton onClick={collapseAnswers}> Collapse Answers </CollapseAnswerButton> }
        {/* </ScrollAnswers> */}
+       {len > 2 && <CollapseAnswerButton onClick={collapseAnswers}> Collapse Answers </CollapseAnswerButton> }
     </div>
   )
 }
@@ -57,6 +57,7 @@ export default function AnswerList ({answerList}) {
 // styled components
 var AnswerSpan = styled.span`
   height: 1rem;
+  font-weight: bold;
 `;
 
 var CollapseAnswerButton = styled.button`

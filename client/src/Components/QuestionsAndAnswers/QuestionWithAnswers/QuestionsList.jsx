@@ -10,11 +10,11 @@ var QuestionsList = ({questions}) => {
   return (
     <QnAListContainer>
       <IndividualQuestDiv>
-       {questions?.map((each) => {
-         return (
-           <IndividualQuestions key={each.question_id} question={each}/>
-         )
-       })}
+      {questions?.map((each) => {
+        return (
+          <IndividualQuestions key={each.question_id} question={each}/>
+        )
+      })}
       </IndividualQuestDiv>
     </QnAListContainer>
   )
@@ -31,5 +31,6 @@ var IndividualQuestDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 
 export default QuestionsList

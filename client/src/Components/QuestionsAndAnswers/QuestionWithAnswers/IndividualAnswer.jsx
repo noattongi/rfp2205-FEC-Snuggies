@@ -64,7 +64,7 @@ var BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 23%;
+  width: 40%;
   font-size: 12px;
 `;
 

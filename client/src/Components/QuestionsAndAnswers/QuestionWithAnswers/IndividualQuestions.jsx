@@ -11,7 +11,7 @@ var IndividualQuestions = ({question}) => {
 
 
   return (
-    <div>
+    <QnAContainer>
       <QuestionHeaderContainer>
         <QuestionSpan> Q: {question.question_body} </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
@@ -24,12 +24,17 @@ var IndividualQuestions = ({question}) => {
         <AnswerList key={question.question_id} answerList={question.answers} />
 
       </AnswerListContainer>
-    </div>
+    </QnAContainer>
 
   )
 };
 
 // styled components
+var QnAContainer = styled.div`
+  padding-top: 35px;
+  padding-bottom; 35px;
+`;
+
 var YesButton = styled.button`
   text-decoration: underline;
   padding: 0;
@@ -41,6 +46,8 @@ var YesButton = styled.button`
 var QuestionSpan = styled.span`
   display: flex;
   font-weight: bold;
+  flex-wrap: wrap;
+  width: 40%;
 `;
 
 var HelpfulAnswerSpan = styled.div`
@@ -63,8 +70,5 @@ var HelpfulAndAddAnswerContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 20%;
-  position: absolute;
-  left: 40%
 `;
 export default IndividualQuestions

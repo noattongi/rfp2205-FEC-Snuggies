@@ -16,7 +16,7 @@ var QnaIndex = (props) => {
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40325, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40750, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
@@ -50,7 +50,9 @@ var QnaIndex = (props) => {
   return (
     <QnAContainer>
         <SearchQuestions search={search}/>
-        <QuestionsList questions={questionSort} />
+        <QuestionScrollDiv>
+          <QuestionsList questions={questionSort} />
+        </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
          <AddQuestion />
@@ -64,6 +66,7 @@ var QnAContainer = styled.section`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  padding: 50px;
 `;
 
 var BottomTabContainer = styled.section`
@@ -71,6 +74,15 @@ var BottomTabContainer = styled.section`
   flex-direction: row;
 `;
 
+var QuestionScrollDiv = styled.div`
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px;
+`;
 export default QnaIndex
 
 
