@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
-import {CardContainer} from './StyledComponents/Containers.jsx'
+import styled from 'styled-components';
 
 const RelatedItemsList = (props) => {
   return (
@@ -17,3 +17,9 @@ const RelatedItemsList = (props) => {
 }
 
 export default RelatedItemsList;
+
+// styled components
+const CardContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;

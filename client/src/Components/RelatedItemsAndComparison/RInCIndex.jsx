@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import RelatedItemsList from './RelatedItemsList.jsx';
 import OutfitList from './OutfitList.jsx';
-import  {RelatedContainer, OutfitContainer} from './StyledComponents/Containers.jsx'
+import styled from 'styled-components';
 
 const RInCIndex = () => {
   const [product, setProduct] = useState({});
@@ -67,3 +67,15 @@ const RInCIndex = () => {
 }
 
 export default RInCIndex;
+
+// styled components
+const RelatedContainer = styled.section`
+  display: flex;
+  border: 1px solid black;
+`;
+
+const OutfitContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+`;

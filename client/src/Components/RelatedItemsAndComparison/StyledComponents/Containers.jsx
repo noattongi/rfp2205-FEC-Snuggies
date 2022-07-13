@@ -13,12 +13,15 @@ const OutfitContainer = styled.section`
 `;
 
 const CardContainer = styled.section`
+`;
+
+const CardBox = styled.section`
   display: flex;
   text-align: center;
-  flex-direction: column;
+  flex-direction: row;
   border: 1px solid black;
-  column-count: 3;
-  column-gap: 10px;
-  display: inline-block;
+  gap: 25px;
+  justify-content: flex-start;
+  justify-content: space-between;
 `;
-export {RelatedContainer, OutfitContainer, CardContainer}
+export {RelatedContainer, OutfitContainer, CardContainer, CardBox}
