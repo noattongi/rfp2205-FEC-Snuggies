@@ -22,6 +22,13 @@ const StyleBackground =styled.div`
   width: 80%;
   `;
 
+  const Image = styled.div`
+  margin: auto;
+  justify-content: center;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  `;
 
 
 const ModalBody = styled.div`
@@ -35,4 +42,4 @@ const ModalBody = styled.div`
   `;
 
 
-export { StyleBackground, Container, ModalBody };
+export { StyleBackground, Container, ModalBody, Image };

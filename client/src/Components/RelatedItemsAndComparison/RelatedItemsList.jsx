@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
+import {CardContainer} from './StyledComponents/Containers.jsx'
 
-const RelatedItemsList = ({product, getProduct, getRelated, related}) => {
+const RelatedItemsList = (props) => {
   return (
     <div>
-      {related.map((id) => {
-        <Cards key = {product.id} productId = {product.id} related ={related}/>
-      })}
+      <CardContainer>
+        <Cards relatedProd = {props.relatedProd}/>
+      </CardContainer>
       <Carousel />
     </div>
   )
