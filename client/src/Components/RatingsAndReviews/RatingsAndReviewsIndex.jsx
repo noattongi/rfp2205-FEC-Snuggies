@@ -4,10 +4,12 @@ import ReactDOM from 'react-dom';
 import ReviewList from '../RatingsAndReviews/ReviewList/ReviewList.jsx'
 
 var RatingsAndReviewsIndex = (props) => {
+  const [sortby, setSortBy] = useState('newest');
   const [reviews, setReviews] = useState({});
 
-  const getProductReviews = (productId) => {
-    return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 50}})
+
+  const getProductReviews = (productId, sortedBy) => {
+    return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 50, sort: sortedBy}})
     .then((response) => {
       return setReviews(response.data);
     })
@@ -15,15 +17,23 @@ var RatingsAndReviewsIndex = (props) => {
       console.log('Error in getProductReviews', error)
     })
   }
-  useEffect (() => {
-    getProductReviews(40347)
-  }, [])
 
+  var changeSortedBy = (sortBy) => {
+    setSortBy(sortBy)
+    console.log(sortBy)
+  }
+
+  useEffect (() => {
+
+    getProductReviews(40347, sortby)
+  }, [sortby])
 
 
   return (
     <div>
-    <ReviewList productReviews={reviews}/>
+      <div>
+      </div>
+    <ReviewList productReviews={reviews} sortedBy={sortby} changeSortedBy={changeSortedBy}/>
     </div>
   )
 }
