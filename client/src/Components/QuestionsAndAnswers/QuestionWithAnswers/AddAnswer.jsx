@@ -4,16 +4,12 @@ import styled from 'styled-components'
 
 var AddAnswer = () => {
   return (
-    <AddAnswerButton> Add Answer </AddAnswerButton>
+    <AddAnswerSpan> Add Answer </AddAnswerSpan>
   )
 }
 
 // styled components
-var AddAnswerButton = styled.button`
-  padding: 0;
-  border: none;
-  background: none;
-  width: 40%;
+var AddAnswerSpan = styled.span`
   text-decoration: underline;
   color: blue;
 `;

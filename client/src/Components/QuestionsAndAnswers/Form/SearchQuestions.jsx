@@ -17,7 +17,7 @@ var SearchQuestions = ({search}) => {
 
 // styled components
 var FormInput = styled.input`
-  width: 19.85%;
+  width: 50%;
   padding: 5px;
 `;
 

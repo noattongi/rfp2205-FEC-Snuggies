@@ -29,9 +29,9 @@ export default function IndividualAnswer({answer}) {
       <BottomInfoContainer>
         <PosterAndDateSpan> {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
         <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? <YesButton>Yes</YesButton>({answer.helpfulness}) </AnswerHelpfulnessSpan>
+        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan>Yes</YesAnswerSpan>({answer.helpfulness}) </AnswerHelpfulnessSpan>
         <span> | </span>
-        <ReportSpan> <ReportButton> Report </ReportButton> </ReportSpan>
+        <ReportSpan> Report </ReportSpan>
       </BottomInfoContainer>
     </IndividualAnswerContainer>
   )
@@ -43,12 +43,8 @@ var IndividualAnswerContainer = styled.section`
   flex-direction: column;
 `;
 
-var YesButton = styled.button`
+var YesAnswerSpan = styled.span`
   text-decoration: underline;
-  padding: 0;
-  border: none;
-  background: none;
-
 `;
 
 var AnswerSpan = styled.span`
@@ -75,17 +71,12 @@ var PosterAndDateSpan = styled.span`
 
 //adjust
 var AnswerHelpfulnessSpan = styled.span`
-  height: 1rem;
+
 `;
 
 //adjust
 var ReportSpan = styled.span`
-  height: 1rem;
-`;
-
-var ReportButton = styled.button`
-  padding: 0;
-  border: none;
-  background: none;
   text-decoration: underline;
 `;
+
+

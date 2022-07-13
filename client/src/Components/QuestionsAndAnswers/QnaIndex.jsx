@@ -12,11 +12,11 @@ var QnaIndex = (props) => {
   const [defaultQ, setDefaultQ] = useState([]);
   const [len, setLen] = useState(4)
   // const [answer, setAnswer] = useState({});
-  console.log('num of q', question.results)
+
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40750, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
