@@ -11,12 +11,10 @@ const Cards = (props) => {
   }
 
   return (
-
-    <div>
+    <>
     {props.relatedProd?.map((prod) => {
       return (
-        <CardBox>
-            <div key = {prod.id}>
+          <div>
             <div onClick = {modalToggle}>⭐️</div>
             {modal ? <ComparisonModal modalToggle = {modalToggle}/> : null }
             <p>{prod.category}</p>
@@ -24,14 +22,9 @@ const Cards = (props) => {
             <p>{prod.default_price}</p>
             <p>Star Rating</p>
           </div>
-        </CardBox>
        )})}
-    </div>
+       </>
   )
 }
 
 export default Cards;
-
-const CardBox = styled.section`
-  display: flex;
-`;

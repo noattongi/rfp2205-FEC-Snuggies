@@ -56,26 +56,10 @@ const RInCIndex = () => {
   }, [])
   return (
     <div>
-      <RelatedContainer>
-        <RelatedItemsList relatedProd = {relatedProd}/>
-      </RelatedContainer>
-      <OutfitContainer>
-        <OutfitList />
-      </OutfitContainer>
+      <RelatedItemsList relatedProd = {relatedProd}/>
+      <OutfitList />
     </div>
   )
 }
 
 export default RInCIndex;
-
-// styled components
-const RelatedContainer = styled.section`
-  display: flex;
-  border: 1px solid black;
-`;
-
-const OutfitContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-`;

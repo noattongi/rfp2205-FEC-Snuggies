@@ -66,10 +66,10 @@ const StyleBackground =styled.div`
   width: 80%;
   `;
 
-const ModalBody = styled.div`
+  const ModalBody = styled.div`
   flex: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-size: 1rem;
   text-align: center;

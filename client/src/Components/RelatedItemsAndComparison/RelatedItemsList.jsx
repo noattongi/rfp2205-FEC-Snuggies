@@ -7,19 +7,11 @@ import styled from 'styled-components';
 
 const RelatedItemsList = (props) => {
   return (
-    <div>
-      <CardContainer>
-        <Cards relatedProd = {props.relatedProd}/>
-      </CardContainer>
+    <>
+      <Cards relatedProd = {props.relatedProd}/>
       <Carousel />
-    </div>
+    </>
   )
 }
 
 export default RelatedItemsList;
-
-// styled components
-const CardContainer = styled.section`
-  display: flex;
-  flex-direction: row;
-`;
