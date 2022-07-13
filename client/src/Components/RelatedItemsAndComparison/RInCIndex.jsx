@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import RelatedItemsList from './RelatedItemsList.jsx';
 import OutfitList from './OutfitList.jsx';
+import  {RelatedContainer, OutfitContainer} from './StyledComponents/Containers.jsx'
 
 const RInCIndex = () => {
   const [product, setProduct] = useState({});
@@ -55,8 +56,12 @@ const RInCIndex = () => {
   }, [])
   return (
     <div>
-      <RelatedItemsList relatedProd = {relatedProd}/>
-      <OutfitList />
+      <RelatedContainer>
+        <RelatedItemsList relatedProd = {relatedProd}/>
+      </RelatedContainer>
+      <OutfitContainer>
+        <OutfitList />
+      </OutfitContainer>
     </div>
   )
 }

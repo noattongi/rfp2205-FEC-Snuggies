@@ -3,11 +3,14 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
+import {CardContainer} from './StyledComponents/Containers.jsx'
 
 const RelatedItemsList = (props) => {
   return (
     <div>
-      <Cards relatedProd = {props.relatedProd}/>
+      <CardContainer>
+        <Cards relatedProd = {props.relatedProd}/>
+      </CardContainer>
       <Carousel />
     </div>
   )
