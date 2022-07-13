@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-const Scroll = styled.ul`
-font: bold 14px Arial;
+const Scroll = styled.div`
 width:90%% ;
-color:#616D7E;
-height:300px;
+height:400px;
 overflow:scroll;
 overflow-y:scroll;
 overflow-x:hidden;
@@ -17,3 +15,6 @@ border-bottom: 2px solid grey;
 
 
 export { Scroll , ReviewTile};
+
+// color:#616D7E;
+// font: bold 14px Arial;

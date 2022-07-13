@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
+import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import {TopContainer, UserandDate} from '../StyledComponents/ReviewTile.jsx'
 
 var ReviewTiles = (props) => {
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body.substr(0, 250))
@@ -34,8 +36,13 @@ var ReviewTiles = (props) => {
   return (
     <ReviewTile>
    <div>
-    <div>⭐️⭐️⭐️⭐️⭐️ Star Rating</div>
-    <div>Date Of Review: {formatDate(props.reviews.date)}</div>
+     <TopContainer>
+        <div>⭐️⭐️⭐️⭐️⭐️ Star Rating</div>
+        <UserandDate>
+          <span>Reviewer Name: {props.reviews.reviewer_name}</span>
+          <span>Date Of Review: {formatDate(props.reviews.date)}</span>
+        </UserandDate>
+      </TopContainer>
     <div>Summary: {props.reviews.summary.substr(0, 60)}</div>
     <div><b>Review Body: {reviewBodyRender}</b>
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
@@ -44,10 +51,13 @@ var ReviewTiles = (props) => {
                   photo={photo}/>
       )}
     </div>
-    <div>Recommend: {recommendFilter(props.reviews.recommend.toString())}</div>
-    <div>Reviewer Name: {props.reviews.reviewer_name}</div>
+    <div>{recommendFilter(props.reviews.recommend.toString())}</div>
     <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
-    <div>Helpful? yes ({props.reviews.helpfulness})</div>
+    <BottomInfoContainer>
+    <AnswerHelpfulnessSpan>Helpful? Yes ({props.reviews.helpfulness})</AnswerHelpfulnessSpan>
+        <span>|</span>
+        <ReportSpan> Report </ReportSpan>
+    </BottomInfoContainer>
    </div>
    </ReviewTile>
   )

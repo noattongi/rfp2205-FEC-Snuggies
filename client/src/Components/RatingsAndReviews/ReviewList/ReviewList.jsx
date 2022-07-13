@@ -19,8 +19,6 @@ var ReviewList = (props) => {
 
   var changeSortClick = (event) => {
     props.changeSortedBy(event.target.value)
-    console.log(event.target.value)
-    console.log
   }
 
   var limitReviews = props.productReviews.results?.slice(0,reviewCount)
@@ -35,19 +33,21 @@ var ReviewList = (props) => {
       </select>
       </div>
       <Scroll>
+        <div>
     <ul>
       {limitReviews?.map((review, index) =>
         <ReviewTile key={index}
                   reviews={review}/>
       )}
     </ul>
+    </div>
     </Scroll>
     {props.productReviews.results?.length > 2 && reviewCount < props.productReviews.results?.length && <button onClick={moreReviewClick} >More Reviews</button>}
     <button
       className="openModalBtn"
       onClick={toggleModal}
     >Add a Review</button>
-    {isOpen && <AddReviewModal closeModal={toggleModal}/>}
+      {isOpen && <AddReviewModal closeModal={toggleModal}/>}
     </div>
   )
 
