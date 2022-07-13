@@ -22,7 +22,6 @@ const Cards = (props) => {
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>
             <p>Star Rating</p>
-            <p>_______________________</p>
           </div>
         </CardContainer>
        )})}

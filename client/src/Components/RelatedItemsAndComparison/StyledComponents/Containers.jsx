@@ -19,5 +19,6 @@ const CardContainer = styled.section`
   border: 1px solid black;
   column-count: 3;
   column-gap: 10px;
+  display: inline-block;
 `;
 export {RelatedContainer, OutfitContainer, CardContainer}
