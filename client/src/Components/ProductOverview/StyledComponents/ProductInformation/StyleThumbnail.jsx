@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // The style thumbnail image for a style
 const StyleThumbnail = styled.img`
   display: block;
-  object-fit: fill;
+  object-fit: cover;
   border: solid;
   border-color: black;
   border-radius: 50%;
@@ -19,7 +19,7 @@ const ChosenIcon = styled.i`
   position: absolute;
   top: 5%;
   right: 5%;
-  object-fit: fill;
+  object-fit: cover;
   width: 15px;
   height: 15px;
   background-color: white;
