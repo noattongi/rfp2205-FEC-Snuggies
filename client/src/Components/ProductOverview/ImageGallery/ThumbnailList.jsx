@@ -21,18 +21,18 @@ var ThumbnailList = (props) => {
 
   return (
     <ImageThumbnails>
-      {index > 0 && <Arrow className="fa-solid fa-arrow-up" onClick={() => {setIndex(index - 1)}} /> /* If the starting index is > 0, render an up arrow */}
+      {index > 0 && <Arrow className="fa-solid fa-arrow-up" key={"LeftArrow"} onClick={() => {setIndex(index - 1)}} /> /* If the starting index is > 0, render an up arrow */}
       {shown.map((thumbnail, keyIndex = 0) => {
         // If the thumbnail is the chosen one, also render a box around it to indicate that it's the chosen one
         if (keyIndex + index === props.chosenImageIndex) {
           return (
-            <ChosenDiv><Thumbnail thumbnail={thumbnail} index={index + keyIndex} key={keyIndex++} setChosenImageIndex={props.setChosenImageIndex} /></ChosenDiv>
+            <ChosenDiv key={"ChosenDiv"}><Thumbnail thumbnail={thumbnail} index={index + keyIndex} key={keyIndex++} setChosenImageIndex={props.setChosenImageIndex} /></ChosenDiv>
           );
         }
         // Else just render the thumbnail itself
-        return (<Div><Thumbnail thumbnail={thumbnail} index={index + keyIndex} key={index + keyIndex++} setChosenImageIndex={props.setChosenImageIndex} /></Div>);
+        return (<Div key={`Div${keyIndex}`}><Thumbnail thumbnail={thumbnail} index={index + keyIndex} key={index + keyIndex++} setChosenImageIndex={props.setChosenImageIndex} /></Div>);
       })}
-      {index + 7 < props.imageThumbnails.length && <Arrow className="fa-solid fa-arrow-down" onClick={() => {setIndex(index + 1)}} />/* If the starting index + 7 is < props.imageThumbnails.length, render a down arrow */}
+      {index + 7 < props.imageThumbnails.length && <Arrow className="fa-solid fa-arrow-down" key={"RightArrow"} onClick={() => {setIndex(index + 1)}} />/* If the starting index + 7 is < props.imageThumbnails.length, render a down arrow */}
     </ImageThumbnails>
   );
 }
