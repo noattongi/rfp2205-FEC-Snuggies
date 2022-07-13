@@ -10,6 +10,9 @@ var IndividualQuestions = ({question}) => {
   // Question div has Question and Helpful/Add Answer Section
   // AnswerListDiv has IndividualAnswers
   // console.log('question indiv', question.question_id)
+
+  var [toggleModal, setToggleModal] = useState(false);
+
   var voted = false;
 
   var upVote = (e) => {
@@ -35,7 +38,8 @@ var IndividualQuestions = ({question}) => {
       <QuestionHeaderContainer>
         <QuestionSpan> Q: {question.question_body} </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
-          <AddAnswer/>
+         <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
+          {toggleModal && <AddAnswer toggleModal={setToggleModal}q={question.question_body}/>}
           <HelpfulAnswerSpan> Helpful? </HelpfulAnswerSpan>
            <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({question.question_helpfulness})
         </HelpfulAndAddAnswerContainer>
@@ -54,11 +58,18 @@ var IndividualQuestions = ({question}) => {
 var QnAContainer = styled.div`
   padding-top: 1rem;
   padding-bottom; 1rem;
+  border-bottom: 2px solid grey;
 `;
 
 var YesQuestionSpan = styled.span`
   text-decoration: underline;
 `;
+
+var AddAnswerSpan = styled.span`
+  text-decoration: underline;
+  color: blue;
+`;
+
 
 var QuestionSpan = styled.span`
   display: flex;

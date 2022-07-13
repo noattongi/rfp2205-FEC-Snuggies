@@ -116,7 +116,7 @@ router.get('/answers', (request, response) => {
 });
 
 router.put('/question/helpfulness', (request, response) => {
-  // console.log('within server query', request.body.question_id)
+  console.log('within server query', request.body.question_id)
   if (!request.body.question_id) {
     response.send(500);
   } else {

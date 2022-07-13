@@ -41,6 +41,8 @@ export default function IndividualAnswer({answer}) {
 var IndividualAnswerContainer = styled.section`
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 var YesAnswerSpan = styled.span`

@@ -1,12 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import IndividualQuestions from './IndividualQuestions.jsx';
 import styled from 'styled-components';
 
 // need to map each question
 
 var QuestionsList = ({questions}) => {
-  // console.log('questions loggerindividual', questions.results)
 
+  // var [q, setQ] = useState([])
+
+  // useEffect(() => {
+  //   setQ(questions)
+  // }, [questions])
+
+  console.log('Qlist', questions)
+  // console.log('Q state', q)
   return (
     <QnAListContainer>
       <IndividualQuestDiv>
