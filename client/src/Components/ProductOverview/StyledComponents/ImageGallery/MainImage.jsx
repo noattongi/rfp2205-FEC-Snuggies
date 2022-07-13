@@ -67,6 +67,25 @@ const RightArrow = styled.i`
   }
 `;
 
+// The icon the expands/minimizes the Main Image to Expanded/Default view modes
+const FullScreen = styled.i`
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  object-fit: fill;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  padding: 3px;
+  border: solid;
+  border-color: black;
+  border-radius: 10%;
+  z-index: 2;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 // The Main Image, expanded view
 const ExpandedView = styled.div`
   width: 1000px;
@@ -75,4 +94,4 @@ const ExpandedView = styled.div`
 `;
 
 // Export the styled components
-export { Image, DefaultView, Overlay, LeftArrow, RightArrow, ExpandedView };
+export { Image, DefaultView, Overlay, LeftArrow, RightArrow, FullScreen, ExpandedView };
