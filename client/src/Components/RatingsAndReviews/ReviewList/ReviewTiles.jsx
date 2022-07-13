@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
-import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
-import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody} from '../StyledComponents/ReviewTile.jsx'
+// import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody} from '../StyledComponents/ReviewTile.jsx';
+import styled from 'styled-components'
 
 var ReviewTiles = (props) => {
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body.substr(0, 250))
@@ -61,7 +62,24 @@ var ReviewTiles = (props) => {
    </div>
    </ReviewTile>
   )
-}
+};
+
+
+var BottomInfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 40%;
+  font-size: 12px;
+`;
+
+var AnswerHelpfulnessSpan = styled.span`
+
+`;
+
+var ReportSpan = styled.span`
+  text-decoration: underline;
+`;
 
 
 export default ReviewTiles
