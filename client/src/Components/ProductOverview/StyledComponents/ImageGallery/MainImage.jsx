@@ -17,6 +17,9 @@ const DefaultView = styled.div`
   width: 642px;
   height: 628px;
   background-color: black;
+  :hover {
+    cursor: zoom-in;
+  }
 `;
 
 // An overlay div that'll go over the Default View div; this contains the Left and Right Arrows
@@ -40,6 +43,9 @@ const LeftArrow = styled.i`
   border-color: black;
   border-radius: 10%;
   z-index: 2;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 // The right arrow icon that cycles the shown Main Image
@@ -56,6 +62,9 @@ const RightArrow = styled.i`
   border-color: black;
   border-radius: 10%;
   z-index: 2;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 // The Main Image, expanded view
