@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
- import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
+import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
 
 var AddReviewModal = (props) => {
-
   const [isOpen, setIsOpen] = useState(false)
   const [bodySummary, setbodySummary] =  useState('')
   const [reviewBody, setReviewBody] =  useState('')
@@ -62,11 +61,11 @@ var AddReviewModal = (props) => {
             </div>
             <label>
             Characteristic:
-            <input type="radio" value="1" name="1" /> A size too small
-            <input type="radio" value="2" name="2" /> ½ a size too small
-            <input type="radio" value="3" name="3" /> Perfect
-            <input type="radio" value="4" name="4" /> ½ a size too big
-            <input type="radio" value="5" name="5" /> A size too wide
+            <input type="radio" value="1" name="Characteristic" /> A size too small
+            <input type="radio" value="2" name="Characteristic" /> ½ a size too small
+            <input type="radio" value="3" name="Characteristic" /> Perfect
+            <input type="radio" value="4" name="Characteristic" /> ½ a size too big
+            <input type="radio" value="5" name="Characteristic" /> A size too wide
             </label>
             <form >
               <label>
