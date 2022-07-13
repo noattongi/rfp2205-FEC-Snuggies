@@ -55,8 +55,6 @@ const RInCIndex = () => {
   }, [])
   return (
     <div>
-      {console.log('related id', relatedId)}
-      {console.log('related prod', relatedProd)}
       <RelatedItemsList relatedProd = {relatedProd}/>
       <OutfitList />
     </div>

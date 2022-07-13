@@ -5,9 +5,6 @@ import Cards from './Cards.jsx';
 import Carousel from './Carousel.jsx';
 
 const RelatedItemsList = (props) => {
-  useEffect(() => {
-    console.log('related products', props.relatedProd)
-  }, [props.relatedProd])
   return (
     <div>
       <Cards relatedProd = {props.relatedProd}/>
