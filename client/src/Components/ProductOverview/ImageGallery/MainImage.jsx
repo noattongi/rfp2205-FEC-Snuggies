@@ -23,8 +23,8 @@ var MainImage = (props) => {
 
         <DefaultView>
           <Overlay>
-            <LeftArrow className="fa-solid fa-arrow-left" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex - 1)}} />
-            <RightArrow className="fa-solid fa-arrow-right" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex + 1)}} />
+            {props.chosenImageIndex > 0 && <LeftArrow className="fa-solid fa-arrow-left" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex - 1)}} />}
+            {props.chosenImageIndex < props.maxIndex && <RightArrow className="fa-solid fa-arrow-right" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex + 1)}} />}
           </Overlay>
           <Image src={props.chosenImageUrl} />
         </DefaultView>
