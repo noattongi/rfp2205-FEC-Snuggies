@@ -1,11 +1,17 @@
 import React, {useState} from 'react'
-import {AddAnswerButton} from '../StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import styled from 'styled-components'
 // modal
 
 var AddAnswer = () => {
   return (
-    <AddAnswerButton> Add Answer </AddAnswerButton>
+    <AddAnswerSpan> Add Answer </AddAnswerSpan>
   )
 }
+
+// styled components
+var AddAnswerSpan = styled.span`
+  text-decoration: underline;
+  color: blue;
+`;
 
 export default AddAnswer
