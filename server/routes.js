@@ -113,6 +113,22 @@ router.get('/answers', (request, response) => {
       response.send(500);
     })
   };
-})
+});
+
+router.put('/question/helpfulness', (request, response) => {
+  // console.log('within server query', request.body.question_id)
+  if (!request.body.question_id) {
+    response.send(500);
+  } else {
+    API.updateQuestionHelpfulness(request.body.question_id)
+    .then((response) => {
+      response.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log('Error in updating question helpfulness', error);
+      response.send(420)
+    })
+  }
+});
 
 module.exports = router;
