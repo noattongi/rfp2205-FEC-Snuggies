@@ -116,12 +116,11 @@ router.get('/answers', (request, response) => {
 });
 
 router.put('/question/helpfulness', (request, response) => {
-  // console.log('within server query', request.body.question_id)
   if (!request.body.question_id) {
     response.send(500);
   } else {
-    API.updateQuestionHelpfulness(request.body.question_id)
-    .then((response) => {
+    API.updateQuestionHelpfulness(request.body.question_id, request.body)
+    .then((results) => {
       response.status(200).send(response.data)
     })
     .catch((error) => {
@@ -129,6 +128,32 @@ router.put('/question/helpfulness', (request, response) => {
       response.send(420)
     })
   }
+});
+
+router.post('/post/answer', (request, response) => {
+  if(!request.body.question_id) {
+    response.send(500);
+  } else {
+    API.postQuestion(request.body.question_id, request.body)
+    .then((results) => {
+      response.status(200).send(results.data)
+    })
+    .catch((error) => {
+      console.log('Error posting data from server side', error);
+      response.send(420)
+    })
+  }
+});
+
+router.put('/answer/helpfulness', (request, response) => {
+  API.updateAnswerHelpfulness(request.body.answer_id, request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within updating answer helpfulness from the server side')
+    response.status(420)
+  })
 });
 
 module.exports = router;

@@ -65,6 +65,10 @@ var CollapseAnswerButton = styled.button`
   width: 9%;
   text-decoration: underline;
   color: blue;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
 `;
 
 var LoadMoreAnswersButton = styled.button`
@@ -74,6 +78,10 @@ var LoadMoreAnswersButton = styled.button`
   width: 9.45%;
   text-decoration: underline;
   color: blue;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
 `;
 
 
