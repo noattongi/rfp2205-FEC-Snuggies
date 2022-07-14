@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ComparisonModal from './ComparisonModal.jsx'
 import styled from 'styled-components';
 
-const Cards = (props) => {
+const RelatedCards = (props) => {
   const [modal, setModal] = useState(false)
   var modalToggle = () => {
     setModal(!modal)
@@ -27,4 +27,4 @@ const Cards = (props) => {
   )
 }
 
-export default Cards;
+export default RelatedCards;
