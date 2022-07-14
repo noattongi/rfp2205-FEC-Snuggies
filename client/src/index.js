@@ -1,25 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Overview from './Components/ProductOverview/Overview.jsx';
-import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
-import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
-import RInC from '/client/src/Components/RelatedItemsAndComparison/RInCIndex.jsx';
+import React from 'react'
+import  { createRoot }  from 'react-dom/client';
+import App from './App.js'
 
-var App = () => {
-
-
-
-  return(
-    <div>
-      <Overview />
-      <br/>
-      <RInC/>
-      <br/>
-      <QnaIndex/>
-      <br/>
-      <RatingsAndReviewsIndex/>
-    </div>
-  )
-}
-
-ReactDOM.render(<App/>, document.getElementById('root'))
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App/>);
