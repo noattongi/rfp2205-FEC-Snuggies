@@ -21,7 +21,7 @@ var ReviewList = (props) => {
     props.changeSortedBy(event.target.value)
   }
 
-  var limitReviews = props.productReviews.results?.slice(0,reviewCount)
+  // var limitReviews = props.productReviews.results?.slice(0,reviewCount)
   return (
     <div>
       <div>
@@ -35,7 +35,7 @@ var ReviewList = (props) => {
       <Scroll>
         <div>
     <ul>
-      {limitReviews?.map((review, index) =>
+      {props.productReviews.results?.slice(0,reviewCount)?.map((review, index) =>
         <ReviewTile key={index}
                   reviews={review}/>
       )}
