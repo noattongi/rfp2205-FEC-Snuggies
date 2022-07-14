@@ -21,6 +21,7 @@ const RInCIndex = () => {
 
   return (
     <div>
+      <h1>Hi</h1>
       <RelatedItemsList getProduct = {getProduct}/>
       <OutfitList getProduct = {getProduct}/>
     </div>

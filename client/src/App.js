@@ -8,6 +8,7 @@ import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
 var App = () => {
   return(
     <div>
+      <h1>Hi</h1>
       <Overview />
       <br/>
       <RInC/>
