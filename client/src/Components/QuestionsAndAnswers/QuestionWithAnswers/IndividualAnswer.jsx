@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { format, parseISO } from 'date-fns';
-import styled from 'styled-components'
+import styled from 'styled-components';
+var axios = require('axios')
 
 // one container (column)
 // four items inside - Answer, Photos(situational), Bottom Info Container, Load More Answers
@@ -22,6 +23,28 @@ export default function IndividualAnswer({answer}) {
     return format(dateISO, "MMMM dd, yyyy")
   };
 
+  var [helpful, setHelpful] = useState(answer.helpfulness);
+  var [truth, setTruth] = useState(false);
+
+  // need to refactor so that it stops upvoting through the delay
+  var vote = false;
+  var upVote = (e) => {
+    e.preventDefault();
+    if (!vote) {
+      axios.put('/snuggie/answer/helpfulness', {answer_id: answer.id})
+      .then((results) => {
+        if (!truth) {
+          setHelpful(helpful + 1);
+          setTruth(true);
+        }
+        vote = true;
+      })
+      .catch((error) => {
+        console.log('Error within upvoting helpfulness from client side')
+      })
+    }
+  };
+
   return (
     <IndividualAnswerContainer>
       <AnswerSpan> {answer.body} </AnswerSpan>
@@ -29,7 +52,7 @@ export default function IndividualAnswer({answer}) {
       <BottomInfoContainer>
         <PosterAndDateSpan> {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
         <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan>Yes</YesAnswerSpan>({answer.helpfulness}) </AnswerHelpfulnessSpan>
+        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan>({helpful}) </AnswerHelpfulnessSpan>
         <span> | </span>
         <ReportSpan> Report </ReportSpan>
       </BottomInfoContainer>
@@ -47,6 +70,10 @@ var IndividualAnswerContainer = styled.section`
 
 var YesAnswerSpan = styled.span`
   text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
 `;
 
 var AnswerSpan = styled.span`

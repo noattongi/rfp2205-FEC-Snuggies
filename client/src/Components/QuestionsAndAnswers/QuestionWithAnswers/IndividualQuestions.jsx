@@ -12,7 +12,8 @@ var IndividualQuestions = ({question, postAnswerfunc}) => {
   // console.log('question indiv', question.question_id)
 
   var [toggleModal, setToggleModal] = useState(false);
-
+  var [helpful, setHelpful] = useState(question.question_helpfulness);
+  var [truth, setTruth] = useState(false);
   var voted = false;
 
   // can refactory to prevent multiple upvotes after page loads
@@ -21,6 +22,11 @@ var IndividualQuestions = ({question, postAnswerfunc}) => {
     if (!voted) {
       axios.put('/snuggie/question/helpfulness', {question_id: question.question_id})
       .then((response) => {
+        // still needs to be refactored
+        if (!truth) {
+          setHelpful(helpful + 1);
+          setTruth(true);
+        }
         voted = true;
       })
       .catch((error) => {
@@ -41,7 +47,7 @@ var IndividualQuestions = ({question, postAnswerfunc}) => {
          <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
           {toggleModal && <AddAnswer postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
           <HelpfulAnswerSpan> Helpful? </HelpfulAnswerSpan>
-           <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({question.question_helpfulness})
+           <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({helpful})
         </HelpfulAndAddAnswerContainer>
       </QuestionHeaderContainer>
 
@@ -63,6 +69,10 @@ var QnAContainer = styled.div`
 
 var YesQuestionSpan = styled.span`
   text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
 `;
 
 var AddAnswerSpan = styled.span`
