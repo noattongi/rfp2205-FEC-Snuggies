@@ -8,29 +8,20 @@ const OutfitCards = (props) => {
     console.log('child component', props.outfitId)
   }, [props.outfitProd, props.outfitId])
 
-  async function deleteProd(id) {
-    var temp = props.outfitProd;
-    for (var i = 0; i < temp.length; i++) {
-      if (temp[i].id === id) {
-        temp.splice(i, 1);
-      }
+  async function handleDeleteClick(id) {
+    if (props.outfitId.length > 1) {
+      var temp = props.outfitId.splice(props.outfitId.indexOf(id) - 1, 1);
+      return props.setOutfitId(temp);
+    } else {
+      return props.setOutfitId([]);
     }
-    return temp;
-  }
-  const handleDelete = (id) => {
-    deleteProd(id)
-    .then((data) => {
-      props.setOutfitProd(data)
-    })
   }
   return (
-    // <div onClick = {(e) => {handleDelete(props.outfitProd[0].id)}}>❌</div>
     <div>
-      {/* to work on rendering props, passing down works */}
     {props.outfitProd?.map((prod) => {
       return (
           <div key={prod.id}>
-            <div onClick = {(e) => {handleDelete(prod.id)}}>❌</div>
+            <button onClick = {(e) => {handleDeleteClick(prod.id)}}>X</button>
             <p>{prod.category}</p>
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>

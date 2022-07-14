@@ -57,7 +57,7 @@ const OutfitList = (props) => {
     <div>
       <h3>Outfit List</h3>
       <button onClick={(e) => {addOutfitId(40346)}}>+</button>
-      <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitProd={setOutfitProd}/>
+      <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId}/>
       <Carousel />
     </div>
   )
