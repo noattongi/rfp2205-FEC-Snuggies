@@ -5,45 +5,45 @@ import styled from 'styled-components';
 
 const ComparisonModal = ({modalToggle}) => {
   return (
-    <StyleBackground onClick={(e) => {modalToggle()}}>
-      <Container>
-      <ModalBody>
-    <div>
-      <p>Current Product Check Marks</p>
-      <p>___________________________</p>
-      <p>✅</p>
-      <p>❌</p>
-      <p>✅</p>
-      <p>❌</p>
-      <p>✅</p>
-    </div>
-    <div>
-      <p>Comparison Metrics</p>
-      <p>___________________________</p>
-      <p>Delivered by Carson's plane</p>
-      <p>Woven from Aaron's luscious locks</p>
-      <p>Guarantees you pass the TA</p>
-      <p>Does not contain copied code</p>
-      <p>Something else made up</p>
-    </div>
-    <div>
-      <p>Related Product Check Marks</p>
-      <p>___________________________</p>
-      <p>✅</p>
-      <p>❌</p>
-      <p>❌</p>
-      <p>✅</p>
-      <p>✅</p>
-    </div>
-    </ModalBody>
-  </Container>
-  </StyleBackground>
+    <ModalBackground onClick={(e) => {modalToggle()}}>
+      <ModalContainer>
+        <ModalBody>
+        <div>
+          <p>Current Product Check Marks</p>
+          <p>___________________________</p>
+          <p>✅</p>
+          <p>❌</p>
+          <p>✅</p>
+          <p>❌</p>
+          <p>✅</p>
+        </div>
+        <div>
+          <p>Comparison Metrics</p>
+          <p>___________________________</p>
+          <p>Delivered by Carson's plane</p>
+          <p>Woven from Aaron's luscious locks</p>
+          <p>Guarantees you pass the TA</p>
+          <p>Does not contain copied code</p>
+          <p>Something else made up</p>
+        </div>
+        <div>
+          <p>Related Product Check Marks</p>
+          <p>___________________________</p>
+          <p>✅</p>
+          <p>❌</p>
+          <p>❌</p>
+          <p>✅</p>
+          <p>✅</p>
+        </div>
+      </ModalBody>
+    </ModalContainer>
+  </ModalBackground>
   )
 }
 
 export default ComparisonModal;
 
-const StyleBackground =styled.div`
+const ModalBackground =styled.div`
   backdrop-filter: blur(8px);
   display: block;
   position: fixed;
@@ -58,19 +58,19 @@ const StyleBackground =styled.div`
   background-color: rgba(0,0,0,0.4);
   `;
 
-  const Container = styled.div`
+  const ModalContainer = styled.div`
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 60%;
   `;
 
   const ModalBody = styled.div`
   flex: 50%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   font-size: 1rem;
   text-align: center;
   `;
