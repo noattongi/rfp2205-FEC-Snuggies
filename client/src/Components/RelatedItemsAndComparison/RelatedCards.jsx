@@ -14,7 +14,7 @@ const RelatedCards = (props) => {
     <>
     {props.relatedProd?.map((prod) => {
       return (
-          <CardBox>
+          <CardBox key={prod.id}>
             <div onClick = {modalToggle}>⭐️</div>
             {modal ? <ComparisonModal modalToggle = {modalToggle}/> : null }
             <p>{prod.category}</p>

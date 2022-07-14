@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const OutfitCards = (props) => {
+
+  useEffect(() => {
+    console.log('child component', props.outfitProd)
+  }, [props.outfitProd])
+
   async function deleteProd(id) {
     var temp = props.outfitProd;
     for (var i = 0; i < temp.length; i++) {
@@ -20,19 +25,20 @@ const OutfitCards = (props) => {
     })
   }
   return (
-    <div>
-      {/* to work on rendering props, passing down works */}
-    {props.outfitProd?.map((prod) => {
-      return (
-          <div>
-            {/* <div onClick = {(e) => {handleDelete(prod.id)}}>❌</div> */}
-            <p>{prod.category}</p>
-            <p>{prod.name}</p>
-            <p>{prod.default_price}</p>
-            <p>Star Rating</p>
-          </div>
-       )})}
-       </div>
+    <div onClick = {(e) => {handleDelete(props.outfitProd[0].id)}}>❌</div>
+    // <div>
+    //   {/* to work on rendering props, passing down works */}
+    // {props.outfitProd?.map((prod) => {
+    //   return (
+    //       <div key={prod.id}>
+    //         <div onClick = {(e) => {handleDelete(prod.id)}}>❌</div>
+    //         <p>{prod.category}</p>
+    //         <p>{prod.name}</p>
+    //         <p>{prod.default_price}</p>
+    //         <p>Star Rating</p>
+    //       </div>
+    //    )})}
+    //    </div>
   )
 }
 

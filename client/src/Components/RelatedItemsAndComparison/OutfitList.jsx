@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import OutfitCards from './OutfitCards.jsx';
@@ -6,6 +6,10 @@ import Carousel from './Carousel.jsx';
 
 const OutfitList = (props) => {
   const [outfitProd, setOutfitProd] = useState([]);
+
+  useEffect(() => {
+    console.log('outfitProd', outfitProd)
+  }, [outfitProd])
   const handleAdd = (e) => {
     // need to refactor for current id
     props.getProduct(40344)
@@ -26,6 +30,7 @@ const OutfitList = (props) => {
       console.log('Add button error', error)
     })
   }
+
   return (
     <div>
       <h3>Outfit List</h3>
