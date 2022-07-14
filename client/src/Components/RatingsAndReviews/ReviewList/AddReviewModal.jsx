@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom';
 import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
 
 var AddReviewModal = (props) => {
+
   const [isOpen, setIsOpen] = useState(false)
   const [bodySummary, setbodySummary] =  useState('')
   const [reviewBody, setReviewBody] =  useState('')
   const [nickname, setNickname] =  useState('')
   const [email, setEmail] =  useState('')
-  const [selectedImage, setSelectedImage] = useState(null)
-
-  //Modal Input
+  const [selectedImage, setSelectedImage] = useState([''])
   const [recommendInput, setRecommendInput] = useState(null)
   const [charCountSummary, setCharCountSummary] = useState(0)
   const [charCountBody, setCharCountBody] = useState(50)
+  const [postedImage, setPostedImage] = useState('')
+
 
   var toggleModal = (e) => {
     setIsOpen(!isOpen)
@@ -31,9 +32,7 @@ var AddReviewModal = (props) => {
 
     var handleReviewBodyChange =(event) => {
       setReviewBody(event.target.value)
-      if(charCountBody > 0) {
-        setCharCountBody(50 - event.target.value.length)
-      }
+      setCharCountBody(50 - event.target.value.length)
     }
 
     var handleSummaryChange = (event) => {
@@ -41,10 +40,27 @@ var AddReviewModal = (props) => {
       setCharCountSummary(event.target.value.length)
     }
 
+    var onSubmitClick = (event) => {
+      props.postReview({
+        product_id: 40347,//hardcoded
+        rating: 3,//hardcoded
+        summary: bodySummary,
+        body: reviewBody,
+        recommend: recommendInput,
+        name: nickname,
+        email: email,
+        photos: [postedImage],
+        characteristics: {}
+      })
+    }
+
     var onImageChange = event => {
+      console.log(event.target.files[0])
       if (event.target.files && event.target.files[0]) {
         let img = event.target.files[0];
+        setPostedImage(img.name)
         setSelectedImage(URL.createObjectURL(img))
+
       }
     };
 
@@ -55,6 +71,7 @@ var AddReviewModal = (props) => {
         return setRecommendInput(false)
       }
     }
+
 
     return (
       <StyleBackground> <div className="modalBackground">
@@ -94,13 +111,14 @@ var AddReviewModal = (props) => {
               <label>
                 *Review Body:
                 <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
-                Minimum required characters left: [{charCountBody}]
+                {charCountBody > 0 ? <span>required characters left: [{charCountBody}]</span> : <span>Minimum reached</span>}
               </label>
 
             </form>
             <label>
               Upload Image:
               <input type="file" name="myImage" onChange={onImageChange} />
+              <img className="PreviewImage"  src={selectedImage} ></img>
             </label>
             <form >
               <label>
@@ -116,7 +134,7 @@ var AddReviewModal = (props) => {
             </form>
           </div></ModalBody>
           <div className="footer">
-            <button>Submit</button>
+            <button onClick={onSubmitClick}>Submit</button>
           </div>
         </div></Container>
       </div>/></StyleBackground>

@@ -38,8 +38,8 @@ var getProductReviews = (id, count, sort) => {
   });
 }
 
-var postProductReviews = () => {
-  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, {
+var postProductReviews = (body) => {
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, body, {
     headers: {
       headers: headers
     }
