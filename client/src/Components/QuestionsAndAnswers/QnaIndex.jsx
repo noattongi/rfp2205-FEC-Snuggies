@@ -55,12 +55,31 @@ var QnaIndex = (props) => {
     return setLen(len + 2)
   };
 
+  // need to refactor image upload
+  var postAnswer = (body) => {
+    axios.post('/snuggie/post/answer', body)
+    .then(() => {
+      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+      .then((response) => {
+        setQuestion(response.data);
+        setDefaultQ(response.data);
+      })
+      .catch((error) => {
+        console.log('error within getting data after posting from client')
+      })
+    })
+    .catch((error) => {
+      console.log('error within posting data from client')
+    })
+
+  };
+
   return (
     <QnAContainer>
         <SearchQuestions search={search}/>
         {/* <ImageSupreme src='https://steamuserimages-a.akamaihd.net/ugc/802116768214816000/5828D50E63A95FF6425284A76CC663CEDE61C4FE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'/> */}
         <QuestionScrollDiv>
-          <QuestionsList questions={questionSort} />
+          <QuestionsList postAnswerFunc={postAnswer} questions={questionSort} />
         </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}

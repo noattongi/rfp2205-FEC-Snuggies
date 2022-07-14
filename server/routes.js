@@ -116,12 +116,11 @@ router.get('/answers', (request, response) => {
 });
 
 router.put('/question/helpfulness', (request, response) => {
-  console.log('within server query', request.body.question_id)
   if (!request.body.question_id) {
     response.send(500);
   } else {
-    API.updateQuestionHelpfulness(request.body.question_id)
-    .then((response) => {
+    API.updateQuestionHelpfulness(request.body.question_id, request.body)
+    .then((results) => {
       response.status(200).send(response.data)
     })
     .catch((error) => {
@@ -131,4 +130,19 @@ router.put('/question/helpfulness', (request, response) => {
   }
 });
 
+router.post('/post/answer', (request, response) => {
+  console.log('get req body' ,request.body)
+  if(!request.body.question_id) {
+    response.send(500);
+  } else {
+    API.postQuestion(request.body.question_id, request.body)
+    .then((results) => {
+      response.status(200).send(results.data)
+    })
+    .catch((error) => {
+      console.log('Error posting data from server side', error);
+      response.send(420)
+    })
+  }
+})
 module.exports = router;

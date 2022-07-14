@@ -64,10 +64,16 @@ var getProductAnswer = (id, count) => {
   });
 };
 
-var updateQuestionHelpfulness = (id) => {
-  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/helpful`, {
+var updateQuestionHelpfulness = (id, data) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/helpful`, data, {
     headers: headers
   });
+};
+
+var postQuestion = (id, data) => {
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/answers`, data, {
+    headers: headers
+  })
 };
 
 module.exports.getAllProducts = getAllProducts;
@@ -79,3 +85,4 @@ module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;
 module.exports.getProductAnswer = getProductAnswer;
 module.exports.updateQuestionHelpfulness = updateQuestionHelpfulness;
+module.exports.postQuestion = postQuestion

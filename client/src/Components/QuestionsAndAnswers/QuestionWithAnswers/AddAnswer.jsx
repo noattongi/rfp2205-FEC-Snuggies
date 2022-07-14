@@ -1,14 +1,27 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React, {useState} from 'react';
+import styled from 'styled-components';
+var axios = require('axios');
 // modal
 
 
 
 // subtitle: needs product name and question body
-var AddAnswer = ({q, toggleModal}) => {
+var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
+
+  var handleSubmit = (e) => {
+    e.preventDefault();
+    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: []};
+    if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
+      alert(`Please don't leave any fields blank.`)
+    } else {
+      postAnswer(body);
+      toggleModal(false);
+    }
+  };
+
   return (
     <div>
       <StyleBackground>
@@ -18,18 +31,18 @@ var AddAnswer = ({q, toggleModal}) => {
             <ModalH2> Submit Your Answer </ModalH2>
             <ModalSubtitleContainer>
                 <ProductName> Yeezys:  </ProductName>
-                <QuestionBody> {q} </QuestionBody>
+                <QuestionBody> {q.question_body} </QuestionBody>
             </ModalSubtitleContainer>
             <ModalBody>
             <UserInfoContainer>
               <UserNameContainer>
               <UserNameLabel> User Nickname</UserNameLabel>
-                <UserNameInput value={username} onChange={e => setUsername(e.target.value)} maxlength='60' placeholder='Example: jack543!' />
+                <UserNameInput required='' value={username} onChange={e => setUsername(e.target.value)} maxlength='60' placeholder='Example: jack543!' />
                 <NameWarningSpan>For privacy reasons, do not use <br/> your full name </NameWarningSpan>
               </UserNameContainer>
               <EmailContainer>
                 <EmailLabel> Email Address </EmailLabel>
-                <EmailInput value={email} onChange={e => setEmail(e.target.value)} maxlength='60' placeholder='Example: jack@email.com'/>
+                <EmailInput required='' value={email} onChange={e => setEmail(e.target.value)} maxlength='60' placeholder='Example: jack@email.com'/>
                 <EmailWarningSpan> For authentication reasons, you will not be emailed</EmailWarningSpan>
               </EmailContainer>
 
@@ -37,7 +50,7 @@ var AddAnswer = ({q, toggleModal}) => {
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <BottomButtonContainers>
                 <UploadButton> Upload Images </UploadButton>
-                <SubmitButton> Submit! </SubmitButton>
+                <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
          </ModalHeader>

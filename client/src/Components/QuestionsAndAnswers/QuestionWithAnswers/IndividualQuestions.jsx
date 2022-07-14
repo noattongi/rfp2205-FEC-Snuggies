@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import IndividualAnswer from './IndividualAnswer.jsx';
 var axios = require('axios')
 
-var IndividualQuestions = ({question}) => {
+var IndividualQuestions = ({question, postAnswerfunc}) => {
   // contains QuestionDiv AnswerListContainer,
   // Question div has Question and Helpful/Add Answer Section
   // AnswerListDiv has IndividualAnswers
@@ -15,12 +15,12 @@ var IndividualQuestions = ({question}) => {
 
   var voted = false;
 
+  // can refactory to prevent multiple upvotes after page loads
   var upVote = (e) => {
     e.preventDefault();
     if (!voted) {
       axios.put('/snuggie/question/helpfulness', {question_id: question.question_id})
       .then((response) => {
-        console.log('what is response?', response)
         voted = true;
       })
       .catch((error) => {
@@ -39,7 +39,7 @@ var IndividualQuestions = ({question}) => {
         <QuestionSpan> Q: {question.question_body} </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
          <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
-          {toggleModal && <AddAnswer toggleModal={setToggleModal}q={question.question_body}/>}
+          {toggleModal && <AddAnswer postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
           <HelpfulAnswerSpan> Helpful? </HelpfulAnswerSpan>
            <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({question.question_helpfulness})
         </HelpfulAndAddAnswerContainer>

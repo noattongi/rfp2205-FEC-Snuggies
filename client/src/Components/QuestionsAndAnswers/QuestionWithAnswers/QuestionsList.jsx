@@ -4,22 +4,20 @@ import styled from 'styled-components';
 
 // need to map each question
 
-var QuestionsList = ({questions}) => {
+var QuestionsList = ({questions, postAnswerFunc}) => {
 
   // var [q, setQ] = useState([])
 
   // useEffect(() => {
   //   setQ(questions)
   // }, [questions])
-
-  console.log('Qlist', questions)
   // console.log('Q state', q)
   return (
     <QnAListContainer>
       <IndividualQuestDiv>
       {questions?.map((each) => {
         return (
-          <IndividualQuestions key={each.question_id} question={each}/>
+          <IndividualQuestions postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
         )
       })}
       </IndividualQuestDiv>
