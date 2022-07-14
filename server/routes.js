@@ -58,8 +58,10 @@ router.get('/reviews/', (request, response) => {
 });
 
 router.post('/reviews', (request, response) => {
+  console.log(request.body, 'booooddyyyyyyy')
     API.postProductReviews(request.body)
       .then((results) => {
+        console.log('did router.post worrrrkkkkkkkkk')
         response.status(201).send('send from router.post reviews worked')
       })
       .catch((error) => {
@@ -75,7 +77,7 @@ router.get('/related', (request, response) => {
   } else {
     API.getRelatedProducts(request.query.product_id)
       .then((results) => {
-        response.status(200).send(results.data)
+        response.sendStatus(200).send(results.data)
       })
       .catch((error) => {
         console.log('Error in getting related products', error);

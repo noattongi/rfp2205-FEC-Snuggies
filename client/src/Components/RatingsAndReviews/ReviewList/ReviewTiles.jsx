@@ -5,11 +5,11 @@ import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
 // import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
-import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody} from '../StyledComponents/ReviewTile.jsx';
+import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan} from '../StyledComponents/ReviewTile.jsx';
 import styled from 'styled-components'
 
 var ReviewTiles = (props) => {
-  const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body.substr(0, 250))
+  const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
 
   var formatDate = (date) => {
@@ -28,10 +28,18 @@ var ReviewTiles = (props) => {
   }
 
   var seeMoreClick = (event) => {
-    setReviewBodyRender(props.reviews.body)
+    // setReviewBodyRender(props.reviews.body)
     setSeeMore(false)
   }
 
+  var seeMoreRendered = (seeMore) => {
+    var rendered;
+    if(seeMore === true) {
+      return rendered = props.reviews.body.substr(0, 250)
+    } else {
+      return rendered = props.reviews.body
+    }
+  }
 
 
   return (
@@ -45,7 +53,7 @@ var ReviewTiles = (props) => {
         </UserandDate>
       </TopContainer>
     <Summary>{props.reviews.summary.substr(0, 60)}</Summary>
-    <ReviewBody>{reviewBodyRender}
+    <ReviewBody>{seeMoreRendered(seeMore)}
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
     {props.reviews.photos.map((photo, index) =>
         <ImagePool key={index}
@@ -64,22 +72,6 @@ var ReviewTiles = (props) => {
   )
 };
 
-
-var BottomInfoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 40%;
-  font-size: 12px;
-`;
-
-var AnswerHelpfulnessSpan = styled.span`
-
-`;
-
-var ReportSpan = styled.span`
-  text-decoration: underline;
-`;
 
 
 export default ReviewTiles
