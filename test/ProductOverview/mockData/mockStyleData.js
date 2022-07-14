@@ -1,5 +1,4 @@
 var camoOnesieStyles = {
-
   "product_id": "40344",
   "results": [
       {
@@ -357,7 +356,89 @@ var camoOnesieStyles = {
           }
       }
   ]
+}
 
+var brightFutureSunglassesStyles = {
+  "product_id": "40345",
+  "results": [
+      {
+          "style_id": 240506,
+          "name": "Black Lenses & Black Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": false,
+          "photos": [
+              {
+                  "thumbnail_url": null,
+                  "url": null
+              }
+          ],
+          "skus": {
+              "null": {
+                  "quantity": null,
+                  "size": null
+              }
+          }
+      },
+      {
+          "style_id": 240507,
+          "name": "Black Lenses & Gold Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": true,
+          "photos": [
+              {
+                  "thumbnail_url": null,
+                  "url": null
+              }
+          ],
+          "skus": {
+              "null": {
+                  "quantity": null,
+                  "size": null
+              }
+          }
+      },
+      {
+          "style_id": 240508,
+          "name": "Gold Lenses & Black Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": false,
+          "photos": [
+              {
+                  "thumbnail_url": null,
+                  "url": null
+              }
+          ],
+          "skus": {
+              "null": {
+                  "quantity": null,
+                  "size": null
+              }
+          }
+      },
+      {
+          "style_id": 240509,
+          "name": "Gold Lenses & Gold Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": false,
+          "photos": [
+              {
+                  "thumbnail_url": null,
+                  "url": null
+              }
+          ],
+          "skus": {
+              "null": {
+                  "quantity": null,
+                  "size": null
+              }
+          }
+      }
+  ]
 }
 
 module.exports.camoOnesieStyles = camoOnesieStyles;
+module.exports.brightFutureSunglassesStyles = brightFutureSunglassesStyles;
