@@ -22,6 +22,9 @@ const OutfitList = (props) => {
       // work on uniqueness later
       setOutfitProd(list);
     })
+    .catch((error) => {
+      console.log('Add button error', error)
+    })
   }
   return (
     <div>

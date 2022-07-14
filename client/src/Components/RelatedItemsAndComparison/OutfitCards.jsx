@@ -20,18 +20,19 @@ const OutfitCards = (props) => {
     })
   }
   return (
-    <>
+    <div>
+      {/* to work on rendering props, passing down works */}
     {props.outfitProd?.map((prod) => {
       return (
           <div>
-            <div onClick = {(e) => {handleDelete(prod.id)}}>❌</div>
+            {/* <div onClick = {(e) => {handleDelete(prod.id)}}>❌</div> */}
             <p>{prod.category}</p>
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>
             <p>Star Rating</p>
           </div>
        )})}
-       </>
+       </div>
   )
 }
 

@@ -28,3 +28,5 @@ const RInCIndex = () => {
 }
 
 export default RInCIndex;
+
+// styled components

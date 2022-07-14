@@ -14,17 +14,27 @@ const RelatedCards = (props) => {
     <>
     {props.relatedProd?.map((prod) => {
       return (
-          <div>
+          <CardBox>
             <div onClick = {modalToggle}>⭐️</div>
             {modal ? <ComparisonModal modalToggle = {modalToggle}/> : null }
             <p>{prod.category}</p>
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>
             <p>Star Rating</p>
-          </div>
+          </CardBox>
        )})}
        </>
   )
 }
 
 export default RelatedCards;
+
+// styled componenents
+const CardBox = styled.div`
+  flex: 25%;
+  position: flex;
+  justify-content: flex-start;
+  border: 1px solid black;
+  text-align: center;
+  margin: 20px;
+`;

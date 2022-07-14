@@ -41,10 +41,27 @@ const RelatedItemsList = (props) => {
   return (
     <>
       <h3>Related List</h3>
-      <RelatedCards relatedProd = {relatedProd}/>
-      <Carousel />
+        <Row>
+          <RelatedCards relatedProd = {relatedProd}/>
+          <CarouselContainer>
+            <Carousel />
+          </CarouselContainer>
+        </Row>
+
     </>
   )
 }
 
 export default RelatedItemsList;
+
+// styled components
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+`
+
+const CarouselContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
