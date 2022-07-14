@@ -5,19 +5,28 @@ import styled from 'styled-components';
 import IndividualAnswer from './IndividualAnswer.jsx';
 var axios = require('axios')
 
-var IndividualQuestions = ({question}) => {
+var IndividualQuestions = ({question, postAnswerfunc}) => {
   // contains QuestionDiv AnswerListContainer,
   // Question div has Question and Helpful/Add Answer Section
   // AnswerListDiv has IndividualAnswers
   // console.log('question indiv', question.question_id)
+
+  var [toggleModal, setToggleModal] = useState(false);
+  var [helpful, setHelpful] = useState(question.question_helpfulness);
+  var [truth, setTruth] = useState(false);
   var voted = false;
 
+  // can refactory to prevent multiple upvotes after page loads
   var upVote = (e) => {
     e.preventDefault();
     if (!voted) {
       axios.put('/snuggie/question/helpfulness', {question_id: question.question_id})
       .then((response) => {
-        console.log('what is response?', response)
+        // still needs to be refactored
+        if (!truth) {
+          setHelpful(helpful + 1);
+          setTruth(true);
+        }
         voted = true;
       })
       .catch((error) => {
@@ -35,9 +44,10 @@ var IndividualQuestions = ({question}) => {
       <QuestionHeaderContainer>
         <QuestionSpan> Q: {question.question_body} </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
-          <AddAnswer/>
+         <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
+          {toggleModal && <AddAnswer postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
           <HelpfulAnswerSpan> Helpful? </HelpfulAnswerSpan>
-           <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({question.question_helpfulness})
+           <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({helpful})
         </HelpfulAndAddAnswerContainer>
       </QuestionHeaderContainer>
 
@@ -54,11 +64,22 @@ var IndividualQuestions = ({question}) => {
 var QnAContainer = styled.div`
   padding-top: 1rem;
   padding-bottom; 1rem;
+  border-bottom: 2px solid grey;
 `;
 
 var YesQuestionSpan = styled.span`
   text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
 `;
+
+var AddAnswerSpan = styled.span`
+  text-decoration: underline;
+  color: blue;
+`;
+
 
 var QuestionSpan = styled.span`
   display: flex;
