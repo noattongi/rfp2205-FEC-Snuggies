@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Scroll = styled.div`
 width:90%% ;
-height:400px;
+height:600px;
 overflow:scroll;
 overflow-y:scroll;
 overflow-x:hidden;

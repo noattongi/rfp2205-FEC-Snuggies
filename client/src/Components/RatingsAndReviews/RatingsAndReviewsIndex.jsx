@@ -18,6 +18,17 @@ var RatingsAndReviewsIndex = (props) => {
     })
   }
 
+  var postReview = (postReviewObj) => {
+    console.log(postReviewObj)
+    return axios.post('/snuggie/reviews', postReviewObj)
+    .then((response) => {
+      console.log(response, 'response in postReview func')
+    })
+    .catch((error) => {
+      console.log( error,'Error in getProductReviews')
+    })
+  }
+
   var changeSortedBy = (sortBy) => {
     setSortBy(sortBy)
     console.log(sortBy)
@@ -33,7 +44,7 @@ var RatingsAndReviewsIndex = (props) => {
     <div>
       <div>
       </div>
-    <ReviewList productReviews={reviews} sortedBy={sortby} changeSortedBy={changeSortedBy}/>
+    <ReviewList productReviews={reviews} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview}/>
     </div>
   )
 }
