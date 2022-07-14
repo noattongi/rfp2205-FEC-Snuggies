@@ -86,19 +86,74 @@ router.get('/related', (request, response) => {
 });
 
 router.get('/qa/questions', (request, response) => {
-  console.log(request.query.count)
   if (!request.query.product_id) {
     response.send(500);
   } else {
     API.getProductQuestion(request.query.product_id, request.query.count)
     .then((results) => {
-      response.status(200).send(results.data)
+      response.status(200).send(results.data);
     })
     .catch((error) => {
-      console.log('Error in getting product question');
+      console.log('Error in getting product question', error);
       response.send(500);
     })
   }
-})
+});
+
+router.get('/answers', (request, response) => {
+  if (!request.query.product_id) {
+    response.send(500);
+  } else {
+    API.getProductAnswer(request.query.product_id, request.query.count)
+    .then((results) => {
+      response.status(200).send(results.data);
+    })
+    .catch((error) => {
+      console.log('Error in getting product answer', error);
+      response.send(500);
+    })
+  };
+});
+
+router.put('/question/helpfulness', (request, response) => {
+  if (!request.body.question_id) {
+    response.send(500);
+  } else {
+    API.updateQuestionHelpfulness(request.body.question_id, request.body)
+    .then((results) => {
+      response.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log('Error in updating question helpfulness', error);
+      response.send(420)
+    })
+  }
+});
+
+router.post('/post/answer', (request, response) => {
+  if(!request.body.question_id) {
+    response.send(500);
+  } else {
+    API.postQuestion(request.body.question_id, request.body)
+    .then((results) => {
+      response.status(200).send(results.data)
+    })
+    .catch((error) => {
+      console.log('Error posting data from server side', error);
+      response.send(420)
+    })
+  }
+});
+
+router.put('/answer/helpfulness', (request, response) => {
+  API.updateAnswerHelpfulness(request.body.answer_id, request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within updating answer helpfulness from the server side')
+    response.status(420)
+  })
+});
 
 module.exports = router;
