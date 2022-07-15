@@ -5,12 +5,15 @@ import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
 // import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
-import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan} from '../StyledComponents/ReviewTile.jsx';
+import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan} from '../StyledComponents/ReviewTile.jsx';
 import styled from 'styled-components'
 
 var ReviewTiles = (props) => {
+
+  console.log(props, 'these are the props you are looking fro')
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
+  const [helpfulClickCount, setHelpfulClickCount] = useState(0)
 
   var formatDate = (date) => {
     var dateISO = parseISO(date.slice(0, 10))
@@ -31,6 +34,16 @@ var ReviewTiles = (props) => {
     // setReviewBodyRender(props.reviews.body)
     setSeeMore(false)
   }
+
+   var onHelpfulClick = () => {
+    if(helpfulClickCount < 1) {
+      props.upVoteHelpfulness(props.reviews.review_id)
+      setHelpfulClickCount(helpfulClickCount + 1)
+    } else {
+      alert('You can only upvote once!')
+    }
+
+   }
 
   var seeMoreRendered = (seeMore) => {
     var rendered;
@@ -63,15 +76,14 @@ var ReviewTiles = (props) => {
     <RecommendProduct>{recommendFilter(props.reviews.recommend.toString())}</RecommendProduct>
     <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
     <BottomInfoContainer>
-    <AnswerHelpfulnessSpan>Helpful? Yes ({props.reviews.helpfulness})</AnswerHelpfulnessSpan>
-        <span>|</span>
-        <ReportSpan> Report </ReportSpan>
+    <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={onHelpfulClick}>Yes</YesAnswerSpan> ({props.reviews.helpfulness}) </AnswerHelpfulnessSpan>
+        <span> | </span>
+        {<ReportSpan > Report </ReportSpan>}
     </BottomInfoContainer>
    </div>
    </ReviewTile>
   )
 };
-
 
 
 export default ReviewTiles

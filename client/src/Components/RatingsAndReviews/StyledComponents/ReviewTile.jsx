@@ -32,21 +32,41 @@ padding-bottom: 20px;
 `
 
 var BottomInfoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 40%;
-  font-size: 12px;
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+width: 40%;
+font-size: 12px;
 `;
 
 var AnswerHelpfulnessSpan = styled.span`
-
+   padding-left: 7px;
+  padding-right: 7px;
 `;
+
 
 var ReportSpan = styled.span`
   text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
+  padding-left: 7px;
+  padding-right: 1px;
+`;
+
+var HelpfulAnswerSpan = styled.div`
+  display: flex;
+`;
+
+var YesAnswerSpan = styled.span`
+  text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
 `;
 
 
-export { TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer};
+export { TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan};
 

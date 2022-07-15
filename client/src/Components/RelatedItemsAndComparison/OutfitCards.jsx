@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const OutfitCards = (props) => {
   useEffect(() => {
-    console.log('child component', props.outfitId)
+    // console.log('child component', props.outfitId)
   }, [props.outfitProd, props.outfitId])
 
   async function handleDeleteClick(id) {

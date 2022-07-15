@@ -6,8 +6,10 @@ import AddReviewModal from './AddReviewModal.jsx'
 import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
 
 var ReviewList = (props) => {
+  console.log(props, 'look at this')
   const [reviewCount, setReviewCount] = useState(2);
   const [isOpen, setIsOpen] = useState(false)
+
 
   var toggleModal = (event) => {
     setIsOpen(!isOpen)
@@ -20,6 +22,7 @@ var ReviewList = (props) => {
   var changeSortClick = (event) => {
     props.changeSortedBy(event.target.value)
   }
+
 
   // var limitReviews = props.productReviews.results?.slice(0,reviewCount)
   return (
@@ -37,7 +40,7 @@ var ReviewList = (props) => {
     <ul>
       {props.productReviews.results?.slice(0,reviewCount)?.map((review, index) =>
         <ReviewTile key={index}
-                  reviews={review}/>
+                  reviews={review} upVoteHelpfulness={props.upVoteHelpfulness}/>
       )}
     </ul>
     </div>
@@ -47,7 +50,7 @@ var ReviewList = (props) => {
       className="openModalBtn"
       onClick={toggleModal}
     >Add a Review</button>
-      {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview}/>}
+      {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} />}
     </div>
   )
 

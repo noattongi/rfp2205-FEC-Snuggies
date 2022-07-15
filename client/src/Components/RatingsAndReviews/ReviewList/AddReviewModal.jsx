@@ -16,6 +16,7 @@ var AddReviewModal = (props) => {
   const [postedImage, setPostedImage] = useState('')
   const [rating, setRating] = useState(null)
   const [characteristics, setCharacteristics] = useState({})
+  const [productName, setProductName] = useState('')
 
 
   var toggleModal = (e) => {
@@ -130,6 +131,9 @@ var AddReviewModal = (props) => {
       // setRating(null)
       }
     }
+    useEffect(() => {
+      setProductName(props.chosenProduct.name)
+    },[productName])
 
     return (
       <StyleBackground> <div className="modalBackground">
@@ -139,7 +143,7 @@ var AddReviewModal = (props) => {
           </div>
           <div className="title">
             <h1>Write Your Review</h1>
-            <h4>About the [Product Name Here]</h4>
+            <h4>About the {props.chosenProduct.name}</h4>
           </div>
           <ModalBody><div className="body">
             <p>*Star Rating: ⭐️⭐️⭐️⭐️⭐️</p>
