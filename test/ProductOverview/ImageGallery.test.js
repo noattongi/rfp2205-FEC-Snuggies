@@ -61,12 +61,18 @@ test('Renders the up and down scroll arrow buttons for the image thumbnails when
     render(<Overview />);
     await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
     const images = await screen.getAllByAltText("ImageThumbnail");
-    expect(images).toHaveLength(7); // The Heir Force One has 8 image thumbnails, but only 7 should be shown
+    expect(images).toHaveLength(7); // The Heir Force One has 11 image thumbnails, but only 7 should be shown
     // Make sure the down arrow is rendered
     expect(document.getElementsByClassName("fa-solid fa-arrow-down")).toBeTruthy();
     // Clicking the down arrow should render the up arrow
     await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
     expect(document.getElementsByClassName("fa-solid fa-arrow-up")).toBeTruthy();
+    // 3 more clicks and the down arrow should not render anymore ()
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
+    expect(document.getElementsByClassName("fa-solid fa-arrow-up")).toBeTruthy();
+    expect(document.getElementsByClassName("fa-solid fa-arrow-down")).toBeFalsy();
 });
 
 // Test if the main image itself renders correctly
