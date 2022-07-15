@@ -9,8 +9,8 @@ var AddQuestion = ({postQuest, toggleModel}) => {
   var [email, setEmail] = useState('');
 
   var postQuestion = (e) => {
-    e.preventDefault()
 
+    e.preventDefault()
     var body = {body: answerEntry, name: username, email: email, product_id: 40713};
 
     if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
@@ -20,10 +20,9 @@ var AddQuestion = ({postQuest, toggleModel}) => {
       toggleModel(false);
     };
 
-    if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
+    if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
       alert('Error, length too long for the email, name, or question body.')
-    };
-
+    }
   }
 
   return (
@@ -31,7 +30,7 @@ var AddQuestion = ({postQuest, toggleModel}) => {
     <ModalContent>
    <CloseButton onClick={() => toggleModel(false)}> x </CloseButton>
      <ModalHeader>
-       <ModalH2> Submit Your Answer </ModalH2>
+       <ModalH2> Submit Your Question </ModalH2>
        <ModalSubtitleContainer>
            <ProductName> About the [product name]  </ProductName>
        </ModalSubtitleContainer>

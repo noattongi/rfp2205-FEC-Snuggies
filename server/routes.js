@@ -159,7 +159,6 @@ router.put('/answer/helpfulness', (request, response) => {
 });
 
 router.post('/post/question', (request, response) => {
-  console.log('logged req body', request.body)
   API.postQuestion(request.body)
   .then((results) => {
     response.status(201).send(results.data);
@@ -168,6 +167,18 @@ router.post('/post/question', (request, response) => {
     console.log('Error within posting a question from server side', error)
     response.status(420)
   })
-})
+});
+
+router.put('/report', (request, response) => {
+  API.reportAnswer(request.body.answer_id, request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within reporting an answer from server side', error)
+    response.status(420)
+  })
+});
+
 
 module.exports = router;
