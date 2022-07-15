@@ -2,7 +2,7 @@
 
 // Import stuff
 import React, { useState } from 'react';
-import { StyleThumbnailContainer } from '../StyledComponents/Containers.jsx';
+import { StyleThumbnailRowContainer, StyleThumbnailContainer } from '../StyledComponents/Containers.jsx';
 import { ChosenStyleContainer } from '../StyledComponents/Containers.jsx';
 import { StyleThumbnail, ChosenIcon } from '../StyledComponents/ProductInformation/StyleThumbnail.jsx';
 
@@ -28,7 +28,7 @@ var Styles = (props) => {
 
   return (
 
-    <StyleThumbnailContainer>
+    <StyleThumbnailRowContainer>
       {/* For each row of styles, render the thumbnail of the first image of the style */}
       {styleRows.map((row, rowIndex = 0) => {
         return (
@@ -51,7 +51,7 @@ var Styles = (props) => {
           </StyleThumbnailContainer>
         );
       })}
-    </StyleThumbnailContainer>
+    </StyleThumbnailRowContainer>
   );
 }
 
