@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, screen, waitFor } from '@testing-library/react';
-import userEffect from '@testing-library/user-effect';
+import userEvent from '@testing-library/user-event';
 import Overview from '../../client/src/Components/ProductOverview/Overview.jsx';
 import axios from 'axios';
 // Import mock data
@@ -35,7 +35,7 @@ test('Renders image thumbnails', async () => {
     }
   });
   // Render the widget
-  render(<Overview />);
+  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
   const images = await screen.getAllByAltText("ImageThumbnail");
   expect(images).toHaveLength(6); // The Camo Onesie has 6 image thumbnails
@@ -58,7 +58,7 @@ test('Renders the up and down scroll arrow buttons for the image thumbnails when
         }
     });
     // Render the widget
-    render(<Overview />);
+    render(<Overview productId={40348} chosenProduct={mockProductData.heirForceOne} />);
     await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
     const images = await screen.getAllByAltText("ImageThumbnail");
     expect(images).toHaveLength(7); // The Heir Force One has 11 image thumbnails, but only 7 should be shown
@@ -91,7 +91,7 @@ test('Renders the main image', async () => {
           return Promise.reject(new Error('not found'));
       }
   });
-  render(<Overview />);
+  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
 
 });
 
@@ -111,7 +111,7 @@ test('Renders the left and right arrows on the sides of the main image', async (
           return Promise.reject(new Error('not found'));
       }
   });
-  render(<Overview />);
+  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
 
 });
 

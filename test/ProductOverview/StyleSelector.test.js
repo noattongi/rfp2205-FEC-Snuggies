@@ -36,7 +36,7 @@ test('Style Selectors render properly for Camo Onesie', async () => {
   });
   // Render the widget
 
-  render(<Overview />);
+  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   await waitFor(() => { screen.getAllByAltText("StyleThumbnail") });
   const styles = await screen.getAllByAltText("StyleThumbnail");
   expect(styles).toHaveLength(6); // The Camo Onesie has 6 style thumbnails
@@ -60,7 +60,7 @@ test('Style Selector clicking works', async () => {
     }
   });
   // Render the widget
-  const { rerender } = render(<Overview />);
+  const { rerender } = render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   await waitFor(() => { screen.getAllByAltText("StyleThumbnail") }); // wait for style thumbnails to load
   rerender(<Overview />);
   // Simulate user clicking on a style thumbnail and test if that thumbnail becomes the chosen one
