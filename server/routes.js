@@ -19,7 +19,7 @@ router.get('/products', (request, response) => {
     })
     .catch((error) => {
       console.log('Error in getting all the products', error);
-      response.send(500);
+      response.sendStatus(500);
     });
 });
 
@@ -28,7 +28,7 @@ router.get('/products', (request, response) => {
 router.get('/styles', (request, response) => {
   // If there is no product_id as the parameter, return bad response
   if (!request.query.product_id) {
-    response.send(500);
+    response.sendStatus(500);
   } else {
     API.getProductStyles(request.query.product_id)
       .then((results) => {
@@ -53,6 +53,22 @@ router.get('/reviews/', (request, response) => {
       .catch((error) => {
         console.log('Error in getting all the reviews', error);
         response.send(500);
+      });
+  }
+});
+
+// GETs a specific product's review metadata
+router.get('/reviews/meta', (request, response) => {
+  if (!request.query.product_id) {
+    response.sendStatus(500);
+  } else {
+    API.getReviewMetadata(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data);
+      })
+      .catch((error) => {
+        console.log('Error in getting the review metadata', error);
+        results.sendStatus(500);
       });
   }
 });

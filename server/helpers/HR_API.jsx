@@ -38,6 +38,13 @@ var getProductReviews = (id, count, sort) => {
   });
 }
 
+// Function that sends a GET request to the API to get a specific product's review metadata
+var getReviewMetadata = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${id}`, {
+    headers: headers
+  });
+}
+
 var postProductReviews = (data) => {
   return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, data, {
     headers: headers
@@ -95,6 +102,7 @@ module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviews = getProductReviews;
+module.exports.getReviewMetadata = getReviewMetadata;
 module.exports.postProductReviews = postProductReviews;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;
