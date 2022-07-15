@@ -6,7 +6,6 @@ import Information from './ProductInformation/Information.jsx';
 
 var Overview = (props) => {
 
-  const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [chosenStyle, setChosenStyle] = useState({});
   const [reviews, setReviews] = useState({});
@@ -15,16 +14,8 @@ var Overview = (props) => {
   useEffect(() => {
     console.log('HI!');
     if (props.productId) {
-      // Send axios request to the specific product
-      axios.get('/snuggie/products', { params: { product_id: props.productId } }) // Right now, we have a placeholder for the specific product
-        // Then set the products state
-        .then((results) => {
-          return setProduct(results.data);
-        })
-        // Send axios request to get all styles
-        .then(() => {
-          return axios.get('/snuggie/styles', { params: { product_id: props.productId } });
-        })
+      // Send axios request to get all styles
+      axios.get('/snuggie/styles', { params: { product_id: props.productId } })
         // Then set the styles state
         .then((results) => {
           return setStyles(results.data.results);
@@ -41,10 +32,10 @@ var Overview = (props) => {
     <div>
       <ProductOverviewContainer>
         <Gallery chosenStyle={chosenStyle} />
-        <Information product={product} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reveiws={reviews} />
+        <Information product={props.chosenProduct} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reviews={reviews} />
       </ProductOverviewContainer>
       <ProductInformationDescription>
-        {product.description}
+        {props.chosenProduct.description}
       </ProductInformationDescription>
     </div>
   );
