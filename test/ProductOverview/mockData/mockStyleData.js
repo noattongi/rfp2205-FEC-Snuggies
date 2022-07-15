@@ -440,7 +440,7 @@ var brightFutureSunglassesStyles = {
   ]
 }
 
-var heirForceOne = {
+var heirForceOneStyles = {
     "product_id": "40348",
     "results": [
         {
