@@ -35,7 +35,7 @@ var Information = (props) => {
 
   return (
     <ProductInformationContainer>
-      <OverviewStars />
+      <OverviewStars product={props.product} />
       <div>{(props.product && props.product.category) || "Loading Category..."}</div>
       <div>{(props.product && props.product.name) || "Loading Product Name..."}</div>
       {price}
