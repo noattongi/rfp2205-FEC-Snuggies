@@ -12,7 +12,6 @@ var Overview = (props) => {
 
   // Upon component mounting, send a GET request and get all the relevant data (this may need to be refactored if the team decides to house all client-side request handling in the main App file)
   useEffect(() => {
-    console.log('HI!');
     if (props.productId) {
       // Send axios request to get all styles
       axios.get('/snuggie/styles', { params: { product_id: props.productId } })
@@ -35,7 +34,7 @@ var Overview = (props) => {
         <Information product={props.chosenProduct} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reviews={reviews} />
       </ProductOverviewContainer>
       <ProductInformationDescription>
-        {props.chosenProduct.description}
+        {props.chosenProduct && props.chosenProduct.description}
       </ProductInformationDescription>
     </div>
   );

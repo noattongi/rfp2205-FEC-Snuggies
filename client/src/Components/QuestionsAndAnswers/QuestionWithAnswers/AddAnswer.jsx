@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import cloudinary from 'cloudinary'
+// import cloudinary from 'cloudinary'
 var axios = require('axios');
 // modal
 
