@@ -12,6 +12,11 @@ var App = () => {
   const [productId, setProductId] = useState();
   const [chosenProduct, setChosenProduct] = useState({});
 
+  var storage = {
+    _productId: productId,
+    _chosenProduct: chosenProduct
+  };
+
   // When App first mounts, send a GET request to the server to get the productId of the first product received
   useEffect(() => {
     // Send axios request to get all products
@@ -32,7 +37,7 @@ var App = () => {
   }, []); // Second argument being an empty array causes this instance of useEffect to only run once
 
   return(
-    <GlobalContext.Provider value={chosenProduct}>
+    <GlobalContext.Provider value={storage}>
         <div>navbar</div>
         <h1>ANNOUNCEMENTS GO HERE</h1>
         <Overview productId={productId} chosenProduct={chosenProduct} />

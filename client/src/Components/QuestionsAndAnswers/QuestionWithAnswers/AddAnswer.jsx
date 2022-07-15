@@ -1,6 +1,7 @@
 // require('dotenv').config();
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
+import { GlobalContext } from '../../../App.js'
 var axios = require('axios');
 // const { cloudinary } = require('../../cloudinary.config.js')
 // var cloudinary = require('cloudinary').v2
@@ -8,8 +9,10 @@ var axios = require('axios');
 
 
 
-// subtitle: needs product name and question body
 var AddAnswer = ({q, toggleModal, postAnswer}) => {
+  var storage = useContext(GlobalContext);
+  var { _productId, _chosenProduct } = storage;
+  console.log('log id', _chosenProduct)
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
@@ -34,8 +37,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var chooseFile = (e) => {
     var img = e.target.files[0];
     console.log('log here', img)
-    setImgURL(URL.createObjectURL(img));
-
+    setImgURL([...imgURL, URL.createObjectURL(img)]);
   };
 
   return (
@@ -46,7 +48,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
           <ModalHeader>
             <ModalH2> Submit Your Answer </ModalH2>
             <ModalSubtitleContainer>
-                <ProductName> Yeezys:  </ProductName>
+                <ProductName> {_chosenProduct.name}:  </ProductName>
                 <QuestionBody> {q.question_body} </QuestionBody>
             </ModalSubtitleContainer>
             <ModalBody>
@@ -65,8 +67,13 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             </UserInfoContainer>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
-              <span> Cute </span>
-              {imgURL !== '' && <Images src={imgURL}></Images>}
+              {imgURL !== '' &&
+                imgURL.map((each) => {
+                  return (
+                    <Images src={each}/>
+                  )
+                })
+              }
             </ImageContainer>
             <BottomButtonContainers>
                 <UploadInput onChange={chooseFile} type='file' hidden id='button'></UploadInput>
