@@ -1,3 +1,4 @@
+require('dotenv').config();
 var router = require('express').Router()
 var API = require('./helpers/HR_API.jsx');
 const { cloudinary } = require('../cloudinary.config.js')
