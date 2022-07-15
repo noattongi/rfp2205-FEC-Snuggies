@@ -40,6 +40,12 @@ const ChosenStyleContainer = styled.section`
   position: relative;
 `;
 
+const PriceContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
 // Container for the size and count buttons in Product Information section
 const SizeAndCountContainer = styled.section`
   display: flex;
@@ -59,4 +65,4 @@ const ProductInformationDescription = styled.section`
 `;
 
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, ChosenStyleContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };

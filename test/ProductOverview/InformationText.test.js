@@ -34,7 +34,7 @@ test('Renders text components when given the Camo Onesie product', async () => {
     }
   });
   // Render the widget
-  render(<Overview />);
+  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   // Check if the Reviews text renders (will need to be changed when the reviews text is finally implemented)
   const text = await screen.findAllByText("Read [#] Reviews");
   expect(text).toBeTruthy();
@@ -63,7 +63,7 @@ test('Renders text components when given the Bright Future Sunglasses product', 
             return Promise.reject(new Error('not found'));
         }
     });
-    render(<Overview />);
+    render(<Overview productId={40345} chosenProduct={mockProductData.brightFutureSunglasses} />);
     await waitFor(() => screen.getByText("Bright Future Sunglasses"));
     const productName = await screen.getByText("Bright Future Sunglasses");
     expect(productName).toBeTruthy();
