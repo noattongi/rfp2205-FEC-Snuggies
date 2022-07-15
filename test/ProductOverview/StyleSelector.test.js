@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, screen, act, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Overview from '../../client/src/Components/ProductOverview/Overview.jsx';
 import axios from 'axios';
 // Import mock data
@@ -58,11 +59,11 @@ test('Style Selector clicking works', async () => {
         return Promise.reject(new Error('not found'));
     }
   });
-  // Set up for user events (clicking!)
-  const user = userEvent.setup();
   // Render the widget
-  render(<Overview />);
+  const { rerender } = render(<Overview />);
   await waitFor(() => { screen.getAllByAltText("StyleThumbnail") }); // wait for style thumbnails to load
-  // Simulate user clicking on a style thumbnail and test
-  await user.click(screen.getByRole('', {}))
+  rerender(<Overview />);
+  // Simulate user clicking on a style thumbnail and test if that thumbnail becomes the chosen one
+  await userEvent.click(document.getElementById("240501"));
+  expect(document.getElementById("240501")).toBe(document.getElementsByClassName("chosenStyle")[0]);
 });
