@@ -18,7 +18,6 @@ const RInCIndex = () => {
     })
   }
 
-
   return (
     <div>
       <RelatedItemsList getProduct = {getProduct}/>
