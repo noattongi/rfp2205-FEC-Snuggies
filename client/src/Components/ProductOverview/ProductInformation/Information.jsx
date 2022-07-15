@@ -24,10 +24,10 @@ var Information = (props) => {
   return (
     <ProductInformationContainer>
       <OverviewStars />
-      <div>{props.product.category}</div>
-      <div>{props.product.name}</div>
-      <div>{props.chosenStyle.original_price /* Will have to do some math here and calculate the price (in case theres a sale) */}</div>
-      <div>Style > {props.chosenStyle.name || "Selected Style"}</div>
+      <div>{(props.product && props.product.category) || "Loading Category..."}</div>
+      <div>{(props.product && props.product.name) || "Loading Product Name..."}</div>
+      <div>{(props.chosenStyle && props.chosenStyle.original_price) || "Loading Price..."/* Will have to do some math here and calculate the price (in case theres a sale) */}</div>
+      <div>Style > {(props.chosenStyle && props.chosenStyle.name) || "Loading Selected Style..."}</div>
       <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
       <CartButtons />
     </ProductInformationContainer>

@@ -35,7 +35,7 @@ var Overview = (props) => {
         <Information product={props.chosenProduct} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reviews={reviews} />
       </ProductOverviewContainer>
       <ProductInformationDescription>
-        {props.chosenProduct.description}
+        {props.chosenProduct && props.chosenProduct.description}
       </ProductInformationDescription>
     </div>
   );
