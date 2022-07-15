@@ -5,9 +5,10 @@ import RelatedItemsList from './RelatedItemsList.jsx';
 import OutfitList from './OutfitList.jsx';
 import styled from 'styled-components';
 
-const RInCIndex = () => {
-  const [product, setProduct] = useState({});
-
+const RInCIndex = (props) => {
+  useEffect(() => {
+    console.log('props RInCIndex', props)
+  }, [props.productId])
   const getProduct = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId}})
     .then((res) => {
@@ -20,8 +21,8 @@ const RInCIndex = () => {
 
   return (
     <div>
-      <RelatedItemsList getProduct = {getProduct}/>
-      <OutfitList getProduct = {getProduct}/>
+      <RelatedItemsList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct}/>
+      <OutfitList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct}/>
     </div>
   )
 }
