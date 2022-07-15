@@ -57,8 +57,23 @@ router.get('/reviews/', (request, response) => {
   }
 });
 
+router.get('/reviews/meta', (request, response) => {
+  if (!request.query.product_id) {
+    response.sendStatus(500);
+  } else {
+    API.getProductMetaData(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data);
+      })
+      .catch((error) => {
+        console.log('Error in getting all the reviews', error);
+        response.send(500);
+      });
+  }
+});
+
+
 router.post('/reviews', (request, response) => {
-  console.log(request.body, 'booooddyyyyyyy')
     API.postProductReviews(request.body)
       .then((results) => {
         console.log('did router.post worrrrkkkkkkkkk')

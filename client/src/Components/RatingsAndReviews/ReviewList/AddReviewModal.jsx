@@ -14,6 +14,8 @@ var AddReviewModal = (props) => {
   const [charCountSummary, setCharCountSummary] = useState(0)
   const [charCountBody, setCharCountBody] = useState(50)
   const [postedImage, setPostedImage] = useState('')
+  const [rating, setRating] = useState(null)
+  const [characteristics, setCharacteristics] = useState({})
 
 
   var toggleModal = (e) => {
@@ -22,12 +24,10 @@ var AddReviewModal = (props) => {
 
     var handleEmailChange = (event) => {
       setEmail(event.target.value)
-      console.log(email)
     }
 
     var handleNicknameChange = (event) => {
       setNickname(event.target.value)
-      console.log(nickname)
     }
 
     var handleReviewBodyChange =(event) => {
@@ -40,19 +40,11 @@ var AddReviewModal = (props) => {
       setCharCountSummary(event.target.value.length)
     }
 
-    var onSubmitClick = (event) => {
-      props.postReview({
-        product_id: 40347,//hardcoded
-        rating: 3,//hardcoded
-        summary: bodySummary,
-        body: reviewBody,
-        recommend: recommendInput,
-        name: nickname,
-        email: email,
-        photos: [postedImage],
-        characteristics: {}
-      })
+    var isValidEmail = (email) => {
+     return  /\S+@\S+\.\S+/.test(email)
     }
+
+
 
     var onImageChange = event => {
       console.log(event.target.files[0])
@@ -72,6 +64,72 @@ var AddReviewModal = (props) => {
       }
     }
 
+  var sizeOnChange = (event) => {
+        var sizeNum = Number(event.target.value)
+        setCharacteristics({...characteristics, '14' : sizeNum})
+  }
+
+  var widthOnChange = (event) => {
+      var widthNum = Number(event.target.value)
+      setCharacteristics({...characteristics, '15' : widthNum})
+  }
+
+  var comfortOnChange = (event) => {
+     var comfortNum = Number(event.target.value)
+    setCharacteristics({...characteristics, '16' : comfortNum})
+  }
+
+  var qualityOnChange = (event) => {
+    var qualityNum = Number(event.target.value)
+    setCharacteristics({...characteristics, '17' : qualityNum})
+  }
+
+  var lengthOnChange = (event) => {
+    var lengthNum = Number(event.target.value)
+    setCharacteristics({...characteristics, '18' : lengthNum})
+  }
+
+  var fitOnChange = (event) => {
+    var fitNum = Number(event.target.value)
+    setCharacteristics({...characteristics, '19' : fitNum})
+
+  }
+
+    var onSubmitClick = (event) => {
+      console.log(recommendInput, reviewBody, nickname, email, reviewBody.length)
+      if((!isValidEmail(email)) ){
+        return alert('Please enter a valid email!')
+        if( recommendInput === null || reviewBody === ''  || nickname === '' || reviewBody.length < 50 || email === '') {//add characteristics, images are invalid or unable to be uploaded , email address is not in the correct format, ratings
+          alert("Please review the mandatory data!")
+        }
+      } else {
+        props.postReview({
+        product_id: 40347,//hardcoded
+        rating: 3,//hardcoded
+        summary: bodySummary,
+        body: reviewBody,
+        recommend: recommendInput,
+        name: nickname,
+        email: email,
+        photos: [postedImage],
+        characteristics: {}
+      })
+      setbodySummary('')
+      setReviewBody('')
+      setNickname('')
+      setEmail('')
+      setSelectedImage([''])
+      setRecommendInput(null)
+      setCharCountSummary(0)
+      setCharCountBody(50)
+      setPostedImage('')
+      setIsOpen(!isOpen)
+      setCharacteristics({})
+      props.closeModal()
+
+      // setRating(null)
+      }
+    }
 
     return (
       <StyleBackground> <div className="modalBackground">
@@ -92,14 +150,78 @@ var AddReviewModal = (props) => {
             <input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No
             </label>
             </div>
+            <div>
+            {props.metaData.Size &&
             <label>
-            *Characteristic:
-            <input type="radio" value="1" name="Characteristic" /> A size too small
-            <input type="radio" value="2" name="Characteristic" /> ½ a size too small
-            <input type="radio" value="3" name="Characteristic" /> Perfect
-            <input type="radio" value="4" name="Characteristic" /> ½ a size too big
-            <input type="radio" value="5" name="Characteristic" /> A size too wide
+             *Size
+               <input type="radio" value="1" name="Size" onChange={sizeOnChange}/> A size too small
+               <input type="radio" value="2" name="Size" onChange={sizeOnChange}/> ½ a size too small
+               <input type="radio" value="3" name="Size" onChange={sizeOnChange}/> Perfect
+               <input type="radio" value="4" name="Size" onChange={sizeOnChange}/> ½ a size too big
+               <input type="radio" value="5" name="Size" onChange={sizeOnChange}/> A size too wide
             </label>
+              }
+              </div>
+              <div>
+            {props.metaData.characteristics.Width &&
+            <label>
+             *Width
+              <input type="radio" value="1" name="Width" onChange={widthOnChange}/> Too narrow
+              <input type="radio" value="2" name="Width" onChange={widthOnChange}/> Slightly narrow
+              <input type="radio" value="3" name="Width" onChange={widthOnChange}/> Perfect
+              <input type="radio" value="4" name="Width" onChange={widthOnChange}/> Slightly wide
+              <input type="radio" value="5" name="Width" onChange={widthOnChange}/> Too wide
+            </label>
+              }
+              </div>
+              <div>
+              {props.metaData.characteristics.Comfort &&
+                <label>
+                *Comfort
+                  <input type="radio" value="1" name="Comfort" onChange={comfortOnChange}/> Uncomfortable
+                  <input type="radio" value="2" name="Comfort" onChange={comfortOnChange}/> Slightly uncomfortable
+                  <input type="radio" value="3" name="Comfort" onChange={comfortOnChange}/> Ok
+                  <input type="radio" value="4" name="Comfort" onChange={comfortOnChange}/> Comfortable
+                  <input type="radio" value="5" name="Comfort" onChange={comfortOnChange}/> Perfect
+                </label>
+              }
+              </div>
+              <div>
+              {props.metaData.characteristics.Quality &&
+                <label>
+                  *Quality
+                    <input type="radio" value="1" name="Quality" onChange={qualityOnChange}/> Poor
+                    <input type="radio" value="2" name="Quality" onChange={qualityOnChange}/> Below average
+                    <input type="radio" value="3" name="Quality" onChange={qualityOnChange}/> What I expected
+                    <input type="radio" value="4" name="Quality" onChange={qualityOnChange}/> Pretty great
+                    <input type="radio" value="5" name="Quality" onChange={qualityOnChange}/> Perfect
+                </label>
+              }
+              </div>
+              <div>
+              {props.metaData.characteristics.Quality &&
+                <label>
+                  *Length
+                    <input type="radio" value="1" name="Length" onChange={lengthOnChange}/> Runs Short
+                    <input type="radio" value="2" name="Length" onChange={lengthOnChange}/> Runs slightly short
+                    <input type="radio" value="3" name="Length" onChange={lengthOnChange}/> Perfect
+                    <input type="radio" value="4" name="Length" onChange={lengthOnChange}/> Runs slightly long
+                    <input type="radio" value="5" name="Length" onChange={lengthOnChange}/> Runs long
+                </label>
+              }
+              </div>
+              <div>
+              {props.metaData.characteristics.Fit &&
+                <label>
+                  *Fit
+                    <input type="radio" value="1" name="Fit" onChange={fitOnChange}/> Runs tight
+                    <input type="radio" value="2" name="Fit" onChange={fitOnChange}/> Runs slightly tight
+                    <input type="radio" value="3" name="Fit" onChange={fitOnChange}/> Perfect
+                    <input type="radio" value="4" name="Fit" onChange={fitOnChange}/> Runs slightly long
+                    <input type="radio" value="5" name="Fit" onChange={fitOnChange}/> Runs long
+                </label>
+              }
+              </div>
             <form >
               <label>
                 Review Summary:
@@ -113,7 +235,6 @@ var AddReviewModal = (props) => {
                 <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
                 {charCountBody > 0 ? <span>required characters left: [{charCountBody}]</span> : <span>Minimum reached</span>}
               </label>
-
             </form>
             <label>
               Upload Image:
@@ -123,18 +244,20 @@ var AddReviewModal = (props) => {
             <form >
               <label>
                 *Nickname:
-                <input type="text" placeholder="Example: jackson11!" value={nickname} onChange={handleNicknameChange}/>
+                <input type="text" placeholder="Example: jackson11!" value={nickname} maxLength = "60" onChange={handleNicknameChange}/>
               </label>
             </form>
+            For privacy reasons, do not use your full name or email address
             <form >
               <label>
                 *Email:
-                <input type="text" placeholder="Example: jackson11@email.com" value={email} onChange={handleEmailChange}/>
+                <input type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
               </label>
             </form>
+            For authentication reasons, you will not be emailed
           </div></ModalBody>
           <div className="footer">
-            <button onClick={onSubmitClick}>Submit</button>
+            <button onClick={onSubmitClick} >Submit</button>
           </div>
         </div></Container>
       </div>/></StyleBackground>
@@ -142,3 +265,4 @@ var AddReviewModal = (props) => {
 }
 
 export default AddReviewModal;
+

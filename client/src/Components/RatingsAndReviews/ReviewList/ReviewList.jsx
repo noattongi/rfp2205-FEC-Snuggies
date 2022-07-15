@@ -47,7 +47,7 @@ var ReviewList = (props) => {
       className="openModalBtn"
       onClick={toggleModal}
     >Add a Review</button>
-      {isOpen && <AddReviewModal closeModal={toggleModal} postReview={props.postReview}/>}
+      {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview}/>}
     </div>
   )
 
