@@ -24,6 +24,13 @@ const FilledStar = styled.i`
   z-index: 10;
 `;
 
+// Helper function to cap the width of a filled star to the nearest increment of 25%
+// Input: A number (intended to be an integer between 0 and 100)
+// Output: A number (multiple of 25)
+var capToFourth = (number) => {
+  return (25 * Math.floor(number / 25));
+}
+
 // The component itself
 const StarRating = (props) => {
 
@@ -46,7 +53,7 @@ const StarRating = (props) => {
     let width = 0;
     if (rating <= 5 && rating >= 0) { // Determine the width of this star (how much is colored)
       if (rating < 1) {
-        width = (rating % 1) * 100; // *100 because the styled component turns it into a %
+        width = capToFourth((rating % 1) * 100); // *100 because the styled component turns it into a %
       } else {
         width = 100;
       }
