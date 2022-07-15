@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ComparisonModal from './ComparisonModal.jsx'
@@ -6,16 +6,21 @@ import styled from 'styled-components';
 
 const RelatedCards = (props) => {
   const [modal, setModal] = useState(false)
+  const products = props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4)
   var modalToggle = () => {
     setModal(!modal)
   }
-
+  useEffect(() => {
+    console.log('index', props.relatedIndex)
+    console.log('slice', props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4))
+    console.log('related id', props.relatedId)
+  }, [props.relatedIndex])
   const handleCardClick = (id) => {
     return props.setProductId(id)
   }
   return (
     <>
-    {props.relatedProd?.map((prod) => {
+    {products?.map((prod) => {
       return (
           <CardBox key={prod.id} onClick={(e) => { handleCardClick(prod.id)}}>
             <div onClick = {modalToggle}>⭐️</div>
