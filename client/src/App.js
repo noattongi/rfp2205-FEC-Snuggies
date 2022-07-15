@@ -7,8 +7,9 @@ import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
 
 var App = () => {
 
-  // Hook for what specific product is being displayed
+  // Hooks for what specific product is being displayed
   const [productId, setProductId] = useState();
+  const [chosenProduct, setChosenProduct] = useState({});
 
   // When App first mounts, send a GET request to the server to get the productId of the first product received
   useEffect(() => {
@@ -19,8 +20,9 @@ var App = () => {
         console.log('ah', results);
         return axios.get('/snuggie/products', { params: {product_id: results.data[0].id} });
       })
-      // Then set the hook
+      // Then set the hooks
       .then((results) => {
+        setChosenProduct(results.data);
         setProductId(results.data.id);
       })
       .catch((error) => {
@@ -30,8 +32,9 @@ var App = () => {
 
   return(
     <div>
-      <h1>Hi</h1>
-      <Overview productId={productId} setProductId={setProductId} />
+      <div>navbar</div>
+      <h1>ANNOUNCEMENTS GO HERE</h1>
+      <Overview productId={productId} chosenProduct={chosenProduct} />
       <br/>
       <RInC/>
       <br/>
