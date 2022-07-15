@@ -4,6 +4,7 @@ import Overview from './Components/ProductOverview/Overview.jsx';
 import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
+export const GlobalContext = React.createContext()
 
 var App = () => {
 
@@ -31,17 +32,17 @@ var App = () => {
   }, []); // Second argument being an empty array causes this instance of useEffect to only run once
 
   return(
-    <div>
-      <div>navbar</div>
-      <h1>ANNOUNCEMENTS GO HERE</h1>
-      <Overview productId={productId} chosenProduct={chosenProduct} />
-      <br/>
-      <RInC/>
-      <br/>
-      <QnaIndex/>
-      <br/>
-      <RatingsAndReviewsIndex/>
-    </div>
+    <GlobalContext.Provider value={chosenProduct}>
+        <div>navbar</div>
+        <h1>ANNOUNCEMENTS GO HERE</h1>
+        <Overview productId={productId} chosenProduct={chosenProduct} />
+        <br/>
+        <RInC/>
+        <br/>
+        <QnaIndex/>
+        <br/>
+        <RatingsAndReviewsIndex/>
+    </GlobalContext.Provider>
   )
 }
 
