@@ -17,14 +17,15 @@ var axios = require('axios')
 
 export default function IndividualAnswer({answer}) {
 
+  var [helpful, setHelpful] = useState(answer.helpfulness);
+  var [truth, setTruth] = useState(false);
+  var [report, setReport] = useState(true);
+
   var parse = (date) => {
     var dateISO = parseISO(date.slice(0,10));
 
     return format(dateISO, "MMMM dd, yyyy")
   };
-
-  var [helpful, setHelpful] = useState(answer.helpfulness);
-  var [truth, setTruth] = useState(false);
 
   // need to refactor so that it stops upvoting through the delay
   var vote = false;
@@ -45,16 +46,27 @@ export default function IndividualAnswer({answer}) {
     }
   };
 
+  var reportClick = (e) => {
+    e.preventDefault();
+    axios.put('/snuggie/report', {answer_id: answer.id})
+    .then(() => {})
+    .catch((error) => {
+      console.log("Error in reporting from client side")
+    })
+    setReport(false);
+  }
+
   return (
     <IndividualAnswerContainer>
       <AnswerSpan> {answer.body} </AnswerSpan>
       <ImageContainer></ImageContainer>
       <BottomInfoContainer>
-        <PosterAndDateSpan> {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
+        <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
         <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan>({helpful}) </AnswerHelpfulnessSpan>
+        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> ({helpful}) </AnswerHelpfulnessSpan>
         <span> | </span>
-        <ReportSpan> Report </ReportSpan>
+        {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
+        {!report && <ReportedSpan> Reported! </ReportedSpan>}
       </BottomInfoContainer>
     </IndividualAnswerContainer>
   )
@@ -76,8 +88,16 @@ var YesAnswerSpan = styled.span`
   };
 `;
 
+var ReportedSpan = styled.span`
+  text-decoration: underline;
+  color: red;
+  padding-left: 7px;
+  padding-right: 1px;
+`;
+
 var AnswerSpan = styled.span`
   height: 1rem;
+  padding-bottom: 5px;
 `;
 
 var ImageContainer = styled.div`
@@ -88,7 +108,7 @@ var ImageContainer = styled.div`
 var BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 40%;
   font-size: 12px;
 `;
@@ -96,16 +116,25 @@ var BottomInfoContainer = styled.div`
 //adjust
 var PosterAndDateSpan = styled.span`
   height: 1.2rem;
+  padding-left: 1px;
+  padding-right: 7px;
 `;
 
 //adjust
 var AnswerHelpfulnessSpan = styled.span`
-
+  padding-left: 7px;
+  padding-right: 7px;
 `;
 
 //adjust
 var ReportSpan = styled.span`
   text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: blue;
+  };
+  padding-left: 7px;
+  padding-right: 1px;
 `;
 
 
