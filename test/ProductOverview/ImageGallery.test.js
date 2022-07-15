@@ -36,9 +36,9 @@ test('Renders image thumbnails', async () => {
   });
   // Render the widget
   render(<Overview />);
-  // await waitFor(() => { screen.getAllByAltText("StyleThumbnail") });
-  // const styles = await screen.getAllByAltText("StyleThumbnail");
-  // expect(styles).toHaveLength(6); // The Camo Onesie has 6 style thumbnails
+  await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
+  const images = await screen.getAllByAltText("ImageThumbnail");
+  expect(images).toHaveLength(6); // The Camo Onesie has 6 image thumbnails
 });
 
 // Test if the up and down scrolling arrows render correctly for the image thumbnails
@@ -57,8 +57,16 @@ test('Renders the up and down scroll arrow buttons for the image thumbnails when
             return Promise.reject(new Error('not found'));
         }
     });
+    // Render the widget
     render(<Overview />);
-
+    await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
+    const images = await screen.getAllByAltText("ImageThumbnail");
+    expect(images).toHaveLength(7); // The Heir Force One has 8 image thumbnails, but only 7 should be shown
+    // Make sure the down arrow is rendered
+    expect(document.getElementsByClassName("fa-solid fa-arrow-down")).toBeTruthy();
+    // Clicking the down arrow should render the up arrow
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
+    expect(document.getElementsByClassName("fa-solid fa-arrow-up")).toBeTruthy();
 });
 
 // Test if the main image itself renders correctly
