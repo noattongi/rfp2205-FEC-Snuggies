@@ -37,7 +37,7 @@ var App = () => {
         <h1>ANNOUNCEMENTS GO HERE</h1>
         <Overview productId={productId} chosenProduct={chosenProduct} />
         <br/>
-        <RInC/>
+        <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
         <br/>
         <QnaIndex/>
         <br/>
