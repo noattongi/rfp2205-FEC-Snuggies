@@ -1,11 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import App from '../src/App.js';
+import App from '../client/src/App.js';
+import RInCIndex from '../client/src/Components/RelatedItemsAndComparison/RInCIndex.jsx';
+import RelatedItemsList from '../client/src/Components/RelatedItemsAndComparison/RelatedItemsList.jsx';
+import RelatedCards from '../client/src/Components/RelatedItemsAndComparison/RelatedCards.jsx';
 
-describe('Related Items and Comparison Tests', () => {
-    it('should contains the heading 1', () => {
-    render(<RInCIndex />);
-        const heading = screen.getByText(/Hi/i);
-        expect(heading).toBeInTheDocument()
+    test('Related Items and Comparison section renders', () => {
+    render(<RInCIndex/>)
     });
-});
+
+    test('RelatedCards child component renders', () => {
+        render(<RelatedItemsList/>);
+            const childComponent = screen.getByText(/⭐️/i);
+            expect(childComponent).toBeInTheDocument();
+    })

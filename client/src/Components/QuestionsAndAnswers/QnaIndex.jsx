@@ -10,7 +10,8 @@ var QnaIndex = (props) => {
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
-  const [len, setLen] = useState(4)
+  const [len, setLen] = useState(4);
+  const [toggleModal, setToggleModal] = useState(false);
   // const [answer, setAnswer] = useState({});
 
   var questionSort = question.results?.slice(0, len);
@@ -65,13 +66,30 @@ var QnaIndex = (props) => {
         setDefaultQ(response.data);
       })
       .catch((error) => {
-        console.log('error within getting data after posting from client')
+        console.log('error within getting data after posting answer from client')
       })
     })
     .catch((error) => {
-      console.log('error within posting data from client')
+      console.log('error within posting answer from client')
     })
 
+  };
+
+  var postQuestion = (body) => {
+    axios.post('/snuggie/post/question', body)
+    .then(() => {
+      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+      .then((response) => {
+        setQuestion(response.data);
+        setDefaultQ(response.data);
+      })
+      .catch((error) => {
+        console.log('error within getting data after posting question from client')
+      })
+    })
+    .catch((error) => {
+      console.log('error within posting question from client side')
+    })
   };
 
   return (
@@ -83,7 +101,8 @@ var QnaIndex = (props) => {
         </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
-         <AddQuestion />
+        <AddQuestionButton onClick={() =>setToggleModal(true)}> Add Question + </AddQuestionButton>
+        {toggleModal &&  <AddQuestion postQuest={postQuestion} toggleModel={setToggleModal}/> }
       </BottomTabContainer>
     </QnAContainer>
   )
@@ -95,6 +114,10 @@ var QnAContainer = styled.section`
   flex-direction: column;
   border: 1px solid black;
   padding: 50px;
+`;
+
+var AddQuestionButton = styled.button`
+  border-radius: 5px;
 `;
 
 var BottomTabContainer = styled.section`
