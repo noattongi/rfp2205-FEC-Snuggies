@@ -59,14 +59,11 @@ var QnaIndex = (props) => {
   // need to refactor image upload
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
-    .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+    .then((response) => {
+       axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
-      })
-      .catch((error) => {
-        console.log('error within getting data after posting answer from client')
       })
     })
     .catch((error) => {

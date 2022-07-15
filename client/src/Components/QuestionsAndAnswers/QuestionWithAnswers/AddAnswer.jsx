@@ -10,6 +10,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
+  var [imgURL, setImgURL] = useState('')
 
   var handleSubmit = (e) => {
     e.preventDefault();
@@ -19,11 +20,18 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     } else {
       postAnswer(body);
       toggleModal(false);
-    }
+    };
 
     if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
       alert('Error, length too long for the email, name, or answer body.')
     }
+  };
+
+  var chooseFile = (e) => {
+    var img = e.target.files[0];
+    console.log('log here', img)
+    setImgURL(URL.createObjectURL(img));
+
   };
 
   return (
@@ -52,18 +60,16 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
             </UserInfoContainer>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
+            <ImageContainer>
+              <span> Cute </span>
+              <img src={imgURL}/>
+            </ImageContainer>
             <BottomButtonContainers>
-                <UploadButton> Upload Images </UploadButton>
+                <UploadInput onChange={chooseFile} type='file' hidden id='button'></UploadInput>
+                <UploadLabel onChange= {chooseFile} htmlFor='button' > Upload File </UploadLabel>
                 <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
-            <ImageContainer>
-              Cute
-              Cute
-              CuteCute
-              CuteCute
-              Cute
-            </ImageContainer>
          </ModalHeader>
          </ModalContent>
       </StyleBackground>
@@ -98,6 +104,18 @@ var UserNameContainer = styled.div`
   flex-direction: column
 `;
 
+var UploadInput = styled.input`
+
+`;
+
+var UploadLabel = styled.label`
+  background-color: white;
+  color: black;
+  padding: 0.1rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  border: 1px solid black;
+`
 
 var EmailContainer = styled.div`
   display: flex;
@@ -142,7 +160,7 @@ width: 280px;
 `;
 var AnswerBody = styled.textarea`
   width: 700px;
-  height: 300px;
+  height: 200px;
 `;
 
 var BottomButtonContainers = styled.div`
