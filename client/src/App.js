@@ -1,15 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Overview from './Components/ProductOverview/Overview.jsx';
 import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
 
 var App = () => {
+
+  // Hook for what specific product is being displayed
+  const [productId, setProductId] = useState();
+
+  // When App first mounts, send a GET request to the server to get the productId of the first product received
+  useEffect(() => {
+    // Send axios request to get all products
+    axios.get('/snuggie/products') // No query/parameters, so this endpoint returns ALL products
+      // Then get the specific product
+      .then((results) => {
+        console.log('ah', results);
+        return axios.get('/snuggie/products', { params: {product_id: results.data[0].id} });
+      })
+      // Then set the hook
+      .then((results) => {
+        setProductId(results.data.id);
+      })
+      .catch((error) => {
+        console.log('An error occurred when initializing data received from server:', error);
+      });
+  }, []); // Second argument being an empty array causes this instance of useEffect to only run once
+
   return(
     <div>
       <h1>Hi</h1>
-      <Overview />
+      <Overview productId={productId} setProductId={setProductId} />
       <br/>
       <RInC/>
       <br/>
