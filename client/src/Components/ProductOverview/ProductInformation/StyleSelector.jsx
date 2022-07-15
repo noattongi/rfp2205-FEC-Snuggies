@@ -30,9 +30,9 @@ var Styles = (props) => {
 
     <StyleThumbnailContainer>
       {/* For each row of styles, render the thumbnail of the first image of the style */}
-      {styleRows.map((row) => {
+      {styleRows.map((row, rowIndex = 0) => {
         return (
-          <StyleThumbnailContainer>
+          <StyleThumbnailContainer key={`row${rowIndex++}`} >
             {row.map((style) => {
               // If the style is the chosen one, render a special thumbnail (it has a border around it that indicates that it's the selected one)
               if (style.style_id === props.chosenStyle.style_id) {
