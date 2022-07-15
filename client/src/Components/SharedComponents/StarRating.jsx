@@ -7,16 +7,21 @@ import styled from 'styled-components';
 // Styled components
 const StarContainer = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: row;
+  display: inline;
+  width: 100%;
 `;
 const EmptyStar = styled.i`
   color: gray;
 `;
 const FilledStar = styled.i`
+  position: absolute;
+  top: 0;
+  left: 0;
   color: yellow;
-  width: ${props => props.width};
   overflow: hidden;
+  width: ${props => props.width}%;
+  height: 100%;
+  z-index: 10;
 `;
 
 // The component itself
@@ -33,12 +38,38 @@ const StarRating = (props) => {
     setAverageRating(rating / props.reviews.count);
   }, [props.reviews]);
 
-
-
-
+  // Construct each star to prepare for render
+  var stars = []; // Array of pairs of stars (pair: an empty one and then a filled one to be rendered on top)
+  let starCount = 0; // Number to keep track of how many stars we've rendered
+  let rating = averageRating; // Copy of the average rating so we don't mutate it
+  while (starCount < 5) { // Keep creating pairs of stars until we have 5 pairs
+    let width = 0;
+    if (rating <= 5 && rating >= 0) { // Determine the width of this star (how much is colored)
+      if (rating < 1) {
+        width = (rating % 1) * 100; // *100 because the styled component turns it into a %
+      } else {
+        width = 100;
+      }
+    }
+    stars.push([<EmptyStar className="fa-solid fa-star" key={`Empty${starCount}`} />, <FilledStar className="fa-solid fa-star" width={width} key={`Fill${starCount}`} />]);
+    rating--; // One pair of stars rendered --> at least a rating of 1
+    starCount++;
+  }
 
   return (
-    <div></div>
+    <StarContainer>
+      {/* For each pair of empty--filled stars... */}
+      {stars.map((starPair, index = 0) => {
+        return (
+          // Render the filled star on top of an empty one
+          <StarContainer key={index++}>
+            {starPair.map((star) => {
+              return star;
+            })}
+          </StarContainer>
+        );
+      })}
+    </StarContainer>
   );
 }
 
