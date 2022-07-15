@@ -27,7 +27,7 @@ var MainImage = (props) => {
             {props.chosenImageIndex < props.maxIndex && <RightArrow className="fa-solid fa-arrow-right" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex + 1)}} />}
             <FullScreen className="fa-solid fa-expand" />
           </Overlay>
-          <Image src={props.chosenImageUrl} />
+          <Image id="MainImage" src={props.chosenImageUrl} />
         </DefaultView>
       </div>
     );

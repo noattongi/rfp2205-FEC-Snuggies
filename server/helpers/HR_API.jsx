@@ -38,6 +38,13 @@ var getProductReviews = (id, count, sort) => {
   });
 }
 
+// Function that sends a GET request to the API to get a specific product's review metadata
+var getReviewMetadata = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${id}`, {
+    headers: headers
+  });
+}
+
 var postProductReviews = (data) => {
   return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, data, {
     headers: headers
@@ -68,7 +75,7 @@ var updateQuestionHelpfulness = (id, data) => {
   });
 };
 
-var postQuestion = (id, data) => {
+var postAnswer = (id, data) => {
   return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/answers`, data, {
     headers: headers
   })
@@ -78,12 +85,24 @@ var updateAnswerHelpfulness = (id, data) => {
   return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${id}/helpful`, data, {
     headers: headers
   });
-}
+};
 
+var postQuestion = (data) => {
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/`, data, {
+    headers: headers
+  });
+};
+
+var reportAnswer = (id, data) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${id}/report`, data, {
+    headers: headers
+  });
+}
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviews = getProductReviews;
+module.exports.getReviewMetadata = getReviewMetadata;
 module.exports.postProductReviews = postProductReviews;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;
@@ -91,3 +110,5 @@ module.exports.getProductAnswer = getProductAnswer;
 module.exports.updateQuestionHelpfulness = updateQuestionHelpfulness;
 module.exports.postQuestion = postQuestion;
 module.exports.updateAnswerHelpfulness = updateAnswerHelpfulness;
+module.exports.postAnswer= postAnswer;
+module.exports.reportAnswer= reportAnswer;

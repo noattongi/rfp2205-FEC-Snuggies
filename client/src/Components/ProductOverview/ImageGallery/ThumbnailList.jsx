@@ -26,7 +26,7 @@ var ThumbnailList = (props) => {
         // If the thumbnail is the chosen one, also render a box around it to indicate that it's the chosen one
         if (keyIndex + index === props.chosenImageIndex) {
           return (
-            <ChosenDiv key={"ChosenDiv"}><Thumbnail thumbnail={thumbnail} index={index + keyIndex} key={keyIndex++} setChosenImageIndex={props.setChosenImageIndex} /></ChosenDiv>
+            <ChosenDiv key={"ChosenDiv"}><Thumbnail className="chosenImage" thumbnail={thumbnail} index={index + keyIndex} key={keyIndex++} setChosenImageIndex={props.setChosenImageIndex} /></ChosenDiv>
           );
         }
         // Else just render the thumbnail itself

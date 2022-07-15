@@ -19,7 +19,7 @@ router.get('/products', (request, response) => {
     })
     .catch((error) => {
       console.log('Error in getting all the products', error);
-      response.send(500);
+      response.sendStatus(500);
     });
 });
 
@@ -28,7 +28,7 @@ router.get('/products', (request, response) => {
 router.get('/styles', (request, response) => {
   // If there is no product_id as the parameter, return bad response
   if (!request.query.product_id) {
-    response.send(500);
+    response.sendStatus(500);
   } else {
     API.getProductStyles(request.query.product_id)
       .then((results) => {
@@ -53,6 +53,22 @@ router.get('/reviews/', (request, response) => {
       .catch((error) => {
         console.log('Error in getting all the reviews', error);
         response.send(500);
+      });
+  }
+});
+
+// GETs a specific product's review metadata
+router.get('/reviews/meta', (request, response) => {
+  if (!request.query.product_id) {
+    response.sendStatus(500);
+  } else {
+    API.getReviewMetadata(request.query.product_id)
+      .then((results) => {
+        response.status(200).send(results.data);
+      })
+      .catch((error) => {
+        console.log('Error in getting the review metadata', error);
+        results.sendStatus(500);
       });
   }
 });
@@ -136,12 +152,12 @@ router.post('/post/answer', (request, response) => {
   if(!request.body.question_id) {
     response.send(500);
   } else {
-    API.postQuestion(request.body.question_id, request.body)
+    API.postAnswer(request.body.question_id, request.body)
     .then((results) => {
       response.status(200).send(results.data)
     })
     .catch((error) => {
-      console.log('Error posting data from server side', error);
+      console.log('Error posting answer from server side', error);
       response.send(420)
     })
   }
@@ -157,5 +173,28 @@ router.put('/answer/helpfulness', (request, response) => {
     response.status(420)
   })
 });
+
+router.post('/post/question', (request, response) => {
+  API.postQuestion(request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within posting a question from server side', error)
+    response.status(420)
+  })
+});
+
+router.put('/report', (request, response) => {
+  API.reportAnswer(request.body.answer_id, request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within reporting an answer from server side', error)
+    response.status(420)
+  })
+});
+
 
 module.exports = router;
