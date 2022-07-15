@@ -97,6 +97,7 @@ var ReportedSpan = styled.span`
 
 var AnswerSpan = styled.span`
   height: 1rem;
+  padding-bottom: 5px;
 `;
 
 var ImageContainer = styled.div`

@@ -57,6 +57,13 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
                 <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
+            <ImageContainer>
+              Cute
+              Cute
+              CuteCute
+              CuteCute
+              Cute
+            </ImageContainer>
          </ModalHeader>
          </ModalContent>
       </StyleBackground>
@@ -78,6 +85,12 @@ var StyleBackground = styled.div`
   backdrop-filter: blur(8px);
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+`;
+
+var ImageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 var UserNameContainer = styled.div`
