@@ -7,6 +7,7 @@ import axios from 'axios';
 // Import mock data
 import mockProductData from './mockData/mockProductData.js';
 import mockProductStyles from './mockData/mockStyleData.js';
+import mockMetadata from './mockData/mockReviewMetadata.js'
 
 // Mock axios using jest
 jest.mock('axios');
@@ -29,6 +30,10 @@ test('Style Selectors render properly for Camo Onesie', async () => {
       case '/snuggie/styles':
         return Promise.resolve({
           data: mockProductStyles.camoOnesieStyles
+        });
+      case '/snuggie/reviews/meta':
+        return Promise.resolve({
+          data: mockMetadata.camoOnesieMetadata
         });
       default:
         return Promise.reject(new Error('not found'));
@@ -55,6 +60,10 @@ test('Style Selector clicking works', async () => {
       case '/snuggie/styles':
         return Promise.resolve({
           data: mockProductStyles.camoOnesieStyles
+        });
+      case '/snuggie/reviews/meta':
+        return Promise.resolve({
+          data: mockMetadata.camoOnesieMetadata
         });
       default:
         return Promise.reject(new Error('not found'));

@@ -31,6 +31,27 @@ var camoOnesieMetadata = {
   }
 }
 
+var brightFutureSunglassesMetadata = {
+    "product_id": "40345",
+    "ratings": {
+        "1": "4",
+        "2": "2",
+        "3": "6",
+        "4": "9",
+        "5": "21"
+    },
+    "recommended": {
+        "false": "5",
+        "true": "37"
+    },
+    "characteristics": {
+        "Quality": {
+            "id": 135223,
+            "value": "3.8636363636363636"
+        }
+    }
+}
+
 var heirForceOneMetadata = {
   "product_id": "40348",
   "ratings": {
@@ -65,4 +86,5 @@ var heirForceOneMetadata = {
 }
 
 module.exports.camoOnesieMetadata = camoOnesieMetadata;
+module.exports.brightFutureSunglassesMetadata = brightFutureSunglassesMetadata;
 module.exports.heirForceOneMetadata = heirForceOneMetadata;

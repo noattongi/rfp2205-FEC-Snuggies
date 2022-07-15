@@ -6,6 +6,7 @@ import axios from 'axios';
 // Import mock data
 import mockProductData from './mockData/mockProductData.js';
 import mockProductStyles from './mockData/mockStyleData.js';
+import mockMetadata from './mockData/mockReviewMetadata.js';
 
 // Mock axios using jest
 jest.mock('axios');
@@ -29,6 +30,10 @@ test('Renders text components when given the Camo Onesie product', async () => {
         return Promise.resolve({
           data: mockProductStyles.camoOnesieStyles
         });
+      case '/snuggie/reviews/meta':
+        return Promise.resolve({
+          data: mockMetadata.camoOnesieMetadata
+        });
       default:
         return Promise.reject(new Error('not found'));
     }
@@ -36,8 +41,8 @@ test('Renders text components when given the Camo Onesie product', async () => {
   // Render the widget
   render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   // Check if the Reviews text renders (will need to be changed when the reviews text is finally implemented)
-  const text = await screen.findAllByText("Read [#] Reviews");
-  expect(text).toBeTruthy();
+  const text = await screen.findAllByText("Jackets");
+  expect(text.length).toBeTruthy();
   // Check if the product name renders
   await waitFor(() => screen.getByText("Camo Onesie"));
   const productName = await screen.getByText("Camo Onesie");
@@ -51,15 +56,19 @@ test('Renders text components when given the Camo Onesie product', async () => {
 test('Renders text components when given the Bright Future Sunglasses product', async () => {
     axios.get.mockImplementation((url) => {
         switch (url) {
-            case '/snuggie/products':
+          case '/snuggie/products':
             return Promise.resolve({
                 data: mockProductData.brightFutureSunglasses
             });
-            case '/snuggie/styles':
+          case '/snuggie/styles':
             return Promise.resolve({
                 data: mockProductStyles.brightFutureSunglassesStyles
             });
-            default:
+          case '/snuggie/reviews/meta':
+            return Promise.resolve({
+              data: mockMetadata.brightFutureSunglassesMetadata
+            });
+          default:
             return Promise.reject(new Error('not found'));
         }
     });
