@@ -22,7 +22,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     }
 
     if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
-      alert('Error, length too long for the email, name, or body answer')
+      alert('Error, length too long for the email, name, or answer body.')
     }
   };
 

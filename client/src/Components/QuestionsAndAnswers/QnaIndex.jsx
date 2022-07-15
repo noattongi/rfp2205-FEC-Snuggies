@@ -66,13 +66,30 @@ var QnaIndex = (props) => {
         setDefaultQ(response.data);
       })
       .catch((error) => {
-        console.log('error within getting data after posting from client')
+        console.log('error within getting data after posting answer from client')
       })
     })
     .catch((error) => {
-      console.log('error within posting data from client')
+      console.log('error within posting answer from client')
     })
 
+  };
+
+  var postQuestion = (body) => {
+    axios.post('/snuggie/post/question', body)
+    .then(() => {
+      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+      .then((response) => {
+        setQuestion(response.data);
+        setDefaultQ(response.data);
+      })
+      .catch((error) => {
+        console.log('error within getting data after posting question from client')
+      })
+    })
+    .catch((error) => {
+      console.log('error within posting question from client side')
+    })
   };
 
   return (
@@ -85,7 +102,7 @@ var QnaIndex = (props) => {
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
         <AddQuestionButton onClick={() =>setToggleModal(true)}> Add Question + </AddQuestionButton>
-        {toggleModal &&  <AddQuestion toggleModel={setToggleModal}/> }
+        {toggleModal &&  <AddQuestion postQuest={postQuestion} toggleModel={setToggleModal}/> }
       </BottomTabContainer>
     </QnAContainer>
   )

@@ -1,12 +1,30 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-var AddQuestion = ({toggleModel}) => {
+// pass in the product id as a prop
+var AddQuestion = ({postQuest, toggleModel}) => {
 
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
 
+  var postQuestion = (e) => {
+    e.preventDefault()
+
+    var body = {body: answerEntry, name: username, email: email, product_id: 40713};
+
+    if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
+      alert(`Please don't leave any fields blank.`)
+    } else {
+      postQuest(body)
+      toggleModel(false);
+    };
+
+    if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
+      alert('Error, length too long for the email, name, or question body.')
+    };
+
+  }
 
   return (
     <StyleBackground>
@@ -33,7 +51,7 @@ var AddQuestion = ({toggleModel}) => {
        </UserInfoContainer>
        <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
        <BottomButtonContainers>
-           <SubmitButton> Submit! </SubmitButton>
+           <SubmitButton onClick={postQuestion} > Submit! </SubmitButton>
        </BottomButtonContainers>
        </ModalBody>
     </ModalHeader>

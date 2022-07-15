@@ -136,12 +136,12 @@ router.post('/post/answer', (request, response) => {
   if(!request.body.question_id) {
     response.send(500);
   } else {
-    API.postQuestion(request.body.question_id, request.body)
+    API.postAnswer(request.body.question_id, request.body)
     .then((results) => {
       response.status(200).send(results.data)
     })
     .catch((error) => {
-      console.log('Error posting data from server side', error);
+      console.log('Error posting answer from server side', error);
       response.send(420)
     })
   }
@@ -157,5 +157,17 @@ router.put('/answer/helpfulness', (request, response) => {
     response.status(420)
   })
 });
+
+router.post('/post/question', (request, response) => {
+  console.log('logged req body', request.body)
+  API.postQuestion(request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within posting a question from server side', error)
+    response.status(420)
+  })
+})
 
 module.exports = router;
