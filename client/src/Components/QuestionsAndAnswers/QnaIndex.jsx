@@ -10,7 +10,8 @@ var QnaIndex = (props) => {
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
-  const [len, setLen] = useState(4)
+  const [len, setLen] = useState(4);
+  const [toggleModal, setToggleModal] = useState(false);
   // const [answer, setAnswer] = useState({});
 
   var questionSort = question.results?.slice(0, len);
@@ -83,7 +84,8 @@ var QnaIndex = (props) => {
         </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
-         <AddQuestion />
+        <AddQuestionButton onClick={() =>setToggleModal(true)}> Add Question + </AddQuestionButton>
+        {toggleModal &&  <AddQuestion toggleModel={setToggleModal}/> }
       </BottomTabContainer>
     </QnAContainer>
   )
@@ -95,6 +97,10 @@ var QnAContainer = styled.section`
   flex-direction: column;
   border: 1px solid black;
   padding: 50px;
+`;
+
+var AddQuestionButton = styled.button`
+  border-radius: 5px;
 `;
 
 var BottomTabContainer = styled.section`

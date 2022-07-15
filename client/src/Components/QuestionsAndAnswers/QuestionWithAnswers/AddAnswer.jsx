@@ -20,6 +20,10 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
       postAnswer(body);
       toggleModal(false);
     }
+
+    if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
+      alert('Error, length too long for the email, name, or body answer')
+    }
   };
 
   return (
@@ -54,7 +58,6 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             </BottomButtonContainers>
             </ModalBody>
          </ModalHeader>
-
          </ModalContent>
       </StyleBackground>
     </div>
