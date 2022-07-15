@@ -16,7 +16,7 @@ afterEach(() => {
   }
 });
 
-// Test if all of the components of the Image Gallery render correctly
+// Test if the image thumbnails on the left of the main image render correctly
 test('Renders image thumbnails', async () => {
   // Intercept any axios requests made by the component being tested and return the mockup data instead
   axios.get.mockImplementation((url) => {
@@ -38,7 +38,8 @@ test('Renders image thumbnails', async () => {
 
 });
 
-test('Renders the up and down scroll wheels for the image thumbnails when there are more than 8', async () => {
+// Test if the up and down scrolling arrows render correctly for the image thumbnails
+test('Renders the up and down scroll arrow buttons for the image thumbnails when there are more than 8', async () => {
     axios.get.mockImplementation((url) => {
         switch (url) {
             case '/snuggie/products':
@@ -57,6 +58,7 @@ test('Renders the up and down scroll wheels for the image thumbnails when there 
 
 });
 
+// Test if the main image itself renders correctly
 test('Renders the main image', async () => {
   axios.get.mockImplementation((url) => {
       switch (url) {
@@ -76,6 +78,7 @@ test('Renders the main image', async () => {
 
 });
 
+// Test the left and right arrows on the sides of the main image
 test('Renders the left and right arrows on the sides of the main image', async () => {
   axios.get.mockImplementation((url) => {
       switch (url) {
@@ -94,3 +97,5 @@ test('Renders the left and right arrows on the sides of the main image', async (
   render(<Overview />);
 
 });
+
+// Test if the zoom functionality works here
