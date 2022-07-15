@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import OutfitCards from './OutfitCards.jsx';
 import Carousel from './Carousel.jsx';
+import styled from 'styled-components'
 
 const OutfitList = (props) => {
   const [outfitProd, setOutfitProd] = useState([]);
@@ -56,11 +57,34 @@ const OutfitList = (props) => {
   return (
     <div>
       <h3>Outfit List</h3>
-      <button onClick={(e) => {addOutfitId(40346)}}>+</button>
-      <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId}/>
-      <Carousel />
+      <Row>
+        <AddContainer>
+          <button onClick={(e) => {addOutfitId(40346)}}>+</button>
+        </AddContainer>
+          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId}/>
+        <CarouselContainer>
+          <Carousel />
+        </CarouselContainer>
+      </Row>
     </div>
   )
 }
 
 export default OutfitList;
+
+// styled components
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+`
+
+const CarouselContainer = styled.div`
+  display: flex;
+  place-content: center flex-end;
+`;
+
+const AddContainer = styled.div`
+display: flex;
+place-content : center flex-end;
+`;

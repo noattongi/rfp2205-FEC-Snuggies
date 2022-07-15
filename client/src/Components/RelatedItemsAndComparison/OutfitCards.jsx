@@ -17,19 +17,29 @@ const OutfitCards = (props) => {
     }
   }
   return (
-    <div>
+    <>
     {props.outfitProd?.map((prod) => {
       return (
-          <div key={prod.id}>
-            <button onClick = {(e) => {handleDeleteClick(prod.id)}}>X</button>
+          <CardBox key={prod.id}>
+            <div onClick = {(e) => {handleDeleteClick(prod.id)}}>❌</div>
             <p>{prod.category}</p>
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>
             <p>Star Rating</p>
-          </div>
+          </CardBox>
        )})}
-       </div>
+       </>
   )
 }
 
 export default OutfitCards;
+
+// styled component
+const CardBox = styled.div`
+  position: flex;
+  justify-content: flex-start;
+  border: 1px solid black;
+  text-align: center;
+  margin: 20px;
+  width: 19%;
+`;

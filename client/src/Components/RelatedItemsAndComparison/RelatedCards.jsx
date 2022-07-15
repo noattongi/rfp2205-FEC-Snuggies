@@ -31,10 +31,10 @@ export default RelatedCards;
 
 // styled componenents
 const CardBox = styled.div`
-  flex: 25%;
   position: flex;
   justify-content: flex-start;
   border: 1px solid black;
   text-align: center;
   margin: 20px;
+  width: 25%;
 `;

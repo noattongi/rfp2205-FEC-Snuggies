@@ -27,7 +27,8 @@ const RelatedItemsList = (props) => {
     .catch((error) => {
       console.log('useEffect error', error)
     })
-  }, [])
+  }, []);
+
   const getRelated = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId + '/related'}})
     .then((response) => {
@@ -62,5 +63,5 @@ const Row = styled.div`
 
 const CarouselContainer = styled.div`
   display: flex;
-  align-items: center;
+  place-content : center flex-end;
 `;
