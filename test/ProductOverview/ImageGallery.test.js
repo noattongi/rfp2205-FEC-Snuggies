@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Overview from '../../client/src/Components/ProductOverview/Overview.jsx';
 import axios from 'axios';
@@ -35,7 +35,9 @@ test('Renders image thumbnails', async () => {
     }
   });
   // Render the widget
-  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
+  await act( async () => {
+    render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
+  })
   await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
   const images = await screen.getAllByAltText("ImageThumbnail");
   expect(images).toHaveLength(6); // The Camo Onesie has 6 image thumbnails
@@ -58,21 +60,23 @@ test('Renders the up and down scroll arrow buttons for the image thumbnails when
         }
     });
     // Render the widget
-    render(<Overview productId={40348} chosenProduct={mockProductData.heirForceOne} />);
+    await act( async () => {
+      render(<Overview productId={40348} chosenProduct={mockProductData.heirForceOne} />);
+    })
     await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
     const images = await screen.getAllByAltText("ImageThumbnail");
     expect(images).toHaveLength(7); // The Heir Force One has 11 image thumbnails, but only 7 should be shown
     // Make sure the down arrow is rendered
-    expect(document.getElementsByClassName("fa-solid fa-arrow-down")).toBeTruthy();
+    expect(document.getElementsByClassName("fa-solid fa-arrow-down").length).toBeTruthy();
     // Clicking the down arrow should render the up arrow
-    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
-    expect(document.getElementsByClassName("fa-solid fa-arrow-up")).toBeTruthy();
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down")[0]);
+    expect(document.getElementsByClassName("fa-solid fa-arrow-up").length).toBeTruthy();
     // 3 more clicks and the down arrow should not render anymore ()
-    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
-    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
-    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down"));
-    expect(document.getElementsByClassName("fa-solid fa-arrow-up")).toBeTruthy();
-    expect(document.getElementsByClassName("fa-solid fa-arrow-down")).toBeFalsy();
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down")[0]);
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down")[0]);
+    await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-down")[0]);
+    expect(document.getElementsByClassName("fa-solid fa-arrow-up").length).toBeTruthy();
+    expect(document.getElementsByClassName("fa-solid fa-arrow-down").length).toBeFalsy();
 });
 
 // Test if the main image itself renders correctly
@@ -91,7 +95,9 @@ test('Renders the main image', async () => {
           return Promise.reject(new Error('not found'));
       }
   });
-  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
+  await act( async () => {
+    render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
+  })
 
 });
 
@@ -111,7 +117,9 @@ test('Renders the left and right arrows on the sides of the main image', async (
           return Promise.reject(new Error('not found'));
       }
   });
-  render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
+  await act( async () => {
+    render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
+  })
 
 });
 
