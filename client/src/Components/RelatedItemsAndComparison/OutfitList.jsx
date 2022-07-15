@@ -8,6 +8,7 @@ import styled from 'styled-components'
 const OutfitList = (props) => {
   const [outfitProd, setOutfitProd] = useState([]);
   const [outfitId, setOutfitId] = useState([40344]);
+  const [currentView, setCurrentView] = useState([]);
 
   useEffect(() => {
     outfitRender()
@@ -17,24 +18,6 @@ const OutfitList = (props) => {
         setOutfitProd(value)
       });
     })
-
-    // getRelated(40344)
-    // .then((data) => {
-    //   var temp = []
-    //   data.forEach((id) => {
-    //     temp.push(props.getProduct(id))
-    //   })
-    //   return temp;
-    // })
-    // .then((array) => {
-    //   Promise.all(array)
-    //   .then((values) => {
-    //     setRelatedProd(values)
-    //   })
-    // })
-    // .catch((error) => {
-    //   console.log('useEffect error', error)
-    // })
   }, [outfitId])
 
   async function outfitRender() {
@@ -46,12 +29,12 @@ const OutfitList = (props) => {
   }
 
   const addOutfitId = (id) => {
-    if (outfitId.indexOf(id) > -1) {
-      return setOutfitId(outfitId);
-    } else {
-      console.log(outfitId);
+    // if (outfitId.indexOf(id) > -1) {
+    //   return setOutfitId(outfitId);
+    // } else {
+    //   console.log(outfitId);
       return setOutfitId([...outfitId, id])
-    }
+    // }
   }
 
   return (
@@ -61,9 +44,9 @@ const OutfitList = (props) => {
         <AddContainer>
           <button onClick={(e) => {addOutfitId(40346)}}>+</button>
         </AddContainer>
-          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId}/>
+          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} currentView={currentView}/>
         <CarouselContainer>
-          <Carousel />
+          {Boolean(outfitId.length > 4) ? <Carousel outfitId={outfitId} currentView={currentView}/> : null}
         </CarouselContainer>
       </Row>
     </div>
