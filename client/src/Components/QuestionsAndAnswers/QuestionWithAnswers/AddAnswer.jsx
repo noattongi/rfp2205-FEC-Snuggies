@@ -1,7 +1,10 @@
+// require('dotenv').config();
 import React, {useState} from 'react';
 import styled from 'styled-components';
 var axios = require('axios');
-// modal
+// const { cloudinary } = require('../../cloudinary.config.js')
+// var cloudinary = require('cloudinary').v2
+
 
 
 

@@ -37,7 +37,7 @@ var QnaIndex = (props) => {
 
   }, []);
 
-  var search = (query) => {
+  async function search (query)  {
     // console.log('before', question, defaultQ)
     if (query.length > 2) {
 

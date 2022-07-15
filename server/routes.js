@@ -1,6 +1,6 @@
 var router = require('express').Router()
 var API = require('./helpers/HR_API.jsx');
-
+const { cloudinary } = require('../cloudinary.config.js')
 
 // GETs either a specific product or all the products
 // Request parameters: [OPTIONAL product_id]
