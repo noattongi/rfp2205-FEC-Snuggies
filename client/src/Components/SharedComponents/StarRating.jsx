@@ -5,7 +5,19 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 // Styled components
-
+const StarContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+`;
+const EmptyStar = styled.i`
+  color: gray;
+`;
+const FilledStar = styled.i`
+  color: yellow;
+  width: ${props => props.width};
+  overflow: hidden;
+`;
 
 // The component itself
 const StarRating = (props) => {
@@ -26,7 +38,7 @@ const StarRating = (props) => {
 
 
   return (
-
+    <div></div>
   );
 }
 
