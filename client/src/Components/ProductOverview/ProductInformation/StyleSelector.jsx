@@ -8,6 +8,24 @@ import { StyleThumbnail, ChosenIcon } from '../StyledComponents/ProductInformati
 
 // The component
 var Styles = (props) => {
+  // Split the array of styles into arrays of 4 or less styles
+  var styleRows = []; // A matrix-- array of arrays that represent rows of styles
+  var styleRow = []; // An array that represents a row of styles (max amount of styles in a row = 4)
+  var styleCount = 0; // Index of next empty slot in current row of styles
+  for(let i = 0; i < props.styles.length; i++) {
+    if (styleCount < 4) { // If there are still slots left in the row, fill them up
+      styleRow.push(props.styles[i]);
+      styleCount++;
+    } else { // Current row filled up; add that row to the list of rows and then start a new row
+      styleRows.push(styleRow);
+      styleRow = [props.styles[i]];
+      styleCount = 0;
+    }
+    if (i === props.styles.length - 1) { // If the row isn't filled up but we're at the end of the styles list, add the row
+      styleRows.push(styleRow);
+    }
+  }
+  console.log('STYLEROWS-------->', styleRows);
 
   return (
     <div>
