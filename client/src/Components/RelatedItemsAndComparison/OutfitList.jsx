@@ -6,36 +6,58 @@ import Carousel from './Carousel.jsx';
 
 const OutfitList = (props) => {
   const [outfitProd, setOutfitProd] = useState([]);
+  const [outfitId, setOutfitId] = useState([40344]);
 
   useEffect(() => {
-    console.log('outfitProd', outfitProd)
-  }, [outfitProd])
-  const handleAdd = (e) => {
-    // need to refactor for current id
-    props.getProduct(40344)
+    outfitRender()
     .then((data) => {
-      var temp = outfitProd;
-      if (outfitProd.indexOf(data) > -1) {
-        return temp;
-      } else {
-        temp.push(data);
-        return temp;
-      }
+      Promise.all(data)
+      .then((value) => {
+        setOutfitProd(value)
+      });
     })
-    .then((list) => {
-      // work on uniqueness later
-      setOutfitProd(list);
+
+    // getRelated(40344)
+    // .then((data) => {
+    //   var temp = []
+    //   data.forEach((id) => {
+    //     temp.push(props.getProduct(id))
+    //   })
+    //   return temp;
+    // })
+    // .then((array) => {
+    //   Promise.all(array)
+    //   .then((values) => {
+    //     setRelatedProd(values)
+    //   })
+    // })
+    // .catch((error) => {
+    //   console.log('useEffect error', error)
+    // })
+  }, [outfitId])
+
+  async function outfitRender() {
+    var temp = []
+    outfitId.forEach((id) => {
+      temp.push(props.getProduct(id))
     })
-    .catch((error) => {
-      console.log('Add button error', error)
-    })
+    return temp;
+  }
+
+  const addOutfitId = (id) => {
+    if (outfitId.indexOf(id) > -1) {
+      return setOutfitId(outfitId);
+    } else {
+      console.log(outfitId);
+      return setOutfitId([...outfitId, id])
+    }
   }
 
   return (
     <div>
       <h3>Outfit List</h3>
-      <button onClick={handleAdd}>+</button>
-      <OutfitCards outfitProd={outfitProd} setOutfitProd={setOutfitProd}/>
+      <button onClick={(e) => {addOutfitId(40346)}}>+</button>
+      <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId}/>
       <Carousel />
     </div>
   )
