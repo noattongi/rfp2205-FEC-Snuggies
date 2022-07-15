@@ -2,30 +2,40 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import OutfitCards from './OutfitCards.jsx';
-import Carousel from './Carousel.jsx';
+import OutfitCarousel from './OutfitCarousel.jsx';
 import styled from 'styled-components'
 
 const OutfitList = (props) => {
   const [outfitProd, setOutfitProd] = useState([]);
   const [outfitId, setOutfitId] = useState([40344]);
   const [currentView, setCurrentView] = useState([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    outfitRender()
+    outfitRender(index)
     .then((data) => {
       Promise.all(data)
       .then((value) => {
         setOutfitProd(value)
-      });
+      })
+      .catch((error) => {
+        console.log('useEffect error', error)
+      })
     })
-  }, [outfitId])
+  }, [outfitId, index])
 
-  async function outfitRender() {
-    var temp = []
-    outfitId.forEach((id) => {
-      temp.push(props.getProduct(id))
-    })
-    return temp;
+  async function outfitRender(index) {
+    var temp = [];
+    var sliced = outfitId.slice(index, index + 4);
+    for (var i = 0; i < sliced.length; i++) {
+      temp.push(props.getProduct(sliced[i]));
+    }
+    if (temp.length <= 4) {
+      return temp;
+    } else {
+      return console.log('error in outfitRender')
+    }
+
   }
 
   const addOutfitId = (id) => {
@@ -44,9 +54,9 @@ const OutfitList = (props) => {
         <AddContainer>
           <button onClick={(e) => {addOutfitId(40346)}}>+</button>
         </AddContainer>
-          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} currentView={currentView}/>
+          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} currentView={currentView} setCurrentView={setCurrentView}/>
         <CarouselContainer>
-          {Boolean(outfitId.length > 4) ? <Carousel outfitId={outfitId} currentView={currentView}/> : null}
+          {Boolean(outfitId.length > 4) ? <OutfitCarousel outfitRender={outfitRender} setIndex={setIndex} index={index} outfitId={outfitId}/> : null}
         </CarouselContainer>
       </Row>
     </div>

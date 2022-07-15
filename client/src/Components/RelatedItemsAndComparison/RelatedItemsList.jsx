@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import RelatedCards from './RelatedCards.jsx';
-import Carousel from './Carousel.jsx';
+import RelatedCarousel from './RelatedCarousel.jsx';
 import styled from 'styled-components';
 
 const RelatedItemsList = (props) => {
@@ -45,7 +45,7 @@ const RelatedItemsList = (props) => {
         <Row>
           <RelatedCards relatedProd = {relatedProd}/>
           <CarouselContainer>
-            <Carousel />
+            {Boolean(relatedId.length > 4) ? <RelatedCarousel/> : null}
           </CarouselContainer>
         </Row>
     </>

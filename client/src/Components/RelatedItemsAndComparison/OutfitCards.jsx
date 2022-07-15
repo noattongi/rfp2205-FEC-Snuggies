@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const OutfitCards = (props) => {
   useEffect(() => {
-    console.log('child component', props.outfitId)
+    console.log('child component', props.outfitProd)
   }, [props.outfitProd, props.outfitId])
 
   async function handleDeleteClick(id) {
@@ -18,9 +18,11 @@ const OutfitCards = (props) => {
   }
   return (
     <>
-    {props.outfitProd?.map((prod) => {
+    {props.outfitProd?.map((prod, i) => {
       return (
           <CardBox key={prod.id}>
+            {console.log('mapped outfit', props.outfitProd)}
+            {console.log('index', i)}
             <div onClick = {(e) => {handleDeleteClick(prod.id)}}>❌</div>
             <p>{prod.category}</p>
             <p>{prod.name}</p>
