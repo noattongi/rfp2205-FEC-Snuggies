@@ -58,9 +58,11 @@ test('Style Selector clicking works', async () => {
         return Promise.reject(new Error('not found'));
     }
   });
+  // Set up for user events (clicking!)
+  const user = userEvent.setup();
   // Render the widget
-
   render(<Overview />);
-  await waitFor(() => { screen.getAllByAltText("StyleThumbnail") });
-
+  await waitFor(() => { screen.getAllByAltText("StyleThumbnail") }); // wait for style thumbnails to load
+  // Simulate user clicking on a style thumbnail and test
+  await user.click(screen.getByRole('', {}))
 });
