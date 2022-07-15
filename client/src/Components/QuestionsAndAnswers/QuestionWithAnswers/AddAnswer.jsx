@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import cloudinary from 'cloudinary'
 var axios = require('axios');
 // modal
 
@@ -30,7 +31,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var chooseFile = (e) => {
     var img = e.target.files[0];
     console.log('log here', img)
-    setImgURL(URL.createObjectURL(img));
+    setImgURL(img.name);
 
   };
 
@@ -62,7 +63,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
               <span> Cute </span>
-              <img src={imgURL}/>
+              {/* {cloudinary.url(imgURL)} */}
             </ImageContainer>
             <BottomButtonContainers>
                 <UploadInput onChange={chooseFile} type='file' hidden id='button'></UploadInput>
