@@ -10,7 +10,8 @@ const RelatedItemsList = (props) => {
   const [relatedProd, setRelatedProd] = useState([]);
 
   useEffect(() => {
-    getRelated(40344)
+    console.log('id', props.productId)
+    getRelated(props.productId)
     .then((data) => {
       console.log(props.productId)
       var temp = []
@@ -28,7 +29,7 @@ const RelatedItemsList = (props) => {
     .catch((error) => {
       console.log('useEffect error', error)
     })
-  }, []);
+  }, [props.productId]);
 
   const getRelated = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId + '/related'}})

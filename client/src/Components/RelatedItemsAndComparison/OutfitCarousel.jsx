@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components'
 
-const Carousel = (props) => {
+const OutfitCarousel = (props) => {
   // conditional render if more than four cards
   // when click, display currentView from [0, 3] -> [1, 4]
   async function handleCarousel() {
@@ -19,6 +19,6 @@ const Carousel = (props) => {
   )
 }
 
-export default Carousel;
+export default OutfitCarousel;
 
 // styled component
