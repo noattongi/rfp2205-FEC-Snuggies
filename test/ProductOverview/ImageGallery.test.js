@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, screen, waitFor } from '@testing-library/react';
+import userEffect from '@testing-library/user-effect';
 import Overview from '../../client/src/Components/ProductOverview/Overview.jsx';
 import axios from 'axios';
 // Import mock data
@@ -35,7 +36,9 @@ test('Renders image thumbnails', async () => {
   });
   // Render the widget
   render(<Overview />);
-
+  // await waitFor(() => { screen.getAllByAltText("StyleThumbnail") });
+  // const styles = await screen.getAllByAltText("StyleThumbnail");
+  // expect(styles).toHaveLength(6); // The Camo Onesie has 6 style thumbnails
 });
 
 // Test if the up and down scrolling arrows render correctly for the image thumbnails
