@@ -40,16 +40,10 @@ const StarRating = (props) => {
   useEffect(() => {
     let rating = 0;
     let data = props.reviewData;
-    console.log(data);
-
-    // for (let i = 0; i < props.reviews.count; i++) {
-    //   rating += props.reviews.results[i].rating;
-    // }
-    // setAverageRating(rating / props.reviews.count);
-
     if (data) {
-      rating = (data.ratings["1"] * 1) + (data.ratings["2"] * 2) + (data.ratings["3"] * 3) + (data.ratings["4"] * 4) + (data.ratings["5"] * 5)
-      setAverageRating(rating / (data.ratings["1"] + data.ratings["2"] + data.ratings["3"] + data.ratings["4"] + data.ratings["5"]))
+      rating = (data["1"] * 1) + (data["2"] * 2) + (data["3"] * 3) + (data["4"] * 4) + (data["5"] * 5);
+      // Multiply each data[rating] by 1 turns it into a number (it is originally type string)
+      setAverageRating(rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1));
     }
   }, [props.reviewData]);
 

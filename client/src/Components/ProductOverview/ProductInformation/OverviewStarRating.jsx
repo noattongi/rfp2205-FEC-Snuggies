@@ -15,7 +15,7 @@ var OverviewStars = (props) => {
   // When the prop corresponding to chosenProduct updates, get the review metadata for the product and update this component's hooks
   useEffect(() => {
     if (props.product) {
-      axios.get('/reviews/meta', { params: { product_id: props.product.productId }})
+      axios.get('/snuggie/reviews/meta', { params: { product_id: props.product.id }})
         .then((results) => {
           setReviewData(results.data.ratings);
         })
