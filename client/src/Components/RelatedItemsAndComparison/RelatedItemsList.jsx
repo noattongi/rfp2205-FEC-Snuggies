@@ -12,6 +12,7 @@ const RelatedItemsList = (props) => {
   useEffect(() => {
     getRelated(40344)
     .then((data) => {
+      console.log(props.productId)
       var temp = []
       data.forEach((id) => {
         temp.push(props.getProduct(id))
@@ -43,7 +44,7 @@ const RelatedItemsList = (props) => {
     <>
       <h3>Related List</h3>
         <Row>
-          <RelatedCards relatedProd = {relatedProd}/>
+          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId}/>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarousel/> : null}
           </CarouselContainer>
