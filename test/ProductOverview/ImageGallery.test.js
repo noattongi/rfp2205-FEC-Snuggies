@@ -98,7 +98,7 @@ test('Renders the main image', async () => {
   await act( async () => {
     render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   })
-
+  expect(document.getElementById("MainImage")).toBeTruthy();
 });
 
 // Test the left and right arrows on the sides of the main image
@@ -120,7 +120,20 @@ test('Renders the left and right arrows on the sides of the main image', async (
   await act( async () => {
     render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   })
-
+  // Initially, the left arrow should not render but the right one should
+  expect(document.getElementsByClassName("fa-solid fa-arrow-left").length).toBeFalsy();
+  expect(document.getElementsByClassName("fa-solid fa-arrow-right").length).toBeTruthy();
+  // After a click on the right arrow, both arrows should render
+  await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-right")[0]);
+  expect(document.getElementsByClassName("fa-solid fa-arrow-left").length).toBeTruthy();
+  expect(document.getElementsByClassName("fa-solid fa-arrow-right").length).toBeTruthy();
+  // After 4 more clicks on the right arrow, the right arrow should not render and the left one should (6 images in total --> 5 clicks total)
+  await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-right")[0]);
+  await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-right")[0]);
+  await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-right")[0]);
+  await userEvent.click(document.getElementsByClassName("fa-solid fa-arrow-right")[0]);
+  expect(document.getElementsByClassName("fa-solid fa-arrow-left").length).toBeTruthy();
+  expect(document.getElementsByClassName("fa-solid fa-arrow-right").length).toBeFalsy();
 });
 
 // Test if the zoom functionality works here
