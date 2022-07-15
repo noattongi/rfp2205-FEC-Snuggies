@@ -10,7 +10,7 @@ import StarRating from '../../SharedComponents/StarRating.jsx';
 // The component
 var OverviewStars = (props) => {
 
-  const [reviewData, setReviewData] = useState({});
+  const [reviewData, setReviewData] = useState();
 
   // When the prop corresponding to chosenProduct updates, get the review metadata for the product and update this component's hooks
   useEffect(() => {

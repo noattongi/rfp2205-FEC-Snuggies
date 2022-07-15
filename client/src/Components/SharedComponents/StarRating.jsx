@@ -39,11 +39,19 @@ const StarRating = (props) => {
   // The reviews prop is loaded, calculate the averageRating
   useEffect(() => {
     let rating = 0;
-    for (let i = 0; i < props.reviews.count; i++) {
-      rating += props.reviews.results[i].rating;
+    let data = props.reviewData;
+    console.log(data);
+
+    // for (let i = 0; i < props.reviews.count; i++) {
+    //   rating += props.reviews.results[i].rating;
+    // }
+    // setAverageRating(rating / props.reviews.count);
+
+    if (data) {
+      rating = (data.ratings["1"] * 1) + (data.ratings["2"] * 2) + (data.ratings["3"] * 3) + (data.ratings["4"] * 4) + (data.ratings["5"] * 5)
+      setAverageRating(rating / (data.ratings["1"] + data.ratings["2"] + data.ratings["3"] + data.ratings["4"] + data.ratings["5"]))
     }
-    setAverageRating(rating / props.reviews.count);
-  }, [props.reviews]);
+  }, [props.reviewData]);
 
   // Construct each star to prepare for render
   var stars = []; // Array of pairs of stars (pair: an empty one and then a filled one to be rendered on top)
