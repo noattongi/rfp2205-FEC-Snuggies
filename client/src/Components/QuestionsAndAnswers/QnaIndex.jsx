@@ -1,12 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import SearchQuestions from './Form/SearchQuestions.jsx';
 import QuestionsList from './QuestionWithAnswers/QuestionsList.jsx';
 import MoreAnsweredQuestions from './BottomTabs/MoreAnsweredQuestions.jsx';
 import AddQuestion from './BottomTabs/AddQuestion.jsx';
-import styled from 'styled-components'
+import styled from 'styled-components';
 const axios = require('axios');
+import {GlobalContext} from '../../App.js';
+
 
 var QnaIndex = (props) => {
+
+  var product = useContext(GlobalContext);
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
