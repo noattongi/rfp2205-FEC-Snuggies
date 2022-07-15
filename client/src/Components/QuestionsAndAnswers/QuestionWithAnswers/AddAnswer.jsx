@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-// import cloudinary from 'cloudinary'
 var axios = require('axios');
 // modal
 
@@ -11,7 +10,8 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
-  var [imgURL, setImgURL] = useState('')
+  var [imgURL, setImgURL] = useState('');
+  var [thumbnails, setThumbnails] = useState([]);
 
   var handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var chooseFile = (e) => {
     var img = e.target.files[0];
     console.log('log here', img)
-    setImgURL(img.name);
+    setImgURL(URL.createObjectURL(img));
 
   };
 
@@ -63,7 +63,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
               <span> Cute </span>
-              {/* {cloudinary.url(imgURL)} */}
+              {imgURL !== '' && <Images src={imgURL}></Images>}
             </ImageContainer>
             <BottomButtonContainers>
                 <UploadInput onChange={chooseFile} type='file' hidden id='button'></UploadInput>
@@ -94,7 +94,13 @@ var StyleBackground = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
+var Images = styled.img`
+  width: 150px;
+  height: 150px;
+`;
+
 var ImageContainer = styled.div`
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
