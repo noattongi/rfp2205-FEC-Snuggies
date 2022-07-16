@@ -11,6 +11,7 @@ import {GlobalContext} from '../../App.js';
 var QnaIndex = (props) => {
 
   var storage = useContext(GlobalContext);
+  var { _productId } = storage;
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
@@ -22,7 +23,7 @@ var QnaIndex = (props) => {
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40344, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
@@ -31,11 +32,13 @@ var QnaIndex = (props) => {
       console.log('Error in retrieving question list from server', error);
     });
 
-  }, []);
 
-  var search = (query) => {
+  }, [_productId]);
+
+  async function search (query)  {
+    var query = query.toLowerCase();
     if (query.length > 2) {
-      var filtered = defaultQ.results.filter((e) => e.question_body.includes(query));
+      var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query));
       setFilter(filtered)
       console.log('default', defaultQ)
       console.log('filtered', filtered)
@@ -55,14 +58,11 @@ var QnaIndex = (props) => {
 
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
-    .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: storage.id, count: 100}})
+    .then((response) => {
+       axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
-      })
-      .catch((error) => {
-        console.log('error within getting data after posting answer from client')
       })
     })
     .catch((error) => {
@@ -73,7 +73,7 @@ var QnaIndex = (props) => {
   var postQuestion = (body) => {
     axios.post('/snuggie/post/question', body)
     .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: product.id, count: 100}})
+      axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);

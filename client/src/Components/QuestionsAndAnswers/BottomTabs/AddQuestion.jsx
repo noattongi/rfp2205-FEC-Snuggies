@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
+import { GlobalContext } from '../../../App.js'
 
-// pass in the product id as a prop
+
 var AddQuestion = ({postQuest, toggleModel}) => {
+  var storage = useContext(GlobalContext);
+  var { _productId, _chosenProduct } = storage;
 
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
@@ -11,7 +14,7 @@ var AddQuestion = ({postQuest, toggleModel}) => {
   var postQuestion = (e) => {
 
     e.preventDefault()
-    var body = {body: answerEntry, name: username, email: email, product_id: 40713};
+    var body = {body: answerEntry, name: username, email: email, product_id: _productId};
 
     if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
       alert(`Please don't leave any fields blank.`)
@@ -32,7 +35,7 @@ var AddQuestion = ({postQuest, toggleModel}) => {
      <ModalHeader>
        <ModalH2> Submit Your Question </ModalH2>
        <ModalSubtitleContainer>
-           <ProductName> About the [product name]  </ProductName>
+           <ProductName> About the {_chosenProduct.name}  </ProductName>
        </ModalSubtitleContainer>
        <ModalBody>
        <UserInfoContainer>
