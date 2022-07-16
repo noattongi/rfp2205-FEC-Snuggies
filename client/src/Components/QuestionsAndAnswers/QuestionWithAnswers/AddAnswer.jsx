@@ -1,15 +1,7 @@
-// require('dotenv').config();
 import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../../../App.js'
-import {Image} from 'cloudinary-react'
 var axios = require('axios');
-
-// const { cloudinary } = require('../../cloudinary.config.js')
-// var cloudinary = require('cloudinary').v2
-
-
-
 
 var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var storage = useContext(GlobalContext);
@@ -20,7 +12,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
   var [photoURL, setPhotoURL] = useState([]);
-  // var [imgURL, setImgURL] = useState('');
+
 
   // image data
   var [fileInput, setFileInput] = useState('');
@@ -52,7 +44,6 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var uploadImage = (encodedImage) => {
     axios.post('/snuggie/upload', {data: encodedImage})
     .then((val) => {
-      // console.log('cloudinary data received', val);
       axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
       .then((val) => {
         console.log('what is val of cloud', val)
@@ -77,12 +68,6 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
       console.log('error with uploading Image from client side')
     })
   };
-
-  // var chooseFile = (e) => {
-  //   var img = e.target.files[0];
-  //   console.log('log here', img)
-  //   setImgURL([...imgURL, URL.createObjectURL(img)]);
-  // };
 
   return (
     <div>
@@ -111,13 +96,6 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             </UserInfoContainer>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
-              {/* {imgURL !== '' &&
-                imgURL.map((each) => {
-                  return (
-                    <Images src={each}/>
-                  )
-                })
-              } */}
               {previewSource &&
                 previewSource.map((each, i) => {
                   return (
@@ -129,8 +107,6 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             <BottomButtonContainers>
                 <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput>
                 <UploadLabel htmlFor='button' > Upload File </UploadLabel>
-                {/* <UploadInput  type='file' hidden id='button'></UploadInput>
-                <UploadLabel onChange= {chooseFile} htmlFor='button' > Upload File </UploadLabel> */}
                 <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>

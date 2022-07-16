@@ -22,7 +22,7 @@ var QnaIndex = (props) => {
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40777, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);

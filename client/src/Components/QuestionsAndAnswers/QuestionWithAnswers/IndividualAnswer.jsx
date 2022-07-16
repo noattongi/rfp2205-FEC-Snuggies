@@ -72,9 +72,9 @@ export default function IndividualAnswer({answer}) {
         </BottomInfoContainer>
       </IndividualAnswerBody>
       <ImageSection>
-        {answer.photos.map((each) => {
+        {answer.photos.map((each, i) => {
           return (
-            <Images src={each} />
+            <Images key={i} src={each}  />
           )
         })}
       </ImageSection>
