@@ -196,5 +196,20 @@ router.put('/report', (request, response) => {
   })
 });
 
+// Adds item to cart
+router.post('/cart', (request, response) => {
+  if (!request.body.sku_id) {
+    response.sendStatus(500);
+  }
+  API.addToCart(request.body.sku_id)
+    .then((results) => {
+      response.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error occurred when attempting to add item to cart', error)
+      response.sendStatus(500)
+    });
+});
+
 
 module.exports = router;
