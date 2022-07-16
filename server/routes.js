@@ -6,7 +6,7 @@ var API = require('./helpers/HR_API.jsx');
 // Request parameters: [OPTIONAL product_id]
 router.get('/products', (request, response) => {
   // Asynchronous function to return the promise of getting either a specific product or all the products (so we can do promise chaining)
-  async function getAllOrOneProduct (id) {
+  function getAllOrOneProduct (id) {
     if (id) { // If an id is present in the query string, return the promise to retrieve a specific product
       return API.getProduct(id);
     } else { // Else return the promise to retrieve ALL products
