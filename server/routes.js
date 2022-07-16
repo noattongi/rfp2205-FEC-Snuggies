@@ -197,5 +197,36 @@ router.put('/report', (request, response) => {
   })
 });
 
+router.post('/upload', (request, response) => {
+  // file data from client
+  var file = request.body.data;
+  // cloudinary.uploader.upload(file, {
+  //   upload_presets: 'presetFEC'
+  // })
+  // .then((val) => {
+  //   console.log('whati s val', val)
+  // })
+  // .catch((error) => {
+  //   console.log("error with posting cloudinary within server")
+  // })
+  if (file) {
+    file.forEach((eachFile) => {
+      cloudinary.uploader.upload(eachFile, {
+        upload_presets: 'presetFEC'
+      })
+      .then((val) => {
+        response.status(200).send(val)
+      })
+      .catch((error) => {
+        console.log('error uploading to cloudinary within server')
+        response.status(402)
+      })
+    })
+  } else {
+    return response.status(201)
+  }
+
+  return response.status(402)
+})
 
 module.exports = router;

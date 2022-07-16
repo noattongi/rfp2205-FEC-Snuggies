@@ -55,25 +55,47 @@ export default function IndividualAnswer({answer}) {
     })
     setReport(false);
   }
-
+  console.log('what is answer', answer.photos)
   return (
     <IndividualAnswerContainer>
-      <AnswerSpan> {answer.body} </AnswerSpan>
-      <ImageContainer></ImageContainer>
-      <BottomInfoContainer>
-        <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
-        <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> ({helpful}) </AnswerHelpfulnessSpan>
-        <span> | </span>
-        {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
-        {!report && <ReportedSpan> Reported! </ReportedSpan>}
-      </BottomInfoContainer>
+      <IndividualAnswerBody>
+        <AnswerSpan> {answer.body} </AnswerSpan>
+        <ImageContainer></ImageContainer>
+        <BottomInfoContainer>
+          <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
+          <span> | </span>
+          <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> ({helpful}) </AnswerHelpfulnessSpan>
+          <span> | </span>
+          {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
+          {!report && <ReportedSpan> Reported! </ReportedSpan>}
+        </BottomInfoContainer>
+      </IndividualAnswerBody>
+      <ImageSection>
+        {answer.photos.map((each) => {
+          <Images src={each} />
+        })}
+      </ImageSection>
     </IndividualAnswerContainer>
   )
 };
 
 // styled components
 var IndividualAnswerContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
+var ImageSection = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+var Images = styled.div`
+  width: 150px;
+  height: 150px;
+`;
+
+var IndividualAnswerBody = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 10px;

@@ -12,33 +12,65 @@ var axios = require('axios');
 var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var storage = useContext(GlobalContext);
   var { _productId, _chosenProduct } = storage;
-  console.log('log id', _chosenProduct)
+
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
-  var [imgURL, setImgURL] = useState('');
-  var [thumbnails, setThumbnails] = useState([]);
+  var [photoURL, setPhotoURL] = useState('')
+  // var [imgURL, setImgURL] = useState('');
+
+  var [fileInput, setFileInput] = useState('');
+  var [previewSource, setPreviewSource] = useState('');
+
+  var handleFileInputChange = (e) => {
+    e.preventDefault();
+    const file  = e.target.files[0];
+
+    previewFile(file)
+  };
+
+  var previewFile = (file) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource([...previewSource, reader.result])
+    }
+  };
 
   var handleSubmit = (e) => {
     e.preventDefault();
+
+    uploadImage(previewSource);
+
     var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: []};
+
+    if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
+      alert('Error, length too long for the email, name, or answer body.')
+    };
+
     if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
       alert(`Please don't leave any fields blank.`)
     } else {
       postAnswer(body);
       toggleModal(false);
     };
-
-    if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
-      alert('Error, length too long for the email, name, or answer body.')
-    }
   };
 
-  var chooseFile = (e) => {
-    var img = e.target.files[0];
-    console.log('log here', img)
-    setImgURL([...imgURL, URL.createObjectURL(img)]);
+  var uploadImage = (encodedImage) => {
+    axios.post('/snuggie/upload', {data: encodedImage})
+    .then((val) => {
+      console.log('cloudinary data received', val)
+    })
+    .catch((error) => {
+      console.log('error with uploading Image from client side')
+    })
   };
+
+  // var chooseFile = (e) => {
+  //   var img = e.target.files[0];
+  //   console.log('log here', img)
+  //   setImgURL([...imgURL, URL.createObjectURL(img)]);
+  // };
 
   return (
     <div>
@@ -67,17 +99,26 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             </UserInfoContainer>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
-              {imgURL !== '' &&
+              {/* {imgURL !== '' &&
                 imgURL.map((each) => {
                   return (
                     <Images src={each}/>
                   )
                 })
+              } */}
+              {previewSource &&
+                previewSource.map((each) => {
+                  return (
+                     <Images  src={each} />
+                  )
+                })
               }
             </ImageContainer>
             <BottomButtonContainers>
-                <UploadInput onChange={chooseFile} type='file' hidden id='button'></UploadInput>
-                <UploadLabel onChange= {chooseFile} htmlFor='button' > Upload File </UploadLabel>
+                <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput>
+                <UploadLabel htmlFor='button' > Upload File </UploadLabel>
+                {/* <UploadInput  type='file' hidden id='button'></UploadInput>
+                <UploadLabel onChange= {chooseFile} htmlFor='button' > Upload File </UploadLabel> */}
                 <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
