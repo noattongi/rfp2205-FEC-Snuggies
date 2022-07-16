@@ -10,49 +10,41 @@ import {GlobalContext} from '../../App.js';
 
 var QnaIndex = (props) => {
 
-  var product = useContext(GlobalContext);
-
+  var product = useContext(GlobalContext)
+  console.log('product', product)
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
   const [len, setLen] = useState(4);
   const [toggleModal, setToggleModal] = useState(false);
-  // const [answer, setAnswer] = useState({});
+  const  [filter, setFilter] = useState()
 
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: product.id, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
-      // axios.get('/snuggie/answers', {params: {product_id: 1, count: 2}})
-      // .then((response) => {
-      //   setAnswer(response.data);
-      //   console.log('answers', response.data)
-      // })
-      // .catch((error) => {
-      //   console.log('Error in retrieving answers list from server', error)
-      // });
     })
     .catch((error) => {
       console.log('Error in retrieving question list from server', error);
     });
 
-
   }, []);
 
   var search = (query) => {
-    // console.log('before', question, defaultQ)
     if (query.length > 2) {
-
       var filtered = defaultQ.results.filter((e) => e.question_body.includes(query));
-      setQuestion(filtered)
-      console.log('log', questionSort[0].question_body)
-      console.log('questionSort', questionSort)
-      console.log('q state', question)
+      setFilter(filtered)
       console.log('default', defaultQ)
       console.log('filtered', filtered)
+      console.log('q state', question)
+      console.log('questionSort', questionSort)
 
+    };
+
+    if (query.length < 2) {
+      setFilter()
     }
   };
 
@@ -60,11 +52,10 @@ var QnaIndex = (props) => {
     return setLen(len + 2)
   };
 
-  // need to refactor image upload
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
     .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+      axios.get('/snuggie/qa/questions', {params : {product_id: product.id, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
@@ -76,13 +67,12 @@ var QnaIndex = (props) => {
     .catch((error) => {
       console.log('error within posting answer from client')
     })
-
   };
 
   var postQuestion = (body) => {
     axios.post('/snuggie/post/question', body)
     .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+      axios.get('/snuggie/qa/questions', {params : {product_id: product.id, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
@@ -99,9 +89,8 @@ var QnaIndex = (props) => {
   return (
     <QnAContainer>
         <SearchQuestions search={search}/>
-        {/* <ImageSupreme src='https://steamuserimages-a.akamaihd.net/ugc/802116768214816000/5828D50E63A95FF6425284A76CC663CEDE61C4FE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'/> */}
         <QuestionScrollDiv>
-          <QuestionsList postAnswerFunc={postAnswer} questions={questionSort} />
+          <QuestionsList postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
         </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
