@@ -10,18 +10,19 @@ import {GlobalContext} from '../../App.js';
 
 var QnaIndex = (props) => {
 
-  var product = useContext(GlobalContext)
-  console.log('product', product)
+  var storage = useContext(GlobalContext);
+
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
   const [len, setLen] = useState(4);
   const [toggleModal, setToggleModal] = useState(false);
-  const  [filter, setFilter] = useState()
+  const  [filter, setFilter] = useState();
+  console.log(storage, 'what')
 
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: product.id, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40344, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
@@ -55,7 +56,7 @@ var QnaIndex = (props) => {
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
     .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: product.id, count: 100}})
+      axios.get('/snuggie/qa/questions', {params : {product_id: storage.id, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
