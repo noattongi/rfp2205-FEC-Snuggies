@@ -66,7 +66,19 @@ var YesAnswerSpan = styled.span`
     color: blue;
   };
 `;
+var ShrinkImg = styled.span`
+  height: auto;
+  max-width: 100%;
+  border-style: solid;
+  border-color: blue;
+`;
 
+var ImageContainer = styled.span`
+  height: 200px;
+  max-width: 200px;
+  border-style: solid;
+  border-color: green;
+`;
 
-export { TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan};
+export { TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ShrinkImg, ImageContainer};
 

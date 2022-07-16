@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ImageModal from './ImageModal.jsx'
 import {StyleBackground, Container, Image} from '../StyledComponents/AddReviewModal.jsx'
+import {ShrinkImg, ImageContainer} from '../StyledComponents/ReviewTile.jsx'
 
 var ImagePool = (props) => {
 
@@ -13,10 +14,12 @@ var ImagePool = (props) => {
   }
 
   return (
-    <div>
+    <ImageContainer>
+      <ShrinkImg>
         <img src={props.photo.url} onClick={toggleImageModal} />
+      </ShrinkImg>
         {isImageOpen && <ImageModal pic={props.photo.url} closeImageModal={toggleImageModal}/>}
-    </div>
+        </ImageContainer>
   );
 }
 

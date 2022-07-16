@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 import AddReviewModal from './AddReviewModal.jsx'
 import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
+import {ReviewListContainer} from '../StyledComponents/ReviewListStyle.jsx'
 
 var ReviewList = (props) => {
-  console.log(props, 'look at this')
+  console.log(props)
   const [reviewCount, setReviewCount] = useState(2);
   const [isOpen, setIsOpen] = useState(false)
 
@@ -26,7 +27,7 @@ var ReviewList = (props) => {
 
   // var limitReviews = props.productReviews.results?.slice(0,reviewCount)
   return (
-    <div>
+    <ReviewListContainer>
       <div>
       {props.productReviews.results?.length} reviews, sorted by
       <select onChange={changeSortClick}>
@@ -40,7 +41,7 @@ var ReviewList = (props) => {
     <ul>
       {props.productReviews.results?.slice(0,reviewCount)?.map((review, index) =>
         <ReviewTile key={index}
-                  reviews={review} upVoteHelpfulness={props.upVoteHelpfulness}/>
+                  reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview}/>
       )}
     </ul>
     </div>
@@ -50,8 +51,8 @@ var ReviewList = (props) => {
       className="openModalBtn"
       onClick={toggleModal}
     >Add a Review</button>
-      {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} />}
-    </div>
+      {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
+      </ReviewListContainer>
   )
 
 }

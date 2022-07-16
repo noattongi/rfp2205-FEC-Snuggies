@@ -84,7 +84,7 @@ router.post('/reviews', (request, response) => {
         response.send(500);
       });
 });
-//REVIEW put
+
 router.put('/reviews/helpfulness', (request, response) => {
   console.log('did thsi work', request.body)
   if (!request.body.review_id) {
@@ -102,19 +102,15 @@ router.put('/reviews/helpfulness', (request, response) => {
   }
 });
 
-router.put('/question/helpfulness', (request, response) => {
-  if (!request.body.question_id) {
-    response.send(500);
-  } else {
-    API.updateQuestionHelpfulness(request.body.question_id, request.body)
-    .then((results) => {
-      response.status(200).send(response.data)
-    })
-    .catch((error) => {
-      console.log('Error in updating question helpfulness', error);
-      response.send(420)
-    })
-  }
+router.put('/reviews/report', (request, response) => {
+  API.reportReview(request.body.review_id, request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within reporting a review from server side', error)
+    response.status(420)
+  })
 });
 
 router.get('/related', (request, response) => {

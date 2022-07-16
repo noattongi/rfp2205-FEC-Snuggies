@@ -5,12 +5,12 @@ import ImagePool from './ImagePool.jsx'
 import { format, parseISO } from 'date-fns'
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
 // import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
-import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan} from '../StyledComponents/ReviewTile.jsx';
+import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan, ImageContainer} from '../StyledComponents/ReviewTile.jsx';
 import styled from 'styled-components'
 
 var ReviewTiles = (props) => {
+  console.log(props)
 
-  console.log(props, 'these are the props you are looking fro')
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
   const [helpfulClickCount, setHelpfulClickCount] = useState(0)
@@ -42,7 +42,10 @@ var ReviewTiles = (props) => {
     } else {
       alert('You can only upvote once!')
     }
+   }
 
+   var onReportClick = () => {
+      props.reportReview(props.reviews.review_id)
    }
 
   var seeMoreRendered = (seeMore) => {
@@ -68,17 +71,19 @@ var ReviewTiles = (props) => {
     <Summary>{props.reviews.summary.substr(0, 60)}</Summary>
     <ReviewBody>{seeMoreRendered(seeMore)}
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
+    <ImageContainer>
     {props.reviews.photos.map((photo, index) =>
         <ImagePool key={index}
                   photo={photo}/>
       )}
+    </ImageContainer>
     </ReviewBody>
     <RecommendProduct>{recommendFilter(props.reviews.recommend.toString())}</RecommendProduct>
-    <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
+    <div>{props.reviews.response !== null && <h6>{props.reviews.response}</h6>}</div>
     <BottomInfoContainer>
     <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={onHelpfulClick}>Yes</YesAnswerSpan> ({props.reviews.helpfulness}) </AnswerHelpfulnessSpan>
         <span> | </span>
-        {<ReportSpan > Report </ReportSpan>}
+        {<ReportSpan onClick={onReportClick}> Report </ReportSpan>}
     </BottomInfoContainer>
    </div>
    </ReviewTile>
