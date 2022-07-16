@@ -97,7 +97,16 @@ var reportAnswer = (id, data) => {
   return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${id}/report`, data, {
     headers: headers
   });
-}
+};
+
+// Function that sends a POST request to add the product (specified by sku_id) to the cart
+// Input: the sku_id of the product
+var addToCart = (sku_id) => {
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart`, {sku_id: sku_id}, {
+    headers: headers
+  });
+};
+
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
@@ -112,3 +121,4 @@ module.exports.postQuestion = postQuestion;
 module.exports.updateAnswerHelpfulness = updateAnswerHelpfulness;
 module.exports.postAnswer= postAnswer;
 module.exports.reportAnswer= reportAnswer;
+module.exports.addToCart = addToCart;
