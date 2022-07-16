@@ -85,13 +85,14 @@ export default function IndividualAnswer({answer}) {
 // styled components
 var IndividualAnswerContainer = styled.section`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 500px;
 `;
 
 var ImageSection = styled.div`
   display: flex;
   flex-direction: row;
-  padding-left: 120px;
+  justify-content: flex-start;
 `;
 
 var Images = styled.img`
@@ -103,8 +104,8 @@ var Images = styled.img`
 var IndividualAnswerBody = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 var YesAnswerSpan = styled.span`

@@ -59,6 +59,7 @@ var QnAContainer = styled.div`
   padding-top: 1rem;
   padding-bottom; 1rem;
   border-bottom: 2px solid grey;
+  height: 300px;
 `;
 
 var YesQuestionSpan = styled.span`
