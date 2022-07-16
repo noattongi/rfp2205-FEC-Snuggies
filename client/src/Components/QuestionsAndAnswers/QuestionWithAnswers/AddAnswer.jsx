@@ -20,9 +20,13 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
   var handleFileInputChange = (e) => {
     e.preventDefault();
-    const file  = e.target.files[0];
+    if (previewSource.length < 5) {
+      const file  = e.target.files[0];
+      previewFile(file);
+    } else {
+      alert('Sorry, you can only upload 5 images per answer')
+    };
 
-    previewFile(file)
   };
 
   var previewFile = (file) => {
