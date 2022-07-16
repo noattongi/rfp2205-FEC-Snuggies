@@ -72,7 +72,9 @@ export default function IndividualAnswer({answer}) {
       </IndividualAnswerBody>
       <ImageSection>
         {answer.photos.map((each) => {
-          <Images src={each} />
+          return (
+            <Images src={each} />
+          )
         })}
       </ImageSection>
     </IndividualAnswerContainer>
@@ -88,11 +90,13 @@ var IndividualAnswerContainer = styled.section`
 var ImageSection = styled.div`
   display: flex;
   flex-direction: row;
+  padding-left: 120px;
 `;
 
-var Images = styled.div`
-  width: 150px;
-  height: 150px;
+var Images = styled.img`
+  width: 75px;
+  height: 75px;
+  padding: 10px;
 `;
 
 var IndividualAnswerBody = styled.div`
@@ -131,7 +135,7 @@ var BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 40%;
+  width: 200px%;
   font-size: 12px;
 `;
 
