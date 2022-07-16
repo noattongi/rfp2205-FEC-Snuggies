@@ -13,12 +13,14 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var storage = useContext(GlobalContext);
   var { _productId, _chosenProduct } = storage;
 
+  // body data
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
-  var [photoURL, setPhotoURL] = useState('')
+  var [photoURL, setPhotoURL] = useState([]);
   // var [imgURL, setImgURL] = useState('');
 
+  // image data
   var [fileInput, setFileInput] = useState('');
   var [previewSource, setPreviewSource] = useState('');
 
@@ -42,7 +44,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
     uploadImage(previewSource);
 
-    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: []};
+    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: photoURL};
 
     if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
       alert('Error, length too long for the email, name, or answer body.')
@@ -59,7 +61,8 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var uploadImage = (encodedImage) => {
     axios.post('/snuggie/upload', {data: encodedImage})
     .then((val) => {
-      console.log('cloudinary data received', val)
+      console.log('cloudinary data received', val);
+      setPhotoURL([...photoURL, val.data.url])
     })
     .catch((error) => {
       console.log('error with uploading Image from client side')
