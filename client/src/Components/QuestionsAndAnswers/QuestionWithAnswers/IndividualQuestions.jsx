@@ -7,7 +7,6 @@ var axios = require('axios')
 
 var IndividualQuestions = ({question, postAnswerfunc}) => {
 
-  console.log(question,' each questions')
   var [toggleModal, setToggleModal] = useState(false);
   var [helpful, setHelpful] = useState(question.question_helpfulness);
   var [truth, setTruth] = useState(false);
