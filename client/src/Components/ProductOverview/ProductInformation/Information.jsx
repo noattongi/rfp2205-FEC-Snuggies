@@ -14,15 +14,19 @@ var Information = (props) => {
   var salePrice;
   // Iterate and choose the default style whenever the style list changes (e.g. choose new product)
   useEffect(() => {
-    // For each of the styles in the passed in styles prop, iterate until we find the default one and set that as the displayed style
-    for (let i = 0; i < props.styles.length; i++) {
-      if (props.styles[i]["default?"]) {
-        props.setChosenStyle(props.styles[i]);
-        break;
-      }
+    // // For each of the styles in the passed in styles prop, iterate until we find the default one and set that as the displayed style
+    // for (let i = 0; i < props.styles.length; i++) {
+    //   if (props.styles[i]["default?"]) {
+    //     props.setChosenStyle(props.styles[i]);
+    //     break;
+    //   }
+    // }
+    if (props.styles.length > 0) {
+      // Per business requirements document, the default style selected is the first one in the list
+      props.setChosenStyle(props.styles[0]);
+      // Then get the sale price
+      salePrice = props.chosenStyle.sale_price;
     }
-    // Then get the sale price
-    salePrice = props.chosenStyle.sale_price;
   }, [props.styles]);
 
   // Generate the price component
@@ -35,7 +39,7 @@ var Information = (props) => {
 
   return (
     <ProductInformationContainer>
-      <OverviewStars />
+      <OverviewStars product={props.product} />
       <div>{(props.product && props.product.category) || "Loading Category..."}</div>
       <div>{(props.product && props.product.name) || "Loading Product Name..."}</div>
       {price}

@@ -4,6 +4,7 @@ import Overview from './Components/ProductOverview/Overview.jsx';
 import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
+export const GlobalContext = React.createContext()
 
 var App = () => {
 
@@ -30,18 +31,38 @@ var App = () => {
       });
   }, []); // Second argument being an empty array causes this instance of useEffect to only run once
 
+  // If chosen product changes, set product id
+  useEffect(() => {
+    if (Object.keys(chosenProduct).length !== 0) {
+      setProductId(chosenProduct.id);
+    }
+  }, [chosenProduct]);
+
+  // If product id changes, set chosen product
+  useEffect(() => {
+    if (productId) {
+      axios.get('/snuggie/products', { params: {product_id: productId} })
+        .then((results) => {
+          setChosenProduct(results.data);
+        })
+        .catch((error) => {
+          console.log('An error occurred when initializing data received from server:', error);
+        })
+    }
+  }, [productId]);
+
   return(
-    <div>
-      <div>navbar</div>
-      <h1>ANNOUNCEMENTS GO HERE</h1>
-      <Overview productId={productId} chosenProduct={chosenProduct} />
-      <br/>
-      <RInC/>
-      <br/>
-      <QnaIndex/>
-      <br/>
-      <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
-    </div>
+    <GlobalContext.Provider value={chosenProduct}>
+        <div>navbar</div>
+        <h1>ANNOUNCEMENTS GO HERE</h1>
+        <Overview productId={productId} chosenProduct={chosenProduct} />
+        <br/>
+        <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
+        <br/>
+        <QnaIndex/>
+        <br/>
+        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
+    </GlobalContext.Provider>
   )
 }
 

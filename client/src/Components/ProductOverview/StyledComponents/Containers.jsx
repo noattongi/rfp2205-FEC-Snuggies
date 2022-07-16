@@ -28,7 +28,13 @@ const ProductOverviewStarContainer = styled.section`
   flex-direction: column;
 `;
 
-// Container to hold the Style Thumbnails in Product Information section
+// Container to hold all the rows of Style Thumbnails in the Product Information section
+const StyleThumbnailRowContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+// Container to hold a single row of Style Thumbnails in Product Information section
 const StyleThumbnailContainer = styled.section`
   display: flex;
   flex-direction: row;
@@ -65,4 +71,4 @@ const ProductInformationDescription = styled.section`
 `;
 
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailRowContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };

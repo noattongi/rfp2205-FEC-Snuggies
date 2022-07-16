@@ -10,11 +10,14 @@ const RelatedCards = (props) => {
     setModal(!modal)
   }
 
+  const handleCardClick = (id) => {
+    return props.setProductId(id)
+  }
   return (
     <>
     {props.relatedProd?.map((prod) => {
       return (
-          <CardBox key={prod.id}>
+          <CardBox key={prod.id} onClick={(e) => { handleCardClick(prod.id)}}>
             <div onClick = {modalToggle}>⭐️</div>
             {modal ? <ComparisonModal modalToggle = {modalToggle}/> : null }
             <p>{prod.category}</p>
@@ -31,10 +34,10 @@ export default RelatedCards;
 
 // styled componenents
 const CardBox = styled.div`
-  flex: 25%;
   position: flex;
   justify-content: flex-start;
   border: 1px solid black;
   text-align: center;
   margin: 20px;
+  width: 25%;
 `;

@@ -8,9 +8,9 @@ var headers = {
   'Authorization': config
 }
 
-// Function that sends a GET request to the API to get all the products
+// Function that sends a GET request to the API to get all the products (defaulting to asking for 2000 products; there are currently ~1100)
 var getAllProducts = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
+  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?count=2000', {
     headers: headers
   });
 }
@@ -41,6 +41,13 @@ var getProductMetaData = (id) => {
 
 var getProductReviews = (id, count, sort) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${count}&sort=${sort}`, {
+    headers: headers
+  });
+}
+
+// Function that sends a GET request to the API to get a specific product's review metadata
+var getReviewMetadata = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${id}`, {
     headers: headers
   });
 }
@@ -115,6 +122,7 @@ module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
 module.exports.getProductReviews = getProductReviews;
+module.exports.getReviewMetadata = getReviewMetadata;
 module.exports.postProductReviews = postProductReviews;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getProductQuestion = getProductQuestion;

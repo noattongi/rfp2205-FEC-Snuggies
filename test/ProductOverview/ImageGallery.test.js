@@ -7,6 +7,7 @@ import axios from 'axios';
 // Import mock data
 import mockProductData from './mockData/mockProductData.js';
 import mockProductStyles from './mockData/mockStyleData.js';
+import mockMetadata from './mockData/mockReviewMetadata.js';
 
 // Mock axios using jest
 jest.mock('axios');
@@ -30,6 +31,10 @@ test('Renders image thumbnails', async () => {
         return Promise.resolve({
           data: mockProductStyles.camoOnesieStyles
         });
+      case '/snuggie/reviews/meta':
+        return Promise.resolve({
+          data: mockMetadata.camoOnesieMetadata
+        });
       default:
         return Promise.reject(new Error('not found'));
     }
@@ -48,15 +53,19 @@ test('Renders the up and down scroll arrow buttons for the image thumbnails when
     axios.get.mockImplementation((url) => {
         switch (url) {
             case '/snuggie/products':
-            return Promise.resolve({
-                data: mockProductData.heirForceOne
-            });
+              return Promise.resolve({
+                  data: mockProductData.heirForceOne
+              });
             case '/snuggie/styles':
-            return Promise.resolve({
-                data: mockProductStyles.heirForceOneStyles
-            });
+              return Promise.resolve({
+                  data: mockProductStyles.heirForceOneStyles
+              });
+            case '/snuggie/reviews/meta':
+              return Promise.resolve({
+                data: mockMetadata.heirForceOneMetadata
+              });
             default:
-            return Promise.reject(new Error('not found'));
+              return Promise.reject(new Error('not found'));
         }
     });
     // Render the widget
@@ -84,15 +93,19 @@ test('Renders the main image', async () => {
   axios.get.mockImplementation((url) => {
       switch (url) {
           case '/snuggie/products':
-          return Promise.resolve({
-              data: mockProductData.camoOnesie
-          });
+            return Promise.resolve({
+                data: mockProductData.camoOnesie
+            });
           case '/snuggie/styles':
-          return Promise.resolve({
-              data: mockProductStyles.camoOnesieStyles
-          });
+            return Promise.resolve({
+                data: mockProductStyles.camoOnesieStyles
+            });
+          case '/snuggie/reviews/meta':
+            return Promise.resolve({
+              data: mockMetadata.camoOnesieMetadata
+            });
           default:
-          return Promise.reject(new Error('not found'));
+            return Promise.reject(new Error('not found'));
       }
   });
   await act( async () => {
@@ -106,15 +119,19 @@ test('Renders the left and right arrows on the sides of the main image', async (
   axios.get.mockImplementation((url) => {
       switch (url) {
           case '/snuggie/products':
-          return Promise.resolve({
+            return Promise.resolve({
               data: mockProductData.camoOnesie
-          });
+            });
           case '/snuggie/styles':
-          return Promise.resolve({
+            return Promise.resolve({
               data: mockProductStyles.camoOnesieStyles
-          });
+            });
+          case '/snuggie/reviews/meta':
+            return Promise.resolve({
+              data: mockMetadata.camoOnesieMetadata
+            });
           default:
-          return Promise.reject(new Error('not found'));
+            return Promise.reject(new Error('not found'));
       }
   });
   await act( async () => {

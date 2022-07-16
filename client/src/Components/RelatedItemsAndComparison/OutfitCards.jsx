@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const OutfitCards = (props) => {
   useEffect(() => {
-    // console.log('child component', props.outfitId)
+    // console.log('child component', props.outfitProd)
   }, [props.outfitProd, props.outfitId])
 
   async function handleDeleteClick(id) {
@@ -17,19 +17,31 @@ const OutfitCards = (props) => {
     }
   }
   return (
-    <div>
-    {props.outfitProd?.map((prod) => {
+    <>
+    {props.outfitProd?.map((prod, i) => {
       return (
-          <div key={prod.id}>
-            <button onClick = {(e) => {handleDeleteClick(prod.id)}}>X</button>
+          <CardBox key={prod.id}>
+            {console.log('mapped outfit', props.outfitProd)}
+            {console.log('index', i)}
+            <div onClick = {(e) => {handleDeleteClick(prod.id)}}>❌</div>
             <p>{prod.category}</p>
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>
             <p>Star Rating</p>
-          </div>
+          </CardBox>
        )})}
-       </div>
+       </>
   )
 }
 
 export default OutfitCards;
+
+// styled component
+const CardBox = styled.div`
+  position: flex;
+  justify-content: flex-start;
+  border: 1px solid black;
+  text-align: center;
+  margin: 20px;
+  width: 19%;
+`;
