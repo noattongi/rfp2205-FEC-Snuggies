@@ -2,7 +2,9 @@
 import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../../../App.js'
+import {Image} from 'cloudinary-react'
 var axios = require('axios');
+
 // const { cloudinary } = require('../../cloudinary.config.js')
 // var cloudinary = require('cloudinary').v2
 
@@ -36,6 +38,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewSource([...previewSource, reader.result])
+      console.log('what is preview source', previewSource)
     }
   };
 
@@ -44,25 +47,31 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
     uploadImage(previewSource);
 
-    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: photoURL};
-
-    if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
-      alert('Error, length too long for the email, name, or answer body.')
-    };
-
-    if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
-      alert(`Please don't leave any fields blank.`)
-    } else {
-      postAnswer(body);
-      toggleModal(false);
-    };
   };
 
   var uploadImage = (encodedImage) => {
     axios.post('/snuggie/upload', {data: encodedImage})
     .then((val) => {
-      console.log('cloudinary data received', val);
-      setPhotoURL([...photoURL, val.data.url])
+      // console.log('cloudinary data received', val);
+      axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
+      .then((val) => {
+        console.log('what is val of cloud', val)
+        var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: val.data};
+
+        if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
+          alert('Error, length too long for the email, name, or answer body.')
+        };
+
+        if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
+          alert(`Please don't leave any fields blank.`)
+        } else {
+          postAnswer(body);
+          toggleModal(false);
+        };
+      })
+      .catch((error) => {
+        console.log('error within get cloudinary data')
+      })
     })
     .catch((error) => {
       console.log('error with uploading Image from client side')
@@ -110,9 +119,9 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
                 })
               } */}
               {previewSource &&
-                previewSource.map((each) => {
+                previewSource.map((each, i) => {
                   return (
-                     <Images  src={each} />
+                     <Images key={i} src={each} />
                   )
                 })
               }

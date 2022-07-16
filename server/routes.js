@@ -200,19 +200,11 @@ router.put('/report', (request, response) => {
 router.post('/upload', (request, response) => {
   // file data from client
   var file = request.body.data;
-  // cloudinary.uploader.upload(file, {
-  //   upload_presets: 'presetFEC'
-  // })
-  // .then((val) => {
-  //   console.log('whati s val', val)
-  // })
-  // .catch((error) => {
-  //   console.log("error with posting cloudinary within server")
-  // })
+
   if (file) {
     file.forEach((eachFile) => {
       cloudinary.uploader.upload(eachFile, {
-        upload_presets: 'presetFEC'
+        upload_preset: 'presetFEC'
       })
       .then((val) => {
         response.status(200).send(val)
@@ -227,6 +219,17 @@ router.post('/upload', (request, response) => {
   }
 
   return response.status(402)
-})
+});
+
+router.get('/upload/get', async (request, response) => {
+  const {resources} = await cloudinary.search.expression('folder:FEC_folder')
+  .execute()
+
+  const URLs = resources.map((file) => {
+    return file.url
+  })
+
+  response.status(200).send(URLs.slice(0, request.query.len))
+});
 
 module.exports = router;

@@ -55,7 +55,8 @@ export default function IndividualAnswer({answer}) {
     })
     setReport(false);
   }
-  console.log('what is answer', answer.photos)
+  // console.log('what is answer', answer.photos)
+
   return (
     <IndividualAnswerContainer>
       <IndividualAnswerBody>
