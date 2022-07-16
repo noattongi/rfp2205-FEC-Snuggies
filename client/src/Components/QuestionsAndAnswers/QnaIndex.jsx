@@ -17,8 +17,8 @@ var QnaIndex = (props) => {
   const [defaultQ, setDefaultQ] = useState([]);
   const [len, setLen] = useState(4);
   const [toggleModal, setToggleModal] = useState(false);
-  const  [filter, setFilter] = useState();
-  console.log(storage, 'what')
+  const [filter, setFilter] = useState();
+  const [noSearch, setNoSearch] = useState(false);
 
   var questionSort = question.results?.slice(0, len);
 
@@ -35,7 +35,7 @@ var QnaIndex = (props) => {
 
   }, [_productId]);
 
-  async function search (query)  {
+  var search = (query) => {
     var query = query.toLowerCase();
     if (query.length > 2) {
       var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query));
@@ -43,13 +43,19 @@ var QnaIndex = (props) => {
       console.log('default', defaultQ)
       console.log('filtered', filtered)
       console.log('q state', question)
-      console.log('questionSort', questionSort)
-
+      console.log('questionSort', questionSort[0])
     };
 
     if (query.length < 2) {
       setFilter()
-    }
+    };
+
+    if (filtered.length === 0) {
+      setNoSearch(true);
+    } else {
+      setNoSearch(false);
+    };
+
   };
 
   var loadQ = () => {
@@ -90,6 +96,7 @@ var QnaIndex = (props) => {
   return (
     <QnAContainer>
         <SearchQuestions search={search}/>
+        {noSearch && <h2> NO SEARCH RESULT</h2>}
         <QuestionScrollDiv>
           <QuestionsList postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
         </QuestionScrollDiv>
