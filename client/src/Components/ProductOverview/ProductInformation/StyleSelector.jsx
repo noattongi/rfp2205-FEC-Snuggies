@@ -2,7 +2,7 @@
 
 // Import stuff
 import React, { useState } from 'react';
-import { StyleThumbnailContainer } from '../StyledComponents/Containers.jsx';
+import { StyleThumbnailRowContainer, StyleThumbnailContainer } from '../StyledComponents/Containers.jsx';
 import { ChosenStyleContainer } from '../StyledComponents/Containers.jsx';
 import { StyleThumbnail, ChosenIcon } from '../StyledComponents/ProductInformation/StyleThumbnail.jsx';
 
@@ -19,7 +19,7 @@ var Styles = (props) => {
     } else { // Current row filled up; add that row to the list of rows and then start a new row
       styleRows.push(styleRow);
       styleRow = [props.styles[i]];
-      styleCount = 0;
+      styleCount = 1;
     }
     if (i === props.styles.length - 1) { // If the row isn't filled up but we're at the end of the styles list, add the row
       styleRows.push(styleRow);
@@ -28,11 +28,11 @@ var Styles = (props) => {
 
   return (
 
-    <StyleThumbnailContainer>
+    <StyleThumbnailRowContainer>
       {/* For each row of styles, render the thumbnail of the first image of the style */}
-      {styleRows.map((row) => {
+      {styleRows.map((row, rowIndex = 0) => {
         return (
-          <StyleThumbnailContainer>
+          <StyleThumbnailContainer key={`row${rowIndex++}`} >
             {row.map((style) => {
               // If the style is the chosen one, render a special thumbnail (it has a border around it that indicates that it's the selected one)
               if (style.style_id === props.chosenStyle.style_id) {
@@ -51,7 +51,7 @@ var Styles = (props) => {
           </StyleThumbnailContainer>
         );
       })}
-    </StyleThumbnailContainer>
+    </StyleThumbnailRowContainer>
   );
 }
 
