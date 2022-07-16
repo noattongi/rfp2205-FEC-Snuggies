@@ -32,12 +32,12 @@ const OutfitList = (props) => {
   }
 
   const addOutfitId = (id) => {
-    // if (outfitId.indexOf(id) > -1) {
-    //   return setOutfitId(outfitId);
-    // } else {
-    //   console.log(outfitId);
+    if (outfitId.indexOf(id) > -1) {
+      return setOutfitId(outfitId);
+    } else {
+      console.log(outfitId);
       return setOutfitId([...outfitId, id])
-    // }
+    }
   }
 
   return (
