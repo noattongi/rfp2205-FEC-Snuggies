@@ -14,10 +14,6 @@ const RelatedItemsList = (props) => {
     console.log('id', props.productId)
     getRelated(props.productId)
     .then((data) => {
-<<<<<<< HEAD
-      // console.log(props.productId)
-=======
->>>>>>> main
       var temp = []
       data.forEach((id) => {
         temp.push(props.getProduct(id))

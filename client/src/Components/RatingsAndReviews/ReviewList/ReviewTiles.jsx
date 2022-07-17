@@ -71,10 +71,12 @@ var ReviewTiles = (props) => {
     <ReviewBody>{seeMoreRendered(seeMore)}
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
     <ImageContainer>
-    {props.reviews.photos.map((photo, index) =>
+    {props.reviews.photos.map((photo, index) => {
+      return(
         <ImagePool key={index}
                   photo={photo}/>
-      )}
+      )
+  })}
     </ImageContainer>
     </ReviewBody>
     <RecommendProduct>{recommendFilter(props.reviews.recommend.toString())}</RecommendProduct>

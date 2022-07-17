@@ -14,10 +14,9 @@ var ImagePool = (props) => {
   }
 
   return (
+
     <ImageContainer>
-      <ShrinkImg>
-        <img src={props.photo.url} onClick={toggleImageModal} />
-      </ShrinkImg>
+           <ShrinkImg src={props.photo.url} onClick={toggleImageModal} />
         {isImageOpen && <ImageModal pic={props.photo.url} closeImageModal={toggleImageModal}/>}
         </ImageContainer>
   );
