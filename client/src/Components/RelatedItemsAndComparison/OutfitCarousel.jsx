@@ -3,22 +3,23 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components'
 
-const Carousel = (props) => {
+const OutfitCarousel = (props) => {
   // conditional render if more than four cards
   // when click, display currentView from [0, 3] -> [1, 4]
   async function handleCarousel() {
-    if (props.outfitId[props.index + 4]) {
-      return props.setIndex(props.index + 1)
-    } else {
-      return props.setIndex(props.index)
-    }
-
+      return props.setOutfitIndex(Number(props.outfitIndex) + 1)
+  }
+  async function handleBack() {
+      return props.setOutfitIndex(Number(props.outfitIndex) - 1)
   }
   return (
-      <button onClick={handleCarousel}>></button>
+    <>
+      {Boolean(props.outfitProd[props.outfitIndex + 4]) ? <button onClick={handleCarousel}>➡️</button> : null}
+      {Boolean(props.outfitProd[props.outfitIndex + 3] && props.outfitIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
+    </>
   )
 }
 
-export default Carousel;
+export default OutfitCarousel;
 
 // styled component

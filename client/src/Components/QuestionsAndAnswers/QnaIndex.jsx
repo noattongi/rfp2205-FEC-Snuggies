@@ -10,7 +10,8 @@ import {GlobalContext} from '../../App.js';
 
 var QnaIndex = (props) => {
 
-  var product = useContext(GlobalContext);
+  var storage = useContext(GlobalContext);
+  var { _productId } = storage;
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
@@ -21,7 +22,7 @@ var QnaIndex = (props) => {
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}} )
+    axios.get('/snuggie/qa/questions', {params : {product_id: 40777, count: 100}} )
     .then((response) => {
       setQuestion(response.data);
       setDefaultQ(response.data);
@@ -39,9 +40,9 @@ var QnaIndex = (props) => {
     });
 
 
-  }, []);
+  }, [_productId]);
 
-  var search = (query) => {
+  async function search (query)  {
     // console.log('before', question, defaultQ)
     if (query.length > 2) {
 
@@ -63,14 +64,11 @@ var QnaIndex = (props) => {
   // need to refactor image upload
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
-    .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+    .then((response) => {
+       axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
-      })
-      .catch((error) => {
-        console.log('error within getting data after posting answer from client')
       })
     })
     .catch((error) => {
@@ -82,7 +80,7 @@ var QnaIndex = (props) => {
   var postQuestion = (body) => {
     axios.post('/snuggie/post/question', body)
     .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: 40713, count: 100}})
+      axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);

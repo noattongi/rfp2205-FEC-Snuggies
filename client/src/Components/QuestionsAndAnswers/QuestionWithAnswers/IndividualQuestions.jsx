@@ -6,17 +6,13 @@ import IndividualAnswer from './IndividualAnswer.jsx';
 var axios = require('axios')
 
 var IndividualQuestions = ({question, postAnswerfunc}) => {
-  // contains QuestionDiv AnswerListContainer,
-  // Question div has Question and Helpful/Add Answer Section
-  // AnswerListDiv has IndividualAnswers
-  // console.log('question indiv', question.question_id)
 
   var [toggleModal, setToggleModal] = useState(false);
   var [helpful, setHelpful] = useState(question.question_helpfulness);
   var [truth, setTruth] = useState(false);
   var voted = false;
 
-  // can refactory to prevent multiple upvotes after page loads
+  // can refactor  to prevent multiple upvotes after page loads
   var upVote = (e) => {
     e.preventDefault();
     if (!voted) {
@@ -50,13 +46,10 @@ var IndividualQuestions = ({question, postAnswerfunc}) => {
            <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({helpful})
         </HelpfulAndAddAnswerContainer>
       </QuestionHeaderContainer>
-
       <AnswerListContainer>
         <AnswerList key={question.question_id} answerList={question.answers} />
-
       </AnswerListContainer>
     </QnAContainer>
-
   )
 };
 
@@ -65,6 +58,7 @@ var QnAContainer = styled.div`
   padding-top: 1rem;
   padding-bottom; 1rem;
   border-bottom: 2px solid grey;
+  height: 300px;
 `;
 
 var YesQuestionSpan = styled.span`

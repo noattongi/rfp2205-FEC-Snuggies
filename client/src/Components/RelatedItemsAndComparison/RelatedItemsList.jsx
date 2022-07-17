@@ -8,11 +8,16 @@ import styled from 'styled-components';
 const RelatedItemsList = (props) => {
   const [relatedId, setRelatedId] = useState([]);
   const [relatedProd, setRelatedProd] = useState([]);
+  const [relatedIndex, setRelatedIndex] = useState([]);
 
   useEffect(() => {
-    getRelated(40344)
+    console.log('id', props.productId)
+    getRelated(props.productId)
     .then((data) => {
+<<<<<<< HEAD
       // console.log(props.productId)
+=======
+>>>>>>> main
       var temp = []
       data.forEach((id) => {
         temp.push(props.getProduct(id))
@@ -28,9 +33,9 @@ const RelatedItemsList = (props) => {
     .catch((error) => {
       console.log('useEffect error', error)
     })
-  }, []);
+  }, [props.productId, relatedIndex]);
 
-  const getRelated = (productId) => {
+  async function getRelated(productId) {
     return axios.get('/snuggie/products', {params: {product_id: productId + '/related'}})
     .then((response) => {
       setRelatedId(response.data);
@@ -44,9 +49,9 @@ const RelatedItemsList = (props) => {
     <>
       <h3>Related List</h3>
         <Row>
-          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId}/>
+          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct}/>
           <CarouselContainer>
-            {Boolean(relatedId.length > 4) ? <RelatedCarousel/> : null}
+            {Boolean(relatedId.length > 4) ? <RelatedCarousel relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
         </Row>
     </>
