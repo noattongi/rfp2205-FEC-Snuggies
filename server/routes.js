@@ -223,6 +223,7 @@ router.post('/upload', (request, response) => {
 
 router.get('/upload/get', async (request, response) => {
   const {resources} = await cloudinary.search.expression('folder:FEC_folder')
+  .sort_by('created_at', 'asc')
   .execute()
 
   const URLs = resources.map((file) => {

@@ -35,7 +35,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     reader.onloadend = () => {
       setPreviewSource([...previewSource, reader.result])
       console.log('what is preview source', previewSource)
-    }
+    };
   };
 
   var handleSubmit = (e) => {
@@ -53,6 +53,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     .then((val) => {
       axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
       .then((val) => {
+        console.log('what is val',val)
         var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: val.data};
 
         if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
