@@ -10,19 +10,19 @@ var ReviewList = (props) => {
 
   // console.log(props)
   const [reviewCount, setReviewCount] = useState(2);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
 
   var toggleModal = (event) => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   }
 
   var moreReviewClick = (event) => {
-    setReviewCount(reviewCount + 2)
+    setReviewCount(reviewCount + 2);
   }
 
   var changeSortClick = (event) => {
-    props.changeSortedBy(event.target.value)
+    props.changeSortedBy(event.target.value);
   }
 
 

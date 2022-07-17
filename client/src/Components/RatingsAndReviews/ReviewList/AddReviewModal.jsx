@@ -5,19 +5,20 @@ import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReview
 
 var AddReviewModal = (props) => {
    console.log(props, 'hellooooo')
-  const [isOpen, setIsOpen] = useState(false)
-  const [bodySummary, setbodySummary] =  useState('')
-  const [reviewBody, setReviewBody] =  useState('')
-  const [nickname, setNickname] =  useState('')
-  const [email, setEmail] =  useState('')
-  const [selectedImage, setSelectedImage] = useState([''])
-  const [recommendInput, setRecommendInput] = useState(null)
-  const [charCountSummary, setCharCountSummary] = useState(0)
-  const [charCountBody, setCharCountBody] = useState(50)
-  const [postedImage, setPostedImage] = useState('')
-  const [rating, setRating] = useState(null)
-  const [characteristics, setCharacteristics] = useState({})
-  const [productName, setProductName] = useState('')
+  const [isOpen, setIsOpen] = useState(false);
+  const [bodySummary, setbodySummary] =  useState('');
+  const [reviewBody, setReviewBody] =  useState('');
+  const [nickname, setNickname] =  useState('');
+  const [email, setEmail] =  useState('');
+  const [selectedImage, setSelectedImage] = useState(['']);
+  const [recommendInput, setRecommendInput] = useState(null);
+  const [charCountSummary, setCharCountSummary] = useState(0);
+  const [charCountBody, setCharCountBody] = useState(50);
+  const [postedImage, setPostedImage] = useState('');
+  const [rating, setRating] = useState(null);
+  const [characteristics, setCharacteristics] = useState({});
+  const [productName, setProductName] = useState('');
+  const [productID, setProductID] = useState(0);
 
 
   var toggleModal = (e) => {
@@ -25,122 +26,121 @@ var AddReviewModal = (props) => {
   }
 
   var handleStarClick = (event, key) => {
-    console.log(key, 'key')
-    console.log(event, 'keventy')
-    setAverageRating(key)
+    setAverageRating(key);
   }
 
-    var handleEmailChange = (event) => {
-      setEmail(event.target.value);
+  var handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }
+
+  var handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  }
+
+  var handleReviewBodyChange =(event) => {
+    setReviewBody(event.target.value);
+    setCharCountBody(50 - event.target.value.length);
+  }
+
+  var handleSummaryChange = (event) => {
+    setbodySummary(event.target.value);
+    setCharCountSummary(event.target.value.length);
+  }
+
+  var isValidEmail = (email) => {
+   return  /\S+@\S+\.\S+/.test(email);
+  }
+
+  var onImageChange = event => {
+    console.log(event.target.files[0]);
+    if (event.target.files && event.target.files[0]) {
+      let img = event.target.files[0];
+      setPostedImage(img.name);
+      setSelectedImage(URL.createObjectURL(img));
     }
+  };
 
-    var handleNicknameChange = (event) => {
-      setNickname(event.target.value);
+  var recommendOnChange = (event) => {
+    if(event.target.value === 'Yes') {
+      return setRecommendInput(true);
+    } else if(event.target.value === 'No') {
+      return setRecommendInput(false);
     }
-
-    var handleReviewBodyChange =(event) => {
-      setReviewBody(event.target.value)
-      setCharCountBody(50 - event.target.value.length);
-    }
-
-    var handleSummaryChange = (event) => {
-      setbodySummary(event.target.value)
-      setCharCountSummary(event.target.value.length);
-    }
-
-    var isValidEmail = (email) => {
-     return  /\S+@\S+\.\S+/.test(email);
-    }
-
-
-
-    var onImageChange = event => {
-      console.log(event.target.files[0]);
-      if (event.target.files && event.target.files[0]) {
-        let img = event.target.files[0];
-        setPostedImage(img.name);
-        setSelectedImage(URL.createObjectURL(img));
-
-      }
-    };
-
-    var recommendOnChange = (event) => {
-      if(event.target.value === 'Yes') {
-        return setRecommendInput(true);
-      } else if(event.target.value === 'No') {
-        return setRecommendInput(false);
-      }
-    }
+  }
 
   var sizeOnChange = (event) => {
-        var sizeNum = Number(event.target.value)
-        setCharacteristics({...characteristics, '14' : sizeNum});
+      var sizeNum = Number(event.target.value);
+      setCharacteristics({...characteristics, '14' : sizeNum});
   }
 
   var widthOnChange = (event) => {
-      var widthNum = Number(event.target.value)
-      setCharacteristics({...characteristics, '15' : widthNum});
+    var widthNum = Number(event.target.value);
+    setCharacteristics({...characteristics, '15' : widthNum});
   }
 
   var comfortOnChange = (event) => {
-     var comfortNum = Number(event.target.value)
+    var comfortNum = Number(event.target.value);
     setCharacteristics({...characteristics, '16' : comfortNum});
   }
 
   var qualityOnChange = (event) => {
-    var qualityNum = Number(event.target.value)
+    var qualityNum = Number(event.target.value);
     setCharacteristics({...characteristics, '17' : qualityNum});
   }
 
   var lengthOnChange = (event) => {
-    var lengthNum = Number(event.target.value)
+    var lengthNum = Number(event.target.value);
     setCharacteristics({...characteristics, '18' : lengthNum});
   }
 
   var fitOnChange = (event) => {
-    var fitNum = Number(event.target.value)
+    var fitNum = Number(event.target.value);
     setCharacteristics({...characteristics, '19' : fitNum});
-
   }
 
-    var onSubmitClick = (event) => {
-      console.log(recommendInput, reviewBody, nickname, email, reviewBody.length)
-      if((!isValidEmail(email)) ){
-        return alert('Please enter a valid email!')
-        if( recommendInput === null || reviewBody === ''  || nickname === '' || reviewBody.length < 50 || email === '') {//add characteristics, images are invalid or unable to be uploaded , email address is not in the correct format, ratings
-          alert("Please review the mandatory data!")
-        }
-      } else {
-        props.postReview({
-        product_id: 40347,//hardcoded
-        rating: 3,//hardcoded
-        summary: bodySummary,
-        body: reviewBody,
-        recommend: recommendInput,
-        name: nickname,
-        email: email,
-        photos: [postedImage],
-        characteristics: {}
-      })
-      setbodySummary('')
-      setReviewBody('')
-      setNickname('')
-      setEmail('')
-      setSelectedImage([''])
-      setRecommendInput(null)
-      setCharCountSummary(0)
-      setCharCountBody(50)
-      setPostedImage('')
-      setIsOpen(!isOpen)
-      setCharacteristics({})
-      props.closeModal()
+  var resetSubmitValues = () => {
+    setbodySummary('');
+    setReviewBody('');
+    setNickname('');
+    setEmail('');
+    setSelectedImage(['']);
+    setRecommendInput(null);
+    setCharCountSummary(0);
+    setCharCountBody(50);
+    setPostedImage('');
+    setIsOpen(!isOpen);
+    setCharacteristics({});
+    props.closeModal();
+    // setRating(null)
+  }
 
-      // setRating(null)
+  var onSubmitClick = (event) => {
+    console.log(recommendInput, reviewBody, nickname, email, reviewBody.length, characteristics)
+    if((!isValidEmail(email)) ){
+      return alert('Please enter a valid email!')
+      if( recommendInput === null || reviewBody === ''  || nickname === '' || reviewBody.length < 50 || email === '') {//add characteristics, images are invalid or unable to be uploaded , email address is not in the correct format, ratings
+        alert("Please review the mandatory data!")
       }
+    } else {
+      props.postReview({
+      product_id: productID,//hardcoded
+      rating: 3,//hardcoded
+      summary: bodySummary,
+      body: reviewBody,
+      recommend: recommendInput,
+      name: nickname,
+      email: email,
+      photos: [postedImage],
+      characteristics: {}
+    })
+    resetSubmitValues();
     }
-    useEffect(() => {
-      setProductName(props.chosenProduct.name)
-    },[productName])
+  }
+
+  useEffect(() => {
+    setProductName(props.chosenProduct.name);
+    setProductID(props.chosenProduct.id);
+  },[productName, productID]);
 
     return (
       <StyleBackground> <div>
@@ -153,7 +153,7 @@ var AddReviewModal = (props) => {
             <h4>About the {props.chosenProduct.name}</h4>
           </div>
           <ModalBody><div>
-            {/* *Star Rating: <StarRatingModal/> */}
+            *Star Rating:
             <div>
             <label>
               *Recommend:

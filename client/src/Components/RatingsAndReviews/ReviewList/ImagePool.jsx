@@ -7,10 +7,10 @@ import {ShrinkImg, ImageContainer} from '../StyledComponents/ReviewTile.jsx'
 
 var ImagePool = (props) => {
 
-  const [isImageOpen, setIsImageOpen] = useState(false)
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   var toggleImageModal = (e) => {
-    setIsImageOpen(!isImageOpen)
+    setIsImageOpen(!isImageOpen);
   }
 
   return (

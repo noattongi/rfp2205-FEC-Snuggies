@@ -29,7 +29,7 @@ var RatingsAndReviewsIndex = (props) => {
       return setReviews(response.data);
     })
     .catch((error) => {
-      console.log('Error in getProductReviews', error)
+      console.log('Error in getProductReviews', error);
     })
   }
 
@@ -38,13 +38,13 @@ var RatingsAndReviewsIndex = (props) => {
     .then((response) => {
       // console.log(response.data, 'metttaaa datataaaa')
     setMeta(response.data);
-    var starTotal = Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5'])
-    setStarCount(starTotal)
-    setFiveStarCount(Number(response.data.ratings['1']))
-    setFourStarCount(Number(response.data.ratings['2']))
-    setThreeStarCount(Number(response.data.ratings['3']))
-    setTwoStarCount(Number(response.data.ratings['4']))
-    setOneStarCount(Number(response.data.ratings['5']))
+    var starTotal = Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5']);
+    setStarCount(starTotal);
+    setFiveStarCount(Number(response.data.ratings['1']));
+    setFourStarCount(Number(response.data.ratings['2']));
+    setThreeStarCount(Number(response.data.ratings['3']));
+    setTwoStarCount(Number(response.data.ratings['4']));
+    setOneStarCount(Number(response.data.ratings['5']));
     })
     .catch((error) => {
       console.log('Error in get meta data client side', error)
@@ -85,23 +85,20 @@ var RatingsAndReviewsIndex = (props) => {
 };
 
   var changeSortedBy = (sortBy) => {
-    setSortBy(sortBy)
-    console.log(sortBy)
+    setSortBy(sortBy);
+    console.log(sortBy);
   }
 
-  var overallAverage = (number) => {
-
-  }
 
   var barTotal = (ratingTotal) => {
-    var average =  (ratingTotal / starCount) * 100
-    return average.toString()
+    var average =  ((ratingTotal / starCount) * 100);
+    return average.toString();
   }
 
   useEffect(() => {
     if (props.productId) {
-      getProductReviews(props.productId, sortby)
-      getReviewsMeta(props.productId)
+      getProductReviews(props.productId, sortby);
+      getReviewsMeta(props.productId);
     }
 
   }, [props.productId, sortby, starCount, ratings]);

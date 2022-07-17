@@ -4,10 +4,10 @@ import { StyleBackground, Container, Image } from '../StyledComponents/AddReview
 
 var ImageModal = (props) => {
 
-  const [isImageOpen, setIsImageOpen] = useState(false)
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   var toggleImageModal = (e) => {
-    setIsImageOpen(!isImageOpen)
+    setIsImageOpen(!isImageOpen);
   }
 
   return (

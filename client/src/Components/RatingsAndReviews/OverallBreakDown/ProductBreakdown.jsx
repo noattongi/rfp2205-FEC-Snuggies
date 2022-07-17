@@ -12,75 +12,49 @@ const ProductBreakDown = (props) => {//done
   const [lengthSliderValue, setLengthSliderValue] = useState(0);
   const [fitSliderValue, setFitSliderValue] = useState(0);
 
-  var averageChar = (rating) => {
-    var average = (rating * 100) / 5
-    return average
-  }
-
-
   useEffect(() => {
     console.log(props)
     var averageChar = (rating) => {
-      var average = (rating * 100) / 5
-      return average
+    var average = (rating * 100) / 5
+      return average;
     }
-        if(props.characteristics) {
-          if(props.characteristics.Fit) {
-             var averageFit = averageChar(props.characteristics.Fit.value)
-            setFitSliderValue(averageFit)
-          }
-        }
-        if(props.characteristics) {
-          if(props.characteristics.Length) {
-             var averageLength = averageChar(props.characteristics.Length.value)
-            setLengthSliderValue(averageLength)
-          }
-        }
-        if(props.characteristics) {
-          if(props.characteristics.Quality) {
-             var averageQuality = averageChar(props.characteristics.Quality.value)
-            setQualitySliderValue(averageQuality)
-          }
-        }
-        if(props.characteristics) {
-          if(props.characteristics.Comfort) {
-             var averageComfort = averageChar(props.characteristics.Comfort.value)
-            setComfortSliderValue(averageComfort)
-          }
-        }
-        if(props.characteristics) {
-          if(props.characteristics.Width) {
-             var averageWidth = averageChar(props.characteristics.Width.value)
-            setWidthSliderValue(averageWidth)
-          }
-        }
-        if(props.characteristics) {
-          if(props.characteristics.Size) {
-             var averageSize = averageChar(props.characteristics.Size.value)
-            setSizeSliderValue(averageSize)
-          }
-        }
-      //   if(props.characteristics.Length) {
-      //     var averageLength = averageChar(props.characteristics.Length.value)
-      //     setLengthSliderValue(averageLength)
-      //  }
-    //   setSizeSliderValue(props.characteristics.Size.value || 0)
-    //   setWidthSliderValue(props.characteristics.Width.value || 0)
-    //   setComfortSliderValue(props.characteristics.Comfort.value || 0)
-    //   setQualitySliderValue(props.characteristics.Quality.value || 0)
-    //   setLengthSliderValue(props.characteristics.Length.value || 0)
-    // }
-
+   if(props.characteristics) {
+     if(props.characteristics.Fit) {
+      var averageFit = averageChar(props.characteristics.Fit.value);
+       setFitSliderValue(averageFit);
+     }
+   }
+   if(props.characteristics) {
+     if(props.characteristics.Length) {
+      var averageLength = averageChar(props.characteristics.Length.value);
+       setLengthSliderValue(averageLength);
+     }
+   }
+   if(props.characteristics) {
+     if(props.characteristics.Quality) {
+        var averageQuality = averageChar(props.characteristics.Quality.value);
+       setQualitySliderValue(averageQuality);
+     }
+   }
+   if(props.characteristics) {
+     if(props.characteristics.Comfort) {
+      var averageComfort = averageChar(props.characteristics.Comfort.value);
+       setComfortSliderValue(averageComfort);
+     }
+   }
+   if(props.characteristics) {
+     if(props.characteristics.Width) {
+      var averageWidth = averageChar(props.characteristics.Width.value);
+       setWidthSliderValue(averageWidth);
+     }
+   }
+   if(props.characteristics) {
+     if(props.characteristics.Size) {
+      var averageSize = averageChar(props.characteristics.Size.value);
+       setSizeSliderValue(averageSize);
+     }
+   }
   }, [props.characteristics, fitSliderValue]);
-
-  // useEffect(() => {
-  //   if (props.chosenStyle.photos) {
-  //     setImageThumbnails(props.chosenStyle.photos);
-  //     setChosenImageUrl(props.chosenStyle.photos[chosenImageIndex].url);
-  //     setChosenImageIndex(0);
-  //     setMaxIndex(props.chosenStyle.photos.length - 1);
-  //   }
-  // }, [props.chosenStyle])
 
   	return (
       <div>
@@ -93,4 +67,4 @@ const ProductBreakDown = (props) => {//done
 	  </div>
   )
 }
-export default ProductBreakDown
+export default ProductBreakDown;

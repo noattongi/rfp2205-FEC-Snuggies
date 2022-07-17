@@ -16,13 +16,18 @@ margin-bottom: 5px;
 margin-bottom: 5px;
 padding-right: 40px;
 `;
-const BarText = styled.div`
+const BarText = styled.span`
 text-align: center;
 display: flex;
 padding-top: 12px;
 justify-content: space-evenly;
 border-style: dotted;
 margin-right: 20px
+text-decoration: underline;
+:hover {
+  cursor: pointer;
+  color: blue;
+};
 `;
 
 export {RRContainer, SingleBar, BarText}

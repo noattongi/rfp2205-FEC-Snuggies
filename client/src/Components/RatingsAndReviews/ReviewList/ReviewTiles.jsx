@@ -36,23 +36,23 @@ var ReviewTiles = (props) => {
 
    var onHelpfulClick = () => {
     if(helpfulClickCount < 1) {
-      props.upVoteHelpfulness(props.reviews.review_id)
-      setHelpfulClickCount(helpfulClickCount + 1)
+      props.upVoteHelpfulness(props.reviews.review_id);
+      setHelpfulClickCount(helpfulClickCount + 1);
     } else {
       alert('You can only upvote once!')
     }
    }
 
    var onReportClick = () => {
-      props.reportReview(props.reviews.review_id)
+      props.reportReview(props.reviews.review_id);
    }
 
   var seeMoreRendered = (seeMore) => {
     var rendered;
     if(seeMore === true) {
-      return rendered = props.reviews.body.substr(0, 250)
+      return rendered = props.reviews.body.substr(0, 250);
     } else {
-      return rendered = props.reviews.body
+      return rendered = props.reviews.body;
     }
   }
 

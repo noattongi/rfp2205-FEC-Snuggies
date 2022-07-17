@@ -5,6 +5,7 @@ import {Done, Progress, BodyContainer} from '../../RatingsAndReviews/StyledCompo
 
 const StarBreakDown = (props) => {//done
   const [bars, setBars] = useState({});
+
   setTimeout(() => {
     const newBars = {
       opacity: 5,
