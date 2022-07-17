@@ -1,29 +1,72 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
+import { GlobalContext } from '../../../App.js'
 var axios = require('axios');
-// modal
 
-
-
-// subtitle: needs product name and question body
 var AddAnswer = ({q, toggleModal, postAnswer}) => {
+  var storage = useContext(GlobalContext);
+  var { _productId, _chosenProduct } = storage;
+
+  // body data
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
+  var [photoURL, setPhotoURL] = useState([]);
+
+
+  // image data
+  var [fileInput, setFileInput] = useState('');
+  var [previewSource, setPreviewSource] = useState('');
+
+  var handleFileInputChange = (e) => {
+    e.preventDefault();
+    const file  = e.target.files[0];
+
+    previewFile(file)
+  };
+
+  var previewFile = (file) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource([...previewSource, reader.result])
+      console.log('what is preview source', previewSource)
+    }
+  };
 
   var handleSubmit = (e) => {
     e.preventDefault();
-    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: []};
-    if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
-      alert(`Please don't leave any fields blank.`)
-    } else {
-      postAnswer(body);
-      toggleModal(false);
-    }
 
-    if (body.body.length > 60 || body.name.length > 1000 || body.email > 60) {
-      alert('Error, length too long for the email, name, or answer body.')
-    }
+    uploadImage(previewSource);
+
+  };
+
+  var uploadImage = (encodedImage) => {
+    axios.post('/snuggie/upload', {data: encodedImage})
+    .then((val) => {
+      axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
+      .then((val) => {
+        console.log('what is val of cloud', val)
+        var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: val.data};
+
+        if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
+          alert('Error, length too long for the email, name, or answer body.')
+        };
+
+        if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
+          alert(`Please don't leave any fields blank.`)
+        } else {
+          postAnswer(body);
+          toggleModal(false);
+        };
+      })
+      .catch((error) => {
+        console.log('error within get cloudinary data')
+      })
+    })
+    .catch((error) => {
+      console.log('error with uploading Image from client side')
+    })
   };
 
   return (
@@ -34,7 +77,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
           <ModalHeader>
             <ModalH2> Submit Your Answer </ModalH2>
             <ModalSubtitleContainer>
-                <ProductName> Yeezys:  </ProductName>
+                <ProductName> {_chosenProduct.name}:  </ProductName>
                 <QuestionBody> {q.question_body} </QuestionBody>
             </ModalSubtitleContainer>
             <ModalBody>
@@ -52,18 +95,21 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
             </UserInfoContainer>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
+            <ImageContainer>
+              {previewSource &&
+                previewSource.map((each, i) => {
+                  return (
+                     <Images key={i} src={each} />
+                  )
+                })
+              }
+            </ImageContainer>
             <BottomButtonContainers>
-                <UploadButton> Upload Images </UploadButton>
+                <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput>
+                <UploadLabel htmlFor='button' > Upload File </UploadLabel>
                 <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
-            <ImageContainer>
-              Cute
-              Cute
-              CuteCute
-              CuteCute
-              Cute
-            </ImageContainer>
          </ModalHeader>
          </ModalContent>
       </StyleBackground>
@@ -87,7 +133,13 @@ var StyleBackground = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
+var Images = styled.img`
+  width: 150px;
+  height: 150px;
+`;
+
 var ImageContainer = styled.div`
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -98,6 +150,18 @@ var UserNameContainer = styled.div`
   flex-direction: column
 `;
 
+var UploadInput = styled.input`
+
+`;
+
+var UploadLabel = styled.label`
+  background-color: white;
+  color: black;
+  padding: 0.1rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  border: 1px solid black;
+`
 
 var EmailContainer = styled.div`
   display: flex;
@@ -142,7 +206,7 @@ width: 280px;
 `;
 var AnswerBody = styled.textarea`
   width: 700px;
-  height: 300px;
+  height: 200px;
 `;
 
 var BottomButtonContainers = styled.div`

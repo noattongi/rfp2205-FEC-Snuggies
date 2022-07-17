@@ -51,6 +51,7 @@ var ScrollAnswers = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   padding: 20px;
+  height: 200px;
 `;
 
 var AnswerSpan = styled.span`

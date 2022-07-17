@@ -55,19 +55,29 @@ export default function IndividualAnswer({answer}) {
     })
     setReport(false);
   }
+  // console.log('what is answer', answer.photos)
 
   return (
     <IndividualAnswerContainer>
-      <AnswerSpan> {answer.body} </AnswerSpan>
-      <ImageContainer></ImageContainer>
-      <BottomInfoContainer>
-        <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
-        <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> ({helpful}) </AnswerHelpfulnessSpan>
-        <span> | </span>
-        {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
-        {!report && <ReportedSpan> Reported! </ReportedSpan>}
-      </BottomInfoContainer>
+      <IndividualAnswerBody>
+        <AnswerSpan> {answer.body} </AnswerSpan>
+        <ImageContainer></ImageContainer>
+        <BottomInfoContainer>
+          <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
+          <span> | </span>
+          <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> ({helpful}) </AnswerHelpfulnessSpan>
+          <span> | </span>
+          {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
+          {!report && <ReportedSpan> Reported! </ReportedSpan>}
+        </BottomInfoContainer>
+      </IndividualAnswerBody>
+      <ImageSection>
+        {answer.photos.map((each, i) => {
+          return (
+            <Images key={i} src={each}  />
+          )
+        })}
+      </ImageSection>
     </IndividualAnswerContainer>
   )
 };
@@ -76,8 +86,26 @@ export default function IndividualAnswer({answer}) {
 var IndividualAnswerContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: 500px;
+`;
+
+var ImageSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+var Images = styled.img`
+  width: 75px;
+  height: 75px;
+  padding: 10px;
+`;
+
+var IndividualAnswerBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 var YesAnswerSpan = styled.span`
@@ -109,7 +137,7 @@ var BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 40%;
+  width: 200px%;
   font-size: 12px;
 `;
 
