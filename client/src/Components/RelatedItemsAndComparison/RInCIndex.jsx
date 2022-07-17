@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const RInCIndex = (props) => {
   useEffect(() => {
-    console.log('props RInCIndex', props)
+    // console.log('props RInCIndex', props)
   }, [props.productId])
   const getProduct = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId}})

@@ -58,24 +58,22 @@ router.get('/reviews/', (request, response) => {
   }
 });
 
-// GETs a specific product's review metadata
 router.get('/reviews/meta', (request, response) => {
   if (!request.query.product_id) {
     response.sendStatus(500);
   } else {
-    API.getReviewMetadata(request.query.product_id)
+    API.getProductMetaData(request.query.product_id)
       .then((results) => {
         response.status(200).send(results.data);
       })
       .catch((error) => {
-        console.log('Error in getting the review metadata', error);
-        results.sendStatus(500);
+        console.log('Error in getting all the reviews', error);
+        response.send(500);
       });
   }
 });
 
 router.post('/reviews', (request, response) => {
-  console.log(request.body, 'booooddyyyyyyy')
     API.postProductReviews(request.body)
       .then((results) => {
         console.log('did router.post worrrrkkkkkkkkk')
@@ -87,6 +85,32 @@ router.post('/reviews', (request, response) => {
       });
 });
 
+router.put('/reviews/helpfulness', (request, response) => {
+  if (!request.body.review_id) {
+    response.send(500);
+  } else {
+    console.log(request)
+    API.updateReviewsHelpfulness(request.body.review_id, request.body)
+    .then((results) => {
+      response.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log('Error in updating reviews helpfulness', error);
+      response.send(420)
+    })
+  }
+});
+
+router.put('/reviews/report', (request, response) => {
+  API.reportReview(request.body.review_id, request.body)
+  .then((results) => {
+    response.status(201).send(results.data);
+  })
+  .catch((error) => {
+    console.log('Error within reporting a review from server side', error)
+    response.status(420)
+  })
+});
 
 router.get('/related', (request, response) => {
   if (!request.query.product_id) {

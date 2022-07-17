@@ -32,6 +32,13 @@ var getProductStyles = (id) => {
 }
 
 //RATINGS AND REVIEWS
+
+var getProductMetaData = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${id}`, {
+    headers: headers
+  });
+}
+
 var getProductReviews = (id, count, sort) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${count}&sort=${sort}`, {
     headers: headers
@@ -47,6 +54,18 @@ var getReviewMetadata = (id) => {
 
 var postProductReviews = (data) => {
   return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, data, {
+    headers: headers
+  });
+}
+
+var updateReviewsHelpfulness = (id, data) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`, data, {
+    headers: headers
+  });
+};
+
+var reportReview = (id, data) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/report`, data, {
     headers: headers
   });
 }
@@ -98,6 +117,7 @@ var reportAnswer = (id, data) => {
     headers: headers
   });
 }
+
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProduct = getProduct;
 module.exports.getProductStyles = getProductStyles;
@@ -110,5 +130,8 @@ module.exports.getProductAnswer = getProductAnswer;
 module.exports.updateQuestionHelpfulness = updateQuestionHelpfulness;
 module.exports.postQuestion = postQuestion;
 module.exports.updateAnswerHelpfulness = updateAnswerHelpfulness;
+module.exports.getProductMetaData = getProductMetaData
 module.exports.postAnswer= postAnswer;
 module.exports.reportAnswer= reportAnswer;
+module.exports.updateReviewsHelpfulness= updateReviewsHelpfulness;
+module.exports.reportReview= reportReview;
