@@ -11,7 +11,7 @@ const RelatedItemsList = (props) => {
   const [relatedIndex, setRelatedIndex] = useState([]);
 
   useEffect(() => {
-    console.log('id', props.productId)
+    // console.log('id', props.productId)
     getRelated(props.productId)
     .then((data) => {
       var temp = []

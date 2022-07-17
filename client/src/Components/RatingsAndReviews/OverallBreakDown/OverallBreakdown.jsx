@@ -12,6 +12,53 @@ const OverAllBreakDown = (props) => {//done
 	// 	, 'prooooss')
 	const [averageStars, setAverageStars] = useState(0);
 	const [recommendProduct, setRecommendProduct] = useState(0);
+	const [filterArray, setFilterArray] = useState([])
+  const [fiveRatingFilter, setFiveRatingFilter] = useState(true)
+  const [fourRatingFilter, setFourRatingFilter] = useState(false)
+  const [threeRatingFilter, setThreeRatingFilter] = useState(false)
+  const [twoRatingFilter, setTwoRatingFilter] = useState(false)
+  const [oneRatingFilter, setOneRatingFilter] = useState(false)
+
+	var filterReviews = (ratingNum) => {
+    //filter based on toggles
+    let filtered = props.productReviews.results.filter((review) => {
+			return(
+      (fiveRatingFilter === true && review.rating === 5)  ||
+      (fourRatingFilter === true && review.rating === 4) ||
+      (threeRatingFilter === true && review.rating === 3) ||
+      (twoRatingFilter === true && review.rating === 2) ||
+      (oneRatingFilter === true && review.rating === 1)
+			)
+    });
+    setFilterArray(filtered)
+		return filtered
+  }
+
+  var filterToggle = (ratingNum) => {
+		if(ratingNum === 5) {
+      setFiveRatingFilter(!fiveRatingFilter)
+    }
+    if(ratingNum === 4) {
+      setFourRatingFilter(!fourRatingFilter)
+    }
+    if(ratingNum === 3) {
+      setThreeRatingFilter(!threeRatingFilter)
+    }
+    if(ratingNum === 2) {
+      setTwoRatingFilter(!twoRatingFilter)
+    }
+     if(ratingNum === 1) {
+      setOneRatingFilter(!oneRatingFilter)
+    }
+    console.log(fiveRatingFilter)
+	}
+
+	var filterOnClick = (event) => {
+		var numValue = Number(event.target.getAttribute('value'))
+    filterToggle(numValue)
+		let filteredResults = filterReviews(numValue)
+		props.filteredReviews(filteredResults)
+	}
 
   var capToFourth = (number) => {
   return (25 * Math.floor(number / 25));
@@ -35,6 +82,8 @@ useEffect(() => {
 	}
 }, [props.reviewData, props.metadata]);
 
+
+
 	return (
 		<div>
 			<div>Ratings &amp; Reviews</div>
@@ -43,22 +92,22 @@ useEffect(() => {
 		<div> {recommendProduct}% of reviews recommend this product</div>
 		<AllStarsBodyContainer>
 			<SingleBar>
-				<BarText>5 stars</BarText><StarBreakDown done={props.fiveTotal}/>
+				<BarText value='5' onClick={filterOnClick}>5 stars</BarText><StarBreakDown done={props.fiveTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>4 stars</BarText><StarBreakDown done={props.fourTotal}/>
+			  <BarText>4 stars</BarText><StarBreakDown done={props.fourTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>3 stars</BarText><StarBreakDown done={props.threeTotal}/>
+			  <BarText>3 stars</BarText><StarBreakDown done={props.threeTotal}/>
+			</SingleBar>
+			  <SingleBar>
+			  <BarText>2 stars</BarText><StarBreakDown done={props.twoTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>2 stars</BarText><StarBreakDown done={props.twoTotal}/>
-			</SingleBar>
-			<SingleBar>
-			<BarText>1 stars</BarText><StarBreakDown done={props.oneTotal}/>
+			  <BarText>1 stars</BarText><StarBreakDown done={props.oneTotal}/>
 			</SingleBar>
 		</AllStarsBodyContainer>
-		<ProductBreakDown characteristics={props.metaData.characteristics}/>
+		  <ProductBreakDown characteristics={props.metaData.characteristics}/>
 		</div>
 	)
 }

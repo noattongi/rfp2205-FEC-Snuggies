@@ -11,7 +11,6 @@ import OverAllBreakDown from '../RatingsAndReviews/OverallBreakDown/OverallBreak
 
 
 var RatingsAndReviewsIndex = (props) => {
-
   const [sortby, setSortBy] = useState('relevant');
   const [reviews, setReviews] = useState({});
   const [meta, setMeta] = useState({});
@@ -22,6 +21,12 @@ var RatingsAndReviewsIndex = (props) => {
   const [twoStarCount, setTwoStarCount] = useState(0);
   const [oneStarCount, setOneStarCount] = useState(0);
   const [ratings, setRatings] = useState({});
+  const [filterArray, setFilterArray] = useState([])
+  const [fiveRatingFilter, setFiveRatingFilter] = useState(true)
+  const [fourRatingFilter, setFourRatingFilter] = useState(false)
+  const [threeRatingFilter, setThreeRatingFilter] = useState(false)
+  const [twoRatingFilter, setTwoRatingFilter] = useState(false)
+  const [oneRatingFilter, setOneRatingFilter] = useState(false)
 
   const getProductReviews = (productId, sortedBy) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
@@ -94,6 +99,56 @@ var RatingsAndReviewsIndex = (props) => {
     var average =  ((ratingTotal / starCount) * 100);
     return average.toString();
   }
+  var filteredReviews = (filteredReviews) => {
+    console.log(filteredReviews, 'helllllooooooooooo')
+  }
+  // var filterReviews = (ratingNum) => {
+  //   //toggle if filter is on
+  //   if(ratingNum === 5) {
+  //     console.log('did this wor 5')
+  //     setFiveRatingFilter(!fiveRatingFilter)
+  //   }
+  //   if(ratingNum === 4) {
+  //     console.log('did this work 4')
+  //     setFourRatingFilter(!fourRatingFilter)
+  //   }
+  //   if(ratingNum === 3) {
+  //     setThreeRatingFilter(!threeRatingFilter)
+  //   }
+  //   if(ratingNum === 2) {
+  //     setTwoRatingFilter(!twoRatingFilter)
+  //   }
+  //    if(ratingNum === 1) {
+  //     setOneRatingFilter(!oneRatingFilter)
+  //   }
+  //   //filter based on toggles
+  //   let filtered = reviews.results.filter((review) => {
+  //     (fiveRatingFilter === true && review.ratings === 5) &&
+  //     (fourRatingFilter === true && review.ratings === 4) &&
+  //     (threeRatingFilter === true && review.ratings === 3) &&
+  //     (twoRatingFilter === true && review.ratings === 2) &&
+  //     (oneRatingFilter === true && review.ratings === 1)
+  //   });
+  //   console.log(oneRatingFilter, fiveRatingFilter)
+  //   console.log("filterrreddd", filtered)
+  //   setFilterArray(filtered)
+  //   console.log(filterArray, 'fiillllterrrr')
+  // }
+
+  // var filterToggle = (rating) => {
+  //   if(rating === 5) {
+  //     setFiveRatingFilter(!fiveRatingFilter)
+  //   } else if(rating === 4) {
+  //     setFourRatingFilter(!fourRatingFilter)
+  //   } else if(rating === 3) {
+  //     setThreeRatingFilter(!threeRatingFilter)
+  //   } else if(rating === 2) {
+  //     setTwoRatingFilter(!twoRatingFilter)
+  //   } else if(rating === 1) {
+  //     setOneRatingFilter(!oneRatingFilter)
+  //   }
+
+  // }
 
   useEffect(() => {
     if (props.productId) {
@@ -107,7 +162,7 @@ var RatingsAndReviewsIndex = (props) => {
   return (
     <div>
     <RRContainer>
-    <OverAllBreakDown metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
+    <OverAllBreakDown metaData={meta} filteredReviews={filteredReviews} reviewData={meta.ratings} productReviews={reviews} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
     <ReviewList productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>
