@@ -7,7 +7,8 @@ import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
 import {ReviewListContainer} from '../StyledComponents/ReviewListStyle.jsx'
 
 var ReviewList = (props) => {
-  console.log(props)
+
+  // console.log(props)
   const [reviewCount, setReviewCount] = useState(2);
   const [isOpen, setIsOpen] = useState(false)
 
@@ -41,7 +42,7 @@ var ReviewList = (props) => {
     <ul>
       {props.productReviews.results?.slice(0,reviewCount)?.map((review, index) =>
         <ReviewTile key={index}
-                  reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview}/>
+                  reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview} metaData= {props.metaData}/>
       )}
     </ul>
     </div>

@@ -20,6 +20,9 @@ const BarText = styled.div`
 text-align: center;
 display: flex;
 padding-top: 12px;
+justify-content: space-evenly;
+border-style: dotted;
+margin-right: 20px
 `;
 
 export {RRContainer, SingleBar, BarText}

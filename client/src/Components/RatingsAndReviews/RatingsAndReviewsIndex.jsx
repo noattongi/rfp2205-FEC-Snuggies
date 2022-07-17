@@ -2,28 +2,30 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ReviewList from '../RatingsAndReviews/ReviewList/ReviewList.jsx'
-import StarBreakDown from '../RatingsAndReviews/RatingsBreakdown.jsx'
+import StarBreakDown from '../RatingsAndReviews/OverallBreakDown/RatingsBreakdown.jsx'
 import {RRContainer, SingleBar, BarText} from '../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
+import StarRating from '../SharedComponents/StarRating.jsx';
+import { ProductOverviewStarContainer } from '../ProductOverview/StyledComponents/Containers.jsx';
+import OverAllBreakDown from '../RatingsAndReviews/OverallBreakDown/OverallBreakdown.jsx'
+
 
 var RatingsAndReviewsIndex = (props) => {
 
   const [sortby, setSortBy] = useState('relevant');
   const [reviews, setReviews] = useState({});
-  const [meta, setMeta] = useState({})
-  const [starCount, setStarCount] = useState(0)
-  const [fiveStarCount, setFiveStarCount] = useState(0)
-  const [fourStarCount, setFourStarCount] = useState(0)
-  const [threeStarCount, setThreeStarCount] = useState(0)
-  const [twoStarCount, setTwoStarCount] = useState(0)
-  const [oneStarCount, setOneStarCount] = useState(0)
-
-
+  const [meta, setMeta] = useState({});
+  const [starCount, setStarCount] = useState(0);
+  const [fiveStarCount, setFiveStarCount] = useState(0);
+  const [fourStarCount, setFourStarCount] = useState(0);
+  const [threeStarCount, setThreeStarCount] = useState(0);
+  const [twoStarCount, setTwoStarCount] = useState(0);
+  const [oneStarCount, setOneStarCount] = useState(0);
+  const [ratings, setRatings] = useState({});
 
   const getProductReviews = (productId, sortedBy) => {
-    return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 100, sort: sortedBy}})
+    return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
     .then((response) => {
-      console.log(response.data)
       return setReviews(response.data);
     })
     .catch((error) => {
@@ -87,10 +89,12 @@ var RatingsAndReviewsIndex = (props) => {
     console.log(sortBy)
   }
 
+  var overallAverage = (number) => {
+
+  }
+
   var barTotal = (ratingTotal) => {
     var average =  (ratingTotal / starCount) * 100
-    console.log(ratingTotal, starCount)
-    console.log('avveragge',average)
     return average.toString()
   }
 
@@ -100,30 +104,13 @@ var RatingsAndReviewsIndex = (props) => {
       getReviewsMeta(props.productId)
     }
 
-  }, [props.productId, sortby, starCount]);
+  }, [props.productId, sortby, starCount, ratings]);
 
-  console.log(meta, 'reviiiews')
+  // console.log(meta, 'reviiiews')
   return (
     <div>
     <RRContainer>
-      <AllStarsBodyContainer>
-        <SingleBar>
-          <BarText>5 stars </BarText> <StarBreakDown done={barTotal(fiveStarCount)}/>
-        </SingleBar>
-        <SingleBar>
-        <BarText>4 stars </BarText> <StarBreakDown done={barTotal(fourStarCount)}/>
-        </SingleBar>
-        <SingleBar>
-        <BarText>3 stars </BarText> <StarBreakDown done={barTotal(threeStarCount)}/>
-        </SingleBar>
-        <SingleBar>
-        <BarText>2 stars </BarText> <StarBreakDown done={barTotal(twoStarCount)}/>
-        </SingleBar>
-        <SingleBar>
-        <BarText>1 stars </BarText> <StarBreakDown done={barTotal(oneStarCount)}/>
-        </SingleBar>
-      </AllStarsBodyContainer>
-
+    <OverAllBreakDown metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
     <ReviewList productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>

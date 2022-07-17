@@ -85,7 +85,6 @@ router.post('/reviews', (request, response) => {
 });
 
 router.put('/reviews/helpfulness', (request, response) => {
-  console.log('did thsi work', request.body)
   if (!request.body.review_id) {
     response.send(500);
   } else {

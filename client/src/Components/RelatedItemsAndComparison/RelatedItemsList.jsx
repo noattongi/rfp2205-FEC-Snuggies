@@ -12,7 +12,7 @@ const RelatedItemsList = (props) => {
   useEffect(() => {
     getRelated(40344)
     .then((data) => {
-      console.log(props.productId)
+      // console.log(props.productId)
       var temp = []
       data.forEach((id) => {
         temp.push(props.getProduct(id))

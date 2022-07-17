@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
+import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 
 var AddReviewModal = (props) => {
-  console.log(props, 'hellooooo')
+   console.log(props, 'hellooooo')
   const [isOpen, setIsOpen] = useState(false)
   const [bodySummary, setbodySummary] =  useState('')
   const [reviewBody, setReviewBody] =  useState('')
@@ -20,79 +21,85 @@ var AddReviewModal = (props) => {
 
 
   var toggleModal = (e) => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
+  }
+
+  var handleStarClick = (event, key) => {
+    console.log(key, 'key')
+    console.log(event, 'keventy')
+    setAverageRating(key)
   }
 
     var handleEmailChange = (event) => {
-      setEmail(event.target.value)
+      setEmail(event.target.value);
     }
 
     var handleNicknameChange = (event) => {
-      setNickname(event.target.value)
+      setNickname(event.target.value);
     }
 
     var handleReviewBodyChange =(event) => {
       setReviewBody(event.target.value)
-      setCharCountBody(50 - event.target.value.length)
+      setCharCountBody(50 - event.target.value.length);
     }
 
     var handleSummaryChange = (event) => {
       setbodySummary(event.target.value)
-      setCharCountSummary(event.target.value.length)
+      setCharCountSummary(event.target.value.length);
     }
 
     var isValidEmail = (email) => {
-     return  /\S+@\S+\.\S+/.test(email)
+     return  /\S+@\S+\.\S+/.test(email);
     }
 
 
 
     var onImageChange = event => {
-      console.log(event.target.files[0])
+      console.log(event.target.files[0]);
       if (event.target.files && event.target.files[0]) {
         let img = event.target.files[0];
-        setPostedImage(img.name)
-        setSelectedImage(URL.createObjectURL(img))
+        setPostedImage(img.name);
+        setSelectedImage(URL.createObjectURL(img));
 
       }
     };
 
     var recommendOnChange = (event) => {
       if(event.target.value === 'Yes') {
-        return setRecommendInput(true)
+        return setRecommendInput(true);
       } else if(event.target.value === 'No') {
-        return setRecommendInput(false)
+        return setRecommendInput(false);
       }
     }
 
   var sizeOnChange = (event) => {
         var sizeNum = Number(event.target.value)
-        setCharacteristics({...characteristics, '14' : sizeNum})
+        setCharacteristics({...characteristics, '14' : sizeNum});
   }
 
   var widthOnChange = (event) => {
       var widthNum = Number(event.target.value)
-      setCharacteristics({...characteristics, '15' : widthNum})
+      setCharacteristics({...characteristics, '15' : widthNum});
   }
 
   var comfortOnChange = (event) => {
      var comfortNum = Number(event.target.value)
-    setCharacteristics({...characteristics, '16' : comfortNum})
+    setCharacteristics({...characteristics, '16' : comfortNum});
   }
 
   var qualityOnChange = (event) => {
     var qualityNum = Number(event.target.value)
-    setCharacteristics({...characteristics, '17' : qualityNum})
+    setCharacteristics({...characteristics, '17' : qualityNum});
   }
 
   var lengthOnChange = (event) => {
     var lengthNum = Number(event.target.value)
-    setCharacteristics({...characteristics, '18' : lengthNum})
+    setCharacteristics({...characteristics, '18' : lengthNum});
   }
 
   var fitOnChange = (event) => {
     var fitNum = Number(event.target.value)
-    setCharacteristics({...characteristics, '19' : fitNum})
+    setCharacteristics({...characteristics, '19' : fitNum});
 
   }
 
@@ -136,17 +143,17 @@ var AddReviewModal = (props) => {
     },[productName])
 
     return (
-      <StyleBackground> <div className="modalBackground">
-        <Container><div className="modalContainer">
+      <StyleBackground> <div>
+        <Container><div>
           <div>
             <button onClick={props.closeModal}> X </button>
           </div>
-          <div className="title">
+          <div>
             <h1>Write Your Review</h1>
             <h4>About the {props.chosenProduct.name}</h4>
           </div>
-          <ModalBody><div className="body">
-            <p>*Star Rating: ⭐️⭐️⭐️⭐️⭐️</p>
+          <ModalBody><div>
+            {/* *Star Rating: <StarRatingModal/> */}
             <div>
             <label>
               *Recommend:
@@ -243,7 +250,7 @@ var AddReviewModal = (props) => {
             <label>
               Upload Image:
               <input type="file" name="myImage" onChange={onImageChange} />
-              <img className="PreviewImage"  src={selectedImage} ></img>
+              <img src={selectedImage} ></img>
             </label>
             <form >
               <label>
@@ -260,7 +267,7 @@ var AddReviewModal = (props) => {
             </form>
             For authentication reasons, you will not be emailed
           </div></ModalBody>
-          <div className="footer">
+          <div>
             <button onClick={onSubmitClick} >Submit</button>
           </div>
         </div></Container>

@@ -19,6 +19,7 @@ import styled from 'styled-components';
   margin: 0;
   border-style:solid;
   border-color: coral;
+  padding-left: 20px
 `;
 
   const Progress =styled.div`
@@ -33,7 +34,6 @@ import styled from 'styled-components';
   const Done = styled.div`
     background: mediumseagreen;
 	  box-shadow: 0 3px 3px -5px black, 0 2px 5px grey;
-	  color: black;
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
@@ -43,4 +43,47 @@ import styled from 'styled-components';
 	  transition: 1s ease 0.3s;
   `;
 
-  export {Done, Progress, BodyContainer, AllStarsBodyContainer}
+  const Triangle = styled.div`
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 20px solid black;
+  `;
+
+  const Range = styled.input`
+  -webkit-appearance: none;
+  width: 90%;
+  background: transparent;
+
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 36px;
+    width: 16px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 15px solid black;
+    z-index: 5;
+    margin-top: 0px;
+  }
+
+  &::-webkit-slider-runnable-track{
+    background: lightgrey;
+    height: 10px;
+  }
+
+  `;
+
+  export {Done, Progress, BodyContainer, AllStarsBodyContainer, Triangle, Range}
+
+//   &::-moz-range-thumb {
+//     -webkit-appearance: none;
+// appearance: none;
+// width: 0;
+// height: 0;
+// border-left: 100px solid transparent;
+// border-right: 100px solid transparent;
+// border-top: 172px solid black;
+// }

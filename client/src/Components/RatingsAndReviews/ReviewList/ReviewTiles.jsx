@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import ImagePool from './ImagePool.jsx'
-import { format, parseISO } from 'date-fns'
-import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
-// import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
+import ImagePool from './ImagePool.jsx';
+import { format, parseISO } from 'date-fns';
+import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx';
 import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan, ImageContainer} from '../StyledComponents/ReviewTile.jsx';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
-  console.log(props)
 
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
@@ -62,7 +61,7 @@ var ReviewTiles = (props) => {
     <ReviewTile>
    <div>
      <TopContainer>
-        <div>⭐️⭐️⭐️⭐️⭐️</div>
+        <StarRating reviewData={props.reviews.rating}/>
         <UserandDate>
           <span>{props.reviews.reviewer_name}   </span>
           <span> {`,  ${formatDate(props.reviews.date)}`}</span>

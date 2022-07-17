@@ -21,8 +21,8 @@ const OutfitCards = (props) => {
     {props.outfitProd?.map((prod, i) => {
       return (
           <CardBox key={prod.id}>
-            {console.log('mapped outfit', props.outfitProd)}
-            {console.log('index', i)}
+            {/* {console.log('mapped outfit', props.outfitProd)}
+            {console.log('index', i)} */}
             <div onClick = {(e) => {handleDeleteClick(prod.id)}}>❌</div>
             <p>{prod.category}</p>
             <p>{prod.name}</p>
