@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { StyleBackground, Container, Image } from '../StyledComponents/AddReviewModal.jsx';
-
+import { StyleBackground, Container, Image, } from '../StyledComponents/AddReviewModal.jsx';
 var ImageModal = (props) => {
 
-  const [isImageOpen, setIsImageOpen] = useState(false)
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   var toggleImageModal = (e) => {
-    setIsImageOpen(!isImageOpen)
+    setIsImageOpen(!isImageOpen);
   }
 
   return (
@@ -17,7 +16,7 @@ var ImageModal = (props) => {
       <div>
       <button onClick={props.closeImageModal}> X </button>
         <Image>
-          <div><img src={props.pic} /></div>
+          <img src={props.pic} />
         </Image>
       </div>
       </Container>

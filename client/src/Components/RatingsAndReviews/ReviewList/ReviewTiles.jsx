@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import ImagePool from './ImagePool.jsx'
-import { format, parseISO } from 'date-fns'
-import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx'
-// import { AnswerHelpfulnessSpan, BottomInfoContainer, ReportSpan} from '../../QuestionsAndAnswers/StyledComponents/QuestionWithAnswers/IndividualAnswer.jsx'
-import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan} from '../StyledComponents/ReviewTile.jsx';
-import styled from 'styled-components'
+import ImagePool from './ImagePool.jsx';
+import { format, parseISO } from 'date-fns';
+import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx';
+import {TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan, ImageContainer} from '../StyledComponents/ReviewTile.jsx';
+import styled from 'styled-components';
+import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
+
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
+  const [helpfulClickCount, setHelpfulClickCount] = useState(0)
 
   var formatDate = (date) => {
     var dateISO = parseISO(date.slice(0, 10))
@@ -32,12 +34,25 @@ var ReviewTiles = (props) => {
     setSeeMore(false)
   }
 
+   var onHelpfulClick = () => {
+    if(helpfulClickCount < 1) {
+      props.upVoteHelpfulness(props.reviews.review_id);
+      setHelpfulClickCount(helpfulClickCount + 1);
+    } else {
+      alert('You can only upvote once!')
+    }
+   }
+
+   var onReportClick = () => {
+      props.reportReview(props.reviews.review_id);
+   }
+
   var seeMoreRendered = (seeMore) => {
     var rendered;
     if(seeMore === true) {
-      return rendered = props.reviews.body.substr(0, 250)
+      return rendered = props.reviews.body.substr(0, 250);
     } else {
-      return rendered = props.reviews.body
+      return rendered = props.reviews.body;
     }
   }
 
@@ -46,7 +61,7 @@ var ReviewTiles = (props) => {
     <ReviewTile>
    <div>
      <TopContainer>
-        <div>⭐️⭐️⭐️⭐️⭐️</div>
+        <StarRating reviewData={props.reviews.rating}/>
         <UserandDate>
           <span>{props.reviews.reviewer_name}   </span>
           <span> {`,  ${formatDate(props.reviews.date)}`}</span>
@@ -55,23 +70,26 @@ var ReviewTiles = (props) => {
     <Summary>{props.reviews.summary.substr(0, 60)}</Summary>
     <ReviewBody>{seeMoreRendered(seeMore)}
     <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
-    {props.reviews.photos.map((photo, index) =>
+    <ImageContainer>
+    {props.reviews.photos.map((photo, index) => {
+      return(
         <ImagePool key={index}
                   photo={photo}/>
-      )}
+      )
+  })}
+    </ImageContainer>
     </ReviewBody>
     <RecommendProduct>{recommendFilter(props.reviews.recommend.toString())}</RecommendProduct>
-    <div>{props.reviews.response && <h6>{props.reviews.response}</h6>}</div>
+    <div>{props.reviews.response !== null && <h6>{props.reviews.response}</h6>}</div>
     <BottomInfoContainer>
-    <AnswerHelpfulnessSpan>Helpful? Yes ({props.reviews.helpfulness})</AnswerHelpfulnessSpan>
-        <span>|</span>
-        <ReportSpan> Report </ReportSpan>
+    <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={onHelpfulClick}>Yes</YesAnswerSpan> ({props.reviews.helpfulness}) </AnswerHelpfulnessSpan>
+        <span> | </span>
+        {<ReportSpan onClick={onReportClick}> Report </ReportSpan>}
     </BottomInfoContainer>
    </div>
    </ReviewTile>
   )
 };
-
 
 
 export default ReviewTiles

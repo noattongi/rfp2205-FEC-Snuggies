@@ -23,7 +23,7 @@ var App = () => {
     axios.get('/snuggie/products') // No query/parameters, so this endpoint returns ALL products
       // Then get the specific product
       .then((results) => {
-        console.log('ah', results);
+        // console.log('ah', results);
         return axios.get('/snuggie/products', { params: {product_id: results.data[0].id} });
       })
       // Then set the hooks
@@ -66,7 +66,7 @@ var App = () => {
         <br/>
         <QnaIndex/>
         <br/>
-        <RatingsAndReviewsIndex/>
+        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
     </GlobalContext.Provider>
   )
 }

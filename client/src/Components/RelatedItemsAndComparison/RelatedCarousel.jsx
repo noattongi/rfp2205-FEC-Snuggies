@@ -7,15 +7,16 @@ const RelatedCarousel = (props) => {
   // conditional render if more than four cards
   // when click, display currentView from [0, 3] -> [1, 4]
   async function handleCarousel() {
-    if (props.outfitId[props.index + 4]) {
-      return props.setIndex(props.index + 1)
-    } else {
-      return props.setIndex(props.index)
-    }
-
+      return props.setRelatedIndex(Number(props.relatedIndex) + 1)
+  }
+  async function handleBack() {
+      return props.setRelatedIndex(Number(props.relatedIndex) - 1)
   }
   return (
-      <button onClick={handleCarousel}>></button>
+    <>
+      {Boolean(props.relatedProd[props.relatedIndex + 4]) ? <button onClick={handleCarousel}>➡️</button> : null}
+      {Boolean(props.relatedProd[props.relatedIndex + 3] && props.relatedIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
+    </>
   )
 }
 
