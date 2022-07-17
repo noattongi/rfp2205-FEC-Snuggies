@@ -3,13 +3,13 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-const ComparisonModal = ({modalToggle}) => {
+const ComparisonModal = (props) => {
   return (
-    <ModalBackground onClick={(e) => {modalToggle()}}>
+    <ModalBackground onClick={(e) => {props.modalToggle()}}>
       <ModalContainer>
         <ModalBody>
         <div>
-          <p>Current Product Check Marks</p>
+          <p>{props.clickedProd.name}</p>
           <p>___________________________</p>
           <p>✅</p>
           <p>❌</p>
@@ -27,7 +27,7 @@ const ComparisonModal = ({modalToggle}) => {
           <p>Something else made up</p>
         </div>
         <div>
-          <p>Related Product Check Marks</p>
+          <p>{props.chosenProduct.name}</p>
           <p>___________________________</p>
           <p>✅</p>
           <p>❌</p>
