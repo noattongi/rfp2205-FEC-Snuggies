@@ -16,13 +16,13 @@ const RelatedCards = (props) => {
     console.log('related id', props.relatedId)
   }, [props.relatedIndex])
   const handleCardClick = (id) => {
-    return props.setProductId(id)
+    return props.setProductId(id).then(() => {props.setRelatedIndex(0)})
   }
   return (
     <>
     {products?.map((prod) => {
       return (
-          <CardBox key={prod.id} onClick={(e) => { handleCardClick(prod.id)}}>
+          <CardBox key={prod.id} onClick={(e) => {handleCardClick(prod.id)}}>
             <div onClick = {modalToggle}>⭐️</div>
             {modal ? <ComparisonModal modalToggle = {modalToggle}/> : null }
             <p>{prod.category}</p>
