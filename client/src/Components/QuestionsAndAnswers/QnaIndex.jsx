@@ -19,6 +19,7 @@ var QnaIndex = (props) => {
   const [toggleModal, setToggleModal] = useState(false);
   const [filter, setFilter] = useState();
   const [noSearch, setNoSearch] = useState(false);
+  const [urlImage, setURLImage] = useState([]);
 
   var questionSort = question.results?.slice(0, len);
 
