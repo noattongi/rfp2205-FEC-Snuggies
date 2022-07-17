@@ -159,7 +159,7 @@ var ModalHeader = styled.div`
 `;
 
 var ModalH2 = styled.h2`
-
+  padding-left: 150px;
 `;
 
 var ModalSubtitleContainer = styled.div`

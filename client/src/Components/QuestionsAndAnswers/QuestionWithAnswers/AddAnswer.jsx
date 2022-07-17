@@ -20,9 +20,13 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
   var handleFileInputChange = (e) => {
     e.preventDefault();
-    const file  = e.target.files[0];
+    if (previewSource.length < 5) {
+      const file  = e.target.files[0];
+      previewFile(file);
+    } else {
+      alert('Sorry, you can only upload 5 images per answer')
+    };
 
-    previewFile(file)
   };
 
   var previewFile = (file) => {
@@ -31,7 +35,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     reader.onloadend = () => {
       setPreviewSource([...previewSource, reader.result])
       console.log('what is preview source', previewSource)
-    }
+    };
   };
 
   var handleSubmit = (e) => {
@@ -39,6 +43,9 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
     uploadImage(previewSource);
 
+    if (username.length === 0 || email.length === 0 || answerEntry === 0) {
+      alert('Please do not leave any fields blank.')
+    }
   };
 
   var uploadImage = (encodedImage) => {
@@ -46,7 +53,7 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     .then((val) => {
       axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
       .then((val) => {
-        console.log('what is val of cloud', val)
+        console.log('what is val',val)
         var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: val.data};
 
         if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
@@ -253,7 +260,7 @@ var ModalSubtitleContainer = styled.div`
 `;
 
 var ProductName = styled.h3`
-
+  width: 250px;
 `;
 
 var QuestionBody = styled.h3`

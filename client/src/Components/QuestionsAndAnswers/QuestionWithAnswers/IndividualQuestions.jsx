@@ -9,31 +9,20 @@ var IndividualQuestions = ({question, postAnswerfunc}) => {
 
   var [toggleModal, setToggleModal] = useState(false);
   var [helpful, setHelpful] = useState(question.question_helpfulness);
-  var [truth, setTruth] = useState(false);
-  var voted = false;
+  var [vote, setVoted] = useState(false);
 
-  // can refactor  to prevent multiple upvotes after page loads
+  // need to refactor the spacing between the helpfulness button
   var upVote = (e) => {
     e.preventDefault();
-    if (!voted) {
-      axios.put('/snuggie/question/helpfulness', {question_id: question.question_id})
-      .then((response) => {
-        // still needs to be refactored
-        if (!truth) {
-          setHelpful(helpful + 1);
-          setTruth(true);
-        }
-        voted = true;
-      })
-      .catch((error) => {
-        console.log('Error within updating question helpfulness from Client Side')
-      })
-    }
+    axios.put('/snuggie/question/helpfulness', {question_id: question.question_id})
+    .then((response) => {
+      setHelpful(helpful + 1);
+      setVoted(true);
+    })
+    .catch((error) => {
+      console.log('Error within updating question helpfulness from Client Side')
+    })
   };
-
-  var dummy = () => {
-    console.log('clicked')
-  }
 
   return (
     <QnAContainer>
@@ -42,8 +31,13 @@ var IndividualQuestions = ({question, postAnswerfunc}) => {
         <HelpfulAndAddAnswerContainer>
          <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
           {toggleModal && <AddAnswer postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
-          <HelpfulAnswerSpan> Helpful? </HelpfulAnswerSpan>
-           <YesQuestionSpan onClick={upVote}> Yes </YesQuestionSpan>({helpful})
+          <HelpfulAnswerSpan>
+             Helpful?
+           {!vote && <YesQuestionSpan onClick={upVote}>Yes</YesQuestionSpan>}
+           {!vote && <span>({helpful})</span>}
+           {vote && <VotedYesSpan>Yes</VotedYesSpan>}
+           {vote && <VotedHelpfulSpan>({helpful})</VotedHelpfulSpan>}
+           </HelpfulAnswerSpan>
         </HelpfulAndAddAnswerContainer>
       </QuestionHeaderContainer>
       <AnswerListContainer>
@@ -59,6 +53,15 @@ var QnAContainer = styled.div`
   padding-bottom; 1rem;
   border-bottom: 2px solid grey;
   height: 300px;
+`;
+
+var VotedHelpfulSpan = styled.span`
+  color: blue;
+`;
+
+var VotedYesSpan = styled.span`
+  text-decoration: underline;
+  color:blue
 `;
 
 var YesQuestionSpan = styled.span`
@@ -84,6 +87,8 @@ var QuestionSpan = styled.span`
 
 var HelpfulAnswerSpan = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 var AnswerListContainer = styled.div`

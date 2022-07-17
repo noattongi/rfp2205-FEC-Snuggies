@@ -3,12 +3,18 @@ import IndividualQuestions from './IndividualQuestions.jsx';
 import styled from 'styled-components';
 
 
-var QuestionsList = ({questions, postAnswerFunc}) => {
+var QuestionsList = ({questions, postAnswerFunc, filter}) => {
+
 
   return (
     <QnAListContainer>
       <IndividualQuestDiv>
-      {questions?.map((each) => {
+      {!filter && questions?.map((each) => {
+        return (
+          <IndividualQuestions postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
+        )
+      })}
+      {filter && filter?.map((each) => {
         return (
           <IndividualQuestions postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
         )
