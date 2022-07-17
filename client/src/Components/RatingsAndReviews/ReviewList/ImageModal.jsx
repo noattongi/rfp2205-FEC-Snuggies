@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { StyleBackground, Container, Image } from '../StyledComponents/AddReviewModal.jsx';
-
+import { StyleBackground, Container, Image, } from '../StyledComponents/AddReviewModal.jsx';
 var ImageModal = (props) => {
 
   const [isImageOpen, setIsImageOpen] = useState(false);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
+import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
 var AddReviewModal = (props) => {
    console.log(props, 'hellooooo')
@@ -250,7 +251,7 @@ var AddReviewModal = (props) => {
             <label>
               Upload Image:
               <input type="file" name="myImage" onChange={onImageChange} />
-              <img src={selectedImage} ></img>
+               <ImageContainer><ShrinkImg src={selectedImage} /></ImageContainer>
             </label>
             <form >
               <label>
