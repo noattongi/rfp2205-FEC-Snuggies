@@ -30,6 +30,13 @@ const StyleBackground =styled.div`
   max-width: 700px;
   `;
 
+  const shrinkImage = styled.div`
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  z-index: 12;
+  `;
+
 
 const ModalBody = styled.div`
 
@@ -42,4 +49,4 @@ const ModalBody = styled.div`
   `;
 
 
-export { StyleBackground, Container, ModalBody, Image };
+export { StyleBackground, Container, ModalBody, Image, shrinkImage};
