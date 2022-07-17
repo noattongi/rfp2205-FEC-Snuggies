@@ -16,20 +16,20 @@ const RelatedCards = (props) => {
     console.log('related id', props.relatedId)
     setProducts(props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4));
   }, [props.relatedIndex, props.relatedProd])
-  const handleCardClick = (id) => {
+  async function handleCardClick(id) {
     return props.setProductId(id).then(() => {props.setRelatedIndex(0)})
   }
   return (
     <>
     {products?.map((prod) => {
       return (
-          <CardBox key={prod.id} onClick={(e) => {handleCardClick(prod.id)}}>
+          <CardBox key={prod.id}>
             <div onClick = {modalToggle}>⭐️</div>
-            {modal ? <ComparisonModal modalToggle = {modalToggle}/> : null }
-            <p>{prod.category}</p>
-            <p>{prod.name}</p>
-            <p>{prod.default_price}</p>
-            <p>Star Rating</p>
+            {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={prod} chosenProduct={props.chosenProduct}/> : null }
+            <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.category}</p>
+            <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.name}</p>
+            <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.default_price}</p>
+            <p onClick={(e) => {handleCardClick(prod.id)}}>Star Rating</p>
           </CardBox>
        )})}
        </>

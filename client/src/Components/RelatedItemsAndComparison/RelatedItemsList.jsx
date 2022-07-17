@@ -45,7 +45,7 @@ const RelatedItemsList = (props) => {
     <>
       <h3>Related List</h3>
         <Row>
-          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex}/>
+          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct}/>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarousel relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
