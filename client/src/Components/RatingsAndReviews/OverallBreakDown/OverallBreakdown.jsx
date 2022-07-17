@@ -13,7 +13,7 @@ const OverAllBreakDown = (props) => {//done
 	const [averageStars, setAverageStars] = useState(0);
 	const [recommendProduct, setRecommendProduct] = useState(0);
 	const [filterArray, setFilterArray] = useState([])
-  const [fiveRatingFilter, setFiveRatingFilter] = useState(true)
+  const [fiveRatingFilter, setFiveRatingFilter] = useState(false)
   const [fourRatingFilter, setFourRatingFilter] = useState(false)
   const [threeRatingFilter, setThreeRatingFilter] = useState(false)
   const [twoRatingFilter, setTwoRatingFilter] = useState(false)
@@ -37,25 +37,30 @@ const OverAllBreakDown = (props) => {//done
   var filterToggle = (ratingNum) => {
 		if(ratingNum === 5) {
       setFiveRatingFilter(!fiveRatingFilter)
+			console.log('five filter', fiveRatingFilter)
     }
     if(ratingNum === 4) {
       setFourRatingFilter(!fourRatingFilter)
+			console.log('four filter', fourRatingFilter)
     }
     if(ratingNum === 3) {
       setThreeRatingFilter(!threeRatingFilter)
+			console.log('three filter', threeRatingFilter)
     }
     if(ratingNum === 2) {
       setTwoRatingFilter(!twoRatingFilter)
+			console.log('two filter', twoRatingFilter)
     }
      if(ratingNum === 1) {
       setOneRatingFilter(!oneRatingFilter)
+			console.log('one filter', oneRatingFilter)
     }
     console.log(fiveRatingFilter)
 	}
 
 	var filterOnClick = (event) => {
 		var numValue = Number(event.target.getAttribute('value'))
-    filterToggle(numValue)
+		filterToggle(numValue)
 		let filteredResults = filterReviews(numValue)
 		props.filteredReviews(filteredResults)
 	}
@@ -86,7 +91,7 @@ useEffect(() => {
 
 	return (
 		<div>
-			<div>Ratings &amp; Reviews</div>
+
 			<h1>{averageStars && averageStars}</h1>
 		<StarRating reviewData={props.reviewData} />
 		<div> {recommendProduct}% of reviews recommend this product</div>
@@ -95,16 +100,16 @@ useEffect(() => {
 				<BarText value='5' onClick={filterOnClick}>5 stars</BarText><StarBreakDown done={props.fiveTotal}/>
 			</SingleBar>
 			<SingleBar>
-			  <BarText>4 stars</BarText><StarBreakDown done={props.fourTotal}/>
+			  <BarText value='4' onClick={filterOnClick}>4 stars</BarText><StarBreakDown done={props.fourTotal}/>
 			</SingleBar>
 			<SingleBar>
-			  <BarText>3 stars</BarText><StarBreakDown done={props.threeTotal}/>
+			  <BarText value='3' onClick={filterOnClick}>3 stars</BarText><StarBreakDown done={props.threeTotal}/>
 			</SingleBar>
 			  <SingleBar>
-			  <BarText>2 stars</BarText><StarBreakDown done={props.twoTotal}/>
+			  <BarText value='2' onClick={filterOnClick}>2 stars</BarText><StarBreakDown done={props.twoTotal}/>
 			</SingleBar>
 			<SingleBar>
-			  <BarText>1 stars</BarText><StarBreakDown done={props.oneTotal}/>
+			  <BarText value='1' onClick={filterOnClick}>1 stars</BarText><StarBreakDown done={props.oneTotal}/>
 			</SingleBar>
 		</AllStarsBodyContainer>
 		  <ProductBreakDown characteristics={props.metaData.characteristics}/>
