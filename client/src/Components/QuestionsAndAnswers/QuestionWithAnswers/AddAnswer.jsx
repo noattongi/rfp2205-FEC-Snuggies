@@ -43,6 +43,9 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
 
     uploadImage(previewSource);
 
+    if (username.length === 0 || email.length === 0 || answerEntry === 0) {
+      alert('Please do not leave any fields blank.')
+    }
   };
 
   var uploadImage = (encodedImage) => {
@@ -50,7 +53,6 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
     .then((val) => {
       axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
       .then((val) => {
-        console.log('what is val of cloud', val)
         var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: val.data};
 
         if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
@@ -257,7 +259,7 @@ var ModalSubtitleContainer = styled.div`
 `;
 
 var ProductName = styled.h3`
-
+  width: 250px;
 `;
 
 var QuestionBody = styled.h3`

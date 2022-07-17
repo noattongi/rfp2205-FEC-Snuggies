@@ -37,6 +37,7 @@ var QnaIndex = (props) => {
 
   var search = (query) => {
     var query = query.toLowerCase();
+
     if (query.length > 2) {
       var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query));
       setFilter(filtered)
@@ -115,6 +116,7 @@ var QnAContainer = styled.section`
   flex-direction: column;
   border: 1px solid black;
   padding: 50px;
+  width: 1200px;
 `;
 
 var AddQuestionButton = styled.button`
