@@ -12,6 +12,11 @@ var App = () => {
   const [productId, setProductId] = useState();
   const [chosenProduct, setChosenProduct] = useState({});
 
+  var storage = {
+    _productId: productId,
+    _chosenProduct: chosenProduct
+  };
+
   // When App first mounts, send a GET request to the server to get the productId of the first product received
   useEffect(() => {
     // Send axios request to get all products
@@ -31,8 +36,28 @@ var App = () => {
       });
   }, []); // Second argument being an empty array causes this instance of useEffect to only run once
 
+  // If chosen product changes, set product id
+  useEffect(() => {
+    if (Object.keys(chosenProduct).length !== 0) {
+      setProductId(chosenProduct.id);
+    }
+  }, [chosenProduct]);
+
+  // If product id changes, set chosen product
+  useEffect(() => {
+    if (productId) {
+      axios.get('/snuggie/products', { params: {product_id: productId} })
+        .then((results) => {
+          setChosenProduct(results.data);
+        })
+        .catch((error) => {
+          console.log('An error occurred when initializing data received from server:', error);
+        })
+    }
+  }, [productId]);
+
   return(
-    <GlobalContext.Provider value={chosenProduct}>
+    <GlobalContext.Provider value={storage}>
         <div>navbar</div>
         <h1>ANNOUNCEMENTS GO HERE</h1>
         <Overview productId={productId} chosenProduct={chosenProduct} />

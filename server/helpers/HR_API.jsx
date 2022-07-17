@@ -8,9 +8,9 @@ var headers = {
   'Authorization': config
 }
 
-// Function that sends a GET request to the API to get all the products
+// Function that sends a GET request to the API to get all the products (defaulting to asking for 2000 products; there are currently ~1100)
 var getAllProducts = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
+  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?count=2000', {
     headers: headers
   });
 }

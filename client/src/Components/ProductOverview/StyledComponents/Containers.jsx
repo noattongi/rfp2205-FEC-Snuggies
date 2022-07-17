@@ -28,7 +28,13 @@ const ProductOverviewStarContainer = styled.section`
   flex-direction: column;
 `;
 
-// Container to hold the Style Thumbnails in Product Information section
+// Container to hold all the rows of Style Thumbnails in the Product Information section
+const StyleThumbnailRowContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+// Container to hold a single row of Style Thumbnails in Product Information section
 const StyleThumbnailContainer = styled.section`
   display: flex;
   flex-direction: row;
@@ -61,8 +67,15 @@ const AddToCartContainer = styled.section`
 // Container to hold the Product Information description component
 const ProductInformationDescription = styled.section`
   display: flex;
+  flex-direction: row;
   background-color: cyan;
 `;
 
+// Container to hold the Product Slogan and Description
+const SloganDescriptionContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailRowContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription, SloganDescriptionContainer };
