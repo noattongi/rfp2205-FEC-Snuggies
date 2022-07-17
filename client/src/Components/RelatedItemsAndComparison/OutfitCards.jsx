@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const OutfitCards = (props) => {
-  const products = props.outfitProd.slice(props.outfitIndex, props.outfitIndex + 4)
-  console.log('products', products)
+  const [products, setProducts] = useState([])
   useEffect(() => {
-    console.log('child component', props.outfitProd)
+    console.log('child component', props.outfitProd);
+    setProducts(props.outfitProd.slice(props.outfitIndex, props.outfitIndex + 4))
   }, [props.outfitProd, props.outfitId])
 
   async function handleDeleteClick(id) {

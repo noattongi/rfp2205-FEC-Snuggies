@@ -49,7 +49,7 @@ const OutfitList = (props) => {
         </AddContainer>
           <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} outfitIndex={outfitIndex}/>
         <CarouselContainer>
-          {Boolean(outfitId.length > 4) ? <OutfitCarousel outfitRender={outfitRender} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
+          {Boolean(outfitId.length > 4) ? <OutfitCarousel outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
       </Row>
     </div>

@@ -9,8 +9,14 @@ const OutfitCarousel = (props) => {
   async function handleCarousel() {
       return props.setOutfitIndex(Number(props.outfitIndex) + 1)
   }
+  async function handleBack() {
+      return props.setOutfitIndex(Number(props.outfitIndex) - 1)
+  }
   return (
-      <button onClick={handleCarousel}>></button>
+    <>
+      {Boolean(props.outfitProd[props.outfitIndex + 4]) ? <button onClick={handleCarousel}>➡️</button> : null}
+      {Boolean(props.outfitProd[props.outfitIndex + 3] && props.outfitIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
+    </>
   )
 }
 

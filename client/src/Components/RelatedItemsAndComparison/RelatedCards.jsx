@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const RelatedCards = (props) => {
   const [modal, setModal] = useState(false)
-  const products = props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4)
+  const [products, setProducts] = useState([])
   var modalToggle = () => {
     setModal(!modal)
   }
@@ -14,7 +14,8 @@ const RelatedCards = (props) => {
     console.log('index', props.relatedIndex)
     console.log('slice', props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4))
     console.log('related id', props.relatedId)
-  }, [props.relatedIndex])
+    setProducts(props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4));
+  }, [props.relatedIndex, props.relatedProd])
   const handleCardClick = (id) => {
     return props.setProductId(id).then(() => {props.setRelatedIndex(0)})
   }
