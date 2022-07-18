@@ -5,7 +5,7 @@ import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReview
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
 var AddReviewModal = (props) => {
-   console.log(props.metaData.characteristics.Comfort.id, 'hellooooo')
+   console.log(props, 'hellooooo')
   const [isOpen, setIsOpen] = useState(false);
   const [bodySummary, setbodySummary] =  useState('');
   const [reviewBody, setReviewBody] =  useState('');
@@ -118,7 +118,7 @@ var AddReviewModal = (props) => {
     setIsOpen(!isOpen);
     setCharacteristics({});
     props.closeModal();
-    // setRating(null)
+    setRating(null)
   }
 
   var onSubmitClick = (event) => {
@@ -129,9 +129,10 @@ var AddReviewModal = (props) => {
         alert("Please review the mandatory data!")
       }
     } else {
+      console.log(productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
       props.postReview({
       product_id: productID,//hardcoded
-      rating: 3,//hardcoded
+      rating: rating,//hardcoded
       summary: bodySummary,
       body: reviewBody,
       recommend: recommendInput,
@@ -149,6 +150,11 @@ var AddReviewModal = (props) => {
     setProductID(props.chosenProduct.id);
   },[productName, productID]);
 
+  var changeRating = (rating) => {
+    setRating(rating)
+    console.log(rating)
+  }
+
     return (
       <StyleBackground> <div>
         <Container><div>
@@ -160,7 +166,7 @@ var AddReviewModal = (props) => {
             <h4>About the {props.chosenProduct.name}</h4>
           </div>
           <ModalBody><div>
-            *Star Rating:
+            *Star Rating:<StarRatingModal onChange={changeRating}/>
             <div>
             <label>
               *Recommend:
