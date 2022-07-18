@@ -24,10 +24,19 @@ var RatingsAndReviewsIndex = (props) => {
   const [filteredArray, setFilteredArray] = useState([])
 
 
+
+
+
+
+
   const getProductReviews = (productId, sortedBy) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
     .then((response) => {
-      return setReviews(response.data);
+      setReviews(response.data.results);
+      return response.data.results
+    })
+    .then((response) => {
+      console.log(response, 'hellloooo')
     })
     .catch((error) => {
       console.log('Error in getProductReviews', error);
@@ -67,7 +76,7 @@ var RatingsAndReviewsIndex = (props) => {
   var upVoteHelpfulness = (reviewid) => {
       return axios.put('/snuggie/reviews/helpfulness', {review_id: reviewid})
       .then((response) => {
-        getProductReviews(props.productId, sortby)
+        // getProductReviews(props.productId, sortby)
       })
       .catch((error) => {
         console.log('Error within updating reviews helpfulness from Client Side')
