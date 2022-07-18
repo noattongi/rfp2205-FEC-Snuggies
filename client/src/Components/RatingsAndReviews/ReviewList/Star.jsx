@@ -23,7 +23,6 @@ const FilledStarModal = styled.i`
 `;
 
 const Star = (props) => {//({ filled, onClick })
- console.log(props.filled)
 
 
   return (
