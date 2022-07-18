@@ -24,16 +24,16 @@ var QnaIndex = (props) => {
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}} )
-    .then((response) => {
-      setQuestion(response.data);
-      setDefaultQ(response.data);
-    })
-    .catch((error) => {
-      console.log('Error in retrieving question list from server', error);
-    });
-
-
+    if(_productId) {
+      axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}} )
+      .then((response) => {
+        setQuestion(response.data);
+        setDefaultQ(response.data);
+      })
+      .catch((error) => {
+        console.log('Error in retrieving question list from server', error);
+      });
+    }
   }, [_productId]);
 
   var search = (query) => {
