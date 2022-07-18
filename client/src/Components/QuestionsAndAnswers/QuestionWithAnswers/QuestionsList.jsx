@@ -3,7 +3,7 @@ import IndividualQuestions from './IndividualQuestions.jsx';
 import styled from 'styled-components';
 
 
-var QuestionsList = ({questions, postAnswerFunc, filter}) => {
+var QuestionsList = ({urlImage, setURLImage, questions, postAnswerFunc, filter}) => {
 
 
   return (
@@ -11,12 +11,12 @@ var QuestionsList = ({questions, postAnswerFunc, filter}) => {
       <IndividualQuestDiv>
       {!filter && questions?.map((each) => {
         return (
-          <IndividualQuestions postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
+          <IndividualQuestions urlImage={urlImage} setURLImage={setURLImage} postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
         )
       })}
       {filter && filter?.map((each) => {
         return (
-          <IndividualQuestions postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
+          <IndividualQuestions urlImage={urlImage} setURLImage={setURLImage} postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
         )
       })}
       </IndividualQuestDiv>
