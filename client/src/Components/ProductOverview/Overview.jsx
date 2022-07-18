@@ -48,9 +48,9 @@ var Overview = (props) => {
         </SloganDescriptionContainer>
         <Divider />
         <FeatureList>
-          {props.chosenProduct.features && props.chosenProduct.features.map((feature) => {
+          {props.chosenProduct.features && props.chosenProduct.features.map((feature, index) => {
             return (
-              <Feature> {feature.feature}{feature.value && ` -- ${feature.value}`}</Feature>
+              <Feature key={`feature${index}`}> {feature.feature}{feature.value && ` -- ${feature.value}`}</Feature>
             );
           })}
         </FeatureList>
