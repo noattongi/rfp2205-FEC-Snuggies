@@ -97,10 +97,11 @@ var QnaIndex = (props) => {
 
   return (
     <QnAContainer>
+        <Header> Questions and Answers </Header>
         <SearchQuestions search={search}/>
         {noSearch && <h2> NO SEARCH RESULT</h2>}
         <QuestionScrollDiv>
-          <QuestionsList postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
+          <QuestionsList urlImage={urlImage} setURLImage={setURLImage} postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
         </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
@@ -116,8 +117,15 @@ var QnAContainer = styled.section`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  padding: 50px;
-  width: 1200px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-bottom: 25px;
+  width: 900px;
+`;
+
+var Header = styled.h1`
+  padding-left: 325px;
 `;
 
 var AddQuestionButton = styled.button`
