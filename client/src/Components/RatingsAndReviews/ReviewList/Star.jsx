@@ -24,7 +24,6 @@ const FilledStarModal = styled.i`
 
 const Star = (props) => {//({ filled, onClick })
 
-
   return (
     <StarContainer>
       <EmptyStarModal
@@ -40,6 +39,5 @@ const Star = (props) => {//({ filled, onClick })
     </StarContainer>
   );
 }
-
 
 export default Star;
