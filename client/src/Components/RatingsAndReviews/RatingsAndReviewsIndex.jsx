@@ -12,7 +12,7 @@ import OverAllBreakDown from '../RatingsAndReviews/OverallBreakDown/OverallBreak
 
 var RatingsAndReviewsIndex = (props) => {
   const [sortby, setSortBy] = useState('relevant');
-  const [reviews, setReviews] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [starCount, setStarCount] = useState(0);
   const [fiveStarCount, setFiveStarCount] = useState(0);
@@ -22,12 +22,52 @@ var RatingsAndReviewsIndex = (props) => {
   const [oneStarCount, setOneStarCount] = useState(0);
   const [ratings, setRatings] = useState({});
   const [filteredArray, setFilteredArray] = useState([])
+  const [fiveRatingFilter, setFiveRatingFilter] = useState(false)
+  const [fourRatingFilter, setFourRatingFilter] = useState(false)
+  const [threeRatingFilter, setThreeRatingFilter] = useState(false)
+  const [twoRatingFilter, setTwoRatingFilter] = useState(false)
+  const [oneRatingFilter, setOneRatingFilter] = useState(false)
 
 
+  var filterToggle = (ratingNum) => {
+    if(ratingNum === 5) {
+      setFiveRatingFilter(!fiveRatingFilter);
+      console.log('five filter', fiveRatingFilter);
+    } else if(ratingNum === 4) {
+      console.log('four filter', fourRatingFilter);
+    } else if(ratingNum === 3) {
+      setThreeRatingFilter(!threeRatingFilter);
+      console.log('three filter', threeRatingFilter)
+    } else if(ratingNum === 2) {
+      setTwoRatingFilter(!twoRatingFilter);
+      console.log('two filter', twoRatingFilter)
+    } else if(ratingNum === 1) {
+      setOneRatingFilter(!oneRatingFilter);
+      console.log('one filter', oneRatingFilter)
+    }
+    console.log('five filter', fiveRatingFilter);
+    console.log('four filter', fourRatingFilter);
+    console.log('three filter', threeRatingFilter)
+    console.log('two filter', twoRatingFilter)
+    console.log('one filter', oneRatingFilter)
+  }
 
-
-
-
+  var filterTheReviews = (ratingNum) => {
+    filterToggle(ratingNum)
+    console.log(fiveRatingFilter, "check the toggle herer")
+    let filtered = reviews.filter((review) => {
+      return (
+        (fiveRatingFilter === true && review.rating === 5)  ||
+        (fourRatingFilter === true && review.rating === 4) ||
+        (threeRatingFilter === true && review.rating === 3) ||
+        (twoRatingFilter === true && review.rating === 2) ||
+        (oneRatingFilter === true && review.rating === 1)
+      )
+    });
+      // setReviews(filtered)
+      setFilteredArray(filtered);//set filter Array with filtered data
+      return filtered;
+    }
 
   const getProductReviews = (productId, sortedBy) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
@@ -35,9 +75,9 @@ var RatingsAndReviewsIndex = (props) => {
       setReviews(response.data.results);
       return response.data.results
     })
-    .then((response) => {
-      console.log(response, 'hellloooo')
-    })
+    // .then((response) => {
+    //   console.log(response, 'REspponnsee')
+    // })
     .catch((error) => {
       console.log('Error in getProductReviews', error);
     })
@@ -65,7 +105,8 @@ var RatingsAndReviewsIndex = (props) => {
     // console.log(postReviewObj)
     return axios.post('/snuggie/reviews', postReviewObj)
     .then((response) => {
-      getProductReviews(props.productId, sortby)
+      var filtered = getProductReviews(props.productId, sortby)
+      return filtered
       console.log(response, 'response in postReview func')
     })
     .catch((error) => {
@@ -115,14 +156,14 @@ var RatingsAndReviewsIndex = (props) => {
       getReviewsMeta(props.productId);
     }
 
-  }, [props.productId, sortby, starCount, ratings]);
+  }, [props.productId, sortby, starCount, ratings, fiveRatingFilter, fourRatingFilter,threeRatingFilter, twoRatingFilter, oneRatingFilter]);
 
   // console.log(meta, 'reviiiews')
   return (
     <div>
     <span>Ratings &amp; Reviews</span>
     <RRContainer>
-    <OverAllBreakDown metaData={meta} filteredReviews={filteredReviews} reviewData={meta.ratings} productReviews={reviews} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
+    <OverAllBreakDown metaData={meta} filterTheReviews={filterTheReviews} filteredReviews={filteredReviews} reviewData={meta.ratings} productReviews={reviews} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
     <ReviewList productReviews={reviews} filteredReviews={filteredArray} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>

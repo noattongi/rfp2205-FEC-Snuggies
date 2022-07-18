@@ -55,7 +55,7 @@ var ReviewList = (props) => {
       </ul>}
       </div>
       </Scroll>
-      {props.productReviews.length > 2 && reviewCount < props.productReviews.length && <button onClick={moreReviewClick} >More Reviews</button>}
+      {props.productReviews.length > 2 && reviewCount < props.productReviews?.length && <button onClick={moreReviewClick} >More Reviews</button>}
       <button
         className="openModalBtn"
         onClick={toggleModal}
@@ -78,7 +78,7 @@ var ReviewList = (props) => {
           <Scroll>
             <div>
         <ul>
-          {props.filteredReviews.slice(0,reviewCount).map((review, index) =>
+          {props.filteredReviews.slice(0,reviewCount)?.map((review, index) =>
             <ReviewTile key={index}
                       reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview} metaData= {props.metaData}/>
           )}

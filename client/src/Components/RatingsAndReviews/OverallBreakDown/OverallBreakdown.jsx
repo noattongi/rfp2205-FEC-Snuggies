@@ -8,61 +8,15 @@ import {RRContainer, SingleBar, BarText} from '../../RatingsAndReviews/StyledCom
 import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
 
 const OverAllBreakDown = (props) => {//done
-	// console.log(props
-	// 	, 'prooooss')
+	// console.log(props, 'porps in overall breakdown')
 	const [averageStars, setAverageStars] = useState(0);
 	const [recommendProduct, setRecommendProduct] = useState(0);
 	const [filterArray, setFilterArray] = useState([])
-  const [fiveRatingFilter, setFiveRatingFilter] = useState(false)
-  const [fourRatingFilter, setFourRatingFilter] = useState(false)
-  const [threeRatingFilter, setThreeRatingFilter] = useState(false)
-  const [twoRatingFilter, setTwoRatingFilter] = useState(false)
-  const [oneRatingFilter, setOneRatingFilter] = useState(false)
 
-	var filterReviews = (ratingNum) => {
-    //filter based on toggles
-    let filtered = props.productReviews.results.filter((review) => {
-			return(
-      (fiveRatingFilter === true && review.rating === 5)  ||
-      (fourRatingFilter === true && review.rating === 4) ||
-      (threeRatingFilter === true && review.rating === 3) ||
-      (twoRatingFilter === true && review.rating === 2) ||
-      (oneRatingFilter === true && review.rating === 1)
-			)
-    });
-    setFilterArray(filtered)
-		return filtered
-  }
-
-  var filterToggle = (ratingNum) => {
-		if(ratingNum === 5) {
-      setFiveRatingFilter(!fiveRatingFilter)
-			console.log('five filter', fiveRatingFilter)
-    }
-    if(ratingNum === 4) {
-      setFourRatingFilter(!fourRatingFilter)
-			console.log('four filter', fourRatingFilter)
-    }
-    if(ratingNum === 3) {
-      setThreeRatingFilter(!threeRatingFilter)
-			console.log('three filter', threeRatingFilter)
-    }
-    if(ratingNum === 2) {
-      setTwoRatingFilter(!twoRatingFilter)
-			console.log('two filter', twoRatingFilter)
-    }
-     if(ratingNum === 1) {
-      setOneRatingFilter(!oneRatingFilter)
-			console.log('one filter', oneRatingFilter)
-    }
-    console.log(fiveRatingFilter)
-	}
 
 	var filterOnClick = (event) => {
 		var numValue = Number(event.target.getAttribute('value'))
-		filterToggle(numValue)
-		let filteredResults = filterReviews(numValue)
-		props.filteredReviews(filteredResults)
+		props.filterTheReviews(numValue)
 	}
 
   var capToFourth = (number) => {

@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
-  console.log(props, 'thessee are the props')
+  // console.log(props, 'thessee are the props in review tiles')
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
   const [helpfulClickCount, setHelpfulClickCount] = useState(0)
