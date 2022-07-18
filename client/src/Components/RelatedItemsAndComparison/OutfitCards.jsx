@@ -47,7 +47,7 @@ const OutfitCards = (props) => {
             <p>{prod.category}</p>
             <p>{prod.name}</p>
             <p>{prod.default_price}</p>
-            <StarRating onClick={(e) => {handleCardClick(prod.id)}} reviewData={getRatings(prod.id)}/>
+            <StarRating reviewData={getRatings(prod.id)}/>
             </CardBox>
        )}): null}
        </>

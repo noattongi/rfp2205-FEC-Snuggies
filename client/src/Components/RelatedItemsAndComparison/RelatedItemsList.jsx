@@ -76,7 +76,6 @@ const RelatedItemsList = (props) => {
   async function getStars(id) {
     return axios.get('/snuggie/reviews/meta', { params: { product_id: id }})
         .then((res) => {
-          console.log('res data', res.data)
           return res.data;
         })
         .catch((error) => {
@@ -102,7 +101,6 @@ const RelatedItemsList = (props) => {
 
   return (
     <>
-    {console.log('review data', reviewData)}
       <h3>Related List</h3>
         <Row>
           <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct} styles={styles} reviewData={reviewData}/>

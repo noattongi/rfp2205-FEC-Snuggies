@@ -8,7 +8,7 @@ import StarRating from '../SharedComponents/StarRating.jsx';
 const RelatedCards = (props) => {
   const [modal, setModal] = useState(false);
   const [products, setProducts] = useState([]);
-
+  const [clickedProd, setClickedProd] = useState({});
   var modalToggle = () => {
     setModal(!modal)
   }
@@ -45,13 +45,19 @@ const RelatedCards = (props) => {
     {products?.map((prod) => {
       return (
           <CardBox key={prod.id}>
-            <div onClick = {modalToggle}>⭐️</div>
-            {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={prod} chosenProduct={props.chosenProduct}/> : null }
-            <ThumbnailImage src={getUrl(prod.id)} />
-            <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.category}</p>
-            <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.name}</p>
-            <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.default_price}</p>
-            <StarRating onClick={(e) => {handleCardClick(prod.id)}} reviewData={getRatings(prod.id)}/>
+            <div onClick={(e) => {
+              setClickedProd(prod);
+              modalToggle();}}>⭐️</div>
+              {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={clickedProd} chosenProduct={props.chosenProduct}/> : null }
+              <div onClick={(e) => {handleCardClick(prod.id)}}>
+              <ThumbnailImage src={getUrl(prod.id)} />
+              <p>{prod.category}</p>
+              <p>{prod.name}</p>
+              <p>{prod.default_price}</p>
+              <StarContainer>
+                <StarRating reviewData={getRatings(prod.id)}/>
+              </StarContainer>
+            </div>
           </CardBox>
        )})}
        </>
@@ -76,10 +82,14 @@ const ThumbnailImage = styled.img`
   width: 62px;
   height: 62px;
   background-color: white;
-
   border: solid;
   border-color: black;
   :hover {
     cursor: pointer;
   }
+`;
+
+const StarContainer = styled.div`
+  position: flex;
+  margin: 20px;
 `;
