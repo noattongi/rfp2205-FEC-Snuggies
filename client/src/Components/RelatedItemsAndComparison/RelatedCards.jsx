@@ -5,20 +5,31 @@ import ComparisonModal from './ComparisonModal.jsx'
 import styled from 'styled-components';
 
 const RelatedCards = (props) => {
-  const [modal, setModal] = useState(false)
-  const [products, setProducts] = useState([])
+  const [modal, setModal] = useState(false);
+  const [products, setProducts] = useState([]);
+
   var modalToggle = () => {
     setModal(!modal)
   }
+
   useEffect(() => {
-    console.log('index', props.relatedIndex)
-    console.log('slice', props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4))
-    console.log('related id', props.relatedId)
     setProducts(props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4));
   }, [props.relatedIndex, props.relatedProd])
+
   async function handleCardClick(id) {
     return props.setProductId(id).then(() => {props.setRelatedIndex(0)})
   }
+
+  const getUrl = (id) => {
+    if (props.styles[0]) {
+      for (var i = 0; i < props.styles.length; i++) {
+        if (props.styles[i].product_id == id) {
+          return props.styles[i].results[0].photos[0].thumbnail_url
+        }
+      }
+    }
+  }
+
   return (
     <>
     {products?.map((prod) => {
@@ -26,6 +37,7 @@ const RelatedCards = (props) => {
           <CardBox key={prod.id}>
             <div onClick = {modalToggle}>⭐️</div>
             {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={prod} chosenProduct={props.chosenProduct}/> : null }
+            <ThumbnailImage src={getUrl(prod.id)} />
             <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.category}</p>
             <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.name}</p>
             <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.default_price}</p>
@@ -46,4 +58,18 @@ const CardBox = styled.div`
   text-align: center;
   margin: 20px;
   width: 25%;
+`;
+
+const ThumbnailImage = styled.img`
+  object-fit: cover;
+  overflow: hidden;
+  width: 62px;
+  height: 62px;
+  background-color: white;
+
+  border: solid;
+  border-color: black;
+  :hover {
+    cursor: pointer;
+  }
 `;

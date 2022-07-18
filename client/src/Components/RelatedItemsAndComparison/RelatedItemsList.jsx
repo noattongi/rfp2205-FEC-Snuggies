@@ -9,9 +9,9 @@ const RelatedItemsList = (props) => {
   const [relatedId, setRelatedId] = useState([]);
   const [relatedProd, setRelatedProd] = useState([]);
   const [relatedIndex, setRelatedIndex] = useState([]);
+  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
-    console.log('id', props.productId)
     getRelated(props.productId)
     .then((data) => {
       var temp = []
@@ -41,11 +41,39 @@ const RelatedItemsList = (props) => {
       console.log('Error in getRelated', error)
     })
   }
+
+  async function getStyles(id) {
+    return axios.get('/snuggie/styles', {params: {product_id: id}})
+    .then((res) => {
+      return res.data
+    })
+  }
+
+  async function stylesArray() {
+    var temp = [];
+    relatedId.forEach((id) => {
+      temp.push(getStyles(id));
+    })
+    return temp;
+  }
+
+  useEffect(() => {
+    stylesArray()
+    .then((array) => {
+      Promise.all(array)
+      .then((values) => {
+        setStyles(values)
+      })
+    })
+    .catch((err) => {
+      console.log('styles error', err)
+    })
+  }, [relatedId])
   return (
     <>
       <h3>Related List</h3>
         <Row>
-          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct}/>
+          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct} styles={styles}/>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarousel relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
