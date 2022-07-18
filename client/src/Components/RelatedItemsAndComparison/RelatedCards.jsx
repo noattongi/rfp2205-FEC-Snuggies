@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ComparisonModal from './ComparisonModal.jsx'
 import styled from 'styled-components';
+import StarRating from '../SharedComponents/StarRating.jsx';
 
 const RelatedCards = (props) => {
   const [modal, setModal] = useState(false);
@@ -21,7 +22,7 @@ const RelatedCards = (props) => {
   }
 
   const getUrl = (id) => {
-    if (props.styles[0]) {
+    if (props.styles !== []) {
       for (var i = 0; i < props.styles.length; i++) {
         if (props.styles[i].product_id == id) {
           return props.styles[i].results[0].photos[0].thumbnail_url
@@ -30,6 +31,15 @@ const RelatedCards = (props) => {
     }
   }
 
+  const getRatings = (id) => {
+    if (props.reviewData !== []) {
+      for (var i = 0; i < props.reviewData.length; i++) {
+        if (props.reviewData[i].product_id == id) {
+          return props.reviewData[i].ratings
+        }
+      }
+    }
+  }
   return (
     <>
     {products?.map((prod) => {
@@ -41,7 +51,7 @@ const RelatedCards = (props) => {
             <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.category}</p>
             <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.name}</p>
             <p onClick={(e) => {handleCardClick(prod.id)}}>{prod.default_price}</p>
-            <p onClick={(e) => {handleCardClick(prod.id)}}>Star Rating</p>
+            <StarRating onClick={(e) => {handleCardClick(prod.id)}} reviewData={getRatings(prod.id)}/>
           </CardBox>
        )})}
        </>

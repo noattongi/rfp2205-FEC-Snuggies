@@ -10,25 +10,28 @@ const RelatedItemsList = (props) => {
   const [relatedProd, setRelatedProd] = useState([]);
   const [relatedIndex, setRelatedIndex] = useState([]);
   const [styles, setStyles] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
 
   useEffect(() => {
-    getRelated(props.productId)
-    .then((data) => {
-      var temp = []
-      data.forEach((id) => {
-        temp.push(props.getProduct(id))
+    if (props.productId) {
+      getRelated(props.productId)
+      .then((data) => {
+        var temp = []
+        data.forEach((id) => {
+          temp.push(props.getProduct(id))
+        })
+        return temp;
       })
-      return temp;
-    })
-    .then((array) => {
-      Promise.all(array)
-      .then((values) => {
-        setRelatedProd(values)
+      .then((array) => {
+        Promise.all(array)
+        .then((values) => {
+          setRelatedProd(values)
+        })
       })
-    })
-    .catch((error) => {
-      console.log('useEffect error', error)
-    })
+      .catch((error) => {
+        console.log('useEffect error', error)
+      })
+    }
   }, [props.productId, relatedIndex]);
 
   async function getRelated(productId) {
@@ -69,11 +72,40 @@ const RelatedItemsList = (props) => {
       console.log('styles error', err)
     })
   }, [relatedId])
+
+  async function getStars(id) {
+    return axios.get('/snuggie/reviews/meta', { params: { product_id: id }})
+        .then((res) => {
+          console.log('res data', res.data)
+          return res.data;
+        })
+        .catch((error) => {
+          console.log('Error in getting review metadata from server', error);
+        })
+  }
+  async function starsArray() {
+    var temp = [];
+    relatedId.forEach((id) => {
+      temp.push(getStars(id));
+    })
+    return temp;
+  }
+  useEffect(() => {
+    starsArray()
+    .then((array) => {
+      Promise.all(array)
+      .then((values) => {
+        setReviewData(values)
+      })
+    })
+  }, [relatedId])
+
   return (
     <>
+    {console.log('review data', reviewData)}
       <h3>Related List</h3>
         <Row>
-          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct} styles={styles}/>
+          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct} styles={styles} reviewData={reviewData}/>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarousel relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
