@@ -20,10 +20,12 @@ const Summary = styled.div`
   padding-bottom: 20px;
   font-weight: bold;
 `;
-
+//might need to add another div for reviewBody
 const ReviewBody = styled.div`
 padding-bottom: 20px;
 padding-bottom: 20px;
+width: 80%;
+word-wrap: break-word;
 `;
 
 const RecommendProduct = styled.div`
@@ -78,6 +80,7 @@ var ImageContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   z-index: 11;
+
 `;
 
 

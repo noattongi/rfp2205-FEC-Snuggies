@@ -16,9 +16,7 @@ var ImageModal = (props) => {
       <Container>
       <div>
       <button onClick={props.closeImageModal}> X </button>
-        <Image>
-          <img src={props.pic} />
-        </Image>
+          <Image src={props.pic} />
       </div>
       </Container>
     </div>

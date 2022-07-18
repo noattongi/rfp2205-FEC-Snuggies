@@ -22,11 +22,12 @@ const StyleBackground =styled.div`
   width: 80%;
   `;
 
-  const Image = styled.div`
+  const Image = styled.img`
   margin: auto;
   justify-content: center;
   display: block;
   width: 80%;
+  height: 80%;
   max-width: 700px;
   `;
 
@@ -34,7 +35,7 @@ const StyleBackground =styled.div`
   justify-content: center;
   width: 200px;
   height: 200px;
-  z-index: 12;
+
   `;
 
 

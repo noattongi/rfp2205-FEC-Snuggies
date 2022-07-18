@@ -5,7 +5,7 @@ import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReview
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
 var AddReviewModal = (props) => {
-   console.log(props, 'hellooooo')
+   console.log(props.metaData.characteristics.Comfort.id, 'hellooooo')
   const [isOpen, setIsOpen] = useState(false);
   const [bodySummary, setbodySummary] =  useState('');
   const [reviewBody, setReviewBody] =  useState('');
@@ -71,32 +71,38 @@ var AddReviewModal = (props) => {
 
   var sizeOnChange = (event) => {
       var sizeNum = Number(event.target.value);
-      setCharacteristics({...characteristics, '14' : sizeNum});
+      var sizeId = props.metaData.characteristics.Size.id
+      setCharacteristics({...characteristics, sizeId : sizeNum});
   }
 
   var widthOnChange = (event) => {
     var widthNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '15' : widthNum});
+    var widthId = props.metaData.characteristics.Width.id
+    setCharacteristics({...characteristics, [widthId] : widthNum});
   }
 
   var comfortOnChange = (event) => {
     var comfortNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '16' : comfortNum});
+    var comfortId = props.metaData.characteristics.Comfort.id
+    setCharacteristics({...characteristics, [comfortId] : comfortNum});
   }
 
   var qualityOnChange = (event) => {
     var qualityNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '17' : qualityNum});
+    var qualityId = props.metaData.characteristics.Quality.id
+    setCharacteristics({...characteristics, [qualityId] : qualityNum});
   }
 
   var lengthOnChange = (event) => {
     var lengthNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '18' : lengthNum});
+    var lengthId = props.metaData.characteristics.Length.id
+    setCharacteristics({...characteristics, [lengthId] : lengthNum});
   }
 
   var fitOnChange = (event) => {
     var fitNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '19' : fitNum});
+    var fitId = props.metaData.characteristics.Fit.id
+    setCharacteristics({...characteristics, [fitId] : fitNum});
   }
 
   var resetSubmitValues = () => {
@@ -132,7 +138,7 @@ var AddReviewModal = (props) => {
       name: nickname,
       email: email,
       photos: [postedImage],
-      characteristics: {}
+      characteristics: characteristics
     })
     resetSubmitValues();
     }
