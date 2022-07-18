@@ -9,7 +9,7 @@ import AddToCartButton from '../StyledComponents/ProductInformation/AddToCart/Ad
 import FavoriteButton from '../StyledComponents/ProductInformation/AddToCart/Favorite.jsx';
 
 // The component
-var CartButtons = (props) => {
+var AddToCart = (props) => {
 
   return (
     <div>
@@ -34,4 +34,4 @@ var CartButtons = (props) => {
 }
 
 // Export it
-export default CartButtons;
+export default AddToCart;
