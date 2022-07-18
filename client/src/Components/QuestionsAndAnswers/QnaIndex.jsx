@@ -117,11 +117,14 @@ var QnAContainer = styled.section`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  background-color: rgb(255, 255, 255);
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
   padding-bottom: 25px;
   width: 900px;
+  border-radius: 5px;
+  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
 
 var Header = styled.h1`
