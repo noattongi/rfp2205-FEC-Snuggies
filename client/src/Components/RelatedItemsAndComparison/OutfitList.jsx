@@ -9,6 +9,8 @@ const OutfitList = (props) => {
   const [outfitProd, setOutfitProd] = useState([]);
   const [outfitId, setOutfitId] = useState([]);
   const [outfitIndex, setOutfitIndex] = useState([]);
+  const [styles, setStyles] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
 
   useEffect(() => {
     outfitRender(outfitIndex)
@@ -39,7 +41,60 @@ const OutfitList = (props) => {
       return setOutfitId([...outfitId, id])
     }
   }
+  async function stylesArray() {
+    var temp = [];
+    outfitId.forEach((id) => {
+      temp.push(getStyles(id));
+    })
+    return temp;
+  }
+  async function getStyles(id) {
+    return axios.get('/snuggie/styles', {params: {product_id: id}})
+    .then((res) => {
+      return res.data
+    })
+  }
+  useEffect(() => {
+    if (outfitId.length > 0) {
+      stylesArray()
+      .then((array) => {
+        Promise.all(array)
+        .then((values) => {
+          setStyles(values)
+        })
+      })
+      .catch((err) => {
+        console.log('styles error', err)
+      })
+    }
+  }, [outfitId])
+  async function getStars(id) {
+    return axios.get('/snuggie/reviews/meta', { params: { product_id: id }})
+        .then((res) => {
+          console.log('res data', res.data)
+          return res.data;
+        })
+        .catch((error) => {
+          console.log('Error in getting review metadata from server', error);
+        })
+  }
 
+  async function starsArray() {
+    var temp = [];
+    outfitId.forEach((id) => {
+      temp.push(getStars(id));
+    })
+    return temp;
+  }
+  useEffect(() => {
+    starsArray()
+    .then((array) => {
+      Promise.all(array)
+      .then((values) => {
+        setReviewData(values)
+      })
+    })
+  }, [outfitId])
   return (
     <div>
       <h3>Outfit List</h3>
@@ -47,7 +102,7 @@ const OutfitList = (props) => {
         <AddContainer>
           <button onClick={(e) => {addOutfitId(props.productId)}}>+</button>
         </AddContainer>
-          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} outfitIndex={outfitIndex}/>
+          <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} outfitIndex={outfitIndex} styles={styles} reviewData={reviewData}/>
         <CarouselContainer>
           {Boolean(outfitId.length > 4) ? <OutfitCarousel outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
