@@ -13,7 +13,7 @@ const ProductBreakDown = (props) => {//done
   const [fitSliderValue, setFitSliderValue] = useState(0);
 
   useEffect(() => {
-    console.log(props)
+    // console.log(props)
     var averageChar = (rating) => {
     var average = (rating * 100) / 5
       return average;

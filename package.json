@@ -6,7 +6,7 @@
   "scripts": {
     "server-start": "nodemon server.js -w",
     "client-start": "webpack --config webpack.config.js -w",
-    "test": "jest --env=jsdom",
+    "test": "jest --env=jsdom" ,
     "coverage": "jest --coverage"
   },
   "keywords": [],

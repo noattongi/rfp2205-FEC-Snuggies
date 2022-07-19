@@ -1,10 +1,22 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import toggleModal from '../Components/RatingsAndReviews/ReviewList/ReviewList.jsx'
-import ReviewList from '../Components/RatingsAndReviews/ReviewList/ReviewList.jsx'
-import AddReviewModal from '../Components/RatingsAndReviews/ReviewList/AddReviewModal.jsx'
+import toggleModal from '../../client/src/Components/RatingsAndReviews/ReviewList/ReviewList.jsx'
+import ReviewList from '../../client/src/Components/RatingsAndReviews/ReviewList/ReviewList.jsx'
+import AddReviewModal from '../../client/src/Components/RatingsAndReviews/ReviewList/AddReviewModal.jsx'
+import ImageModal from '../../client/src/Components/RatingsAndReviews/ReviewList/ImagePool.jsx'
 import { render, screen } from '@testing-library/react';
 
+
+it ('renders ReviewListIndex succesfully', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<AddReviewModal/>, div)
+})
+
+
+it ('renders ImageModal succesfully', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<ImageModal/>, div)
+})
 
 it ('renders ReviewListIndex succesfully', () => {
   const div = document.createElement('div');
@@ -23,23 +35,6 @@ it ('renders ReviewListIndex succesfully', () => {
 // });
 // const { toggleModal } = require('./Components/RatingsAndReviews/ReviewList/ReviewList.jsx')
 
-
-
-// describe('Renders Component without Crashing', () => {
-// it ("renders AddQuestion succesfully", () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<AddQuestion/>, div)
-// });
-
-// it ('renders QuestionList crashing', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<QuestionList/>, div)
-// });
-
-// it ('renders QnAIndex succesfully', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<QnaIndex/>, div)
-// })
 
 
   // it('should do what I like', () => {
