@@ -7,7 +7,6 @@ import styled from 'styled-components';
 const ProductOverviewContainer = styled.section`
   display: flex;
   flex-direction: row;
-  background-color: #F5F5F5;
 `;
 
 // Image Gallery container
@@ -22,7 +21,12 @@ const ImageGalleryContainer = styled.section`
 const ProductInformationContainer = styled.section`
   display: flex;
   flex-direction: column;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Nanum Gothic Coding', monospace;
+  background-color: #607B7D;
+  min-width: 475px;
+  border: solid 3px;
+  border-radius: 10px;
+  margin-left: 5px;
 `;
 
 // Container to hold the Star Rating shared component and Read [#] Reviews link in Product Information section
