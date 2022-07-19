@@ -27,6 +27,22 @@ var AddToCart = (props) => {
     }
   }, [props.chosenStyle]);
 
+  // Build options to display for the quantity-- options depend on the selected size
+  var quantityOptions = [];
+  if (style.skus) {
+    if (style.skus[chosenSize]) {
+      if (style.skus[chosenSize].quantity === 0) {
+        let noStock = <option value='' key="noStock">OUT OF STOCK</option>;
+        quantityOptions.push(noStock);
+      } else {
+        for (let i = 1; i <= style.skus[chosenSize].quantity && i < 16; i++) {
+          let newOption = <option value={i} key={`quantity${i}`}>{i}</option>;
+          quantityOptions.push(newOption);
+        }
+      }
+    }
+  }
+
   return (
     <div>
       <SizeAndCountContainer>
@@ -41,6 +57,10 @@ var AddToCart = (props) => {
         </SizeDropdown>
         <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize}>
           <option value="">-</option>
+          {/* Add options for the quantity based on how many are available for the selected size */}
+          {quantityOptions.map((quantity) => {
+            return quantity;
+          })}
         </QuantityDropdown>
       </SizeAndCountContainer>
       <AddToCartContainer>
