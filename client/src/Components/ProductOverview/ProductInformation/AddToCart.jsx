@@ -65,7 +65,6 @@ var AddToCart = (props) => {
       </SizeAndCountContainer>
       <AddToCartContainer>
         <AddToCartButton>Add to Cart</AddToCartButton>
-        <FavoriteButton>❤️ Button</FavoriteButton>
       </AddToCartContainer>
     </div>
   );
