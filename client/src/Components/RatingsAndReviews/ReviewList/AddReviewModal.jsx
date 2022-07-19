@@ -184,14 +184,14 @@ var AddReviewModal = (props) => {
             <button onClick={props.closeModal}> X </button>
           </div>
           <div>
-            <ProductName><h1>Write Your Review</h1></ProductName>
+            <ProductName>Write Your Review</ProductName>
             <h4>About the {props.chosenProduct.name}</h4>
           </div>
           <ModalBody><div>
             *Star Rating:<StarRatingModal onChange={changeRating}/>
             <div>
             <label>Do you recommend this product?
-            <input type="radio" id='Yess' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes
+            <input type="radio" id='Yes' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes
             <input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No
             </label>
             </div>
@@ -219,7 +219,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Comfort &&
-                <label>*Comfort{characteristics[comfortID] && <span>{value}</span>}
+                <label>*Comfort
                   <input type="radio" value="1" name="Comfort" onChange={comfortOnChange}/> Uncomfortable
                   <input type="radio" value="2" name="Comfort" onChange={comfortOnChange}/> Slightly uncomfortable
                   <input type="radio" value="3" name="Comfort" onChange={comfortOnChange}/> Ok
