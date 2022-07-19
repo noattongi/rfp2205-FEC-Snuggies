@@ -18,9 +18,12 @@ const ProductNameSpan = styled.span`
 
 // Style Text
 const StyleSpan = styled.span`
-  padding-bottom: 12px;
+  padding: 6px;
   font-size: 26;
   font-weight: bold;
+  border: solid 3px;
+  border-radius: 5px 5px 0 0;
+  background-color: #828e82;
 `;
 
 // Style Name
