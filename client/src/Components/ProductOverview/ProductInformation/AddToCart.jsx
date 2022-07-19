@@ -15,7 +15,8 @@ var AddToCart = (props) => {
   const [skus, setSkus] = useState([]);
   const [chosenSize, setChosenSize] = useState();
   const [chosenQuantity, setChosenQuantity] = useState();
-  const [clickedWithoutSize, setClicked] = useState(false);
+  const [clickedWithoutSize, setClickedWithoutSize] = useState(false);
+  const [clickedWithoutQuantity, setClickedWithoutQuantity] = useState(false);
 
   var style = props.chosenStyle;
 
@@ -24,6 +25,11 @@ var AddToCart = (props) => {
     if (style.skus) {
       // style.skus is an object where each key is a different sku_id (has size and quanitity attributes)
       setSkus(Object.keys(style.skus));
+      // Reset the other states/hooks
+      setChosenSize('');
+      setChosenQuantity('');
+      setClickedWithoutSize(false);
+      setClickedWithoutQuantity(false);
     }
   }, [props.chosenStyle]);
 
@@ -45,11 +51,14 @@ var AddToCart = (props) => {
 
   // Function to handle clicking AddToCart button
   var handleAddToCart = () => {
-    // If no size is selected, open the dropdown and display a message
+    // If no size is selected, open the size dropdown and display a message
     if (!chosenSize) {
-      setClicked(true);
-    } else {
+      setClickedWithoutSize(true);
+    // Else if no quantity is selected, open the quantity dropdown and display a message
+    } else if (!chosenQuantity) {
     // If a valid size and quantity are selected, send a POST request to the API (adding item(s) to cart)
+      setClickedWithoutQuantity(true);
+    } else {
       axios.post('/snuggie/cart', { "sku_id": chosenSize, "count": chosenQuantity })
         .then(() => {
           console.log(`Added ${chosenQuantity} items of size ${style.skus[chosenSize].size} to cart.`);
@@ -64,7 +73,7 @@ var AddToCart = (props) => {
     <div>
       <SizeAndCountContainer>
         {clickedWithoutSize && <span>Please select size</span>}
-        <SizeDropdown name="size" id="size-select" onChange={(event) => {setChosenSize(event.target.value); setClicked(false);}}>
+        <SizeDropdown name="size" id="size-select" onChange={(event) => {setChosenSize(event.target.value); setClickedWithoutSize(false);}}>
           <option value="">Select Size</option>
           {/* For each sku_id, add a size */}
           {skus.map((sku_id, index) => {
@@ -73,7 +82,8 @@ var AddToCart = (props) => {
             }
           })}
         </SizeDropdown>
-        <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} onChange={(event) => {setChosenQuantity(event.target.value)}}>
+        {clickedWithoutQuantity && <span>Please select quantity</span>}
+        <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} onChange={(event) => {setChosenQuantity(event.target.value); setClickedWithoutQuantity(false);}}>
           <option value="0">-</option>
           {/* Add options for the quantity based on how many are available for the selected size */}
           {quantityOptions.map((quantity) => {
