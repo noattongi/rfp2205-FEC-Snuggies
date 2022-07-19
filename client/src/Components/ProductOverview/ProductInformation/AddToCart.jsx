@@ -63,9 +63,9 @@ var AddToCart = (props) => {
           })}
         </QuantityDropdown>
       </SizeAndCountContainer>
-      <AddToCartContainer>
+      {chosenSize && chosenQuantity && <AddToCartContainer>
         <AddToCartButton>Add to Cart</AddToCartButton>
-      </AddToCartContainer>
+      </AddToCartContainer>}
     </div>
   );
 }
