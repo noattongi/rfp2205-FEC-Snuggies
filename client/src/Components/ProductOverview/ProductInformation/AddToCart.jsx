@@ -55,7 +55,7 @@ var AddToCart = (props) => {
             }
           })}
         </SizeDropdown>
-        <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize}>
+        <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} onChange={(event) => {setChosenQuantity(event.target.value)}}>
           <option value="">-</option>
           {/* Add options for the quantity based on how many are available for the selected size */}
           {quantityOptions.map((quantity) => {
