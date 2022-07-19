@@ -14,6 +14,8 @@ const ProductOverviewContainer = styled.section`
 const ImageGalleryContainer = styled.section`
   display: flex;
   flex-direction: row;
+  background-color: #828e82;
+  border-radius: 10px;
 `;
 
 // Product Information container (does not include Product Description)

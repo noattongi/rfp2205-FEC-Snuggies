@@ -12,9 +12,10 @@ const ImageThumbnails = styled.section`
   padding: 16px 16px 16px 16px;
   border: solid 3px;
   border-color: #120309;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   min-width: 84px;
   min-height: 702px;
+  background-color: #3a606e;
 `;
 
 // An image thumbnail
@@ -25,7 +26,7 @@ const ThumbnailImage = styled.img`
   height: 62px;
 
   border: solid 3px;
-  border-color: #3A606E;
+  border-color: #120309;
   border-radius: 5px;
 
   :hover {
