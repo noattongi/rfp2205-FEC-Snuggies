@@ -20,6 +20,7 @@ const ImageGalleryContainer = styled.section`
 const ProductInformationContainer = styled.section`
   display: flex;
   flex-direction: column;
+  font-family: 'Cormorant Garamond', serif;
 `;
 
 // Container to hold the Star Rating shared component and Read [#] Reviews link in Product Information section
