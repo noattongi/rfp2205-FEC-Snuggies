@@ -7,8 +7,13 @@ import styled from 'styled-components';
 const ImageThumbnails = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 32px 16px 16px 16px;
-  background-color: teal;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px 16px 16px 16px;
+  border: solid 3px;
+  border-color: #120309;
+  min-width: 116px;
+  min-height: 734px;
 `;
 
 // An image thumbnail
@@ -17,37 +22,51 @@ const ThumbnailImage = styled.img`
   overflow: hidden;
   width: 62px;
   height: 62px;
-  background-color: white;
 
-  border: solid;
-  border-color: black;
+  border: solid 3px;
+  border-color: #3A606E;
+  border-radius: 5px;
+
   :hover {
     cursor: pointer;
+    border-color: #EF8354;
   }
 `;
 
 // A regular div element
 const Div = styled.div`
-  margin: 0 16px 20px 16px;
+  margin: 8px 8px 8px 8px;
 `;
 
 // A div element that wraps around the chosen (selected) image thumbnail
 const ChosenDiv = styled.div`
-  margin: 0 16px 20px 16px;
-  border: solid;
-  border-color: white;
+  margin: 8px 8px 8px 8px;
+  background-color: #EF8354;
+
+  border: solid 3px;
+  border-radius: 5px;
+  border-color: #EF8354;
+
 `;
 
 // The up/down arrow icon that shifts the shown thumbnails up/down
 const Arrow = styled.i`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   object-fit: fill;
   width: 15px;
   height: 15px;
-  background-color: white;
+  background-color: #FFFFFF;
   padding: 3px;
   border: solid;
-  border-color: black;
+  border-color: #120309;
   border-radius: 10%;
+  margin: 15px 0px 15px 0px;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  }
 `;
 
 // Export the styled components

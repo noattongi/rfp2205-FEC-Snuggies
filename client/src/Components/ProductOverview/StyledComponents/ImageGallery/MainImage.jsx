@@ -16,7 +16,7 @@ const DefaultView = styled.div`
   justify-content: center;
   width: 642px;
   height: 628px;
-  background-color: black;
+  background-color: #F5F5F5;
   :hover {
     cursor: zoom-in;
   }
@@ -45,6 +45,7 @@ const LeftArrow = styled.i`
   z-index: 2;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   }
 `;
 
@@ -64,6 +65,7 @@ const RightArrow = styled.i`
   z-index: 2;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   }
 `;
 
@@ -83,6 +85,7 @@ const FullScreen = styled.i`
   z-index: 2;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   }
 `;
 

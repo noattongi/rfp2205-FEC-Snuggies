@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const ProductOverviewContainer = styled.section`
   display: flex;
   flex-direction: row;
-  background-color: lightblue;
+  background-color: #F5F5F5;
 `;
 
 // Image Gallery container
@@ -69,7 +69,6 @@ const AddToCartContainer = styled.section`
 const ProductInformationDescription = styled.section`
   display: flex;
   flex-direction: row;
-  background-color: cyan;
 `;
 
 // Container to hold the Product Slogan and Description
