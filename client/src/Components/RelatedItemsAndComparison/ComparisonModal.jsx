@@ -47,7 +47,7 @@ const ModalBackground =styled.div`
   backdrop-filter: blur(8px);
   display: block;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   padding-top: 100px;
   left: 0;
   top: 0;
