@@ -56,7 +56,6 @@ var ReviewTiles = (props) => {
     }
   }
 
-
   return (
     <ReviewTile>
    <div>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { StyleBackground, Container, ModalBody } from '../StyledComponents/AddReviewModal.jsx';
+import { StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
 var AddReviewModal = (props) => {
-   console.log(props, 'hellooooo')
+  //  console.log(props, 'hellooooo')
   const [isOpen, setIsOpen] = useState(false);
   const [bodySummary, setbodySummary] =  useState('');
   const [reviewBody, setReviewBody] =  useState('');
@@ -20,6 +20,7 @@ var AddReviewModal = (props) => {
   const [characteristics, setCharacteristics] = useState({});
   const [productName, setProductName] = useState('');
   const [productID, setProductID] = useState(0);
+  const [photoURL, setPhotoURL] = useState([]);
 
 
   var toggleModal = (e) => {
@@ -129,7 +130,7 @@ var AddReviewModal = (props) => {
         alert("Please review the mandatory data!")
       }
     } else {
-      console.log(productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
+      console.log(photoURL, productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
       props.postReview({
       product_id: productID,//hardcoded
       rating: rating,//hardcoded
@@ -138,7 +139,7 @@ var AddReviewModal = (props) => {
       recommend: recommendInput,
       name: nickname,
       email: email,
-      photos: [postedImage],
+      photos: photoURL,
       characteristics: characteristics
     })
     resetSubmitValues();
@@ -155,6 +156,26 @@ var AddReviewModal = (props) => {
     console.log(rating)
   }
 
+
+  var array = [];
+
+  var widget = window.cloudinary.createUploadWidget({
+    cloudName: 'dp73xsqh9',
+    uploadPreset: 'FECPRESET'
+  }, (error, result) => {
+    if (!error && result && result.event === 'success') {
+      console.log('data', result.info.url)
+      array.push(result.info.url);
+      setPhotoURL(array)
+      // setURLImage([...urlImage, result.info.url])
+      console.log('what is photoURL', photoURL)
+    }
+  });
+
+  var openPhotoUpload = () => {
+    widget.open()
+  };
+
     return (
       <StyleBackground> <div>
         <Container><div>
@@ -162,22 +183,20 @@ var AddReviewModal = (props) => {
             <button onClick={props.closeModal}> X </button>
           </div>
           <div>
-            <h1>Write Your Review</h1>
+            <ProductName><h1>Write Your Review</h1></ProductName>
             <h4>About the {props.chosenProduct.name}</h4>
           </div>
           <ModalBody><div>
             *Star Rating:<StarRatingModal onChange={changeRating}/>
             <div>
-            <label>
-              *Recommend:
+            <label>Do you recommend this product?
             <input type="radio" id='Yess' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes
             <input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No
             </label>
             </div>
             <div>
             {props.metaData.Size &&
-            <label>
-             *Size
+            <label>*Size
                <input type="radio" value="1" name="Size" onChange={sizeOnChange}/> A size too small
                <input type="radio" value="2" name="Size" onChange={sizeOnChange}/> ½ a size too small
                <input type="radio" value="3" name="Size" onChange={sizeOnChange}/> Perfect
@@ -188,8 +207,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
             {props.metaData.characteristics.Width &&
-            <label>
-             *Width
+            <label>*Width
               <input type="radio" value="1" name="Width" onChange={widthOnChange}/> Too narrow
               <input type="radio" value="2" name="Width" onChange={widthOnChange}/> Slightly narrow
               <input type="radio" value="3" name="Width" onChange={widthOnChange}/> Perfect
@@ -200,8 +218,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Comfort &&
-                <label>
-                *Comfort
+                <label>*Comfort
                   <input type="radio" value="1" name="Comfort" onChange={comfortOnChange}/> Uncomfortable
                   <input type="radio" value="2" name="Comfort" onChange={comfortOnChange}/> Slightly uncomfortable
                   <input type="radio" value="3" name="Comfort" onChange={comfortOnChange}/> Ok
@@ -212,8 +229,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Quality &&
-                <label>
-                  *Quality
+                <label>*Quality
                     <input type="radio" value="1" name="Quality" onChange={qualityOnChange}/> Poor
                     <input type="radio" value="2" name="Quality" onChange={qualityOnChange}/> Below average
                     <input type="radio" value="3" name="Quality" onChange={qualityOnChange}/> What I expected
@@ -224,8 +240,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Quality &&
-                <label>
-                  *Length
+                <label>*Length
                     <input type="radio" value="1" name="Length" onChange={lengthOnChange}/> Runs Short
                     <input type="radio" value="2" name="Length" onChange={lengthOnChange}/> Runs slightly short
                     <input type="radio" value="3" name="Length" onChange={lengthOnChange}/> Perfect
@@ -236,8 +251,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Fit &&
-                <label>
-                  *Fit
+                <label>*Fit
                     <input type="radio" value="1" name="Fit" onChange={fitOnChange}/> Runs tight
                     <input type="radio" value="2" name="Fit" onChange={fitOnChange}/> Runs slightly tight
                     <input type="radio" value="3" name="Fit" onChange={fitOnChange}/> Perfect
@@ -247,34 +261,38 @@ var AddReviewModal = (props) => {
               }
               </div>
             <form >
-              <label>
-                Review Summary:
+              <label>Review Summary:
                 <input type="text" placeholder="Example: Best purchase ever!" value={bodySummary} maxLength = "60" onChange={handleSummaryChange}/>
                 {charCountSummary}/60
                 </label>
-            </form>
-            <form >
-              <label>
-                *Review Body:
+            </form><form >
+              <label>*Review Body:
                 <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
                 {charCountBody > 0 ? <span>required characters left: [{charCountBody}]</span> : <span>Minimum reached</span>}
               </label>
             </form>
-            <label>
-              Upload Image:
-              <input type="file" name="myImage" onChange={onImageChange} />
-               <ImageContainer><ShrinkImg src={selectedImage} /></ImageContainer>
+            <label>Upload Image:
+              <button onClick={openPhotoUpload} > Upload Cloud</button>
+              {/* <input type="file" name="myImage" onChange={onImageChange} />
+               <ImageContainer><ShrinkImg src={selectedImage} /></ImageContainer> */}
             </label>
+            <div>
+            {photoURL &&
+                photoURL.map((each, i) => {
+                  return (
+                     <ShrinkImg key={i} src={each} />
+                  )
+                })
+              }
+              </div>
             <form >
-              <label>
-                *Nickname:
+              <label>*Nickname:
                 <input type="text" placeholder="Example: jackson11!" value={nickname} maxLength = "60" onChange={handleNicknameChange}/>
               </label>
             </form>
             For privacy reasons, do not use your full name or email address
             <form >
-              <label>
-                *Email:
+              <label>*Email:
                 <input type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
               </label>
             </form>

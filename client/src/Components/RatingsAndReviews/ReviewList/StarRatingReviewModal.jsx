@@ -30,9 +30,26 @@ const FilledStarModal = styled.i`
 const StarRatingModal = (props) => { //onCHange
 
   const [rating, setRating] = useState(0);
+  const [ratingText, setRatingText] = useState('');
+
+   const changeRatingText = (newRating) => {
+    if(newRating === 5) {
+      setRatingText('Great')
+    } else if (newRating === 4) {
+        setRatingText('Good')
+    } else if (newRating === 3) {
+      setRatingText('Average')
+    } else if (newRating === 2) {
+      setRatingText('Good')
+    } else if (newRating === 1) {
+      setRatingText('Poor')
+    }
+   }
+
 
   const changeRating = (newRating) => {
     setRating(newRating);
+    changeRatingText(newRating)
     props.onChange?.(newRating);
   };
 
@@ -47,6 +64,7 @@ const StarRatingModal = (props) => { //onCHange
           onClick={() => changeRating(value)}
         />
       ))}
+     {ratingText !== '' && <span>{ratingText}</span>}
     </div>
     </StarContainerModal>
 
