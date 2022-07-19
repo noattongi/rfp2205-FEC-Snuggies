@@ -12,8 +12,9 @@ const ImageThumbnails = styled.section`
   padding: 16px 16px 16px 16px;
   border: solid 3px;
   border-color: #120309;
-  min-width: 116px;
-  min-height: 734px;
+  border-radius: 10px;
+  min-width: 84px;
+  min-height: 702px;
 `;
 
 // An image thumbnail
