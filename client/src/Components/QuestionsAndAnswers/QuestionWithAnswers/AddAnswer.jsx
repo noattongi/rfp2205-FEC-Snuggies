@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { GlobalContext } from '../../../App.js'
 var axios = require('axios');
 
-var AddAnswer = ({q, toggleModal, postAnswer}) => {
+var AddAnswer = ({urlImage, setURLImage, q, toggleModal, postAnswer}) => {
   var storage = useContext(GlobalContext);
   var { _productId, _chosenProduct } = storage;
 
@@ -13,67 +13,32 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
   var [email, setEmail] = useState('');
   var [photoURL, setPhotoURL] = useState([]);
 
+  var backupSubmit = (e) => {
+    e.preventDefault()
+    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: photoURL}
+    postAnswer(body)
+    toggleModal(false)
+  }
 
-  // image data
-  var [fileInput, setFileInput] = useState('');
-  var [previewSource, setPreviewSource] = useState('');
+  var array = [];
 
-  var handleFileInputChange = (e) => {
-    e.preventDefault();
-    if (previewSource.length < 5) {
-      const file  = e.target.files[0];
-      previewFile(file);
-    } else {
-      alert('Sorry, you can only upload 5 images per answer')
-    };
+  var widget = window.cloudinary.createUploadWidget({
+    cloudName: 'dkzeszwgm',
+    uploadPreset: 'presetFEC'
+  }, (error, result) => {
+    if (!error && result && result.event === 'success') {
+      console.log('data', result.info.url)
 
-  };
-
-  var previewFile = (file) => {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource([...previewSource, reader.result])
-      console.log('what is preview source', previewSource)
-    };
-  };
-
-  var handleSubmit = (e) => {
-    e.preventDefault();
-
-    uploadImage(previewSource);
-
-    if (username.length === 0 || email.length === 0 || answerEntry === 0) {
-      alert('Please do not leave any fields blank.')
+      array.push(result.info.url);
+      setPhotoURL(array)
+      // setURLImage([...urlImage, result.info.url])
+      console.log('what is photoURL', photoURL)
     }
-  };
+  });
 
-  var uploadImage = (encodedImage) => {
-    axios.post('/snuggie/upload', {data: encodedImage})
-    .then((val) => {
-      axios.get('/snuggie/upload/get', {params: { len: previewSource.length}})
-      .then((val) => {
-        console.log('what is val',val)
-        var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: val.data};
 
-        if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
-          alert('Error, length too long for the email, name, or answer body.')
-        };
-
-        if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
-          alert(`Please don't leave any fields blank.`)
-        } else {
-          postAnswer(body);
-          toggleModal(false);
-        };
-      })
-      .catch((error) => {
-        console.log('error within get cloudinary data')
-      })
-    })
-    .catch((error) => {
-      console.log('error with uploading Image from client side')
-    })
+  var click = () => {
+    widget.open()
   };
 
   return (
@@ -103,8 +68,8 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
             </UserInfoContainer>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
-              {previewSource &&
-                previewSource.map((each, i) => {
+              {photoURL &&
+                photoURL.map((each, i) => {
                   return (
                      <Images key={i} src={each} />
                   )
@@ -112,9 +77,10 @@ var AddAnswer = ({q, toggleModal, postAnswer}) => {
               }
             </ImageContainer>
             <BottomButtonContainers>
-                <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput>
-                <UploadLabel htmlFor='button' > Upload File </UploadLabel>
-                <SubmitButton onClick={handleSubmit}> Submit! </SubmitButton>
+              <button onClick={click} > Upload Cloud</button>
+                {/* <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput> */}
+                {/* <UploadLabel htmlFor='button' > Upload File </UploadLabel> */}
+                <SubmitButton onClick={backupSubmit}> Submit! </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
          </ModalHeader>
@@ -129,7 +95,7 @@ var StyleBackground = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
-  z-index: 10;
+  z-index: 50;
   left: 0;
   top: 0;
   width: 100%;

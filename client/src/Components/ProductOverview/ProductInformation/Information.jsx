@@ -45,7 +45,7 @@ var Information = (props) => {
       {price}
       <div>Style > {(props.chosenStyle && props.chosenStyle.name) || "Loading Selected Style..."}</div>
       <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
-      <CartButtons />
+      <CartButtons chosenStyle={props.chosenStyle} />
     </ProductInformationContainer>
   );
 }

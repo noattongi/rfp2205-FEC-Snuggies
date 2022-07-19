@@ -103,11 +103,22 @@ var Images = styled.img`
   width: 75px;
   height: 75px;
   padding: 10px;
+  border-radius: 15px;
+
+  :hover {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 2px;
+  }
 `;
+
+
 
 var YesAnswerSpanVoted = styled.span`
   text-decoration: underline;
   color: blue;
+  padding-left: 5px;
+  padding-right: 2px;
 `;
 
 var IndividualAnswerBody = styled.div`
@@ -123,6 +134,8 @@ var YesAnswerSpan = styled.span`
     cursor: pointer;
     color: blue;
   };
+  padding-left: 5px;
+  padding-right: 2px;
 `;
 
 var ReportedSpan = styled.span`
