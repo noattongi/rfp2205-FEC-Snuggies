@@ -8,7 +8,7 @@ import axios from 'axios';
 import mockReviewData from './mockReviewData.js';
 import mockReviewMetaData from './mockReviewMetaData.js';
 import mockProductData from '../ProductOverview/mockData/mockProductData.js';
-
+//not
 // Mock axios using jest
 jest.mock('axios');
 
@@ -28,7 +28,7 @@ test('Renders RatingsAndReviewsIndex', async () => {
         });
       case '/snuggie/reviews/meta':
         return Promise.resolve({
-          data: mockReviewMetaData.camoOnesieStyles
+          data: mockReviewMetaData.camoOnesieMetadata
         });
       default:
         return Promise.reject(new Error('not found'));
@@ -38,7 +38,5 @@ test('Renders RatingsAndReviewsIndex', async () => {
   await act( async () => {
     render(<RatingsAndReviewsIndex productId={40344} chosenProduct={mockProductData.camoOnesie}/>);
   })
-  const div = document.createElement('div');
-  ReactDOM.render(<RatingsAndReviewsIndex productId={40344} chosenProduct={mockProductData.camoOnesie}/>, div)
 });
 

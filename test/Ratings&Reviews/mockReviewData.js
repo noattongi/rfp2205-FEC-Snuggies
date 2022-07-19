@@ -1,3 +1,17 @@
+var singleSunglassReview =[ {
+    "review_id": 1275661,
+    "rating": 2,
+    "summary": "product",
+    "recommend": true,
+    "response": null,
+    "body": "this product is trying to make sure it works properly",
+    "date": "2022-07-19T00:00:00.000Z",
+    "reviewer_name": "helloWorld",
+    "helpfulness": 0,
+    "photos": []
+}]
+
+
 var camoOnesie = {
   "product": "40344",
   "page": 0,
