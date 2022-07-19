@@ -18,9 +18,8 @@ var axios = require('axios')
 export default function IndividualAnswer({answer}) {
 
   var [helpful, setHelpful] = useState(answer.helpfulness);
-  var [truth, setTruth] = useState(false);
   var [report, setReport] = useState(true);
-
+  var [yesVote, setYesVote] = useState(false);
   var parse = (date) => {
     var dateISO = parseISO(date.slice(0,10));
 
@@ -28,22 +27,17 @@ export default function IndividualAnswer({answer}) {
   };
 
   // need to refactor so that it stops upvoting through the delay
-  var vote = false;
   var upVote = (e) => {
     e.preventDefault();
-    if (!vote) {
-      axios.put('/snuggie/answer/helpfulness', {answer_id: answer.id})
-      .then((results) => {
-        if (!truth) {
-          setHelpful(helpful + 1);
-          setTruth(true);
-        }
-        vote = true;
-      })
-      .catch((error) => {
-        console.log('Error within upvoting helpfulness from client side')
-      })
-    }
+    axios.put('/snuggie/answer/helpfulness', {answer_id: answer.id})
+    .then((results) => {
+      setHelpful(helpful + 1);
+      setYesVote(true);
+    })
+    .catch((error) => {
+      console.log('Error within upvoting helpfulness from client side')
+    })
+
   };
 
   var reportClick = (e) => {
@@ -55,19 +49,35 @@ export default function IndividualAnswer({answer}) {
     })
     setReport(false);
   }
+  // console.log('what is answer', answer.photos)
 
   return (
     <IndividualAnswerContainer>
-      <AnswerSpan> {answer.body} </AnswerSpan>
-      <ImageContainer></ImageContainer>
-      <BottomInfoContainer>
-        <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
-        <span> | </span>
-        <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> ({helpful}) </AnswerHelpfulnessSpan>
-        <span> | </span>
-        {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
-        {!report && <ReportedSpan> Reported! </ReportedSpan>}
-      </BottomInfoContainer>
+      <IndividualAnswerBody>
+        <AnswerSpan> {answer.body} </AnswerSpan>
+        <ImageContainer></ImageContainer>
+        <BottomInfoContainer>
+          <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
+          <span> | </span>
+          <AnswerHelpfulnessSpan>
+            Helpful?
+           {!yesVote && <YesAnswerSpan onClick={upVote}>Yes</YesAnswerSpan> }
+           {!yesVote &&  <span>({helpful}) </span>}
+           {yesVote && <YesAnswerSpanVoted>Yes</YesAnswerSpanVoted> }
+           {yesVote &&  <VotedSpan> ({helpful}) </VotedSpan>}
+          </AnswerHelpfulnessSpan>
+          <span> | </span>
+          {report && <ReportSpan onClick={reportClick}> Report </ReportSpan>}
+          {!report && <ReportedSpan> Reported! </ReportedSpan>}
+        </BottomInfoContainer>
+      </IndividualAnswerBody>
+      <ImageSection>
+        {answer.photos.map((each, i) => {
+          return (
+            <Images key={i} src={each}  />
+          )
+        })}
+      </ImageSection>
     </IndividualAnswerContainer>
   )
 };
@@ -76,8 +86,46 @@ export default function IndividualAnswer({answer}) {
 var IndividualAnswerContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: 500px;
+`;
+
+var VotedSpan = styled.span`
+  color: blue;
+`;
+
+var ImageSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+var Images = styled.img`
+  width: 75px;
+  height: 75px;
+  padding: 10px;
+  border-radius: 15px;
+
+  :hover {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 2px;
+  }
+`;
+
+
+
+var YesAnswerSpanVoted = styled.span`
+  text-decoration: underline;
+  color: blue;
+  padding-left: 5px;
+  padding-right: 2px;
+`;
+
+var IndividualAnswerBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 var YesAnswerSpan = styled.span`
@@ -86,6 +134,8 @@ var YesAnswerSpan = styled.span`
     cursor: pointer;
     color: blue;
   };
+  padding-left: 5px;
+  padding-right: 2px;
 `;
 
 var ReportedSpan = styled.span`
@@ -109,7 +159,7 @@ var BottomInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 40%;
+  width: 200px%;
   font-size: 12px;
 `;
 

@@ -4,26 +4,31 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 import AddReviewModal from './AddReviewModal.jsx'
 import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
+import {ReviewListContainer} from '../StyledComponents/ReviewListStyle.jsx'
 
 var ReviewList = (props) => {
+
+  // console.log(props)
   const [reviewCount, setReviewCount] = useState(2);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
 
   var toggleModal = (event) => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   }
 
   var moreReviewClick = (event) => {
-    setReviewCount(reviewCount + 2)
+    setReviewCount(reviewCount + 2);
   }
 
   var changeSortClick = (event) => {
-    props.changeSortedBy(event.target.value)
+    props.changeSortedBy(event.target.value);
   }
+
 
   // var limitReviews = props.productReviews.results?.slice(0,reviewCount)
   return (
-    <div>
+    <ReviewListContainer>
       <div>
       {props.productReviews.results?.length} reviews, sorted by
       <select onChange={changeSortClick}>
@@ -37,7 +42,7 @@ var ReviewList = (props) => {
     <ul>
       {props.productReviews.results?.slice(0,reviewCount)?.map((review, index) =>
         <ReviewTile key={index}
-                  reviews={review}/>
+                  reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview} metaData= {props.metaData}/>
       )}
     </ul>
     </div>
@@ -47,8 +52,8 @@ var ReviewList = (props) => {
       className="openModalBtn"
       onClick={toggleModal}
     >Add a Review</button>
-      {isOpen && <AddReviewModal closeModal={toggleModal} postReview={props.postReview}/>}
-    </div>
+      {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
+      </ReviewListContainer>
   )
 
 }

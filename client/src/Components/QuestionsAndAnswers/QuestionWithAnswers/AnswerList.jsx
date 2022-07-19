@@ -50,16 +50,18 @@ var ScrollAnswers = styled.div`
   height: 150px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 20px;
+  padding-top: 10px;
+  height: 200px;
 `;
 
 var AnswerSpan = styled.span`
   height: 1rem;
   font-weight: bold;
+
 `;
 
-var CollapseAnswerButton = styled.button`
-  padding: 0;
+var CollapseAnswerButton = styled.span`
+  padding: 9px;
   border: none;
   background: none;
   width: 9%;
@@ -71,11 +73,10 @@ var CollapseAnswerButton = styled.button`
   };
 `;
 
-var LoadMoreAnswersButton = styled.button`
-  padding: 0;
+var LoadMoreAnswersButton = styled.span`
   border: none;
   background: none;
-  width: 9.45%;
+  width: 20%;
   text-decoration: underline;
   color: blue;
   :hover {
@@ -84,20 +85,3 @@ var LoadMoreAnswersButton = styled.button`
   };
 `;
 
-
-
-
-// return (
-//   <div>
-//     <AnswerSpan> A: </AnswerSpan>
-//     <ScrollAnswers>
-//     {sortAnswer.slice(0, len).map((each) => {
-//       return (
-//         <IndividualAnswer key={each.id} answer={each} />
-//       )
-//     })}
-//      {sortAnswer.length > 2 && len < sortAnswer.length && <LoadMoreAnswersButton onClick={showMoreAnswers} > Load More Answers </LoadMoreAnswersButton>}
-//      </ScrollAnswers>
-//      {len > 2 && <CollapseAnswerButton onClick={collapseAnswers}> Collapse Answers </CollapseAnswerButton> }
-//   </div>
-// )

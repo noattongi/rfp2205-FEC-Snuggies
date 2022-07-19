@@ -12,12 +12,21 @@ var App = () => {
   const [productId, setProductId] = useState();
   const [chosenProduct, setChosenProduct] = useState({});
 
+  var storage = {
+    _productId: productId,
+    _chosenProduct: chosenProduct
+  };
+
   // When App first mounts, send a GET request to the server to get the productId of the first product received
   useEffect(() => {
     // Send axios request to get all products
     axios.get('/snuggie/products') // No query/parameters, so this endpoint returns ALL products
       // Then get the specific product
       .then((results) => {
+<<<<<<< HEAD
+=======
+        // console.log('ah', results);
+>>>>>>> main
         return axios.get('/snuggie/products', { params: {product_id: results.data[0].id} });
       })
       // Then set the hooks
@@ -51,7 +60,7 @@ var App = () => {
   }, [productId]);
 
   return(
-    <GlobalContext.Provider value={chosenProduct}>
+    <GlobalContext.Provider value={storage}>
         <div>navbar</div>
         <h1>ANNOUNCEMENTS GO HERE</h1>
         <Overview productId={productId} chosenProduct={chosenProduct} />
@@ -60,7 +69,7 @@ var App = () => {
         <br/>
         <QnaIndex/>
         <br/>
-        <RatingsAndReviewsIndex/>
+        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
     </GlobalContext.Provider>
   )
 }

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const RInCIndex = (props) => {
   useEffect(() => {
-    console.log('props RInCIndex', props)
+    // console.log('props RInCIndex', props)
   }, [props.productId])
   const getProduct = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId}})
@@ -21,7 +21,7 @@ const RInCIndex = (props) => {
 
   return (
     <div>
-      <RelatedItemsList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct}/>
+      <RelatedItemsList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct} />
       <OutfitList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct}/>
     </div>
   )
