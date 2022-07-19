@@ -22,52 +22,57 @@ var RatingsAndReviewsIndex = (props) => {
   const [oneStarCount, setOneStarCount] = useState(0);
   const [ratings, setRatings] = useState({});
   const [filteredArray, setFilteredArray] = useState([])
-  const [fiveRatingFilter, setFiveRatingFilter] = useState(false)
-  const [fourRatingFilter, setFourRatingFilter] = useState(false)
-  const [threeRatingFilter, setThreeRatingFilter] = useState(false)
-  const [twoRatingFilter, setTwoRatingFilter] = useState(false)
-  const [oneRatingFilter, setOneRatingFilter] = useState(false)
-
-
-  var filterToggle = (ratingNum) => {
-    if(ratingNum === 5) {
-      setFiveRatingFilter(!fiveRatingFilter);
-      console.log('five filter', fiveRatingFilter);
-    } else if(ratingNum === 4) {
-      console.log('four filter', fourRatingFilter);
-    } else if(ratingNum === 3) {
-      setThreeRatingFilter(!threeRatingFilter);
-      console.log('three filter', threeRatingFilter)
-    } else if(ratingNum === 2) {
-      setTwoRatingFilter(!twoRatingFilter);
-      console.log('two filter', twoRatingFilter)
-    } else if(ratingNum === 1) {
-      setOneRatingFilter(!oneRatingFilter);
-      console.log('one filter', oneRatingFilter)
-    }
-    console.log('five filter', fiveRatingFilter);
-    console.log('four filter', fourRatingFilter);
-    console.log('three filter', threeRatingFilter)
-    console.log('two filter', twoRatingFilter)
-    console.log('one filter', oneRatingFilter)
-  }
+  const [ratingFilter, setRatingFilter] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
 
   var filterTheReviews = (ratingNum) => {
+    console.log("before check the toggle herer", ratingFilter['5'])
     filterToggle(ratingNum)
-    console.log(fiveRatingFilter, "check the toggle herer")
-    let filtered = reviews.filter((review) => {
-      return (
-        (fiveRatingFilter === true && review.rating === 5)  ||
-        (fourRatingFilter === true && review.rating === 4) ||
-        (threeRatingFilter === true && review.rating === 3) ||
-        (twoRatingFilter === true && review.rating === 2) ||
-        (oneRatingFilter === true && review.rating === 1)
-      )
-    });
-      // setReviews(filtered)
-      setFilteredArray(filtered);//set filter Array with filtered data
-      return filtered;
+    console.log(ratingFilter['5'], "check the toggle herer")
+    // let reduced = reviews.filter((review) => {
+    //   return (
+    //     (fiveRatingFilter === true && review.rating === 5)  ||
+    //     (fourRatingFilter === true && review.rating === 4) ||
+    //     (threeRatingFilter === true && review.rating === 3) ||
+    //     (twoRatingFilter === true && review.rating === 2) ||
+    //     (oneRatingFilter === true && review.rating === 1)
+    //   )
+    // });
+    var reduced = reviews.reduce((filtered, review) => {
+       if ((ratingFilter['5'] === true && review.rating === 5)  ||
+          (ratingFilter['4'] === true && review.rating === 4) ||
+          (ratingFilter['3'] === true && review.rating === 3) ||
+          (ratingFilter['2'] === true && review.rating === 2) ||
+          (ratingFilter['1'] === true && review.rating === 1)) {
+            filtered.push(review);
+         };
+        return filtered;
+      }, []);
+      // setReviews(reduced)
+      setFilteredArray(reduced);//set filter Array with filtered data
+      console.log(reduced, "this is your reduced")
+      return reduced;
     }
+
+  var filterToggle = (ratingNum) => {
+    if(ratingNum === 5 ) {
+      setRatingFilter({...ratingFilter, '5' : !ratingFilter['5']});
+      console.log('five filter', ratingFilter['5']);
+    } else if(ratingNum === 4) {
+      setRatingFilter({...ratingFilter, '4' : !ratingFilter['4']});
+      console.log('four filter', ratingFilter['4']);
+    } else if(ratingNum === 3) {
+      setRatingFilter({...ratingFilter, '3' : !ratingFilter['3']});
+      console.log('three filter', ratingFilter['3'])
+    } else if(ratingNum === 2) {
+      setRatingFilter({...ratingFilter, '2' : !ratingFilter['2']});
+      console.log('two filter', ratingFilter['2'])
+    } else if(ratingNum === 1) {
+      setRatingFilter({...ratingFilter, '1' : !ratingFilter['1']});
+      console.log('one filter', ratingFilter['1'])
+    }
+  }
+
+
 
   const getProductReviews = (productId, sortedBy) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
@@ -156,15 +161,23 @@ var RatingsAndReviewsIndex = (props) => {
       getReviewsMeta(props.productId);
     }
 
-  }, [props.productId, sortby, starCount, ratings, fiveRatingFilter, fourRatingFilter,threeRatingFilter, twoRatingFilter, oneRatingFilter]);
+  }, [props.productId, sortby, filteredArray, starCount, ratings]);
+
+  var filterCheck = () => {
+    if(filteredArray.length > 0) {
+      return filteredArray
+    } else {
+      return reviews
+    }
+  }
 
   // console.log(meta, 'reviiiews')
   return (
     <div>
     <span>Ratings &amp; Reviews</span>
     <RRContainer>
-    <OverAllBreakDown metaData={meta} filterTheReviews={filterTheReviews} filteredReviews={filteredReviews} reviewData={meta.ratings} productReviews={reviews} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
-    <ReviewList productReviews={reviews} filteredReviews={filteredArray} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
+    <OverAllBreakDown metaData={meta} filterTheReviews={filterTheReviews} reviewData={meta.ratings} productReviews={reviews} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
+    <ReviewList productReviews={filterCheck()} filteredReviews={filteredArray} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>
   )

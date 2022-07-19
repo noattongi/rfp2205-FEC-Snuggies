@@ -15,8 +15,8 @@ const OverAllBreakDown = (props) => {//done
 
 
 	var filterOnClick = (event) => {
-		var numValue = Number(event.target.getAttribute('value'))
-		props.filterTheReviews(numValue)
+		var numValue = Number(event.target.getAttribute('value'));
+		return props.filterTheReviews(numValue);
 	}
 
   var capToFourth = (number) => {

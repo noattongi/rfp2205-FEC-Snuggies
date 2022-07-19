@@ -14,7 +14,6 @@ var ReviewList = (props) => {
   const [filteredArray, setfilteredArray] = useState([])
   const [allReviews, setAllReviews] = useState([])
 
-
   var toggleModal = (event) => {
     setIsOpen(!isOpen);
   }
@@ -27,14 +26,11 @@ var ReviewList = (props) => {
     props.changeSortedBy(event.target.value);
   }
   useEffect(() => {
-       if(props.productReviews) {
-         setAllReviews(props.productReviews)
-       }
-  }, [ allReviews, reviewCount])
+
+  }, [ reviewCount])
   // var limitReviews = props.productReviews.results?.slice(0,reviewCount)
 
-  if (props.filteredReviews.length === 0) {
-    // console.log(filteredArray.length, 'leengggytyhhh')
+  // if (props.filteredReviews.length === 0) {
     return (
       <ReviewListContainer>
         {props.productReviews && props.productReviews.length > 0 && <div>
@@ -63,36 +59,36 @@ var ReviewList = (props) => {
         {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
         </ReviewListContainer>
     )
-  } else {
-    console.log(filteredArray)
-      return (
-        <ReviewListContainer>
-          <div>
-          {props.filteredReviews.length} reviews, sorted by
-          <select onChange={changeSortClick}>
-            <option value="relevant" >Relevance</option>
-            <option value="helpful" >Helpful</option>
-            <option value="newest" >Newest</option>
-          </select>
-          </div>
-          <Scroll>
-            <div>
-        <ul>
-          {props.filteredReviews.slice(0,reviewCount)?.map((review, index) =>
-            <ReviewTile key={index}
-                      reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview} metaData= {props.metaData}/>
-          )}
-        </ul>
-        </div>
-        </Scroll>
-        {props.filteredReviews.length > 2 && reviewCount < props.filteredReviews.length && <button onClick={moreReviewClick} >More Reviews</button>}
-        <button
-          className="openModalBtn"
-          onClick={toggleModal}
-        >Add a Review</button>
-          {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
-          </ReviewListContainer>
-      )
-  }
-}
+//   } else {
+//     console.log(filteredArray)
+//       return (
+//         <ReviewListContainer>
+//           <div>
+//           {props.filteredReviews.length} reviews, sorted by
+//           <select onChange={changeSortClick}>
+//             <option value="relevant" >Relevance</option>
+//             <option value="helpful" >Helpful</option>
+//             <option value="newest" >Newest</option>
+//           </select>
+//           </div>
+//           <Scroll>
+//             <div>
+//         <ul>
+//           {props.filteredReviews.slice(0,reviewCount)?.map((review, index) =>
+//             <ReviewTile key={index}
+//                       reviews={review} upVoteHelpfulness={props.upVoteHelpfulness} reportReview={props.reportReview} metaData= {props.metaData}/>
+//           )}
+//         </ul>
+//         </div>
+//         </Scroll>
+//         {props.filteredReviews.length > 2 && reviewCount < props.filteredReviews.length && <button onClick={moreReviewClick} >More Reviews</button>}
+//         <button
+//           className="openModalBtn"
+//           onClick={toggleModal}
+//         >Add a Review</button>
+//           {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
+//           </ReviewListContainer>
+//       )
+//   }
+ }
 export default ReviewList
