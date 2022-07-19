@@ -24,13 +24,13 @@ const RelatedCards = (props) => {
   const getUrl = (id) => {
     if (props.styles !== []) {
       for (var i = 0; i < props.styles.length; i++) {
-        if (props.styles[i].product_id == id) {
-          for (var j = 0; j < props.styles[i].results.length; j++)
-            if (props.styles[i].results[j]["default?"])
-          return props.styles[i].results[j].photos[0].thumbnail_url
+        // if (props.styles[i].product_id == id) {
+        //   for (var j = 0; j < props.styles[i].results.length; j++)
+        //     if (props.styles[i].results[j]["default?"])
+        //   return props.styles[i].results[j].photos[0].thumbnail_url
+        return props.styles[i].results[0].photos
         }
       }
-    }
   }
 
   const getRatings = (id) => {
