@@ -37,7 +37,7 @@ var Information = (props) => {
       <CategorySpan>{(props.product && props.product.category) || "Loading Category..."}</CategorySpan>
       <ProductNameSpan>{(props.product && props.product.name) || "Loading Product Name..."}</ProductNameSpan>
       {price}
-      <div>Style > {(props.chosenStyle && props.chosenStyle.name) || "Loading Selected Style..."}</div>
+      <StyleSpan>Style > {<StyleNameSpan>{props.chosenStyle && props.chosenStyle.name || "Loading Selected Style..."}</StyleNameSpan> }</StyleSpan>
       <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
       <AddToCart chosenStyle={props.chosenStyle} />
     </ProductInformationContainer>
