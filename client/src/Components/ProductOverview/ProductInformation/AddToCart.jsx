@@ -30,7 +30,7 @@ var AddToCart = (props) => {
   return (
     <div>
       <SizeAndCountContainer>
-        <SizeDropdown name="size" id="size-select">
+        <SizeDropdown name="size" id="size-select" onChange={(event) => {setChosenSize(event.target.value)}}>
           <option value="">--Please select a size--</option>
           {/* For each sku_id, add a size */}
           {skus.map((sku_id, index) => {
@@ -39,7 +39,7 @@ var AddToCart = (props) => {
             }
           })}
         </SizeDropdown>
-        <QuantityDropdown name="quantity" id="quantity-select">
+        <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize}>
           <option value="">-</option>
         </QuantityDropdown>
       </SizeAndCountContainer>
