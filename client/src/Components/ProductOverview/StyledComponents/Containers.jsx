@@ -23,7 +23,8 @@ const ProductInformationContainer = styled.section`
   flex-direction: column;
   font-family: 'Nanum Gothic Coding', monospace;
   background-color: #607B7D;
-  min-width: 483px;
+  width: 483px;
+  padding: 12px;
   border: solid 3px;
   border-left: 0px;
   border-radius: 0 10px 10px 0;
@@ -32,7 +33,7 @@ const ProductInformationContainer = styled.section`
 // Container to hold the Star Rating shared component and Read [#] Reviews link in Product Information section
 const ProductOverviewStarContainer = styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 // Container to hold all the rows of Style Thumbnails in the Product Information section
