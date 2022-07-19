@@ -21,6 +21,7 @@ var AddReviewModal = (props) => {
   const [productName, setProductName] = useState('');
   const [productID, setProductID] = useState(0);
   const [photoURL, setPhotoURL] = useState([]);
+  const comfortID = props.metaData.characteristics.Comfort.id
 
 
   var toggleModal = (e) => {
@@ -218,7 +219,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Comfort &&
-                <label>*Comfort
+                <label>*Comfort{characteristics[comfortID] && <span>{value}</span>}
                   <input type="radio" value="1" name="Comfort" onChange={comfortOnChange}/> Uncomfortable
                   <input type="radio" value="2" name="Comfort" onChange={comfortOnChange}/> Slightly uncomfortable
                   <input type="radio" value="3" name="Comfort" onChange={comfortOnChange}/> Ok
@@ -251,7 +252,7 @@ var AddReviewModal = (props) => {
               </div>
               <div>
               {props.metaData.characteristics.Fit &&
-                <label>*Fit
+                <label>*Fit{}
                     <input type="radio" value="1" name="Fit" onChange={fitOnChange}/> Runs tight
                     <input type="radio" value="2" name="Fit" onChange={fitOnChange}/> Runs slightly tight
                     <input type="radio" value="3" name="Fit" onChange={fitOnChange}/> Perfect
