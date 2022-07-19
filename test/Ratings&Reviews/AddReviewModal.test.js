@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ReviewList from '../../client/src/Components/RatingsAndReviews/ReviewList/ReviewList.jsx';
+import AddReviewModal from '../../client/src/Components/RatingsAndReviews/ReviewList/AddReviewModal.jsx';
 import axios from 'axios';
 // Import mock data
 import mockReviewData from './mockReviewData.js';
 import mockReviewMetaData from './mockReviewMetaData.js';
-
+import mockProductData from './mockProductDataReviews.js';
 // Mock axios using jest
 jest.mock('axios');
 
@@ -17,7 +17,7 @@ afterEach(() => {
   }
 });
 
-test('Renders ReviewList', async () => {
+test('Renders AddReviewModal', async () => {
   // Intercept any axios requests made by the component being tested and return the mockup data instead
   axios.get.mockImplementation((url) => {
     switch (url) {
@@ -35,13 +35,7 @@ test('Renders ReviewList', async () => {
   });
   // Render the widget
   await act( async () => {
-    render(<ReviewList metaData={mockReviewMetaData.brightFutureSunglasses} productReviews={mockReviewData.brightFutureSunglasses}/>);
+    render(<AddReviewModal chosenProduct={mockProductData.camoOnesie} metaData={mockReviewMetaData.camoOnesie}/>);
   })
-  const div = document.createElement('div');
-    ReactDOM.render(<ReviewList metaData={mockReviewMetaData.brightFutureSunglasses} productReviews={mockReviewData.brightFutureSunglasses}/>, div)
 
-  // await waitFor(() => { screen.getAllByAltText("ImageThumbnail") });
-  // const images = await screen.getAllByAltText("ImageThumbnail");
-  // expect(images).toHaveLength(6); // The Camo Onesie has 6 image thumbnails
 });
-

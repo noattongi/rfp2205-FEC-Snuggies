@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import OverAllBreakDown from '../../client/src/Components/RatingsAndReviews/OverallBreakDown/OverallBreakdown.jsx';
+import ReviewList from '../../client/src/Components/RatingsAndReviews/ReviewList/ReviewList.jsx';
 import axios from 'axios';
 // Import mock data
 import mockReviewData from './mockReviewData.js';
 import mockReviewMetaData from './mockReviewMetaData.js';
-import mockProductData from '../ProductOverview/mockData/mockProductData.js';
 
 // Mock axios using jest
 jest.mock('axios');
@@ -18,7 +17,7 @@ afterEach(() => {
   }
 });
 
-test('Renders OverAllBreakDown', async () => {
+test('Renders ReviewList', async () => {
   // Intercept any axios requests made by the component being tested and return the mockup data instead
   axios.get.mockImplementation((url) => {
     switch (url) {
@@ -36,9 +35,13 @@ test('Renders OverAllBreakDown', async () => {
   });
   // Render the widget
   await act( async () => {
-    render(<OverAllBreakDown metaData={mockReviewData} reviewData={mockReviewData.ratings} fiveTotal={3} fourTotal={3} threeTotal={3} twoTotal={3} oneTotal={3}/>);
-
+    render(<ReviewList metaData={mockReviewMetaData.brightFutureSunglasses} productReviews={mockReviewData.brightFutureSunglasses}/>);
   })
-  // const div = document.createElement('div');
-  // ReactDOM.render(<OverAllBreakDown metaData={mockReviewData} reviewData={mockReviewData.ratings} fiveTotal={3} fourTotal={3} threeTotal={3} twoTotal={3} oneTotal={3}/>, div)
+  const div = document.createElement('div');
+    ReactDOM.render(<ReviewList metaData={mockReviewMetaData.brightFutureSunglasses} productReviews={mockReviewData.brightFutureSunglasses}/>, div)
+
+  // await waitFor(() => { screen.getByLabelText("ImageThumbnail") });
+  // const images = await screen.getAllByAltText("ImageThumbnail");
+  // expect(images).toHaveLength(6); // The Camo Onesie has 6 image thumbnails
 });
+
