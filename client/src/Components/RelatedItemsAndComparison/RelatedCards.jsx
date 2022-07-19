@@ -25,7 +25,9 @@ const RelatedCards = (props) => {
     if (props.styles !== []) {
       for (var i = 0; i < props.styles.length; i++) {
         if (props.styles[i].product_id == id) {
-          return props.styles[i].results[0].photos[0].thumbnail_url
+          for (var j = 0; j < props.styles[i].results.length; j++)
+            if (props.styles[i].results[j]["default?"])
+          return props.styles[i].results[j].photos[0].thumbnail_url
         }
       }
     }
@@ -43,6 +45,7 @@ const RelatedCards = (props) => {
   return (
     <>
     {products?.map((prod) => {
+      {console.log('url', getUrl(prod.id))}
       return (
           <CardBox key={prod.id}>
             <div onClick={(e) => {
