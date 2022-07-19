@@ -23,10 +23,10 @@ const ProductInformationContainer = styled.section`
   flex-direction: column;
   font-family: 'Nanum Gothic Coding', monospace;
   background-color: #607B7D;
-  min-width: 475px;
+  min-width: 483px;
   border: solid 3px;
-  border-radius: 10px;
-  margin-left: 5px;
+  border-left: 0px;
+  border-radius: 0 10px 10px 0;
 `;
 
 // Container to hold the Star Rating shared component and Read [#] Reviews link in Product Information section

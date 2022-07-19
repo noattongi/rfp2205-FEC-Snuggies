@@ -19,7 +19,7 @@ const DefaultView = styled.div`
   border: solid 3px;
   border-left: 0;
   border-color: #120309;
-  border-radius: 0px 10px 10px 0px;
+
   :hover {
     cursor: zoom-in;
   }
