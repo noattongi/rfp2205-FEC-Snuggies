@@ -34,6 +34,7 @@ const ProductInformationContainer = styled.section`
 const ProductOverviewStarContainer = styled.section`
   display: flex;
   flex-direction: row;
+  margin-bottom: 12px;
 `;
 
 // Container to hold all the rows of Style Thumbnails in the Product Information section
