@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { ProductOverviewStarContainer } from '../StyledComponents/Containers.jsx';
 import axios from 'axios';
-import ReviewsLink from '../StyledComponents/ProductInformation/OverviewStars.jsx';
+import { ReviewsLink, StarDiv } from '../StyledComponents/ProductInformation/OverviewStars.jsx';
 import StarRating from '../../SharedComponents/StarRating.jsx';
 
 // The component
@@ -30,8 +30,10 @@ var OverviewStars = (props) => {
 
   return (
     <ProductOverviewStarContainer>
-      <StarRating reviewData={reviewData} />
-      <ReviewsLink>{(reviewData && <span>Read {reviewCount} Reviews</span>) || "Loading Reviews..."}</ReviewsLink>
+      <StarDiv>
+        <StarRating reviewData={reviewData} />
+        <ReviewsLink onClick={(event) => {event.preventDefault(); window.location.replace('/#Reviews')}}>{(reviewData && <span>Read {reviewCount} Reviews</span>) || "Loading Reviews..."}</ReviewsLink>
+      </StarDiv>
     </ProductOverviewStarContainer>
   );
 }

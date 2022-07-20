@@ -7,8 +7,15 @@ import styled from 'styled-components';
 const ImageThumbnails = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 32px 16px 16px 16px;
-  background-color: teal;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px 16px 16px 16px;
+  border: solid 3px;
+  border-color: #120309;
+  border-radius: 10px 0 0 0px;
+  min-width: 84px;
+  min-height: 702px;
+  background-color: #3a606e;
 `;
 
 // An image thumbnail
@@ -17,38 +24,87 @@ const ThumbnailImage = styled.img`
   overflow: hidden;
   width: 62px;
   height: 62px;
-  background-color: white;
 
-  border: solid;
-  border-color: black;
+  border: solid 3px;
+  border-color: #120309;
+  border-radius: 5px;
+
   :hover {
     cursor: pointer;
+    border-color: #EF8354;
   }
 `;
 
 // A regular div element
 const Div = styled.div`
-  margin: 0 16px 20px 16px;
+  margin: 8px 8px 8px 8px;
 `;
 
 // A div element that wraps around the chosen (selected) image thumbnail
 const ChosenDiv = styled.div`
-  margin: 0 16px 20px 16px;
-  border: solid;
-  border-color: white;
+  margin: 8px 8px 8px 8px;
+  background-color: #EF8354;
+
+  border: solid 3px;
+  border-radius: 5px;
+  border-color: #EF8354;
+
 `;
 
 // The up/down arrow icon that shifts the shown thumbnails up/down
 const Arrow = styled.i`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   object-fit: fill;
   width: 15px;
   height: 15px;
-  background-color: white;
+  background-color: #FFFFFF;
   padding: 3px;
   border: solid;
-  border-color: black;
+  border-color: #120309;
   border-radius: 10%;
+  margin: 15px 0px 15px 0px;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  }
+`;
+
+// Container to hold the Image Thumbnails in icon form (for expanded view)
+const ImageThumbnailIconContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px;
+  background-color: #3a606e;
+  border-radius: 10px;
+  z-index: 21;
+`;
+
+// An image thumbnail but in icon form (for expanded view)
+const ImageThumbnailIcon = styled.i`
+  object-fit: fill;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+  color: #828e82;
+  :hover {
+    cursor: pointer;
+    color: #EF8354;
+  }
+  z-index: 22;
+`;
+
+const ChosenImageThumbnailIcon = styled.i`
+  object-fit: fill;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+  color: #EF8354;
+  z-index: 22;
 `;
 
 // Export the styled components
-export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow };
+export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow, ImageThumbnailIconContainer, ImageThumbnailIcon, ChosenImageThumbnailIcon };

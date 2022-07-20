@@ -39,6 +39,8 @@ test('Renders ReviewTiles', async () => {
       key={1}
       reviews={mockReviewData.camoOnesie}
       metaData= {mockReviewMetaData.camoOnesie}/>);
-
   })
+  await waitFor(() => screen.getByText("See More"));
+  const seeMore = await screen.getByText("See More");
+  expect(seeMore).toBeTruthy();
 });

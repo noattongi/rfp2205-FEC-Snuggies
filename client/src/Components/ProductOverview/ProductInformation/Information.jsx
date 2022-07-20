@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { ProductInformationContainer, PriceContainer } from '../StyledComponents/Containers.jsx';
 import { Price, Price_struck, Price_sale } from '../StyledComponents/ProductInformation/Price.jsx';
+import { CategorySpan, ProductNameSpan, StyleSpan, StyleNameSpan } from '../StyledComponents/ProductInformation/Information.jsx';
 import OverviewStars from './OverviewStarRating.jsx';
 import Styles from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
@@ -33,10 +34,10 @@ var Information = (props) => {
   return (
     <ProductInformationContainer>
       <OverviewStars product={props.product} />
-      <div>{(props.product && props.product.category) || "Loading Category..."}</div>
-      <div>{(props.product && props.product.name) || "Loading Product Name..."}</div>
+      <CategorySpan>{(props.product && props.product.category) || "Loading Category..."}</CategorySpan>
+      <ProductNameSpan>{(props.product && props.product.name) || "Loading Product Name..."}</ProductNameSpan>
       {price}
-      <div>Style > {(props.chosenStyle && props.chosenStyle.name) || "Loading Selected Style..."}</div>
+      <StyleSpan>Style > {<StyleNameSpan>{props.chosenStyle && props.chosenStyle.name || "Loading Selected Style..."}</StyleNameSpan> }</StyleSpan>
       <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
       <AddToCart chosenStyle={props.chosenStyle} />
     </ProductInformationContainer>

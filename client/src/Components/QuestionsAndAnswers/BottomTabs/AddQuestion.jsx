@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { GlobalContext } from '../../../App.js'
 
 
-var AddQuestion = ({postQuest, toggleModel}) => {
+var AddQuestion = ({chosenProduct, productId, postQuest, toggleModel}) => {
   var storage = useContext(GlobalContext);
-  var { _productId, _chosenProduct } = storage;
+  // var { _productId, _chosenProduct } = storage;
 
   var [answerEntry, setAnswerEntry] = useState('');
   var [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ var AddQuestion = ({postQuest, toggleModel}) => {
   var postQuestion = (e) => {
 
     e.preventDefault()
-    var body = {body: answerEntry, name: username, email: email, product_id: _productId};
+    var body = {body: answerEntry, name: username, email: email, product_id: productId};
 
     if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
       alert(`Please don't leave any fields blank.`)
@@ -35,7 +35,7 @@ var AddQuestion = ({postQuest, toggleModel}) => {
      <ModalHeader>
        <ModalH2> Submit Your Question </ModalH2>
        <ModalSubtitleContainer>
-           <ProductName> About the {_chosenProduct.name}  </ProductName>
+           <ProductName> About the {chosenProduct.name}  </ProductName>
        </ModalSubtitleContainer>
        <ModalBody>
        <UserInfoContainer>
@@ -67,7 +67,7 @@ var StyleBackground = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
-  z-index: 10;
+  z-index: 11;
   left: 0;
   top: 0;
   width: 100%;
@@ -136,8 +136,8 @@ var CloseButton = styled.button`
   font-size: 28px;
   font-weight: bold;
   height: 38px;
-  position: relative;
-  right: 200px;
+  position: absolute;
+  right: 50px;
   :hover {
     color: black;
     text-decoration: none;
@@ -185,6 +185,7 @@ var ModalContent = styled.div`
   border: 1px solid #888;
   width: 80%;
   justify-content: center;
+  position: relative;
 `;
 
 export default AddQuestion

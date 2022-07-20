@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ReviewList from '../RatingsAndReviews/ReviewList/ReviewList.jsx'
 import StarBreakDown from '../RatingsAndReviews/OverallBreakDown/RatingsBreakdown.jsx'
-import {RRContainer, SingleBar, BarText} from '../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
+import {RRContainer, SingleBar, BarText, OBContainer} from '../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
 import StarRating from '../SharedComponents/StarRating.jsx';
 import { ProductOverviewStarContainer } from '../ProductOverview/StyledComponents/Containers.jsx';
@@ -175,11 +175,11 @@ var RatingsAndReviewsIndex = (props) => {
 
   // console.log(meta, 'reviiiews')
   return (
-    <div>
-    <span>Ratings &amp; Reviews</span>
+    <div id="Reviews">
+      Ratings &amp; Reviews
     <RRContainer>
-    <OverAllBreakDown metaData={meta} filterTheReviews={filterTheReviews} reviewData={meta.ratings} productReviews={reviews} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/>
-    <ReviewList productReviews={filterCheck()} filteredReviews={filteredArray} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
+    <OBContainer><OverAllBreakDown metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
+    <ReviewList productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>
   )

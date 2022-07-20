@@ -3,10 +3,10 @@
 // Import stuff
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SizeAndCountContainer, AddToCartContainer } from '../StyledComponents/Containers.jsx';
+import { SizeAndCountContainer, AddToCartContainer, SizeDropdownContainer, QuantityDropdownContainer } from '../StyledComponents/Containers.jsx';
 import SizeDropdown from '../StyledComponents/ProductInformation/AddToCart/SizeDropdown.jsx';
 import QuantityDropdown from '../StyledComponents/ProductInformation/AddToCart/QuantityDropdown.jsx';
-import AddToCartButton from '../StyledComponents/ProductInformation/AddToCart/AddToCart.jsx';
+import { AddToCartButton, WarningText } from '../StyledComponents/ProductInformation/AddToCart/AddToCart.jsx';
 import FavoriteButton from '../StyledComponents/ProductInformation/AddToCart/Favorite.jsx';
 
 // The component
@@ -72,24 +72,28 @@ var AddToCart = (props) => {
   return (
     <div>
       <SizeAndCountContainer>
-        {clickedWithoutSize && <span>Please select size</span>}
-        <SizeDropdown name="size" id="size-select" onChange={(event) => {setChosenSize(event.target.value); setClickedWithoutSize(false);}}>
-          <option value="">Select Size</option>
-          {/* For each sku_id, add a size */}
-          {skus.map((sku_id, index) => {
-            if (style.skus[sku_id.toString()]) {
-              return <option value={sku_id} key={`size${index}`}>{style.skus[sku_id.toString()].size}</option>
-            }
-          })}
-        </SizeDropdown>
-        {clickedWithoutQuantity && <span>Please select quantity</span>}
-        <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} onChange={(event) => {setChosenQuantity(event.target.value); setClickedWithoutQuantity(false);}}>
-          <option value="0">-</option>
-          {/* Add options for the quantity based on how many are available for the selected size */}
-          {quantityOptions.map((quantity) => {
-            return quantity;
-          })}
-        </QuantityDropdown>
+        <SizeDropdownContainer>
+          {clickedWithoutSize && <WarningText id="sizeWarning">Please select size</WarningText>}
+          <SizeDropdown name="size" id="size-select" onChange={(event) => {setChosenSize(event.target.value); setClickedWithoutSize(false);}}>
+            <option value="">Select Size</option>
+            {/* For each sku_id, add a size */}
+            {skus.map((sku_id, index) => {
+              if (style.skus[sku_id.toString()]) {
+                return <option value={sku_id} key={`size${index}`}>{style.skus[sku_id.toString()].size}</option>
+              }
+            })}
+          </SizeDropdown>
+        </SizeDropdownContainer>
+        <QuantityDropdownContainer>
+          {clickedWithoutQuantity && <WarningText id="quantityWarning">Please select quantity</WarningText>}
+          <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} onChange={(event) => {setChosenQuantity(event.target.value); setClickedWithoutQuantity(false);}}>
+            <option value="0">-</option>
+            {/* Add options for the quantity based on how many are available for the selected size */}
+            {quantityOptions.map((quantity) => {
+              return quantity;
+            })}
+          </QuantityDropdown>
+        </QuantityDropdownContainer>
       </SizeAndCountContainer>
       {(chosenQuantity !== 0) && <AddToCartContainer>
         <AddToCartButton onClick={() => {handleAddToCart()}}>Add to Cart</AddToCartButton>

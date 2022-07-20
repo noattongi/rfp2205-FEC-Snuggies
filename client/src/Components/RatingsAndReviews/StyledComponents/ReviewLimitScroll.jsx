@@ -6,6 +6,7 @@ height:600px;
 overflow:scroll;
 overflow-y:scroll;
 overflow-x:hidden;
+overflow: auto
 `;
 
 const ReviewTile = styled.div`
