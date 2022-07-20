@@ -34,7 +34,8 @@ const Magnifier = styled.div`
   background-size: ${(props) => {return (props.imageWidth * props.magnifier)}}px ${(props) => {return (props.imageHeight * props.magnifier)}}px;
   background-position-x: ${(props) => {
                             var zoomPosition = props.x * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2;
-                            if (zoomPosition >= 0) {
+                            console.log(zoomPosition);
+                            if (zoomPosition >= ((props.magnifier - 1) * -1 * props.imageWidth)) {
                               return zoomPosition;
                             } else {
                               return 0;
@@ -42,8 +43,7 @@ const Magnifier = styled.div`
                           }}px;
   background-position-y: ${(props) => {
                             var zoomPosition = props.y * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2;
-                            console.log(zoomPosition);
-                            if (zoomPosition >=  ((props.magnifier - 1) * -1 * props.imageHeight)) {
+                            if (zoomPosition >= ((props.magnifier - 1) * -1 * props.imageHeight)) {
                               return zoomPosition;
                             } else {
                               return (props.magnifier - 1) * -1 * props.imageHeight;
