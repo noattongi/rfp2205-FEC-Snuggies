@@ -7,7 +7,7 @@ import styled from 'styled-components';
     align-items: center;
     justify-content: center;
     margin: 0;
-    border-style:dotted;
+
   `;
 
   const AllStarsBodyContainer =styled.div`
@@ -17,9 +17,7 @@ import styled from 'styled-components';
   align-items: center;
   justify-content: center;
   margin: 0;
-  border-style:solid;
-  border-color: coral;
-  padding-left: 20px
+
 `;
 
   const Progress =styled.div`
@@ -27,7 +25,8 @@ import styled from 'styled-components';
 	  position: relative;
 	  margin: 15px 0;
 	  height: 10px;
-	  width: 150px;
+	  width: 165px;
+
   `;
 
 
@@ -53,7 +52,7 @@ import styled from 'styled-components';
 
   const Range = styled.input`
   -webkit-appearance: none;
-  width: 90%;
+  width: 222px;
   background: transparent;
 
 
@@ -78,12 +77,3 @@ import styled from 'styled-components';
 
   export {Done, Progress, BodyContainer, AllStarsBodyContainer, Triangle, Range}
 
-//   &::-moz-range-thumb {
-//     -webkit-appearance: none;
-// appearance: none;
-// width: 0;
-// height: 0;
-// border-left: 100px solid transparent;
-// border-right: 100px solid transparent;
-// border-top: 172px solid black;
-// }

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import StarBreakDown from '../OverallBreakDown/RatingsBreakdown.jsx'
 import StarRating from '../../SharedComponents/StarRating.jsx'
 import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
-import {RRContainer, SingleBar, BarText, RBStarsNum} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
+import {OBStar,RRContainer, SingleBar, BarText, RBStarsNum, RBRecommended, OBContainer, NumRatingTitle} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
 const OverAllBreakDown = (props) => {//done
 	// console.log(props
@@ -35,31 +35,31 @@ useEffect(() => {
 }, [props.reviewData, props.metadata]);
 
 	return (
-		<div>
+		<OBContainer>
 			<RBStarsNum>
-			  <h1>{averageStars && averageStars}</h1>
-		    <StarRating reviewData={props.reviewData} />
+			  <NumRatingTitle>{averageStars && averageStars}</NumRatingTitle>
+		    <OBStar><StarRating reviewData={props.reviewData} /></OBStar>
 		  </RBStarsNum>
-		<div> {recommendProduct}% of reviews recommend this product</div>
+		<RBRecommended> {recommendProduct}% of reviews recommend this product</RBRecommended>
 		<AllStarsBodyContainer>
 			<SingleBar>
-				<BarText>5 stars</BarText><StarBreakDown done={props.fiveTotal}/>
+				<BarText><u>5 stars</u> </BarText><StarBreakDown done={props.fiveTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>4 stars</BarText><StarBreakDown done={props.fourTotal}/>
+			<BarText><u>4 stars</u></BarText><StarBreakDown done={props.fourTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>3 stars</BarText><StarBreakDown done={props.threeTotal}/>
+			<BarText><u>3 stars</u></BarText><StarBreakDown done={props.threeTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>2 stars</BarText><StarBreakDown done={props.twoTotal}/>
+			<BarText><u>2 stars</u></BarText><StarBreakDown done={props.twoTotal}/>
 			</SingleBar>
 			<SingleBar>
-			<BarText>1 stars</BarText><StarBreakDown done={props.oneTotal}/>
+			<BarText><u>1 stars</u></BarText><StarBreakDown done={props.oneTotal}/>
 			</SingleBar>
 		</AllStarsBodyContainer>
 		<ProductBreakDown characteristics={props.metaData.characteristics}/>
-		</div>
+		</OBContainer>
 	)
 }
 export default OverAllBreakDown
