@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import ComparisonModal from './ComparisonModal.jsx'
+import ComparisonModal from './ComparisonModal.jsx';
+import ImagesModal from './ImagesModal.jsx'
 import styled from 'styled-components';
 import StarRating from '../SharedComponents/StarRating.jsx';
 
@@ -9,16 +10,29 @@ const RelatedCards = (props) => {
   const [modal, setModal] = useState(false);
   const [products, setProducts] = useState([]);
   const [clickedProd, setClickedProd] = useState({});
+  const [clickedImg, setClickedImg] = useState([]);
+  const [imgModal, setImgModal] = useState(false);
+
   var modalToggle = () => {
-    setModal(!modal)
+    return setModal(!modal)
   }
 
+  var imgModalToggle = () => {
+    return setImgModal(!imgModal)
+  }
   useEffect(() => {
     setProducts(props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4));
   }, [props.relatedIndex, props.relatedProd])
 
-  async function handleCardClick(id) {
-    return props.setProductId(id).then(() => {props.setRelatedIndex(0)})
+
+  const handleClickImg = async (id) => {
+    if (props.styles !== []) {
+      for (var i = 0; i < props.styles.length; i++) {
+        if (props.styles[i].product_id == id) {
+          return props.styles[i].results[0].photos;
+        }
+      }
+    }
   }
 
   const getUrl = (id) => {
@@ -42,15 +56,15 @@ const RelatedCards = (props) => {
   return (
     <>
     {products?.map((prod) => {
-      {console.log('url', getUrl(prod.id))}
       return (
           <CardBox key={prod.id}>
             <div onClick={(e) => {
               setClickedProd(prod);
               modalToggle();}}>⭐️</div>
-              {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={clickedProd} chosenProduct={props.chosenProduct}/> : null }
+                {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={clickedProd} chosenProduct={props.chosenProduct}/> : null }
+              <ThumbnailImage src={getUrl(prod.id)} onClick={(e) => {handleClickImg(prod.id).then((data) => {setClickedImg(data)}).then(() => imgModalToggle())}}/>
+                {imgModal ? <ImagesModal imgModalToggle = {imgModalToggle} clickedImg={clickedImg} /> : null }
               <div onClick={(e) => {handleCardClick(prod.id)}}>
-              <ThumbnailImage src={getUrl(prod.id)} />
               <p>{prod.category}</p>
               <p>{prod.name}</p>
               <p>{prod.default_price}</p>
