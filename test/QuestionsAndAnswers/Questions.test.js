@@ -20,10 +20,6 @@ test("check to see if QnA Index renders properly", () => {
   // get request with the mock axios
   axios.get.mockImplementation((url) => {
     switch (url) {
-      case 'snuggle/qna/questions':
-        return Promise.resolve({
-          data: mockProductData.camoOnesie
-        });
       case '/snuggie/products':
         return Promise.resolve({
           data: mockProductData.camoOnesie
@@ -36,6 +32,10 @@ test("check to see if QnA Index renders properly", () => {
         return Promise.resolve({
           data: mockMetadata.camoOnesieMetadata
         });
+      case 'snuggle/qna/questions':
+        return Promise.resolve({
+          data: mockProductData.mockProductQuestionData
+        });
       default:
       return Promise.reject(new Error('not found'));
     }
@@ -46,5 +46,7 @@ test("check to see if QnA Index renders properly", () => {
 
   render( <QnaIndex chosenProduct={mockProductData.camoOnesie} productId={mockProductData.camoOnesie.id}/>);
 
+  const childComponent = screen.getByText(/Questions and Answers/i);
+  expect(childComponent).toBeInTheDocument();
 });
 
