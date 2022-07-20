@@ -13,6 +13,10 @@ const QuantityDropdown = styled.select`
   border-radius: 5px;
   border: solid 3px;
   padding-left: 14px;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  }
 `;
 
 // Export the styled components

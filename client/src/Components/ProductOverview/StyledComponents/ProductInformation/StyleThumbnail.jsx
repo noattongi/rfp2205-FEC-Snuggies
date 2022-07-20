@@ -8,13 +8,14 @@ const StyleThumbnail = styled.img`
   display: block;
   object-fit: cover;
   border: solid;
-  border-color: black;
+  border-color: #120309;
   border-radius: 50%;
   width: 80px;
   height: 80px;
   margin: 6px 8px 6px 8px;
   :hover {
     cursor: pointer;
+    border-color: #EF8354;
   }
 `;
 
@@ -29,7 +30,7 @@ const ChosenIcon = styled.i`
   background-color: white;
   padding: 3px;
   border: solid;
-  border-color: black;
+  border-color: #120309;
   border-radius: 50%;
 `;
 
