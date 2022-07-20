@@ -33,7 +33,7 @@ var OverviewStars = (props) => {
     <ProductOverviewStarContainer>
       <StarDiv>
         <StarRating reviewData={reviewData} />
-        <ReviewsLink>{(reviewData && <span>Read {reviewCount} Reviews</span>) || "Loading Reviews..."}</ReviewsLink>
+        <ReviewsLink onClick={(event) => {event.preventDefault(); window.location.replace('/#Reviews')}}>{(reviewData && <span>Read {reviewCount} Reviews</span>) || "Loading Reviews..."}</ReviewsLink>
       </StarDiv>
     </ProductOverviewStarContainer>
   );
