@@ -21,12 +21,14 @@ var Gallery = (props) => {
   useEffect(() => {
     if (props.chosenStyle.photos) {
       setImageThumbnails(props.chosenStyle.photos);
-      setChosenImageUrl(props.chosenStyle.photos[chosenImageIndex].url);
-      if (chosenImageIndex) {
+      if (chosenImageIndex <= props.chosenStyle.photos.length - 1) {
         setChosenImageIndex(chosenImageIndex);
+        setChosenImageUrl(props.chosenStyle.photos[chosenImageIndex].url);
       } else {
         setChosenImageIndex(0);
+        setChosenImageUrl(props.chosenStyle.photos[0].url);
       }
+      console.log('AJJJJ', chosenImageIndex, props.chosenStyle);
       setMaxIndex(props.chosenStyle.photos.length - 1);
     }
   }, [props.chosenStyle])
