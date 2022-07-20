@@ -85,13 +85,11 @@ const ImageThumbnailIconContainer = styled.section`
 
 // An image thumbnail but in icon form (for expanded view)
 const ImageThumbnailIcon = styled.i`
-  object-fit: cover;
+  object-fit: fill;
   overflow: hidden;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   color: #828e82;
-  border-radius: 50%;
-
   :hover {
     cursor: pointer;
     color: #EF8354;
@@ -99,5 +97,14 @@ const ImageThumbnailIcon = styled.i`
   z-index: 22;
 `;
 
+const ChosenImageThumbnailIcon = styled.i`
+  object-fit: fill;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+  color: #EF8354;
+  z-index: 22;
+`;
+
 // Export the styled components
-export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow, ImageThumbnailIconContainer, ImageThumbnailIcon };
+export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow, ImageThumbnailIconContainer, ImageThumbnailIcon, ChosenImageThumbnailIcon };
