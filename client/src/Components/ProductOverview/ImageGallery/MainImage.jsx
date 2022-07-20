@@ -13,7 +13,7 @@ var MainImage = (props) => {
   // If the view is zoomed view, render the zoomed view
   if (props.zoomed) {
     return (
-      <ImageZoom imageUrl={props.chosenImageUrl} />
+      <ImageZoom imageUrl={props.chosenImageUrl} setZoomed={props.setZoomed} />
     );
   // If the view is expanded view, render the expanded view
   } else if (props.expanded) {

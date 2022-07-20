@@ -16,19 +16,22 @@ const ImageZoomContainer = styled.div`
 const ZoomedImage = styled.img`
   overflow: hidden;
   z-index: 16;
+  :hover {
+    cursor: vertical-text;
+  }
 `;
 
 // The magnifying div
 const Magnifier = styled.div`
   position: absolute;
   pointer-events: none;
-  height: 1850px;
-  width: 250vw;
+  height: 740px;
+  width: 100vw;
   background-image: url(${(props) => props.imageUrl});
   background-repeat: no-repeat;
-  background-size: 250vw 1850px;
-  background-position-x: ${(props) => {return (props.x * (-1) * props.magnifier + (250/document.documentElement.clientWidth)/2)}}px;
-  background-position-y: ${(props) => {return (props.y * (-1) * props.magnifier + 1850/2)}}px;
+  background-size: 100vw 1850px;
+  background-position-x: ${(props) => {return (props.x * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2)}}px;
+  background-position-y: ${(props) => {return (props.y * (-1) * props.magnifier + 740/2)}}px;
   border: solid 3px black;
   z-index: 25;
 `;

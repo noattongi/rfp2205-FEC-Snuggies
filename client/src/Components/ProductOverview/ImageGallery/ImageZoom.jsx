@@ -36,6 +36,7 @@ const ImageZoom = (props) => {
         onMouseEnter={(event) => { setMagnifying(true); }}
         onMouseLeave={() => { setMagnifying(false); }}
         onMouseMove={(event) => { handleMouseMove(event) }}
+        onClick={() => { props.setZoomed(false); }}
       />
       {magnifying && <Magnifier imageUrl={props.imageUrl} magnifier={magnifier} x={x} y={y} />}
     </ImageZoomContainer>
