@@ -4,9 +4,8 @@ import ReactDOM from 'react-dom';
 import StarBreakDown from '../OverallBreakDown/RatingsBreakdown.jsx'
 import StarRating from '../../SharedComponents/StarRating.jsx'
 import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
-import {RRContainer, SingleBar, BarText} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
+import {RRContainer, SingleBar, BarText, RBStarsNum} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
-
 const OverAllBreakDown = (props) => {//done
 	// console.log(props
 	// 	, 'prooooss')
@@ -37,9 +36,10 @@ useEffect(() => {
 
 	return (
 		<div>
-			<div>Ratings &amp; Reviews</div>
-			<h1>{averageStars && averageStars}</h1>
-		<StarRating reviewData={props.reviewData} />
+			<RBStarsNum>
+			  <h1>{averageStars && averageStars}</h1>
+		    <StarRating reviewData={props.reviewData} />
+		  </RBStarsNum>
 		<div> {recommendProduct}% of reviews recommend this product</div>
 		<AllStarsBodyContainer>
 			<SingleBar>
