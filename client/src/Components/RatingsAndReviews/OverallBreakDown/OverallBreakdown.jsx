@@ -51,14 +51,14 @@ useEffect(() => {
 			<SingleBar>
 			<BarText>3 stars</BarText><StarBreakDown done={props.threeTotal}/>
 			</SingleBar>
-			<SingleBar>
+			  <SingleBar>
 			<BarText>2 stars</BarText><StarBreakDown done={props.twoTotal}/>
 			</SingleBar>
 			<SingleBar>
 			<BarText>1 stars</BarText><StarBreakDown done={props.oneTotal}/>
 			</SingleBar>
 		</AllStarsBodyContainer>
-		<ProductBreakDown characteristics={props.metaData.characteristics}/>
+		  <ProductBreakDown characteristics={props.metaData.characteristics}/>
 		</div>
 	)
 }

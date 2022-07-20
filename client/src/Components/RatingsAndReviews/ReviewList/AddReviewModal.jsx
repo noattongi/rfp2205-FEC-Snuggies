@@ -258,7 +258,7 @@ var AddReviewModal = (props) => {
               <div>
               {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>}
               {props.metaData.characteristics.Fit &&
-                <label>*Fit{}
+                <label>*Fit
                     <input type="radio" value="1" name="Fit" onChange={onCharChange}/> 1
                     <input type="radio" value="2" name="Fit" onChange={onCharChange}/> 2
                     <input type="radio" value="3" name="Fit" onChange={onCharChange}/> 3
