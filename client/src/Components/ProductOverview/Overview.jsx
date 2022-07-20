@@ -4,7 +4,7 @@ import Gallery from './ImageGallery/Gallery.jsx';
 import Information from './ProductInformation/Information.jsx';
 import { ProductOverviewContainer, ProductInformationDescription, SloganDescriptionContainer } from './StyledComponents/Containers.jsx';
 import { Slogan, Description, Divider, FeatureList, Feature } from './StyledComponents/ProductInformation/Description.jsx';
-import { Facebook, Twitter, Pinterest } from './ShareButtons.jsx';
+import { Facebook, Twitter, Pinterest, Socials } from './ShareButtons.jsx';
 
 var Overview = (props) => {
 
@@ -54,11 +54,12 @@ var Overview = (props) => {
             );
           })}
         </FeatureList>
-        <div>
+        <Divider />
+        <Socials>
           <Facebook />
           <Twitter />
           <Pinterest />
-        </div>
+        </Socials>
       </ProductInformationDescription>
       }
 
