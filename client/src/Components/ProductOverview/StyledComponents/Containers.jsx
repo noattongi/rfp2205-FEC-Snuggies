@@ -72,6 +72,8 @@ const PriceContainer = styled.section`
 const SizeAndCountContainer = styled.section`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 12px;
 `;
 
 // Container for the add to cart and favorite buttons in Product Information section
