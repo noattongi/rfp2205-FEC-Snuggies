@@ -55,7 +55,13 @@ export default function IndividualAnswer({answer}) {
     <IndividualAnswerContainer>
       <IndividualAnswerBody>
         <AnswerSpan> {answer.body} </AnswerSpan>
-        <ImageContainer></ImageContainer>
+        <ImageSection>
+        {answer.photos.map((each, i) => {
+          return (
+            <Images key={i} src={each}  />
+          )
+        })}
+      </ImageSection>
         <BottomInfoContainer>
           <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
           <span> | </span>
@@ -71,13 +77,6 @@ export default function IndividualAnswer({answer}) {
           {!report && <ReportedSpan> Reported! </ReportedSpan>}
         </BottomInfoContainer>
       </IndividualAnswerBody>
-      <ImageSection>
-        {answer.photos.map((each, i) => {
-          return (
-            <Images key={i} src={each}  />
-          )
-        })}
-      </ImageSection>
     </IndividualAnswerContainer>
   )
 };
