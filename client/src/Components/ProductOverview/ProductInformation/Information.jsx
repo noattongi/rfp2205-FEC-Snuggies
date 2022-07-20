@@ -6,7 +6,7 @@ import { ProductInformationContainer, PriceContainer } from '../StyledComponents
 import { Price, Price_struck, Price_sale } from '../StyledComponents/ProductInformation/Price.jsx';
 import OverviewStars from './OverviewStarRating.jsx';
 import Styles from './StyleSelector.jsx';
-import CartButtons from './AddToCart.jsx';
+import AddToCart from './AddToCart.jsx';
 
 // The component
 var Information = (props) => {
@@ -14,13 +14,6 @@ var Information = (props) => {
   var salePrice;
   // Iterate and choose the default style whenever the style list changes (e.g. choose new product)
   useEffect(() => {
-    // // For each of the styles in the passed in styles prop, iterate until we find the default one and set that as the displayed style
-    // for (let i = 0; i < props.styles.length; i++) {
-    //   if (props.styles[i]["default?"]) {
-    //     props.setChosenStyle(props.styles[i]);
-    //     break;
-    //   }
-    // }
     if (props.styles.length > 0) {
       // Per business requirements document, the default style selected is the first one in the list
       props.setChosenStyle(props.styles[0]);
@@ -45,7 +38,7 @@ var Information = (props) => {
       {price}
       <div>Style > {(props.chosenStyle && props.chosenStyle.name) || "Loading Selected Style..."}</div>
       <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
-      <CartButtons />
+      <AddToCart chosenStyle={props.chosenStyle} />
     </ProductInformationContainer>
   );
 }

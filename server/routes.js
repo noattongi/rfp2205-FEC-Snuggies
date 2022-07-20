@@ -1,7 +1,6 @@
 require('dotenv').config();
 var router = require('express').Router()
 var API = require('./helpers/HR_API.jsx');
-const { cloudinary } = require('../cloudinary.config.js')
 
 // GETs either a specific product or all the products
 // Request parameters: [OPTIONAL product_id]
@@ -221,39 +220,21 @@ router.put('/report', (request, response) => {
   })
 });
 
-router.post('/upload', (request, response) => {
-  // file data from client
-  var file = request.body.data;
-
-  if (file) {
-    file.forEach((eachFile) => {
-      cloudinary.uploader.upload(eachFile, {
-        upload_preset: 'presetFEC'
-      })
-      .then((val) => {
-        response.status(200).send(val)
-      })
-      .catch((error) => {
-        console.log('error uploading to cloudinary within server')
-        response.status(402)
-      })
-    })
-  } else {
-    return response.status(201)
+// Adds item to cart
+router.post('/cart', (request, response) => {
+  if (!request.body.sku_id) {
+    response.sendStatus(500);
   }
-
-  return response.status(402)
+  API.addToCart(request.body.sku_id)
+    .then((results) => {
+      response.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error occurred when attempting to add item to cart', error)
+      response.sendStatus(500)
+    });
 });
 
-router.get('/upload/get', async (request, response) => {
-  const {resources} = await cloudinary.search.expression('folder:FEC_folder')
-  .execute()
 
-  const URLs = resources.map((file) => {
-    return file.url
-  })
-
-  response.status(200).send(URLs.slice(0, request.query.len))
-});
 
 module.exports = router;

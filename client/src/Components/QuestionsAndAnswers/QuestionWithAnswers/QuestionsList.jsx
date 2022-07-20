@@ -3,14 +3,20 @@ import IndividualQuestions from './IndividualQuestions.jsx';
 import styled from 'styled-components';
 
 
-var QuestionsList = ({questions, postAnswerFunc}) => {
+var QuestionsList = ({urlImage, setURLImage, questions, postAnswerFunc, filter}) => {
+
 
   return (
     <QnAListContainer>
       <IndividualQuestDiv>
-      {questions?.map((each) => {
+      {!filter && questions?.map((each) => {
         return (
-          <IndividualQuestions postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
+          <IndividualQuestions urlImage={urlImage} setURLImage={setURLImage} postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
+        )
+      })}
+      {filter && filter?.map((each) => {
+        return (
+          <IndividualQuestions urlImage={urlImage} setURLImage={setURLImage} postAnswerfunc={postAnswerFunc} key={each.question_id} question={each}/>
         )
       })}
       </IndividualQuestDiv>

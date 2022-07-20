@@ -9,7 +9,11 @@ import styled from 'styled-components';
 import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
+<<<<<<< HEAD
   // console.log(props, 'thessee are the props in review tiles')
+=======
+  // console.log(props, 'theses are props')
+>>>>>>> main
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
   const [helpfulClickCount, setHelpfulClickCount] = useState(0)
@@ -79,7 +83,8 @@ var ReviewTiles = (props) => {
   })}
     </ImageContainer>
     </ReviewBody>
-    <RecommendProduct>{recommendFilter(props.reviews.recommend.toString())}</RecommendProduct>
+    {props.reviews.recommend && <RecommendProduct>✅ I recommend this product</RecommendProduct>}
+    {props.reviews.response !== null && <span>Response:{props.reviews.response}</span>}
     <div>{props.reviews.response !== null && <h6>{props.reviews.response}</h6>}</div>
     <BottomInfoContainer>
     <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={onHelpfulClick}>Yes</YesAnswerSpan> ({props.reviews.helpfulness}) </AnswerHelpfulnessSpan>
