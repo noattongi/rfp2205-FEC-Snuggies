@@ -94,10 +94,18 @@ const FullScreen = styled.i`
 
 // The Main Image, expanded view
 const ExpandedView = styled.div`
-  width: 1000px;
-  height: 628px;
+  width: 100vw;
+  height: 740px;
   background-color: black;
 `;
 
+// An overlay div that'll go over the Expanded View div; this also contains the Left and Right Arrows
+const ExpandedOverlay = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 740px;
+  background-color: #828e82;
+`;
+
 // Export the styled components
-export { Image, DefaultView, DefaultOverlay, LeftArrow, RightArrow, FullScreen, ExpandedView };
+export { Image, DefaultView, DefaultOverlay, ExpandedOverlay, LeftArrow, RightArrow, FullScreen, ExpandedView };
