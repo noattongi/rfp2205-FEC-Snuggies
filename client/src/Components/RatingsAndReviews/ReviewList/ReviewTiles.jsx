@@ -10,9 +10,12 @@ import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
   // console.log(props, 'theses are props')
+  const[helpful, setHelpful] = useState(props.reviews.helpfulness)
+  const [yesVote, setYesVote] = useState(false);
+  const[notHelpful, setNotHelpful] = useState(0)
+  const [noVote, setNoVote] = useState(false);
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
-  const [helpfulClickCount, setHelpfulClickCount] = useState(0)
 
   var formatDate = (date) => {
     var dateISO = parseISO(date.slice(0, 10))
@@ -20,14 +23,6 @@ var ReviewTiles = (props) => {
     return formattedDate
   }
 
-  var recommendFilter = (recommended) => {
-    var recommend;
-    if(recommended === 'true') {
-      return recommend = '✅ I recommend this product'
-    } else {
-      return recommend
-    }
-  }
 
   var seeMoreClick = (event) => {
     // setReviewBodyRender(props.reviews.body)
@@ -35,13 +30,18 @@ var ReviewTiles = (props) => {
   }
 
    var onHelpfulClick = () => {
-    if(helpfulClickCount < 1) {
+
       props.upVoteHelpfulness(props.reviews.review_id);
-      setHelpfulClickCount(helpfulClickCount + 1);
-    } else {
-      alert('You can only upvote once!')
-    }
+      setHelpful(helpful + 1);
+      setYesVote(true);
+      setNoVote(true)
    }
+
+   var onNotHelpfulClick = () => {
+    setNotHelpful(notHelpful + 1);
+    setNoVote(true);
+    setYesVote(true);
+ }
 
    var onReportClick = () => {
       props.reportReview(props.reviews.review_id);
@@ -79,11 +79,22 @@ var ReviewTiles = (props) => {
     </ImageContainer>
     </ReviewBody>
     {props.reviews.recommend && <RecommendProduct>✅ I recommend this product</RecommendProduct>}
-    {props.reviews.response !== null && <span>Response:{props.reviews.response}</span>}
-    <div>{props.reviews.response !== null && <h6>{props.reviews.response}</h6>}</div>
+    {props.reviews.response !== null && <div>Response from seller {props.reviews.response}</div>}
     <BottomInfoContainer>
-    <AnswerHelpfulnessSpan>  Helpful? <YesAnswerSpan onClick={onHelpfulClick}>Yes</YesAnswerSpan> ({props.reviews.helpfulness}) </AnswerHelpfulnessSpan>
-        <span> | </span>
+
+    <AnswerHelpfulnessSpan>
+      Helpful?
+      {!yesVote && <YesAnswerSpan onClick={onHelpfulClick}>Yes</YesAnswerSpan> }
+      {!yesVote &&  <span>({helpful}) </span>}
+      {yesVote && <YesAnswerSpan>Yes</YesAnswerSpan> }
+      {yesVote &&  <span> ({helpful}) </span>}
+      <span> | </span>
+      {!noVote && <YesAnswerSpan onClick={onNotHelpfulClick}>No</YesAnswerSpan> }
+      {!noVote &&  <span>({notHelpful})</span>}
+      {noVote && <YesAnswerSpan>No</YesAnswerSpan> }
+      {noVote &&  <span> ({notHelpful}) </span>}
+     </AnswerHelpfulnessSpan>
+      <span> | </span>
         {<ReportSpan onClick={onReportClick}> Report </ReportSpan>}
     </BottomInfoContainer>
    </div>

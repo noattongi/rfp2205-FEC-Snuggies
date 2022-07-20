@@ -125,11 +125,8 @@ var AddReviewModal = (props) => {
 
   var onSubmitClick = (event) => {
     console.log(recommendInput, reviewBody, nickname, email, reviewBody.length, characteristics)
-    if((!isValidEmail(email)) ){
-      return alert('Please enter a valid email!')
-      if( recommendInput === null || reviewBody === ''  || nickname === '' || reviewBody.length < 50 || email === '') {//add characteristics, images are invalid or unable to be uploaded , email address is not in the correct format, ratings
+    if((!isValidEmail(email) || recommendInput === null || reviewBody.length < 50  || nickname === '' || reviewBody.length < 50 || email === '' || characteristics === {}) ){
         alert("Please review the mandatory data!")
-      }
     } else {
       console.log(photoURL, productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
       props.postReview({
@@ -269,7 +266,7 @@ var AddReviewModal = (props) => {
             </form><form >
               <label>*Review Body:
                 <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
-                {charCountBody > 0 ? <span>required characters left: [{charCountBody}]</span> : <span>Minimum reached</span>}
+                {charCountBody > 0 ? <span>Minimum required characters left: [{charCountBody}]</span> : <span>Minimum reached</span>}
               </label>
             </form>
             <label>Upload Image:
@@ -294,7 +291,7 @@ var AddReviewModal = (props) => {
             For privacy reasons, do not use your full name or email address
             <form >
               <label>*Email:
-                <input type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
+                <input  required type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
               </label>
             </form>
             For authentication reasons, you will not be emailed

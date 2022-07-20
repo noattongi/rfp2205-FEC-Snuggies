@@ -27,12 +27,13 @@ var ReviewList = (props) => {
 
 
   // var limitReviews = props.productReviews.results?.slice(0,reviewCount)
+  if(props.productReviews.results?.length > 0) {
   return (
     <ReviewListContainer>
       <div>
         {props.productReviews.results?.length} reviews, sorted by
           <select onChange={changeSortClick}>
-            <option value="relevant" >Relevance</option>
+            <option value="relevant" >Relevant</option>
             <option value="helpful" >Helpful</option>
             <option value="newest" >Newest</option>
           </select>
@@ -58,6 +59,6 @@ var ReviewList = (props) => {
       {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
   </ReviewListContainer>
   )
-
+            }
 }
 export default ReviewList

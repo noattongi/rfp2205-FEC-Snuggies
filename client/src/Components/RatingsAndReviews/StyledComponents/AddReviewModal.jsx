@@ -20,6 +20,7 @@ const StyleBackground =styled.div`
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+
   `;
 
   const Image = styled.img`

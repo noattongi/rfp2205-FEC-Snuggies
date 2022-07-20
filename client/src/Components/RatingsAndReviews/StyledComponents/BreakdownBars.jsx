@@ -26,13 +26,13 @@ import styled from 'styled-components';
 	  background-color: lightgray;
 	  position: relative;
 	  margin: 15px 0;
-	  height: 15px;
+	  height: 10px;
 	  width: 150px;
   `;
 
 
   const Done = styled.div`
-    background: mediumseagreen;
+    background: #607B7D;
 	  box-shadow: 0 3px 3px -5px black, 0 2px 5px grey;
 	  display: flex;
 	  align-items: center;

@@ -5,6 +5,7 @@ const RRContainer = styled.div`
   padding-left: 60px;
   border-style: dotted;
   justify-content: space-between;
+
 `;
 
 const SingleBar = styled.div`
@@ -22,6 +23,7 @@ display: flex;
 padding-top: 12px;
 justify-content: space-evenly;
 border-style: dotted;
+
 margin-right: 20px
 text-decoration: underline;
 :hover {
