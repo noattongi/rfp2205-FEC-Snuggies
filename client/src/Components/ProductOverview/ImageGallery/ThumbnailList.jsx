@@ -16,7 +16,6 @@ var ThumbnailList = (props) => {
   // Whenever imageThumbnails changes, set the shown thumbnails
   useEffect(() => {
     setShown(props.imageThumbnails.slice(index, index + 7));
-    console.log('bah!!!!!');
   }, [index, props.imageThumbnails]);
 
   useEffect(() => {
