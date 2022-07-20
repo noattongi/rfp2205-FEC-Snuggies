@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { StyleThumbnailRowContainer, StyleThumbnailContainer } from '../StyledComponents/Containers.jsx';
 import { ChosenStyleContainer } from '../StyledComponents/Containers.jsx';
 import { StyleThumbnail, ChosenIcon } from '../StyledComponents/ProductInformation/StyleThumbnail.jsx';
+import Placeholder from '../../../assets/Placeholder.jpeg';
 
 // The component
 var Styles = (props) => {
@@ -39,13 +40,13 @@ var Styles = (props) => {
                 return (
                   <ChosenStyleContainer key="ChosenStyleContainer" >
                     <ChosenIcon className="fa-solid fa-check" key="ChosenStyleIcon" />
-                    <StyleThumbnail className="chosenStyle" alt="StyleThumbnail" id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url} onClick={() => {props.setChosenStyle(style)}} />
+                    <StyleThumbnail className="chosenStyle" alt={style.name} id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url || Placeholder} onClick={() => {props.setChosenStyle(style)}} />
                   </ChosenStyleContainer>
                 );
               }
               // Else just render the thumbnail without the special border
               return (
-                <StyleThumbnail alt="StyleThumbnail" id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url} onClick={() => {props.setChosenStyle(style)}} />
+                <StyleThumbnail alt={style.name} id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url || Placeholder} onClick={() => {props.setChosenStyle(style)}} />
               );
             })}
           </StyleThumbnailContainer>
