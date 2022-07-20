@@ -63,8 +63,6 @@ var QnaIndex = ({ chosenProduct, productId }) => {
     return setLen(len + 2)
   };
 
-  console.log('list of question', question);
-
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
     .then((response) => {
