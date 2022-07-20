@@ -42,7 +42,7 @@ var Gallery = (props) => {
 
     <ImageGalleryContainer>
       <RelativeWrapper>
-        <ThumbnailList imageThumbnails={imageThumbnails} chosenImageUrl={chosenImageUrl} setChosenImageUrl={setChosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} />
+        <ThumbnailList imageThumbnails={imageThumbnails} chosenImageUrl={chosenImageUrl} setChosenImageUrl={setChosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} expanded={expanded} zoomed={zoomed} />
         <MainImage chosenImageUrl={chosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} maxIndex={maxIndex} expanded={expanded} setExpanded={setExpanded} zoomed={zoomed} setZoomed={setZoomed} />
       </RelativeWrapper>
     </ImageGalleryContainer>

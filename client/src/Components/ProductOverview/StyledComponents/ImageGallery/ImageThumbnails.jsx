@@ -71,5 +71,33 @@ const Arrow = styled.i`
   }
 `;
 
+// Container to hold the Image Thumbnails in icon form (for expanded view)
+const ImageThumbnailIconContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px;
+  background-color: #3a606e;
+  border-radius: 10px;
+  z-index: 21;
+`;
+
+// An image thumbnail but in icon form (for expanded view)
+const ImageThumbnailIcon = styled.i`
+  object-fit: cover;
+  overflow: hidden;
+  width: 10px;
+  height: 10px;
+  color: #828e82;
+  border-radius: 50%;
+
+  :hover {
+    cursor: pointer;
+    color: #EF8354;
+  }
+  z-index: 22;
+`;
+
 // Export the styled components
-export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow };
+export { ImageThumbnails, ThumbnailImage, Div, ChosenDiv, Arrow, ImageThumbnailIconContainer, ImageThumbnailIcon };
