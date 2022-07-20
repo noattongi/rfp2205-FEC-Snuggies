@@ -1,4 +1,4 @@
-// Styling for the add to cart button
+// Styling for the add to cart button and the warning text that appears above the size or quantity dropdown
 
 // Import any relevant methods from the styled-components library
 import styled from 'styled-components';
@@ -17,5 +17,17 @@ const AddToCartButton = styled.button`
   }
 `;
 
+// Warning text that appears above size or quantity dropdowns
+const WarningText = styled.button`
+  font-size: 14;
+  color: #120309;
+  background-color: #EF8354;
+  border: solid 3px;
+  border-radius: 5px;
+  width: 160px;
+  height: 28px;
+  align-self: center;
+`;
+
 // Export the styled components
-export default AddToCartButton;
+export { AddToCartButton, WarningText };
