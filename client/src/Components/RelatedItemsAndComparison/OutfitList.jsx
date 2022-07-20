@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import OutfitCards from './OutfitCards.jsx';
-import OutfitCarousel from './OutfitCarousel.jsx';
+import OutfitCarouselRight from './OutfitCarouselRight.jsx';
+import OutfitCarouselLeft from './OutfitCarouselLeft.jsx';
 import styled from 'styled-components'
 
 const OutfitList = (props) => {
@@ -99,12 +100,15 @@ const OutfitList = (props) => {
     <div>
       <h3>Outfit List</h3>
       <Row>
+        <CarouselContainer>
+          {Boolean(outfitId.length > 4) ? <OutfitCarouselLeft outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
+        </CarouselContainer>
         <AddContainer>
           <button onClick={(e) => {addOutfitId(props.productId)}}>+</button>
         </AddContainer>
           <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} outfitIndex={outfitIndex} styles={styles} reviewData={reviewData}/>
         <CarouselContainer>
-          {Boolean(outfitId.length > 4) ? <OutfitCarousel outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
+          {Boolean(outfitId.length > 4) ? <OutfitCarouselRight outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
       </Row>
     </div>

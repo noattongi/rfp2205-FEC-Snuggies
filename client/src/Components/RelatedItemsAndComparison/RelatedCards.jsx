@@ -17,6 +17,11 @@ const RelatedCards = (props) => {
     return setModal(!modal)
   }
 
+  async function handleCardClick(id) {
+    props.setProductId(id);
+    props.setRelatedIndex(0);
+  }
+
   var imgModalToggle = () => {
     return setImgModal(!imgModal)
   }
