@@ -3,14 +3,20 @@
 // Import stuff
 import React, { useState } from 'react';
 import { Image, DefaultView, DefaultOverlay, LeftArrow, RightArrow, FullScreen, ExpandedView, ExpandedOverlay } from '../StyledComponents/ImageGallery/MainImage.jsx';
+import ImageZoom from './ImageZoom.jsx';
 
 // The component
 var MainImage = (props) => {
 
   // const [expanded, setExpanded] = useState(false);
 
+  // If the view is zoomed view, render the zoomed view
+  if (props.zoomed) {
+    return (
+      <ImageZoom imageUrl={props.chosenImageUrl} />
+    );
   // If the view is expanded view, render the expanded view
-  if (props.expanded) {
+  } else if (props.expanded) {
     return (
       <ExpandedView>
         <ExpandedOverlay>
