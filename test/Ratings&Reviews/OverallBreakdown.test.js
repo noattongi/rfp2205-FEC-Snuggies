@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, screen, act, waitFor } from '@testing-library/react';
+import { render, screen, act, waitFor, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import OverAllBreakDown from '../../client/src/Components/RatingsAndReviews/OverallBreakDown/OverallBreakdown.jsx';
 import ProductBreakdown from '../../client/src/Components/RatingsAndReviews/OverallBreakDown/ProductBreakdown.jsx';
@@ -35,8 +35,11 @@ test('Renders OverAllBreakDown', async () => {
   });
   await act( async () => {
     render(<OverAllBreakDown metaData={mockReviewData} reviewData={mockReviewData.ratings} fiveTotal={3} fourTotal={3} threeTotal={3} twoTotal={3} oneTotal={3}/>);
-
   })
+  await waitFor(() => screen.getByText("5 stars"));
+  const stars = await screen.getByText("5 stars");
+  expect(stars).toBeTruthy();
+
 });
 
 test('Renders ProductBreakdown', async () => {
@@ -58,8 +61,10 @@ test('Renders ProductBreakdown', async () => {
   // Render the widget
   await act( async () => {
     render(<ProductBreakdown characteristics={mockReviewMetaData.camoOnesieMetadata.characteristics}/>);
-
   })
+  await waitFor(() => screen.getByText("Comfort"));
+  const comfort = await screen.getByText("Comfort");
+  expect(comfort).toBeTruthy();
 });
 
 
@@ -85,3 +90,4 @@ test('Renders StarBreakDown in RatingsBreakdown', async () => {
 
   })
 });
+
