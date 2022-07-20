@@ -82,6 +82,18 @@ const AddToCartContainer = styled.section`
   flex-direction: row;
 `;
 
+// Container that holds a dropdown and the message that conditionally renders if a size/quantity isn't selected upon Adding to Cart
+const SizeDropdownContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+`;
+const QuantityDropdownContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+`;
+
 // Container to hold the Product Information description component
 const ProductInformationDescription = styled.section`
   display: flex;
@@ -95,4 +107,4 @@ const SloganDescriptionContainer = styled.section`
 `;
 
 // Export the styled components
-export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailRowContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, ProductInformationDescription, SloganDescriptionContainer };
+export { ProductOverviewContainer, ImageGalleryContainer, ProductInformationContainer, ProductOverviewStarContainer, StyleThumbnailRowContainer, StyleThumbnailContainer, ChosenStyleContainer, PriceContainer, SizeAndCountContainer, AddToCartContainer, SizeDropdownContainer, QuantityDropdownContainer, ProductInformationDescription, SloganDescriptionContainer };
