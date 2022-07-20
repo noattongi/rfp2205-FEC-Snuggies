@@ -8,7 +8,6 @@ import styled from 'styled-components';
 const StarContainer = styled.div`
   position: relative;
   display: inline;
-  width: 100%;
 `;
 const EmptyStar = styled.i`
   color: gray;
