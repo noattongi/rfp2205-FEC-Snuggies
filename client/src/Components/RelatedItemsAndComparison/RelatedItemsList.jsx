@@ -16,6 +16,7 @@ const RelatedItemsList = (props) => {
     if (props.productId) {
       getRelated(props.productId)
       .then((data) => {
+        console.log('data', data)
         var temp = []
         data.forEach((id) => {
           temp.push(props.getProduct(id))
@@ -35,9 +36,11 @@ const RelatedItemsList = (props) => {
   }, [props.productId, relatedIndex]);
 
   async function getRelated(productId) {
+    console.log('product id', productId);
     return axios.get('/snuggie/products', {params: {product_id: productId + '/related'}})
     .then((response) => {
       setRelatedId(response.data);
+      console.log('res data', response.data)
       return response.data
     })
     .catch((error) => {
@@ -103,7 +106,7 @@ const RelatedItemsList = (props) => {
     <>
       <h3>Related List</h3>
         <Row>
-          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct} styles={styles} reviewData={reviewData}/>
+          <RelatedCards setRelatedIndex={setRelatedIndex} relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} styles={styles} reviewData={reviewData}/>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarousel relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
