@@ -3,6 +3,7 @@
 // Import stuff
 import React, { useState, useEffect } from 'react';
 import { ImageGalleryContainer } from '../StyledComponents/Containers.jsx';
+import { RelativeWrapper } from '../StyledComponents/ImageGallery/MainImage.jsx';
 import MainImage from './MainImage.jsx';
 import ThumbnailList from './ThumbnailList.jsx';
 
@@ -38,8 +39,10 @@ var Gallery = (props) => {
   return (
 
     <ImageGalleryContainer>
-      <ThumbnailList imageThumbnails={imageThumbnails} chosenImageUrl={chosenImageUrl} setChosenImageUrl={setChosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} />
-      <MainImage chosenImageUrl={chosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} maxIndex={maxIndex} />
+      <RelativeWrapper>
+        <ThumbnailList imageThumbnails={imageThumbnails} chosenImageUrl={chosenImageUrl} setChosenImageUrl={setChosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} />
+        <MainImage chosenImageUrl={chosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} maxIndex={maxIndex} />
+      </RelativeWrapper>
     </ImageGalleryContainer>
 
   );
