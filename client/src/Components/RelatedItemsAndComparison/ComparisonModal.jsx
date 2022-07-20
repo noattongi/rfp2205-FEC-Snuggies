@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const ComparisonModal = (props) => {
-  return (
+    return (
     <ModalBackground onClick={(e) => {props.modalToggle()}}>
+      {console.log('comp', props.clickedProd)}
       <ModalContainer>
         <ModalBody>
         <div>
@@ -47,7 +48,7 @@ const ModalBackground =styled.div`
   backdrop-filter: blur(8px);
   display: block;
   position: fixed;
-  z-index: 2;
+  z-index: 27;
   padding-top: 100px;
   left: 0;
   top: 0;

@@ -53,15 +53,17 @@ const RelatedCards = (props) => {
       }
     }
   }
+
+  const handleClickStar = async (prod) => {
+    return prod;
+  }
   return (
     <>
     {products?.map((prod) => {
       return (
           <CardBox key={prod.id}>
-            <div onClick={(e) => {
-              setClickedProd(prod);
-              modalToggle();}}>⭐️</div>
-                {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={clickedProd} chosenProduct={props.chosenProduct}/> : null }
+            <div onClick={(e) => {handleClickStar(prod).then((data) => {setClickedProd(data)}).then(() => {modalToggle()})}}>⭐️</div>
+              {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={clickedProd} chosenProduct={props.chosenProduct}/> : null }
               <ThumbnailImage src={getUrl(prod.id)} onClick={(e) => {handleClickImg(prod.id).then((data) => {setClickedImg(data)}).then(() => imgModalToggle())}}/>
                 {imgModal ? <ImagesModal imgModalToggle = {imgModalToggle} clickedImg={clickedImg} /> : null }
               <div onClick={(e) => {handleCardClick(prod.id)}}>

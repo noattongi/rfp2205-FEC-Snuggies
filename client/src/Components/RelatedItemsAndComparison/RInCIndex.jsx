@@ -22,8 +22,8 @@ const RInCIndex = (props) => {
 
   return (
     <div>
-      <RelatedItemsList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} />
-      <OutfitList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} />
+      <RelatedItemsList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} chosenProduct={props.chosenProduct}/>
+      <OutfitList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} chosenProduct={props.chosenProduct}/>
     </div>
   )
 }
