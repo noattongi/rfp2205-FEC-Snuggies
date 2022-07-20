@@ -16,16 +16,21 @@ var MainImage = (props) => {
         <ExpandedOverlay>
           {props.chosenImageIndex > 0 && <LeftArrow className="fa-solid fa-arrow-left" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex - 1)}} />}
             {props.chosenImageIndex < props.maxIndex && <RightArrow className="fa-solid fa-arrow-right" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex + 1)}} />}
-          <FullScreen className="fa-solid fa-expand" onClick={() => {console.log('Contract'); props.setExpanded(false);}} />
+          <FullScreen className="fa-solid fa-expand"
+            onClick={() => {
+              console.log('Contract');
+              props.setExpanded(false);
+              props.setZoomed(false); // This may be unnecessary
+            }}
+          />
         </ExpandedOverlay>
-        <Image src={props.chosenImageUrl} />
+        <Image src={props.chosenImageUrl} onClick={() => { console.log('Zoom!'); props.setZoomed(!props.zoomed);}} />
       </ExpandedView>
     );
   // Else render the default view
   } else {
     return (
       <div>
-
         <DefaultView>
           <DefaultOverlay>
             {props.chosenImageIndex > 0 && <LeftArrow className="fa-solid fa-arrow-left" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex - 1)}} />}

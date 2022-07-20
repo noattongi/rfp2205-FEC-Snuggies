@@ -104,6 +104,9 @@ const ExpandedView = styled.div`
   border: solid 3px;
   border-radius: 10px 10px 0 0;
   border-color: #120309;
+  :hover {
+    cursor: crosshair;
+  }
 `;
 
 // An overlay div that'll go over the Expanded View div; this also contains the Left and Right Arrows
