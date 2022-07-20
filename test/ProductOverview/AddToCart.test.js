@@ -115,8 +115,16 @@ test('Add To Cart button sends POST request', async () => {
     render(<Overview productId={40344} chosenProduct={mockProductData.camoOnesie} />);
   })
   await waitFor(() => { expect(document.getElementsByClassName("fa-solid fa-arrow-right").length).toBeTruthy(); }); // wait for data to load
+  // Simulate user clicking Add to Cart button without selecting size
+  await userEvent.click(screen.getByText("Add to Cart"));
+  // Check that warning message displays
+  expect(document.getElementById("sizeWarning")).toBeTruthy();
   // Simulate user selecting size
   await userEvent.selectOptions(document.getElementById("size-select"), 'S');
+  // Simulate user clicking Add to Cart without selecting quantity
+  await userEvent.click(screen.getByText("Add to Cart"));
+  // Check that warning message displays
+  expect(document.getElementById("quantityWarning")).toBeTruthy();
   // Simulate user selecting quantity
   userEvent.selectOptions(document.getElementById("quantity-select"), '1');
   // Check for post request results
