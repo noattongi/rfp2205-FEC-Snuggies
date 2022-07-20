@@ -34,16 +34,19 @@ const Magnifier = styled.div`
   background-size: ${(props) => {return (props.imageWidth * props.magnifier)}}px ${(props) => {return (props.imageHeight * props.magnifier)}}px;
   background-position-x: ${(props) => {
                             var zoomPosition = props.x * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2;
-                            console.log(zoomPosition);
-                            if (zoomPosition >= ((props.magnifier - 1) * -1 * props.imageWidth)) {
+
+                            if (zoomPosition >= (-1 * props.imageWidth)) {
                               return zoomPosition;
                             } else {
-                              return 0;
+                              return (-1 * props.imageWidth);
                             }
                           }}px;
   background-position-y: ${(props) => {
-                            var zoomPosition = props.y * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2;
-                            if (zoomPosition >= ((props.magnifier - 1) * -1 * props.imageHeight)) {
+                            var zoomPosition = props.y * (-1) * props.magnifier + 740/2;
+                            console.log(zoomPosition, (props.magnifier - 1) * -1 * props.imageHeight);
+                            if (zoomPosition > 0) {
+                              return 0;
+                            } else if (zoomPosition >= ((props.magnifier - 1) * -1 * props.imageHeight)) {
                               return zoomPosition;
                             } else {
                               return (props.magnifier - 1) * -1 * props.imageHeight;
