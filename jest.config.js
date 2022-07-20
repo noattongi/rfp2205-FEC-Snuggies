@@ -7,6 +7,8 @@ module.exports = {
                         "!**/node_modules/**",
                         "!**/*.config.js",
                         "!**/bundle.js",
+                        "!**/server/*",
+                        '!**/server/helpers/*',
                         "!**/coverage/**"],
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',

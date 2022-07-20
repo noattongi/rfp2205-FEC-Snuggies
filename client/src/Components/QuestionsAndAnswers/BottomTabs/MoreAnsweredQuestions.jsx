@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 var MoreAnsweredQuestions = ({loadMore}) => {
   return (
-    <MoreAnsweredQuestionsButton onClick={loadMore}> More Answered Questions </MoreAnsweredQuestionsButton>
+    <MoreAnsweredQuestionsButton id="12345" onClick={loadMore}> More Answered Questions </MoreAnsweredQuestionsButton>
   )
 };
 
