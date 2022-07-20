@@ -41,6 +41,12 @@ const ProductOverviewStarContainer = styled.section`
 const StyleThumbnailRowContainer = styled.section`
   display: flex;
   flex-direction: column;
+  background-color: #3a606e;
+  padding: 12px;
+  border-radius: 0 0 5px 5px;
+  border: solid 3px;
+  border-top: 0;
+  margin-bottom: 12px;
 `;
 
 // Container to hold a single row of Style Thumbnails in Product Information section
@@ -48,6 +54,7 @@ const StyleThumbnailContainer = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 3px 2px 3px 2px;
 `;
 
 // Container to hold the chosen Style Thumbnail and the icon that indicates that it's the chosen one

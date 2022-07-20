@@ -10,8 +10,9 @@ const StyleThumbnail = styled.img`
   border: solid;
   border-color: black;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  margin: 6px 8px 6px 8px;
   :hover {
     cursor: pointer;
   }
