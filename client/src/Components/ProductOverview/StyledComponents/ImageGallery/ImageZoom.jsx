@@ -31,10 +31,10 @@ const Magnifier = styled.div`
   left: 0;
   background-image: url(${(props) => props.imageUrl});
   background-repeat: no-repeat;
-  background-size: 100vw 1850px;
+  background-size: ${(props) => {return (props.imageWidth * props.magnifier)}}px ${(props) => {return (props.imageHeight * props.magnifier)}}px;
   background-position-x: ${(props) => {
                             var zoomPosition = props.x * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2;
-                            if (zoomPosition >= (100/document.documentElement.clientWidth)) {
+                            if (zoomPosition >= 0) {
                               return zoomPosition;
                             } else {
                               return 0;
@@ -42,10 +42,11 @@ const Magnifier = styled.div`
                           }}px;
   background-position-y: ${(props) => {
                             var zoomPosition = props.y * (-1) * props.magnifier + (100/document.documentElement.clientWidth)/2;
-                            if (zoomPosition <= 0) {
+                            console.log(zoomPosition);
+                            if (zoomPosition >=  ((props.magnifier - 1) * -1 * props.imageHeight)) {
                               return zoomPosition;
                             } else {
-                              return 0;
+                              return (props.magnifier - 1) * -1 * props.imageHeight;
                             }
                           }}px;
   border: solid 3px black;
