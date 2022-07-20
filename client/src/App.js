@@ -63,9 +63,9 @@ var App = () => {
         <br/>
         <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
         <br/>
-        {/* <QnaIndex/>
+        <QnaIndex/>
         <br/>
-        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/> */}
+        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
     </GlobalContext.Provider>
   )
 }
