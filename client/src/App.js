@@ -63,7 +63,7 @@ var App = () => {
         <br/>
         <RInC data-test-id='RInCIndex' productId={productId} setProductId={setProductId}/>
         <br/>
-        <QnaIndex/>
+        <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
         <br/>
         <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
     </GlobalContext.Provider>

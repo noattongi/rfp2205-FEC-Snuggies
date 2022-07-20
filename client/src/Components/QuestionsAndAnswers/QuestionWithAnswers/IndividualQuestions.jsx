@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import IndividualAnswer from './IndividualAnswer.jsx';
 var axios = require('axios')
 
-var IndividualQuestions = ({urlImage, setURLImage, question, postAnswerfunc}) => {
+var IndividualQuestions = ({chosenProduct, productId, urlImage, setURLImage, question, postAnswerfunc}) => {
 
   var [toggleModal, setToggleModal] = useState(false);
   var [helpful, setHelpful] = useState(question.question_helpfulness);
@@ -30,7 +30,7 @@ var IndividualQuestions = ({urlImage, setURLImage, question, postAnswerfunc}) =>
         <QuestionSpan> Q: {question.question_body} </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
          <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
-          {toggleModal && <AddAnswer urlImage={urlImage} setURLImage={setURLImage} postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
+          {toggleModal && <AddAnswer productId={productId} chosenProduct={chosenProduct} urlImage={urlImage} setURLImage={setURLImage} postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
           <span> | </span>
           <HelpfulAnswerSpan>
              Helpful?
