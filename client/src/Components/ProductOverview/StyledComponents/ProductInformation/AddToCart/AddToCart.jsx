@@ -18,7 +18,10 @@ const AddToCartButton = styled.button`
 `;
 
 // Warning text that appears above size or quantity dropdowns
-const WarningText = styled.button`
+const WarningText = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14;
   color: #120309;
   background-color: #EF8354;
