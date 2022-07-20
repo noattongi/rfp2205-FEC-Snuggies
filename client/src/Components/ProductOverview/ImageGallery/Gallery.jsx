@@ -19,7 +19,11 @@ var Gallery = (props) => {
     if (props.chosenStyle.photos) {
       setImageThumbnails(props.chosenStyle.photos);
       setChosenImageUrl(props.chosenStyle.photos[chosenImageIndex].url);
-      setChosenImageIndex(0);
+      if (chosenImageIndex) {
+        setChosenImageIndex(chosenImageIndex);
+      } else {
+        setChosenImageIndex(0);
+      }
       setMaxIndex(props.chosenStyle.photos.length - 1);
     }
   }, [props.chosenStyle])

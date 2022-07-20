@@ -26,7 +26,7 @@ const DefaultView = styled.div`
 `;
 
 // An overlay div that'll go over the Default View div; this contains the Left and Right Arrows
-const Overlay = styled.div`
+const DefaultOverlay = styled.div`
   position: absolute;
   width: 718px;
   height: 740px;
@@ -100,4 +100,4 @@ const ExpandedView = styled.div`
 `;
 
 // Export the styled components
-export { Image, DefaultView, Overlay, LeftArrow, RightArrow, FullScreen, ExpandedView };
+export { Image, DefaultView, DefaultOverlay, LeftArrow, RightArrow, FullScreen, ExpandedView };
