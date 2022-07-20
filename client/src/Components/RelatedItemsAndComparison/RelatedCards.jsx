@@ -14,12 +14,6 @@ const RelatedCards = (props) => {
   }
 
   useEffect(() => {
-<<<<<<< HEAD
-    // console.log('index', props.relatedIndex)
-    // console.log('slice', props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4))
-    // console.log('related id', props.relatedId)
-=======
->>>>>>> main
     setProducts(props.relatedProd.slice(props.relatedIndex, props.relatedIndex + 4));
   }, [props.relatedIndex, props.relatedProd])
 

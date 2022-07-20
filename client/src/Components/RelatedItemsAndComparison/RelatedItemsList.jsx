@@ -13,14 +13,6 @@ const RelatedItemsList = (props) => {
   const [reviewData, setReviewData] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
-    // console.log('id', props.productId)
-    getRelated(props.productId)
-    .then((data) => {
-      var temp = []
-      data.forEach((id) => {
-        temp.push(props.getProduct(id))
-=======
     if (props.productId) {
       getRelated(props.productId)
       .then((data) => {
@@ -29,7 +21,6 @@ const RelatedItemsList = (props) => {
           temp.push(props.getProduct(id))
         })
         return temp;
->>>>>>> main
       })
       .then((array) => {
         Promise.all(array)
