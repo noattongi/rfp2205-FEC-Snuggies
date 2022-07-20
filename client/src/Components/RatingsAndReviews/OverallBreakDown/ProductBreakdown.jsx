@@ -2,15 +2,18 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import {Done, Progress, BodyContainer, Triangle, Range} from '../../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
+import {PBContainer, CharName, CharRating, CharContainer, PBCharContainer} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 
 const ProductBreakDown = (props) => {//done
-
+  // console.log(props)
   const [sizeSliderValue, setSizeSliderValue] = useState(0);
   const [widthSliderValue, setWidthSliderValue] = useState(0);
   const [comfortSliderValue, setComfortSliderValue] = useState(0);
   const [qualitySliderValue, setQualitySliderValue] = useState(0);
   const [lengthSliderValue, setLengthSliderValue] = useState(0);
   const [fitSliderValue, setFitSliderValue] = useState(0);
+
+
 
   useEffect(() => {
     var averageChar = (rating) => {
@@ -56,14 +59,44 @@ const ProductBreakDown = (props) => {//done
   }, [props.characteristics, fitSliderValue]);
 
   	return (
-      <div>
-    {sizeSliderValue !== 0 && <div>Size<Range type="range" min="1" max="100" readOnly value={sizeSliderValue}  id="size" /></div>}
-    {widthSliderValue !== 0 && <div>Width<Range type="range" min="1" max="100" readOnly value={widthSliderValue}  id="width" /></div>}
-    {comfortSliderValue !== 0 && <div>Comfort<Range type="range" min="1" max="100" readOnly value={comfortSliderValue}  id="comfort" /></div>}
-    {qualitySliderValue !== 0 && <div>Quality<Range type="range" min="1" max="100" readOnly value={qualitySliderValue}  id="quality" /></div>}
-    {lengthSliderValue !== 0 && <div>Length<Range type="range" min="1" max="100" readOnly value={lengthSliderValue}  id="length" /></div>}
-    {fitSliderValue !== 0 && <div>Fit<Range type="range" min="1" max="100"  readOnly value={fitSliderValue}  id="fit" /></div>}
-	  </div>
+      <PBContainer>
+        {sizeSliderValue !== 0 &&
+          <PBCharContainer>
+            <CharName>Size</CharName>
+              <div><Range type="range" min="1" max="100" readOnly value={sizeSliderValue}  id="size" /></div>
+              <CharContainer><CharRating>Too Small</CharRating> <CharRating>Perfect</CharRating><CharRating>Too Large</CharRating></CharContainer>
+          </PBCharContainer>}
+        {widthSliderValue !== 0 &&
+          <PBCharContainer>
+            <CharName>Width</CharName>
+              <div><Range type="range" min="1" max="100" readOnly value={widthSliderValue}  id="width" /></div>
+              <CharContainer><CharRating>Too Narrow</CharRating> <CharRating>Perfect</CharRating><CharRating>Too wide</CharRating></CharContainer>
+          </PBCharContainer>}
+        {comfortSliderValue !== 0 &&
+          <PBCharContainer>
+            <CharName>Comfort</CharName>
+              <div><Range type="range" min="1" max="100" readOnly value={comfortSliderValue}  id="comfort" /></div>
+              <CharContainer><CharRating>Uncomfortable</CharRating><CharRating>Perfect</CharRating></CharContainer>
+          </PBCharContainer>}
+        {qualitySliderValue !== 0 &&
+          <PBCharContainer>
+            <CharName>Quality</CharName>
+              <div><Range type="range" min="1" max="100" readOnly value={qualitySliderValue}  id="quality" /></div>
+              <CharContainer><CharRating>Poor</CharRating><CharRating>Perfect</CharRating></CharContainer>
+          </PBCharContainer>}
+        {lengthSliderValue !== 0 &&
+        <PBCharContainer>
+          <CharName>Length</CharName>
+            <div><Range type="range" min="1" max="100" readOnly value={lengthSliderValue}  id="length" /></div>
+            <CharContainer><CharRating>Runs Short</CharRating> <CharRating>Perfect</CharRating><CharRating>Runs Long</CharRating></CharContainer>
+        </PBCharContainer>}
+          {fitSliderValue !== 0 &&
+          <PBCharContainer>
+            <CharName>Fit</CharName>
+              <div><Range type="range" min="1" max="100"  readOnly value={fitSliderValue}  id="fit" /></div>
+              <CharContainer><CharRating>Runs Tight</CharRating><CharRating>Perfect</CharRating><CharRating>Runs Long</CharRating></CharContainer>
+          </PBCharContainer>}
+	    </PBContainer>
   )
 }
 export default ProductBreakDown;
