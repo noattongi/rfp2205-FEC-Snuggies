@@ -14,6 +14,7 @@ var Gallery = (props) => {
   const [chosenImageUrl, setChosenImageUrl] = useState('');
   const [chosenImageIndex, setChosenImageIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
 
   // When the chosenStyle state is updated, update this component's hooks accordingly
   useEffect(() => {
@@ -41,7 +42,7 @@ var Gallery = (props) => {
     <ImageGalleryContainer>
       <RelativeWrapper>
         <ThumbnailList imageThumbnails={imageThumbnails} chosenImageUrl={chosenImageUrl} setChosenImageUrl={setChosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} />
-        <MainImage chosenImageUrl={chosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} maxIndex={maxIndex} />
+        <MainImage chosenImageUrl={chosenImageUrl} chosenImageIndex={chosenImageIndex} setChosenImageIndex={setChosenImageIndex} maxIndex={maxIndex} expanded={expanded} setExpanded={setExpanded} />
       </RelativeWrapper>
     </ImageGalleryContainer>
 
