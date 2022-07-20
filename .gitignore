@@ -1,4 +1,6 @@
+.gitignore
 .env
 node_modules
 client/dist/bundle.js
 coverage/
+.DS_Store
