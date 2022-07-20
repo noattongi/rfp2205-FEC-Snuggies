@@ -23,11 +23,15 @@ var RatingsAndReviewsIndex = (props) => {
   const [ratings, setRatings] = useState({});
   const [filteredArray, setFilteredArray] = useState([])
   const [ratingFilter, setRatingFilter] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
+  const [filterbyNums, setfilterbyNums] = useState([])
 
-  var filterTheReviews = (ratingNum) => {
-    console.log("before check the toggle herer", ratingFilter['5'])
-    filterToggle(ratingNum)
-    console.log(ratingFilter['5'], "check the toggle herer")
+  const filterToggle = async (ratingNum) => {
+    setRatingFilter({...ratingFilter, [`${ratingNum}`] : !ratingFilter[`${ratingNum}`]});
+  }
+
+
+  var filterTheReviews =  (ratingNum) => {
+
     // let reduced = reviews.filter((review) => {
     //   return (
     //     (fiveRatingFilter === true && review.rating === 5)  ||
@@ -37,40 +41,38 @@ var RatingsAndReviewsIndex = (props) => {
     //     (oneRatingFilter === true && review.rating === 1)
     //   )
     // });
-    var reduced = reviews.reduce((filtered, review) => {
-       if ((ratingFilter['5'] === true && review.rating === 5)  ||
-          (ratingFilter['4'] === true && review.rating === 4) ||
-          (ratingFilter['3'] === true && review.rating === 3) ||
-          (ratingFilter['2'] === true && review.rating === 2) ||
-          (ratingFilter['1'] === true && review.rating === 1)) {
-            filtered.push(review);
-         };
+    return filterToggle(ratingNum)
+    .then((ratingNum) => {
+      console.log(ratingFilter, 'did this work')
+
+    var reduced = reviews?.reduce((filtered, review) => {
+      if ((ratingFilter['5'] === true && review.rating === 5)) {
+        filtered.push(review);
+     };
+      //  if ((ratingFilter['5'] === true && review.rating === 5)  ||
+      //     (ratingFilter['4'] === true && review.rating === 4) ||
+      //     (ratingFilter['3'] === true && review.rating === 3) ||
+      //     (ratingFilter['2'] === true && review.rating === 2) ||
+      //     (ratingFilter['1'] === true && review.rating === 1)) {
+      //       filtered.push(review);
+      //    };
         return filtered;
       }, []);
-      // setReviews(reduced)
-      setFilteredArray(reduced);//set filter Array with filtered data
-      console.log(reduced, "this is your reduced")
-      return reduced;
+      return reduced
+    })
+      .then((reducedData) => {
+              // setReviews(reduced)
+      setFilteredArray(reducedData);//set filter Array with filtered data
+      console.log(reducedData, "this is your reduced")
+      return reducedData;
+      })
+
+    .catch((error) => {
+      console.log(error, 'in filterThereviews')
+    })
     }
 
-  var filterToggle = (ratingNum) => {
-    if(ratingNum === 5 ) {
-      setRatingFilter({...ratingFilter, '5' : !ratingFilter['5']});
-      console.log('five filter', ratingFilter['5']);
-    } else if(ratingNum === 4) {
-      setRatingFilter({...ratingFilter, '4' : !ratingFilter['4']});
-      console.log('four filter', ratingFilter['4']);
-    } else if(ratingNum === 3) {
-      setRatingFilter({...ratingFilter, '3' : !ratingFilter['3']});
-      console.log('three filter', ratingFilter['3'])
-    } else if(ratingNum === 2) {
-      setRatingFilter({...ratingFilter, '2' : !ratingFilter['2']});
-      console.log('two filter', ratingFilter['2'])
-    } else if(ratingNum === 1) {
-      setRatingFilter({...ratingFilter, '1' : !ratingFilter['1']});
-      console.log('one filter', ratingFilter['1'])
-    }
-  }
+
 
 
 
