@@ -21,8 +21,44 @@ var AddReviewModal = (props) => {
   const [productName, setProductName] = useState('');
   const [productID, setProductID] = useState(0);
   const [photoURL, setPhotoURL] = useState([]);
-  const comfortID = props.metaData.characteristics.Comfort.id
+  const selectSize = {1: 'A size too small', 2: '½ a size too small', 3: 'Perfect' , 4 : '½ a size too big', 5: 'A size too wide'};
+  const selectWidth = {1: 'Too narrow', 2: 'Slightly narrow', 3: 'Perfect' , 4 : 'Slightly wide', 5: 'Too wide'};
+  const selectComfort = {1: 'Uncomfortable', 2: 'Slightly uncomfortable', 3: 'Ok' , 4 : 'Comfortable', 5: 'Perfect'};
+  const selectQuality = {1: 'Poor', 2: 'Below average', 3: 'What I expected' , 4 : 'Pretty great', 5: 'Perfect'};
+  const selectLength = {1: 'Runs Short', 2: 'Runs slightly short', 3: 'Perfect' , 4 : 'Runs slightly long', 5: 'Runs long'};
+  const selectFit = {1: 'Runs tight', 2: 'Runs slightly tight', 3: 'Perfect' , 4 : 'Runs slightly long', 5: 'Runs long'};
+  const [renderChar, setRenderChar] = useState({Size: '', Width: '', Comfort: '', Quality: '', Length: '', Fit: ''});
 
+
+
+
+  var charSelectionChange = (characteristicName, ratingValue) => {
+    if (characteristicName === 'Size') {
+      setRenderChar({...renderChar, Size: selectSize[ratingValue]})
+    } else if(characteristicName === 'Width') {
+      setRenderChar({...renderChar, Width: selectWidth[ratingValue]})
+    } else if(characteristicName === 'Comfort') {
+      setRenderChar({...renderChar, Comfort: selectComfort[ratingValue]})
+    } else if(characteristicName === 'Quality') {
+      setRenderChar({...renderChar, Quality: selectQuality[ratingValue]})
+    } else if(characteristicName === 'Length') {
+      setRenderChar({...renderChar, Length: selectLength[ratingValue]})
+    } else if(characteristicName === 'Fit') {
+      setRenderChar({...renderChar, Fit: selectFit[ratingValue]})
+    }
+    // setRenderChar({...renderchar, [selected]: selected[]})
+      // var charObj = select`${characteristicName}`
+      // console.log(charObj)
+
+  }
+
+  var onCharChange = (event) => {
+    var charName = event.target.getAttribute('name')
+    var charValue = Number(event.target.value);
+    var charId = props.metaData.characteristics[charName].id;
+    setCharacteristics({...characteristics, [charId] : charValue})
+    charSelectionChange(charName, charValue)
+  }
 
   var toggleModal = (e) => {
     setIsOpen(!isOpen);
@@ -71,41 +107,8 @@ var AddReviewModal = (props) => {
     }
   }
 
-  var sizeOnChange = (event) => {
-      var sizeNum = Number(event.target.value);
-      var sizeId = props.metaData.characteristics.Size.id
-      setCharacteristics({...characteristics, sizeId : sizeNum});
-  }
 
-  var widthOnChange = (event) => {
-    var widthNum = Number(event.target.value);
-    var widthId = props.metaData.characteristics.Width.id
-    setCharacteristics({...characteristics, [widthId] : widthNum});
-  }
 
-  var comfortOnChange = (event) => {
-    var comfortNum = Number(event.target.value);
-    var comfortId = props.metaData.characteristics.Comfort.id
-    setCharacteristics({...characteristics, [comfortId] : comfortNum});
-  }
-
-  var qualityOnChange = (event) => {
-    var qualityNum = Number(event.target.value);
-    var qualityId = props.metaData.characteristics.Quality.id
-    setCharacteristics({...characteristics, [qualityId] : qualityNum});
-  }
-
-  var lengthOnChange = (event) => {
-    var lengthNum = Number(event.target.value);
-    var lengthId = props.metaData.characteristics.Length.id
-    setCharacteristics({...characteristics, [lengthId] : lengthNum});
-  }
-
-  var fitOnChange = (event) => {
-    var fitNum = Number(event.target.value);
-    var fitId = props.metaData.characteristics.Fit.id
-    setCharacteristics({...characteristics, [fitId] : fitNum});
-  }
 
   var resetSubmitValues = () => {
     setbodySummary('');
@@ -193,68 +196,74 @@ var AddReviewModal = (props) => {
             </label>
             </div>
             <div>
+            {renderChar.Size !== '' && <span>{renderChar.Size}</span>}
             {props.metaData.Size &&
             <label>*Size
-               <input type="radio" value="1" name="Size" onChange={sizeOnChange}/> A size too small
-               <input type="radio" value="2" name="Size" onChange={sizeOnChange}/> ½ a size too small
-               <input type="radio" value="3" name="Size" onChange={sizeOnChange}/> Perfect
-               <input type="radio" value="4" name="Size" onChange={sizeOnChange}/> ½ a size too big
-               <input type="radio" value="5" name="Size" onChange={sizeOnChange}/> A size too wide
+               <input type="radio" value="1" name="Size" onChange={onCharChange}/> 1
+               <input type="radio" value="2" name="Size" onChange={onCharChange}/> 2
+               <input type="radio" value="3" name="Size" onChange={onCharChange}/> 3
+               <input type="radio" value="4" name="Size" onChange={onCharChange}/> 4
+               <input type="radio" value="5" name="Size" onChange={onCharChange}/> 5
             </label>
               }
               </div>
               <div>
+            {renderChar.Width !== '' && <span>{renderChar.Width}</span>}
             {props.metaData.characteristics.Width &&
             <label>*Width
-              <input type="radio" value="1" name="Width" onChange={widthOnChange}/> Too narrow
-              <input type="radio" value="2" name="Width" onChange={widthOnChange}/> Slightly narrow
-              <input type="radio" value="3" name="Width" onChange={widthOnChange}/> Perfect
-              <input type="radio" value="4" name="Width" onChange={widthOnChange}/> Slightly wide
-              <input type="radio" value="5" name="Width" onChange={widthOnChange}/> Too wide
+              <input type="radio" value="1" name="Width" onChange={onCharChange}/> 1
+              <input type="radio" value="2" name="Width" onChange={onCharChange}/> 2
+              <input type="radio" value="3" name="Width" onChange={onCharChange}/> 3
+              <input type="radio" value="4" name="Width" onChange={onCharChange}/> 4
+              <input type="radio" value="5" name="Width" onChange={onCharChange}/> 5
             </label>
               }
               </div>
               <div>
+              {renderChar.Comfort !== '' && <span>{renderChar.Comfort}</span>}
               {props.metaData.characteristics.Comfort &&
                 <label>*Comfort
-                  <input type="radio" value="1" name="Comfort" onChange={comfortOnChange}/> Uncomfortable
-                  <input type="radio" value="2" name="Comfort" onChange={comfortOnChange}/> Slightly uncomfortable
-                  <input type="radio" value="3" name="Comfort" onChange={comfortOnChange}/> Ok
-                  <input type="radio" value="4" name="Comfort" onChange={comfortOnChange}/> Comfortable
-                  <input type="radio" value="5" name="Comfort" onChange={comfortOnChange}/> Perfect
+                  <input type="radio" value="1" name="Comfort" onChange={onCharChange}/> 1
+                  <input type="radio" value="2" name="Comfort" onChange={onCharChange}/> 2
+                  <input type="radio" value="3" name="Comfort" onChange={onCharChange}/> 3
+                  <input type="radio" value="4" name="Comfort" onChange={onCharChange}/> 4
+                  <input type="radio" value="5" name="Comfort" onChange={onCharChange}/> 5
                 </label>
               }
               </div>
               <div>
+              {renderChar.Quality !== '' && <span>{renderChar.Quality}</span>}
               {props.metaData.characteristics.Quality &&
                 <label>*Quality
-                    <input type="radio" value="1" name="Quality" onChange={qualityOnChange}/> Poor
-                    <input type="radio" value="2" name="Quality" onChange={qualityOnChange}/> Below average
-                    <input type="radio" value="3" name="Quality" onChange={qualityOnChange}/> What I expected
-                    <input type="radio" value="4" name="Quality" onChange={qualityOnChange}/> Pretty great
-                    <input type="radio" value="5" name="Quality" onChange={qualityOnChange}/> Perfect
+                    <input type="radio" value="1" name="Quality" onChange={onCharChange}/> 1
+                    <input type="radio" value="2" name="Quality" onChange={onCharChange}/> 2
+                    <input type="radio" value="3" name="Quality" onChange={onCharChange}/> 3
+                    <input type="radio" value="4" name="Quality" onChange={onCharChange}/> 4
+                    <input type="radio" value="5" name="Quality" onChange={onCharChange}/> 5
                 </label>
               }
               </div>
               <div>
-              {props.metaData.characteristics.Quality &&
+              {renderChar.Length !== '' && <span>{renderChar.Length}</span>}
+              {props.metaData.characteristics.Length &&
                 <label>*Length
-                    <input type="radio" value="1" name="Length" onChange={lengthOnChange}/> Runs Short
-                    <input type="radio" value="2" name="Length" onChange={lengthOnChange}/> Runs slightly short
-                    <input type="radio" value="3" name="Length" onChange={lengthOnChange}/> Perfect
-                    <input type="radio" value="4" name="Length" onChange={lengthOnChange}/> Runs slightly long
-                    <input type="radio" value="5" name="Length" onChange={lengthOnChange}/> Runs long
+                    <input type="radio" value="1" name="Length" onChange={onCharChange}/> 1
+                    <input type="radio" value="2" name="Length" onChange={onCharChange}/> 2
+                    <input type="radio" value="3" name="Length" onChange={onCharChange}/> 3
+                    <input type="radio" value="4" name="Length" onChange={onCharChange}/> 4
+                    <input type="radio" value="5" name="Length" onChange={onCharChange}/> 5
                 </label>
               }
               </div>
               <div>
+              {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>}
               {props.metaData.characteristics.Fit &&
                 <label>*Fit{}
-                    <input type="radio" value="1" name="Fit" onChange={fitOnChange}/> Runs tight
-                    <input type="radio" value="2" name="Fit" onChange={fitOnChange}/> Runs slightly tight
-                    <input type="radio" value="3" name="Fit" onChange={fitOnChange}/> Perfect
-                    <input type="radio" value="4" name="Fit" onChange={fitOnChange}/> Runs slightly long
-                    <input type="radio" value="5" name="Fit" onChange={fitOnChange}/> Runs long
+                    <input type="radio" value="1" name="Fit" onChange={onCharChange}/> 1
+                    <input type="radio" value="2" name="Fit" onChange={onCharChange}/> 2
+                    <input type="radio" value="3" name="Fit" onChange={onCharChange}/> 3
+                    <input type="radio" value="4" name="Fit" onChange={onCharChange}/> 4
+                    <input type="radio" value="5" name="Fit" onChange={onCharChange}/> 5
                 </label>
               }
               </div>
