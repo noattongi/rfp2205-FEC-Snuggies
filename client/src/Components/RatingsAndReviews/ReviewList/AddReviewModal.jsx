@@ -71,32 +71,38 @@ var AddReviewModal = (props) => {
 
   var sizeOnChange = (event) => {
       var sizeNum = Number(event.target.value);
-      setCharacteristics({...characteristics, '14' : sizeNum});
+      var sizeId = props.metaData.characteristics.Size.id
+      setCharacteristics({...characteristics, sizeId : sizeNum});
   }
 
   var widthOnChange = (event) => {
     var widthNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '15' : widthNum});
+    var widthId = props.metaData.characteristics.Width.id
+    setCharacteristics({...characteristics, [widthId] : widthNum});
   }
 
   var comfortOnChange = (event) => {
     var comfortNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '16' : comfortNum});
+    var comfortId = props.metaData.characteristics.Comfort.id
+    setCharacteristics({...characteristics, [comfortId] : comfortNum});
   }
 
   var qualityOnChange = (event) => {
     var qualityNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '17' : qualityNum});
+    var qualityId = props.metaData.characteristics.Quality.id
+    setCharacteristics({...characteristics, [qualityId] : qualityNum});
   }
 
   var lengthOnChange = (event) => {
     var lengthNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '18' : lengthNum});
+    var lengthId = props.metaData.characteristics.Length.id
+    setCharacteristics({...characteristics, [lengthId] : lengthNum});
   }
 
   var fitOnChange = (event) => {
     var fitNum = Number(event.target.value);
-    setCharacteristics({...characteristics, '19' : fitNum});
+    var fitId = props.metaData.characteristics.Fit.id
+    setCharacteristics({...characteristics, [fitId] : fitNum});
   }
 
   var resetSubmitValues = () => {
@@ -112,7 +118,7 @@ var AddReviewModal = (props) => {
     setIsOpen(!isOpen);
     setCharacteristics({});
     props.closeModal();
-    // setRating(null)
+    setRating(null)
   }
 
   var onSubmitClick = (event) => {
@@ -123,16 +129,17 @@ var AddReviewModal = (props) => {
         alert("Please review the mandatory data!")
       }
     } else {
+      console.log(productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
       props.postReview({
       product_id: productID,//hardcoded
-      rating: 3,//hardcoded
+      rating: rating,//hardcoded
       summary: bodySummary,
       body: reviewBody,
       recommend: recommendInput,
       name: nickname,
       email: email,
       photos: [postedImage],
-      characteristics: {}
+      characteristics: characteristics
     })
     resetSubmitValues();
     }
@@ -142,6 +149,11 @@ var AddReviewModal = (props) => {
     setProductName(props.chosenProduct.name);
     setProductID(props.chosenProduct.id);
   },[productName, productID]);
+
+  var changeRating = (rating) => {
+    setRating(rating)
+    console.log(rating)
+  }
 
     return (
       <StyleBackground> <div>
@@ -154,7 +166,7 @@ var AddReviewModal = (props) => {
             <h4>About the {props.chosenProduct.name}</h4>
           </div>
           <ModalBody><div>
-            *Star Rating:
+            *Star Rating:<StarRatingModal onChange={changeRating}/>
             <div>
             <label>
               *Recommend:

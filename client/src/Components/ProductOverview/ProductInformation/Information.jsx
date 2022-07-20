@@ -4,9 +4,10 @@
 import React, { useState, useEffect } from 'react';
 import { ProductInformationContainer, PriceContainer } from '../StyledComponents/Containers.jsx';
 import { Price, Price_struck, Price_sale } from '../StyledComponents/ProductInformation/Price.jsx';
+import { CategorySpan, ProductNameSpan, StyleSpan, StyleNameSpan } from '../StyledComponents/ProductInformation/Information.jsx';
 import OverviewStars from './OverviewStarRating.jsx';
 import Styles from './StyleSelector.jsx';
-import CartButtons from './AddToCart.jsx';
+import AddToCart from './AddToCart.jsx';
 
 // The component
 var Information = (props) => {
@@ -14,13 +15,6 @@ var Information = (props) => {
   var salePrice;
   // Iterate and choose the default style whenever the style list changes (e.g. choose new product)
   useEffect(() => {
-    // // For each of the styles in the passed in styles prop, iterate until we find the default one and set that as the displayed style
-    // for (let i = 0; i < props.styles.length; i++) {
-    //   if (props.styles[i]["default?"]) {
-    //     props.setChosenStyle(props.styles[i]);
-    //     break;
-    //   }
-    // }
     if (props.styles.length > 0) {
       // Per business requirements document, the default style selected is the first one in the list
       props.setChosenStyle(props.styles[0]);
@@ -40,12 +34,12 @@ var Information = (props) => {
   return (
     <ProductInformationContainer>
       <OverviewStars product={props.product} />
-      <div>{(props.product && props.product.category) || "Loading Category..."}</div>
-      <div>{(props.product && props.product.name) || "Loading Product Name..."}</div>
+      <CategorySpan>{(props.product && props.product.category) || "Loading Category..."}</CategorySpan>
+      <ProductNameSpan>{(props.product && props.product.name) || "Loading Product Name..."}</ProductNameSpan>
       {price}
-      <div>Style > {(props.chosenStyle && props.chosenStyle.name) || "Loading Selected Style..."}</div>
+      <StyleSpan>Style > {<StyleNameSpan>{props.chosenStyle && props.chosenStyle.name || "Loading Selected Style..."}</StyleNameSpan> }</StyleSpan>
       <Styles styles={props.styles} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} />
-      <CartButtons chosenStyle={props.chosenStyle} />
+      <AddToCart chosenStyle={props.chosenStyle} />
     </ProductInformationContainer>
   );
 }

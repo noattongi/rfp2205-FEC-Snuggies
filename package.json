@@ -6,8 +6,8 @@
   "scripts": {
     "server-start": "nodemon server.js -w",
     "client-start": "webpack --config webpack.config.js -w",
-    "test": "jest --env=jsdom",
-    "coverage": "jest --coverage"
+    "test": "jest",
+    "test:coverage": "jest --config ./jest.config.js --coverage"
   },
   "keywords": [],
   "author": "Aaron Pan <adpan.dev@gmail.com>",

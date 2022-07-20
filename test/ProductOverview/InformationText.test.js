@@ -48,8 +48,8 @@ test('Renders text components when given the Camo Onesie product', async () => {
   const productName = await screen.getByText("Camo Onesie");
   expect(productName).toBeTruthy();
   // Check if the Style Name renders (will need to be changed when styling refactoring is done)
-  await waitFor(() => screen.getByText("Style > Forest Green & Black"))
-  const styleName = await screen.getAllByText("Style > Forest Green & Black");
+  await waitFor(() => screen.getByText("Forest Green & Black"))
+  const styleName = await screen.getAllByText("Forest Green & Black");
   expect(styleName).toHaveLength(1);
 });
 

@@ -6,9 +6,10 @@ import OutfitList from './OutfitList.jsx';
 import styled from 'styled-components';
 
 const RInCIndex = (props) => {
-  useEffect(() => {
-    // console.log('props RInCIndex', props)
-  }, [props.productId])
+
+  // useEffect(() => {
+  // }, [props.productId])
+
   const getProduct = (productId) => {
     return axios.get('/snuggie/products', {params: {product_id: productId}})
     .then((res) => {

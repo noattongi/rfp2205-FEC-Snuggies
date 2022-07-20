@@ -14,9 +14,12 @@ const Image = styled.img`
 const DefaultView = styled.div`
   display: flex;
   justify-content: center;
-  width: 642px;
-  height: 628px;
-  background-color: black;
+  width: 718px;
+  height: 740px;
+  border: solid 3px;
+  border-left: 0;
+  border-color: #120309;
+
   :hover {
     cursor: zoom-in;
   }
@@ -25,15 +28,15 @@ const DefaultView = styled.div`
 // An overlay div that'll go over the Default View div; this contains the Left and Right Arrows
 const Overlay = styled.div`
   position: absolute;
-  width: 642px;
-  height: 628px;
+  width: 718px;
+  height: 740px;
 `;
 
 // The left arrow icon that cycles the shown Main Image
 const LeftArrow = styled.i`
   position: absolute;
   left: 5%;
-  top: 50%;
+  bottom: 50%;
   object-fit: fill;
   width: 15px;
   height: 15px;
@@ -45,6 +48,7 @@ const LeftArrow = styled.i`
   z-index: 2;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   }
 `;
 
@@ -52,7 +56,7 @@ const LeftArrow = styled.i`
 const RightArrow = styled.i`
   position: absolute;
   right: 5%;
-  top: 50%;
+  bottom: 50%;
   object-fit: fill;
   width: 15px;
   height: 15px;
@@ -64,6 +68,7 @@ const RightArrow = styled.i`
   z-index: 2;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   }
 `;
 
@@ -83,6 +88,7 @@ const FullScreen = styled.i`
   z-index: 2;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   }
 `;
 
