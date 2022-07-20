@@ -1,11 +1,12 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../../../App.js'
 var axios = require('axios');
 
-var AddAnswer = ({urlImage, setURLImage, q, toggleModal, postAnswer}) => {
+var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModal, postAnswer}) => {
   var storage = useContext(GlobalContext);
-  var { _productId, _chosenProduct } = storage;
+  // var { _productId, _chosenProduct } = storage;
+  console.log('what is product', chosenProduct)
 
   // body data
   var [answerEntry, setAnswerEntry] = useState('');
@@ -49,7 +50,7 @@ var AddAnswer = ({urlImage, setURLImage, q, toggleModal, postAnswer}) => {
           <ModalHeader>
             <ModalH2> Submit Your Answer </ModalH2>
             <ModalSubtitleContainer>
-                <ProductName> {_chosenProduct.name}:  </ProductName>
+                <ProductName> {chosenProduct.name}:  </ProductName>
                 <QuestionBody> {q.question_body} </QuestionBody>
             </ModalSubtitleContainer>
             <ModalBody>
@@ -77,7 +78,7 @@ var AddAnswer = ({urlImage, setURLImage, q, toggleModal, postAnswer}) => {
               }
             </ImageContainer>
             <BottomButtonContainers>
-              <button onClick={click} > Upload Cloud</button>
+              <button onClick={click} > Upload Cloud </button>
                 {/* <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput> */}
                 {/* <UploadLabel htmlFor='button' > Upload File </UploadLabel> */}
                 <SubmitButton onClick={backupSubmit}> Submit! </SubmitButton>
@@ -192,8 +193,8 @@ var CloseButton = styled.button`
   font-size: 28px;
   font-weight: bold;
   height: 38px;
-  position: relative;
-  right: 200px;
+  position: absolute;
+  right: 50px;
   :hover {
     color: black;
     text-decoration: none;
@@ -240,6 +241,7 @@ var ModalContent = styled.div`
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  position: relative;
   justify-content: center;
 `;
 export default AddAnswer

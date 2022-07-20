@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, screen, act, waitFor } from '@testing-library/react';
+import { render, screen, act, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ImageModal from '../../client/src/Components/RatingsAndReviews/ReviewList/ImageModal.jsx';
 import ImagePool from '../../client/src/Components/RatingsAndReviews/ReviewList/ImagePool.jsx'
@@ -40,6 +40,9 @@ test('Renders ReviewList', async () => {
   await act( async () => {
     render(<ReviewList metaData={mockReviewMetaData.brightFutureSunglasses} productReviews={mockReviewData.brightFutureSunglasses}/>);
   })
+  await waitFor(() => screen.getByText("More Reviews"));
+  const reviews = await screen.getByText("More Reviews");
+  expect(reviews).toBeTruthy();
 });
 
 test('Renders ImageModal', async () => {
@@ -58,7 +61,6 @@ test('Renders ImageModal', async () => {
         return Promise.reject(new Error('not found'));
     }
   });
-
   await act( async () => {
     render(<ImageModal pic={'this is a fake picture'}/>);
   })
@@ -87,7 +89,6 @@ test('Renders ImagePool', async () => {
       key={2}
       photo={'photo goes here'}/>);
   })
-
 });
 
 test('Renders StarRatingModal', async () => {

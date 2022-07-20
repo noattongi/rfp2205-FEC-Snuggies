@@ -8,10 +8,9 @@ const axios = require('axios');
 import {GlobalContext} from '../../App.js';
 
 
-var QnaIndex = (props) => {
-
+var QnaIndex = ({ chosenProduct, productId }) => {
   var storage = useContext(GlobalContext);
-  var { _productId } = storage;
+  // var { _productId } = storage;
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
@@ -24,8 +23,8 @@ var QnaIndex = (props) => {
   var questionSort = question.results?.slice(0, len);
 
   useEffect(() => {
-    if(_productId) {
-      axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}} )
+    if(productId) {
+      axios.get('/snuggie/qa/questions', {params : {product_id: productId, count: 100}} )
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
@@ -34,13 +33,13 @@ var QnaIndex = (props) => {
         console.log('Error in retrieving question list from server', error);
       });
     }
-  }, [_productId]);
+  }, [productId]);
 
   var search = (query) => {
     var query = query.toLowerCase();
 
     if (query.length > 2) {
-      var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query));
+      var filtered = defaultQ.results.filter((e) =>  e.question_body.toLowerCase().includes(query)) ;
       setFilter(filtered)
       console.log('default', defaultQ)
       console.log('filtered', filtered)
@@ -67,7 +66,7 @@ var QnaIndex = (props) => {
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
     .then((response) => {
-       axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}})
+       axios.get('/snuggie/qa/questions', {params : {product_id: productId, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
@@ -81,7 +80,7 @@ var QnaIndex = (props) => {
   var postQuestion = (body) => {
     axios.post('/snuggie/post/question', body)
     .then(() => {
-      axios.get('/snuggie/qa/questions', {params : {product_id: _productId, count: 100}})
+      axios.get('/snuggie/qa/questions', {params : {product_id: productId, count: 100}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
@@ -101,12 +100,12 @@ var QnaIndex = (props) => {
         <SearchQuestions search={search}/>
         {noSearch && <h2> NO SEARCH RESULT</h2>}
         <QuestionScrollDiv>
-          <QuestionsList urlImage={urlImage} setURLImage={setURLImage} postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
+          <QuestionsList urlImage={urlImage} chosenProduct={chosenProduct} productId={productId} setURLImage={setURLImage} postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
         </QuestionScrollDiv>
       <BottomTabContainer>
       {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
-        <AddQuestionButton onClick={() =>setToggleModal(true)}> Add Question + </AddQuestionButton>
-        {toggleModal &&  <AddQuestion postQuest={postQuestion} toggleModel={setToggleModal}/> }
+        <AddQuestionButton chosenProduct={chosenProduct} productId= {productId} onClick={() =>setToggleModal(true)}> Add Question + </AddQuestionButton>
+        {toggleModal &&  <AddQuestion productId={productId} chosenProduct={chosenProduct} postQuest={postQuestion} toggleModel={setToggleModal}/> }
       </BottomTabContainer>
     </QnAContainer>
   )
