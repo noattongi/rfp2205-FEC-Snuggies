@@ -30,25 +30,23 @@ var RatingsAndReviewsIndex = (props) => {
     console.log(ratingNum)
      setRatingFilter({...ratingFilter, [ratingNum] : !ratingFilter[ratingNum]});
   }
+  var resetFilters = async () => {
+    setRatingNumArray([])
+  }
 
-
-  var filterTheReviews = (ratingNum) => {
+  var filterTheReviews = async (ratingNum) => {
     if(ratingNumArray.includes(ratingNum)) {
       var newArr = ratingNumArray.filter((e) => {
         return e !== ratingNum
       })
-      setRatingNumArray(newArr)
+      await setRatingNumArray(newArr)
     } else {
       var array = [...ratingNumArray, ratingNum]
-      console.log(array, 'arrrayyyy')
       setRatingNumArray(array)
       console.log(ratingNumArray, 'after')
     }
      return filterToggle(ratingNum)
     }
-
-
-  var filterDoublecheck = ratingNumArray.length > 0
 
 
   const getProductReviews = (productId, sortedBy) => {
@@ -62,7 +60,6 @@ var RatingsAndReviewsIndex = (props) => {
           return ratingNumArray.includes(review.rating)
         })
         return filteredReviews
-
       }
       return response
     })
@@ -154,7 +151,7 @@ var RatingsAndReviewsIndex = (props) => {
     <div id="Reviews">
       Ratings &amp; Reviews
     <RRContainer>
-    <OBContainer><OverAllBreakDown filterTheReviews={filterTheReviews} metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
+    <OBContainer><OverAllBreakDown resetFilters={resetFilters} filterTheReviews={filterTheReviews} metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
     <ReviewList ratingNumArray={ratingNumArray} ratingFilter={ratingFilter} productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>

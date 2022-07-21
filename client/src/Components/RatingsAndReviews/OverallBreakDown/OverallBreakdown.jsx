@@ -6,16 +6,28 @@ import StarRating from '../../SharedComponents/StarRating.jsx'
 import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
 import {OBStar,RRContainer, SingleBar, BarText, RBStarsNum, RBRecommended, OBContainer, NumRatingTitle} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
+
 const OverAllBreakDown = (props) => {//done
 	// console.log(props, 'porps in overall breakdown')
 	const [averageStars, setAverageStars] = useState(0);
 	const [recommendProduct, setRecommendProduct] = useState(0);
 	const [filterArray, setFilterArray] = useState([])
-
+	const [ratingArray, setRatingArray] = useState([])
+	const [filterTracker, setFilterTracker] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
 
 
 	var filterOnClick = (event) => {
 		var numValue = Number(event.target.getAttribute('value'));
+		if(ratingArray.includes(numValue)) {
+      var newArr = ratingArray.filter((e) => {
+        return e !== numValue
+      })
+       setRatingArray(newArr)
+    } else {
+      var array = [...ratingArray, numValue]
+      setRatingArray(array)
+    }
+		setFilterTracker({...filterTracker, [numValue] : !filterTracker[numValue]});
 		return props.filterTheReviews(numValue);
 	}
 
@@ -39,8 +51,13 @@ useEffect(() => {
 		var recommendedAverage = (props.metaData.recommended.true / recommendTotal);
 		setRecommendProduct((Math.floor(recommendedAverage * 100)));
 	}
-}, [props.reviewData, props.metadata]);
+}, [props.reviewData, props.metadata, ratingArray, filterTracker]);
 
+  var handleRemoveClick =  ((event) => {
+		setRatingArray([])
+    setFilterTracker({'5':false, '4':false, '3':false, '2':false, '1':false})
+    props.resetFilters()
+	})
 
 
 	return (
@@ -49,6 +66,15 @@ useEffect(() => {
 			  <NumRatingTitle>{averageStars && averageStars}</NumRatingTitle>
 		    <OBStar><StarRating reviewData={props.reviewData} /></OBStar>
 		  </RBStarsNum>
+			<div>
+			  {ratingArray.length > 0 && <div>Filters applied</div>}
+				{filterTracker['1'] && <div>1 Star</div>}
+				{filterTracker['2'] && <div>2 Star</div>}
+				{filterTracker['3'] && <div>3 Star</div>}
+				{filterTracker['4'] && <div>4 Star</div>}
+				{filterTracker['5'] && <div>5 Star</div>}
+				{ratingArray.length > 0 && <div onClick={handleRemoveClick}>Remove all Filters</div>}
+      </div>
 		<RBRecommended> {recommendProduct}% of reviews recommend this product</RBRecommended>
 		<AllStarsBodyContainer>
 			<SingleBar >
