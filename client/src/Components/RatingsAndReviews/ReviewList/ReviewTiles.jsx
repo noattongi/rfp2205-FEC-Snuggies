@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ImagePool from './ImagePool.jsx';
@@ -22,7 +22,9 @@ var ReviewTiles = (props) => {
     return formattedDate;
   }
 
+  useEffect(() => {
 
+  }, [helpful])
   var seeMoreClick = (event) => {
     setSeeMore(false);
   }

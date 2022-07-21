@@ -5,7 +5,7 @@ import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReview
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
 var AddReviewModal = (props) => {
-  //  console.log(props, 'hellooooo')
+   console.log(props, 'hellooooo')
   const [isOpen, setIsOpen] = useState(false);
   const [bodySummary, setbodySummary] =  useState('');
   const [reviewBody, setReviewBody] =  useState('');
@@ -154,6 +154,7 @@ var AddReviewModal = (props) => {
 
   var changeRating = (rating) => {
     setRating(rating)
+    console.log(rating)
   }
 
 
@@ -195,7 +196,7 @@ var AddReviewModal = (props) => {
             </label>
             </div>
             <div>
-            {renderChar.Size !== '' && <span>{renderChar.Size}</span>}
+            {props.charData.Size && renderChar.Size === '' ? <span>None Selected size</span>  : <span>{renderChar.Size}</span>}
             {props.metaData.Size &&
             <label>*Size
                <input type="radio" value="1" name="Size" onChange={onCharChange}/> 1
@@ -207,7 +208,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-            {renderChar.Width !== '' && <span>{renderChar.Width}</span>}
+            {props.charData.Width && renderChar.Width === '' ? <span>None Selected width</span> : <span>{renderChar.Width}</span>}
             {props.metaData.characteristics.Width &&
             <label>*Width
               <input type="radio" value="1" name="Width" onChange={onCharChange}/> 1
@@ -219,7 +220,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {renderChar.Comfort !== '' && <span>{renderChar.Comfort}</span>}
+              {props.charData.Comfort && renderChar.Comfort === '' ? <span>None Selected comfort</span> : <span>{renderChar.Comfort}</span>}
               {props.metaData.characteristics.Comfort &&
                 <label>*Comfort
                   <input type="radio" value="1" name="Comfort" onChange={onCharChange}/> 1
@@ -231,7 +232,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {renderChar.Quality !== '' && <span>{renderChar.Quality}</span>}
+              {props.charData.Quality && renderChar.Quality === '' ? <span>None Selected quality</span> : <span>{renderChar.Quality}</span>}
               {props.metaData.characteristics.Quality &&
                 <label>*Quality
                     <input type="radio" value="1" name="Quality" onChange={onCharChange}/> 1
@@ -243,7 +244,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {renderChar.Length !== '' && <span>{renderChar.Length}</span>}
+              {props.charData.Length && renderChar.Length === '' ? <span>None Selected length</span>: <span>{renderChar.Length}</span>}
               {props.metaData.characteristics.Length &&
                 <label>*Length
                     <input type="radio" value="1" name="Length" onChange={onCharChange}/> 1
@@ -255,7 +256,8 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>}
+              {props.charData.Fit  && renderChar.Fit === '' ? <span>None Selected fit</span> : <span>{renderChar.Fit}</span>}
+              {/* {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>} */}
               {props.metaData.characteristics.Fit &&
                 <label>*Fit
                     <input type="radio" value="1" name="Fit" onChange={onCharChange}/> 1
@@ -314,3 +316,81 @@ var AddReviewModal = (props) => {
 
 export default AddReviewModal;
 
+{/* <div>
+{props.Size && renderChar.Size === '' && <span>None Selected size</span>}
+{renderChar.Size && renderChar.Size !== '' && <span>{renderChar.Size}</span>}
+{props.metaData.Size &&
+<label>*Size
+   <input type="radio" value="1" name="Size" onChange={onCharChange}/> 1
+   <input type="radio" value="2" name="Size" onChange={onCharChange}/> 2
+   <input type="radio" value="3" name="Size" onChange={onCharChange}/> 3
+   <input type="radio" value="4" name="Size" onChange={onCharChange}/> 4
+   <input type="radio" value="5" name="Size" onChange={onCharChange}/> 5
+</label>
+  }
+  </div>
+  <div>
+{renderChar.Width && renderChar.Width === '' && <span>None Selected width</span>}
+{renderChar.Width !== '' && <span>{renderChar.Width}</span>}
+{props.metaData.characteristics.Width &&
+<label>*Width
+  <input type="radio" value="1" name="Width" onChange={onCharChange}/> 1
+  <input type="radio" value="2" name="Width" onChange={onCharChange}/> 2
+  <input type="radio" value="3" name="Width" onChange={onCharChange}/> 3
+  <input type="radio" value="4" name="Width" onChange={onCharChange}/> 4
+  <input type="radio" value="5" name="Width" onChange={onCharChange}/> 5
+</label>
+  }
+  </div>
+  <div>
+  {renderChar.Comfort && renderChar.Comfort === '' && <span>None Selected comfort</span>}
+  {renderChar.Comfort && renderChar.Comfort !== '' && <span>{renderChar.Comfort}</span>}
+  {props.metaData.characteristics.Comfort &&
+    <label>*Comfort
+      <input type="radio" value="1" name="Comfort" onChange={onCharChange}/> 1
+      <input type="radio" value="2" name="Comfort" onChange={onCharChange}/> 2
+      <input type="radio" value="3" name="Comfort" onChange={onCharChange}/> 3
+      <input type="radio" value="4" name="Comfort" onChange={onCharChange}/> 4
+      <input type="radio" value="5" name="Comfort" onChange={onCharChange}/> 5
+    </label>
+  }
+  </div>
+  <div>
+  {renderChar.Quality === '' && <span>None Selected quality</span>}
+  {renderChar.Quality !== '' && <span>{renderChar.Quality}</span>}
+  {props.metaData.characteristics.Quality &&
+    <label>*Quality
+        <input type="radio" value="1" name="Quality" onChange={onCharChange}/> 1
+        <input type="radio" value="2" name="Quality" onChange={onCharChange}/> 2
+        <input type="radio" value="3" name="Quality" onChange={onCharChange}/> 3
+        <input type="radio" value="4" name="Quality" onChange={onCharChange}/> 4
+        <input type="radio" value="5" name="Quality" onChange={onCharChange}/> 5
+    </label>
+  }
+  </div>
+  <div>
+  {renderChar.Length === '' && <span>None Selected length</span>}
+  {renderChar.Length !== '' && <span>{renderChar.Length}</span>}
+  {props.metaData.characteristics.Length &&
+    <label>*Length
+        <input type="radio" value="1" name="Length" onChange={onCharChange}/> 1
+        <input type="radio" value="2" name="Length" onChange={onCharChange}/> 2
+        <input type="radio" value="3" name="Length" onChange={onCharChange}/> 3
+        <input type="radio" value="4" name="Length" onChange={onCharChange}/> 4
+        <input type="radio" value="5" name="Length" onChange={onCharChange}/> 5
+    </label>
+  }
+  </div>
+  <div>
+  {renderChar.Fit === '' && <span>None Selected fit</span>}
+  {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>}
+  {props.metaData.characteristics.Fit &&
+    <label>*Fit
+        <input type="radio" value="1" name="Fit" onChange={onCharChange}/> 1
+        <input type="radio" value="2" name="Fit" onChange={onCharChange}/> 2
+        <input type="radio" value="3" name="Fit" onChange={onCharChange}/> 3
+        <input type="radio" value="4" name="Fit" onChange={onCharChange}/> 4
+        <input type="radio" value="5" name="Fit" onChange={onCharChange}/> 5
+    </label>
+  }
+  </div> */}
