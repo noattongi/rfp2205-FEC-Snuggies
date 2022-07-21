@@ -22,12 +22,13 @@ const FilledStarModal = styled.i`
   z-index: 10;
 `;
 
-const Star = (props) => {//({ filled, onClick })
+const Star = (props) => {//({ filled, onClick })ZZ
+
 
   return (
     <StarContainer>
       <EmptyStarModal
-        className="fa-solid fa-star"
+        className="fa fa-star-o"
         onClick={props.onClick}
         color="lightgray"
       />
@@ -39,5 +40,6 @@ const Star = (props) => {//({ filled, onClick })
     </StarContainer>
   );
 }
+
 
 export default Star;

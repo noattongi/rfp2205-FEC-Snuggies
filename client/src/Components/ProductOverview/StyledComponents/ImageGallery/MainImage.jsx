@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const Image = styled.img`
   object-fit: cover;
   overflow: hidden;
-  z-index: 1;
+  z-index: 16;
 `;
 
 // The Main Image, default view
@@ -26,7 +26,7 @@ const DefaultView = styled.div`
 `;
 
 // An overlay div that'll go over the Default View div; this contains the Left and Right Arrows
-const Overlay = styled.div`
+const DefaultOverlay = styled.div`
   position: absolute;
   width: 718px;
   height: 740px;
@@ -45,7 +45,7 @@ const LeftArrow = styled.i`
   border: solid;
   border-color: black;
   border-radius: 10%;
-  z-index: 2;
+  z-index: 20;
   :hover {
     cursor: pointer;
     background-color: #EF8354;
@@ -65,7 +65,7 @@ const RightArrow = styled.i`
   border: solid;
   border-color: black;
   border-radius: 10%;
-  z-index: 2;
+  z-index: 20;
   :hover {
     cursor: pointer;
     background-color: #EF8354;
@@ -85,7 +85,7 @@ const FullScreen = styled.i`
   border: solid;
   border-color: black;
   border-radius: 10%;
-  z-index: 2;
+  z-index: 20;
   :hover {
     cursor: pointer;
     background-color: #EF8354;
@@ -94,10 +94,35 @@ const FullScreen = styled.i`
 
 // The Main Image, expanded view
 const ExpandedView = styled.div`
-  width: 1000px;
-  height: 628px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  height: 740px;
   background-color: black;
+  z-index: 15;
+  border: solid 3px;
+  border-radius: 10px 10px 0 0;
+  border-color: #120309;
+  :hover {
+    cursor: crosshair;
+  }
+`;
+
+// An overlay div that'll go over the Expanded View div; this also contains the Left and Right Arrows
+const ExpandedOverlay = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 740px;
+  background-color: #828e82;
+`;
+
+// A wrapper that just has position: relative
+const RelativeWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
 `;
 
 // Export the styled components
-export { Image, DefaultView, Overlay, LeftArrow, RightArrow, FullScreen, ExpandedView };
+export { Image, DefaultView, DefaultOverlay, LeftArrow, RightArrow, FullScreen, ExpandedView, ExpandedOverlay, RelativeWrapper };

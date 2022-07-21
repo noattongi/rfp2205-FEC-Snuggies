@@ -20,6 +20,7 @@ const StyleBackground =styled.div`
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+
   `;
 
   const Image = styled.img`
@@ -46,8 +47,11 @@ const ModalBody = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  text-align: center;
   `;
 
+  const ProductName = styled.h3`
+  width: 250px;
+  align-items: right;
+`;
 
-export { StyleBackground, Container, ModalBody, Image, shrinkImage};
+export { StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

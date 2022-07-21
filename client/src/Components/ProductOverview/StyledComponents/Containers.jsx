@@ -7,6 +7,7 @@ import styled from 'styled-components';
 const ProductOverviewContainer = styled.section`
   display: flex;
   flex-direction: row;
+  width: 1360px;
 `;
 
 // Image Gallery container
@@ -99,6 +100,7 @@ const QuantityDropdownContainer = styled.section`
 const ProductInformationDescription = styled.section`
   display: flex;
   flex-direction: row;
+  width: 1353px;
   background-color: #607b7d;
   border: solid 3px;
   border-top: 0;
