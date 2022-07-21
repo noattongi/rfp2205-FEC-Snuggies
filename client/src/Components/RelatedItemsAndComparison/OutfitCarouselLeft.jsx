@@ -11,7 +11,7 @@ const OutfitCarouselLeft = (props) => {
   }
   return (
     <>
-      {Boolean(props.outfitProd[props.outfitIndex + 2] && props.outfitIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
+      {Boolean(props.outfitProd[props.outfitIndex + 2] && props.outfitIndex > 0) ? <LeftClick className="fa-solid fa-arrow-left" onClick={handleBack}></LeftClick> : null}
     </>
   )
 }
@@ -19,3 +19,10 @@ const OutfitCarouselLeft = (props) => {
 export default OutfitCarouselLeft;
 
 // styled component
+const LeftClick = styled.button`
+  align-self: center;
+  border: solid 2px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+`;

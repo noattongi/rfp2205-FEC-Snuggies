@@ -11,7 +11,7 @@ const OutfitCarouselRight = (props) => {
   }
   return (
     <>
-      {Boolean(props.outfitProd[props.outfitIndex + 3]) ? <button onClick={handleCarousel}>➡️</button> : null}
+      {Boolean(props.outfitProd[props.outfitIndex + 3]) ? <RightClick className="fa-solid fa-arrow-right" onClick={handleCarousel}></RightClick> : null}
     </>
   )
 }
@@ -19,3 +19,10 @@ const OutfitCarouselRight = (props) => {
 export default OutfitCarouselRight;
 
 // styled component
+const RightClick = styled.button`
+  align-self: center;
+  border: solid 2px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+`;

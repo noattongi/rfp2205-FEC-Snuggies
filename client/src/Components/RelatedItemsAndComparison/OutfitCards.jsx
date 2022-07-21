@@ -70,17 +70,17 @@ const CardBox = styled.div`
   border-radius: 10px;
   text-align: center;
   margin: 20px;
-  width: 284px;
+  width: 260.906px;
   height: 403px;
-  padding: 5px;
+  padding: 10px;
   background-color: #607B7D;
 `;
 const ThumbnailImage = styled.img`
   object-fit: cover;
   overflow: hidden;
-  width: 244px;
-  height: 244px;
-  margin: 10px;
+  width: 251px;
+  height: 251px;
+  margin: 0px 0px 10px 0px;
   background-color: white;
   border: solid 2px;
   border-color: black;

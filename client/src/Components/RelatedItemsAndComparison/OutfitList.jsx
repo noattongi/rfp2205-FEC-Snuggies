@@ -100,18 +100,18 @@ const OutfitList = (props) => {
     <div>
       <h3>Your Outfit</h3>
       <OutfitListContainer>
-      <Row>
         <CarouselContainer>
-          {Boolean(outfitId.length > 4) ? <OutfitCarouselLeft outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
+          {Boolean(outfitId.length > 3) ? <OutfitCarouselLeft outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
+        <Row>
         <AddContainer onClick={(e) => {addOutfitId(props.productId)}}>
           <AddText> ADD TO OUTFIT +</AddText>
         </AddContainer>
           <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} outfitIndex={outfitIndex} styles={styles} reviewData={reviewData}/>
+          </Row>
         <CarouselContainer>
-          {Boolean(outfitId.length > 4) ? <OutfitCarouselRight outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
+          {Boolean(outfitId.length > 3) ? <OutfitCarouselRight outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
-      </Row>
       </OutfitListContainer>
     </div>
   )
@@ -124,24 +124,25 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 15px;
+  justify-content: flex-start;
+  margin 0px;
 `;
 
 const CarouselContainer = styled.div`
-width: 24px;
+  display: flex;
+  width: 24px;
 `;
 
 const AddContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  position: flex;
+  justify-content: flex-start;
   border: 3px solid black;
   border-radius: 10px;
   text-align: center;
-  margin: 20px 20px 20px 0px;
-  width: 284px;
+  margin: 20px;
+  width: 260.906px;
   height: 403px;
-  padding: 5px;
+  padding: 10px;
   background-color: #607B7D;
   :hover {
     cursor: pointer;

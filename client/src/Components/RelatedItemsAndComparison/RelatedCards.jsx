@@ -106,6 +106,7 @@ const CardBox = styled.div`
     border-color: #EF8354;
     color: #EF8354;
   }
+  flex-grow: 1;
 `;
 
 const ThumbnailImage = styled.img`
