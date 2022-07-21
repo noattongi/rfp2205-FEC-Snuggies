@@ -9,7 +9,6 @@ import StarRating from '../../SharedComponents/StarRating.jsx';
 
 // The component
 var OverviewStars = (props) => {
-
   const [reviewData, setReviewData] = useState();
   const [reviewCount, setReviewCount] = useState();
 
