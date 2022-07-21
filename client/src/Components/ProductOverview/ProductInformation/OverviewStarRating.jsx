@@ -9,31 +9,16 @@ import StarRating from '../../SharedComponents/StarRating.jsx';
 
 // The component
 var OverviewStars = (props) => {
-  const [reviewData, setReviewData] = useState();
-  const [reviewCount, setReviewCount] = useState();
-
-  // When the prop corresponding to chosenProduct updates, get the review metadata for the product and update this component's hooks
-  useEffect(() => {
-    if (Object.keys(props.product).length !== 0) {
-      axios.get('/snuggie/reviews/meta', { params: { product_id: props.product.id }})
-        .then((results) => {
-          let data = results.data.ratings;
-          setReviewData(data);
-          let count = (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1);
-          setReviewCount(count);
-        })
-        .catch((error) => {
-          console.log('Error in getting review metadata from server', error);
-        })
-    }
-  }, [props.product])
 
   return (
     <ProductOverviewStarContainer>
+      {/* Conditionally render the Overview Star component as long as there are stars */
+      (props.reviewData.length !== 0) &&
       <StarDiv>
-        <StarRating reviewData={reviewData} />
-        <ReviewsLink onClick={(event) => {event.preventDefault(); window.location.replace('/#Reviews')}}>{(reviewData && <span>Read {reviewCount} Reviews</span>) || "Loading Reviews..."}</ReviewsLink>
+        <StarRating reviewData={props.reviewData} />
+        <ReviewsLink onClick={(event) => {event.preventDefault(); window.location.replace('/#Reviews')}}>{<span>Read {props.reviewData.length} Reviews</span> || "Loading Reviews..."}</ReviewsLink>
       </StarDiv>
+      }
     </ProductOverviewStarContainer>
   );
 }
