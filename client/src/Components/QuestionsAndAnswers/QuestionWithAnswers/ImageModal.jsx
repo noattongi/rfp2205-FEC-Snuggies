@@ -52,9 +52,13 @@ var ModalContent = styled.div`
   width: 800px;
   position: relative;
   justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `
 
 var Image = styled.img`
   height: 500px;
   width: 50vw;
+  border-radius: 10px;
+  object-fit: cover;
 `;

@@ -113,7 +113,7 @@ var Images = styled.img`
   height: 75px;
   margin: 10px;
   border-radius: 12px;
-
+  object-fit: cover;
   :hover {
     cursor: pointer;
     border: 2px solid black;
