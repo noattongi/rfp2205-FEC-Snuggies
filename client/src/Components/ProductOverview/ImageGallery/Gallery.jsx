@@ -28,7 +28,6 @@ var Gallery = (props) => {
         setChosenImageIndex(0);
         setChosenImageUrl(props.chosenStyle.photos[0].url);
       }
-      console.log('AJJJJ', chosenImageIndex, props.chosenStyle);
       setMaxIndex(props.chosenStyle.photos.length - 1);
     }
   }, [props.chosenStyle])

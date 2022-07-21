@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { Image, DefaultView, DefaultOverlay, LeftArrow, RightArrow, FullScreen, ExpandedView, ExpandedOverlay } from '../StyledComponents/ImageGallery/MainImage.jsx';
 import ImageZoom from './ImageZoom.jsx';
+import Placeholder from '../../../assets/Placeholder.jpeg';
 
 // The component
 var MainImage = (props) => {
@@ -13,7 +14,7 @@ var MainImage = (props) => {
   // If the view is zoomed view, render the zoomed view
   if (props.zoomed) {
     return (
-      <ImageZoom imageUrl={props.chosenImageUrl} setZoomed={props.setZoomed} />
+      <ImageZoom imageUrl={props.chosenImageUrl || Placeholder} setZoomed={props.setZoomed} />
     );
   // If the view is expanded view, render the expanded view
   } else if (props.expanded) {
@@ -30,7 +31,7 @@ var MainImage = (props) => {
             }}
           />
         </ExpandedOverlay>
-        <Image src={props.chosenImageUrl} onClick={() => { console.log('Zoom!'); props.setZoomed(!props.zoomed);}} />
+        <Image src={props.chosenImageUrl || Placeholder} onClick={() => { console.log('Zoom!'); props.setZoomed(!props.zoomed);}} />
       </ExpandedView>
     );
   // Else render the default view
@@ -43,7 +44,7 @@ var MainImage = (props) => {
             {props.chosenImageIndex < props.maxIndex && <RightArrow className="fa-solid fa-arrow-right" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex + 1)}} />}
             <FullScreen className="fa-solid fa-expand" onClick={() => {console.log('Expand!'); props.setExpanded(true);}} />
           </DefaultOverlay>
-          <Image id="MainImage" src={props.chosenImageUrl} onClick={() => {console.log('Expand!'); props.setExpanded(true);}} />
+          <Image id="MainImage" src={props.chosenImageUrl || Placeholder} onClick={() => {console.log('Expand!'); props.setExpanded(true);}} />
         </DefaultView>
       </div>
     );
