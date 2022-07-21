@@ -42,7 +42,7 @@ var AddToCart = (props) => {
         quantityOptions.push(noStock);
       } else {
         for (let i = 1; i <= style.skus[chosenSize].quantity && i < 16; i++) {
-          let newOption = <option value={i} key={`quantity${i}`}>{i}</option>;
+          let newOption = <option value={i} key={`quantity${i}`} selected={i === 1}>{i}</option>;
           quantityOptions.push(newOption);
         }
       }
