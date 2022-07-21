@@ -105,16 +105,18 @@ const RelatedItemsList = (props) => {
 
   return (
     <>
-      <h3>Related List</h3>
-        <Row>
+    <h3>Related List</h3>
+    <RelatedItemsListContainer>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarouselLeft relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
-          <RelatedCards setRelatedIndex={setRelatedIndex} relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} styles={styles} reviewData={reviewData} chosenProduct={props.chosenProduct}/>
+            <Row>
+            <RelatedCards setRelatedIndex={setRelatedIndex} relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} styles={styles} reviewData={reviewData} chosenProduct={props.chosenProduct}/>
+            </Row>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarouselRight relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
-        </Row>
+    </RelatedItemsListContainer>
     </>
   )
 }
@@ -122,13 +124,22 @@ const RelatedItemsList = (props) => {
 export default RelatedItemsList;
 
 // styled components
+const RelatedItemsListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 100%;
+`;
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  width: 1200px;
 `
 
 const CarouselContainer = styled.div`
   display: flex;
-  place-content : center flex-end;
+  place-content: center flex-end;
+  width: 24px;
 `;
+

@@ -21,13 +21,19 @@ const RInCIndex = (props) => {
   }
 
   return (
-    <div>
+    <RInCContainer>
       <RelatedItemsList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} chosenProduct={props.chosenProduct}/>
       <OutfitList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} chosenProduct={props.chosenProduct}/>
-    </div>
+    </RInCContainer>
   )
 }
 
 export default RInCIndex;
 
 // styled components
+const RInCContainer = styled.div`
+  display: flex;
+  font-family: 'Nanum Gothic Coding', monospace;
+  flex-direction: column;
+  width: 1249px;
+`;

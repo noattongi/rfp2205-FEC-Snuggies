@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const ComparisonModal = (props) => {
     return (
     <ModalBackground onClick={(e) => {props.modalToggle()}}>
-      {console.log('comp', props.clickedProd)}
       <ModalContainer>
         <ModalBody>
         <div>

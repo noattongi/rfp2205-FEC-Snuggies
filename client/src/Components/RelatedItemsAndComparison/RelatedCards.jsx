@@ -75,9 +75,9 @@ const RelatedCards = (props) => {
               <p>{prod.category}</p>
               <p>{prod.name}</p>
               <p>{prod.default_price}</p>
-              <StarContainer>
+              <RatingDiv>
                 <StarRating reviewData={getRatings(prod.id)}/>
-              </StarContainer>
+              </RatingDiv>
             </div>
           </CardBox>
        )})}
@@ -91,17 +91,19 @@ export default RelatedCards;
 const CardBox = styled.div`
   position: flex;
   justify-content: flex-start;
-  border: 1px solid black;
+  border: 3px solid black;
+  border-radius: 10px;
   text-align: center;
   margin: 20px;
   width: 25%;
+  padding: 5px;
 `;
 
 const ThumbnailImage = styled.img`
   object-fit: cover;
   overflow: hidden;
-  width: 62px;
-  height: 62px;
+  width: 244px;
+  height: 244px;
   background-color: white;
   border: solid;
   border-color: black;
@@ -110,7 +112,16 @@ const ThumbnailImage = styled.img`
   }
 `;
 
-const StarContainer = styled.div`
-  position: flex;
-  margin: 20px;
+const RatingDiv = styled.div`
+  background-color: #3a606e;
+  width: 244px;
+  height: 18px;
+  border: solid 2px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 `;
+
+const StarDiv = styled.div`
+`
