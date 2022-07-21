@@ -12,7 +12,7 @@ import AddToCart from './AddToCart.jsx';
 // The component
 var Information = (props) => {
 
-  var salePrice;
+  var salePrice = props.chosenStyle.sale_price;
   // Iterate and choose the default style whenever the style list changes (e.g. choose new product)
   useEffect(() => {
     if (props.styles.length > 0) {
@@ -26,9 +26,9 @@ var Information = (props) => {
   // Generate the price component
   var price;
   if (salePrice) {
-    price = <PriceContainer><Price_struck>{props.chosenStyle.original_price}</Price_struck><Price_sale>{props.chosenStyle.sale_price}</Price_sale></PriceContainer>
-  } else {
-    price = <PriceContainer>{(props.chosenStyle && <Price>{props.chosenStyle.original_price}</Price>) || "Loading Price..."}</PriceContainer>
+    price = <PriceContainer><Price_struck>{`$${props.chosenStyle.original_price}`}</Price_struck><Price_sale>{`$${props.chosenStyle.sale_price}`}</Price_sale></PriceContainer>
+  } else if (props.chosenStyle.original_price) {
+    price = <PriceContainer>{(props.chosenStyle && <Price>{`$${props.chosenStyle.original_price}`}</Price>) || "Loading Price..."}</PriceContainer>
   }
 
   return (
