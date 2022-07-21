@@ -27,7 +27,6 @@ const FilledStar = styled.i`
 // Input: A number (intended to be an integer between 0 and 100)
 // Output: A number (multiple of 25)
 var capToFourth = (number) => {
-  console.log(number, 'numbbberrr')
   return (25 * Math.floor(number / 25));
 }
 
