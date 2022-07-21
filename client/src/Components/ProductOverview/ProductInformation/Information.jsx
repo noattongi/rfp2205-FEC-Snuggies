@@ -33,7 +33,7 @@ var Information = (props) => {
 
   return (
     <ProductInformationContainer>
-      <OverviewStars product={props.product} />
+      <OverviewStars product={props.product} reviewData={props.reviewData} />
       <CategorySpan>{(props.product && props.product.category) || "Loading Category..."}</CategorySpan>
       <ProductNameSpan>{(props.product && props.product.name) || "Loading Product Name..."}</ProductNameSpan>
       {price}
