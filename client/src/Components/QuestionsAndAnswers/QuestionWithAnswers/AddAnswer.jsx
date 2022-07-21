@@ -50,8 +50,8 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
           <ModalHeader>
             <ModalH2> Submit Your Answer </ModalH2>
             <ModalSubtitleContainer>
-                <ProductName> {chosenProduct.name}:  </ProductName>
-                <QuestionBody> {q.question_body} </QuestionBody>
+                <ProductName>Product:{chosenProduct.name}</ProductName>
+                <QuestionBody> Question: {q.question_body}</QuestionBody>
             </ModalSubtitleContainer>
             <ModalBody>
             <UserInfoContainer>
@@ -63,7 +63,7 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
               <EmailContainer>
                 <EmailLabel> Email Address </EmailLabel>
                 <EmailInput required='' value={email} onChange={e => setEmail(e.target.value)} maxlength='60' placeholder='Example: jack@email.com'/>
-                <EmailWarningSpan> For authentication reasons, you will not be emailed</EmailWarningSpan>
+                <EmailWarningSpan> For authentication reasons, you will not be <br/> emailed</EmailWarningSpan>
               </EmailContainer>
 
             </UserInfoContainer>
@@ -78,10 +78,10 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
               }
             </ImageContainer>
             <BottomButtonContainers>
-              <button onClick={click} > Upload Cloud </button>
+              <Upload onClick={click} > Upload Images </Upload>
                 {/* <UploadInput  onChange={handleFileInputChange} value={fileInput} type='file' hidden id='button'></UploadInput> */}
                 {/* <UploadLabel htmlFor='button' > Upload File </UploadLabel> */}
-                <SubmitButton onClick={backupSubmit}> Submit! </SubmitButton>
+                <SubmitButton onClick={backupSubmit}> Post </SubmitButton>
             </BottomButtonContainers>
             </ModalBody>
          </ModalHeader>
@@ -107,6 +107,19 @@ var StyleBackground = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
+var Upload = styled.button`
+  font-family: 'Nanum Gothic Coding', monospace;
+  border: 2.4px solid black;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7.5px;
+  background-color: white;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  };
+`;
+
 var Images = styled.img`
   width: 150px;
   height: 150px;
@@ -124,10 +137,6 @@ var UserNameContainer = styled.div`
   flex-direction: column
 `;
 
-var UploadInput = styled.input`
-
-`;
-
 var UploadLabel = styled.label`
   background-color: white;
   color: black;
@@ -141,10 +150,6 @@ var UploadLabel = styled.label`
 var EmailContainer = styled.div`
   display: flex;
   flex-direction: column
-`;
-
-var UploadButton = styled.button`
-
 `;
 
 var NameWarningSpan = styled.span`
@@ -178,7 +183,16 @@ var UserNameInput = styled.input`
 `;
 
 var SubmitButton = styled.button`
-
+  font-family: 'Nanum Gothic Coding', monospace;
+  border: 2.4px solid black;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7.5px;
+  background-color: white;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  };
 `;
 
 var EmailInput = styled.input`
@@ -196,14 +210,16 @@ var BottomButtonContainers = styled.div`
   justify-content: space-between;
   padding-top: 10px;
 `;
+
 var CloseIcon = styled.i`
   font-size: 28px;
-  height: 38px;
+  height: 50px;
   padding-top: 20px;
   position: absolute;
   right: 23px;
   :hover {
     cursor: pointer;
+    color: #EF8354;
   };
 
 `;
@@ -214,17 +230,20 @@ var ModalBody = styled.div`
 var ModalHeader = styled.div`
   display: flex;
   flex-direction: column;
+
 `;
 
 var ModalH2 = styled.h2`
   font-family: 'Nanum Gothic Coding', monospace;
+  padding-left: 250px;
 `;
 
 var ModalSubtitleContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 500px;
-  justify-content: space-around;
+
+
 `;
 
 var ProductName = styled.h3`

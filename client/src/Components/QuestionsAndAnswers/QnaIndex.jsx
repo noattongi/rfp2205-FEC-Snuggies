@@ -41,8 +41,10 @@ var QnaIndex = ({ chosenProduct, productId }) => {
     var query = query.toLowerCase();
 
     if (query.length > 2) {
+      // filter questions
       var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query))
 
+      // filter answers
       var answers = [];
 
       for (var i = 0; i < question.results.length; i++) {
@@ -52,8 +54,16 @@ var QnaIndex = ({ chosenProduct, productId }) => {
             answers.push(currentQ)
           }
         }
-      }
-      setFilter(filtered.concat(answers))
+      };
+
+      // filter out any duplicates from concating the questions and answers
+      var combo = filtered.concat(answers);
+
+      var unique = combo.filter((e, index) => {
+        return combo.indexOf(e) === index;
+      })
+
+      setFilter(unique)
     };
 
     if (query.length < 2) {
@@ -145,9 +155,14 @@ var Header = styled.h1`
 
 var AddQuestionButton = styled.button`
   font-family: 'Nanum Gothic Coding', monospace;
+  border: 2.4px solid black;
+  font-weight: bold;
   border-radius: 5px;
+  padding: 10px;
+  background-color: white;
   :hover {
     cursor: pointer;
+    background-color: #EF8354;
   };
 `;
 
