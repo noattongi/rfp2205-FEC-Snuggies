@@ -51,7 +51,7 @@ var ScrollAnswers = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   padding-top: 10px;
-  height: 200px;
+  height: 275px;
 `;
 
 var AnswerListContainer = styled.div`
@@ -67,7 +67,7 @@ var AnswerSpan = styled.span`
 
 var CollapseAnswerButton = styled.span`
   font-family: 'Nanum Gothic Coding', monospace;
-  padding: 9px;
+  padding-bottom: 9px;
   border: none;
   background: none;
   width: 9%;
@@ -83,6 +83,7 @@ var LoadMoreAnswersButton = styled.span`
   font-family: 'Nanum Gothic Coding', monospace;
   border: none;
   background: none;
+  padding-bottom: 9px;
   width: 20%;
   text-decoration: underline;
   color: #007185;

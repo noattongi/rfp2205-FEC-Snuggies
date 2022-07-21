@@ -2,19 +2,8 @@ import React, {useState} from 'react';
 import { format, parseISO } from 'date-fns';
 import styled from 'styled-components';
 import ImageModal from './ImageModal.jsx';
-var axios = require('axios')
-
-// one container (column)
-// four items inside - Answer, Photos(situational), Bottom Info Container, Load More Answers
-
-// Answer is a span
-// Photo Containers (Row)
-// Bottom Info Container (Row)
-  // Poster, Date, Helpfulness, Report
-
-
-
-// **If photos length !== 0, render photos
+import Placeholder from '../../../assets/Placeholder.jpeg'
+var axios = require('axios');
 
 export default function IndividualAnswer({answer}) {
 
@@ -66,7 +55,7 @@ export default function IndividualAnswer({answer}) {
         <ImageSection>
         {answer.photos.map((each, i) => {
           return (
-            <Images onClick={handleToggle} key={i} src={each}  />
+            <Images onClick={handleToggle} key={i} src={each || Placeholder}  />
           )
         })}
         {toggleImage && <ImageModal toggleImage={setToggleImage} url={url}/>}
@@ -94,7 +83,7 @@ export default function IndividualAnswer({answer}) {
 var IndividualAnswerContainer = styled.section`
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 450px;
   padding: 10px 0 10px 0;
 `;
 

@@ -53,7 +53,7 @@ var QnAContainer = styled.div`
   padding-top: 1rem;
   padding-bottom; 1rem;
   border-bottom: 3px solid black;
-  height: 300px;
+  height: 350px;
 `;
 
 var VotedHelpfulSpan = styled.span`

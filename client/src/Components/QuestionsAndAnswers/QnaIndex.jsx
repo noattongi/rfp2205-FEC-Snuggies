@@ -14,7 +14,7 @@ var QnaIndex = ({ chosenProduct, productId }) => {
 
   const [question, setQuestion] = useState([]);
   const [defaultQ, setDefaultQ] = useState([]);
-  const [len, setLen] = useState(4);
+  const [len, setLen] = useState(2);
   const [toggleModal, setToggleModal] = useState(false);
   const [filter, setFilter] = useState();
   const [noSearch, setNoSearch] = useState(false);
@@ -85,7 +85,7 @@ var QnaIndex = ({ chosenProduct, productId }) => {
   var postAnswer = (body) => {
     axios.post('/snuggie/post/answer', body)
     .then((response) => {
-       axios.get('/snuggie/qa/questions', {params : {product_id: productId, count: 100}})
+       axios.get('/snuggie/qa/questions', {params : {product_id: productId, count: 10000}})
       .then((response) => {
         setQuestion(response.data);
         setDefaultQ(response.data);
@@ -122,7 +122,7 @@ var QnaIndex = ({ chosenProduct, productId }) => {
           <QuestionsList urlImage={urlImage} chosenProduct={chosenProduct} productId={productId} setURLImage={setURLImage} postAnswerFunc={postAnswer} filter={filter} questions={questionSort} />
         </QuestionScrollDiv>
       <BottomTabContainer>
-      {len < question.results?.length && question.results.length > 2 && <MoreAnsweredQuestions loadMore ={loadQ} />}
+      {len < question.results?.length && question.results.length > 2  && <MoreAnsweredQuestions loadMore ={loadQ} />}
         <AddQuestionButton chosenProduct={chosenProduct} productId= {productId} onClick={() =>setToggleModal(true)}> Add Question + </AddQuestionButton>
         {toggleModal &&  <AddQuestion productId={productId} chosenProduct={chosenProduct} postQuest={postQuestion} toggleModel={setToggleModal}/> }
       </BottomTabContainer>

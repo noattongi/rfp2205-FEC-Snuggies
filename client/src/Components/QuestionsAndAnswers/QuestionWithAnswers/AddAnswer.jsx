@@ -6,7 +6,6 @@ var axios = require('axios');
 var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModal, postAnswer}) => {
   var storage = useContext(GlobalContext);
   // var { _productId, _chosenProduct } = storage;
-  console.log('what is product', chosenProduct)
 
   // body data
   var [answerEntry, setAnswerEntry] = useState('');
