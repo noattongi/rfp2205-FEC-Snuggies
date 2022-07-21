@@ -67,18 +67,20 @@ const RelatedCards = (props) => {
     {products?.map((prod) => {
       return (
           <CardBox key={prod.id}>
-            <div onClick={(e) => {handleClickStar(prod).then((data) => {setClickedProd(data)}).then(() => {modalToggle()})}}>⭐️</div>
+            <StarModalContainer>
+              <StarModalDiv onClick={(e) => {handleClickStar(prod).then((data) => {setClickedProd(data)}).then(() => {modalToggle()})}}>⭐️</StarModalDiv>
+            </StarModalContainer>
               {modal ? <ComparisonModal modalToggle = {modalToggle} clickedProd={clickedProd} chosenProduct={props.chosenProduct}/> : null }
               <ThumbnailImage src={getUrl(prod.id)} onClick={(e) => {handleClickImg(prod.id).then((data) => {setClickedImg(data)}).then(() => imgModalToggle())}}/>
                 {imgModal ? <ImagesModal imgModalToggle = {imgModalToggle} clickedImg={clickedImg} /> : null }
-              <div onClick={(e) => {handleCardClick(prod.id)}}>
+              <HoverDiv onClick={(e) => {handleCardClick(prod.id)}}>
               <p>{prod.category}</p>
               <p>{prod.name}</p>
               <p>{prod.default_price}</p>
               <RatingDiv>
                 <StarRating reviewData={getRatings(prod.id)}/>
               </RatingDiv>
-            </div>
+            </HoverDiv>
           </CardBox>
        )})}
        </>
@@ -97,6 +99,12 @@ const CardBox = styled.div`
   margin: 20px;
   width: 25%;
   padding: 5px;
+  background-color: #607B7D;
+  :hover {
+    cursor: pointer;
+    border-color: #EF8354;
+    color: #EF8354;
+  }
 `;
 
 const ThumbnailImage = styled.img`
@@ -104,24 +112,44 @@ const ThumbnailImage = styled.img`
   overflow: hidden;
   width: 244px;
   height: 244px;
+  margin: 10px;
   background-color: white;
-  border: solid;
+  border: solid 2px;
   border-color: black;
+  border-radius: 10px;
   :hover {
     cursor: pointer;
+    border-color: #EF8354;
   }
 `;
 
 const RatingDiv = styled.div`
   background-color: #3a606e;
-  width: 244px;
-  height: 18px;
   border: solid 2px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  align-self: center;
+  margin: 10px;
+  :hover {
+    cursor: pointer;
+    border-color: #EF8354;
+  }
 `;
 
-const StarDiv = styled.div`
-`
+const HoverDiv = styled.div`
+  font-size: 18px;
+  line-height: 5px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const StarModalDiv = styled.div`
+  position: absolute;
+  font-size: 25px;
+  margin: 15px 15px 0px 0px;
+`;
+const StarModalContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;

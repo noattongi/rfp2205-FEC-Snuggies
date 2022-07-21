@@ -35,5 +35,5 @@ const RInCContainer = styled.div`
   display: flex;
   font-family: 'Nanum Gothic Coding', monospace;
   flex-direction: column;
-  width: 1249px;
+  width: 1360px;
 `;

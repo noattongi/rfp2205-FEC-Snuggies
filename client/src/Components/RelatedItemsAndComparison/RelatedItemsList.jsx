@@ -130,11 +130,13 @@ const RelatedItemsListContainer = styled.div`
   border: 3px solid black;
   border-radius: 10px;
   width: 100%;
+  background-color: #3a606e;
 `;
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  width: 1200px;
+  width: 100%;
+  padding: 15px;
 `
 
 const CarouselContainer = styled.div`
