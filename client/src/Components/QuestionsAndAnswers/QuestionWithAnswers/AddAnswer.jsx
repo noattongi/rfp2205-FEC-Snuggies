@@ -13,12 +13,27 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
   var [photoURL, setPhotoURL] = useState([]);
+  var [require, setRequire] = useState(false);
+  var [emailMessage, setEmailMessage] = useState(false);
 
   var backupSubmit = (e) => {
-    e.preventDefault()
-    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: photoURL}
-    postAnswer(body)
-    toggleModal(false)
+
+    e.preventDefault();
+
+    setEmailMessage(false);
+    setRequire(false);
+
+    var body = {question_id: q.question_id, body: answerEntry, name: username, email: email, photos: photoURL};
+
+    if (answerEntry.length === 0 || username.length === 0 || email.length === 0) {
+      setRequire(true);
+    } else if (email.indexOf('@gmail.com') > 0 || email.indexOf('@yahoo.com') > 0 || email.indexOf('@aol.com') > 0 || email.indexOf('@email.com') > 0 ) {
+      postAnswer(body);
+      toggleModal(false);
+    } else {
+      setEmailMessage(true);
+    };
+
   }
 
   var array = [];
@@ -49,6 +64,8 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
         <CloseIcon className="fa-solid fa-xmark" onClick={() => toggleModal(false)}></CloseIcon>
           <ModalHeader>
             <ModalH2> Submit Your Answer </ModalH2>
+            {require && <RequireMessage>Please do not leave any fields blank!</RequireMessage>}
+            {emailMessage && <RequireEmailMessage>Please use a valid email address!</RequireEmailMessage>}
             <ModalSubtitleContainer>
                 <ProductName>Product:{chosenProduct.name}</ProductName>
                 <QuestionBody> Question: {q.question_body}</QuestionBody>
@@ -56,17 +73,18 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
             <ModalBody>
             <UserInfoContainer>
               <UserNameContainer>
-              <UserNameLabel> User Nickname</UserNameLabel>
+              <UserNameLabel> User Nickname<RequireUserName>*</RequireUserName></UserNameLabel>
                 <UserNameInput required='' value={username} onChange={e => setUsername(e.target.value)} maxlength='60' placeholder='Example: jack543!' />
                 <NameWarningSpan>For privacy reasons, do not use <br/> your full name </NameWarningSpan>
               </UserNameContainer>
               <EmailContainer>
-                <EmailLabel> Email Address </EmailLabel>
+                <EmailLabel> Email Address<RequireEmail>*</RequireEmail> </EmailLabel>
                 <EmailInput required='' value={email} onChange={e => setEmail(e.target.value)} maxlength='60' placeholder='Example: jack@email.com'/>
                 <EmailWarningSpan> For authentication reasons, you will not be <br/> emailed</EmailWarningSpan>
               </EmailContainer>
 
             </UserInfoContainer>
+            <YourAnswerLabel>Your Answer<RequireAnswer>*</RequireAnswer></YourAnswerLabel>
             <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
             <ImageContainer>
               {photoURL &&
@@ -107,6 +125,10 @@ var StyleBackground = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
+var RequireAnswer = styled.span`
+  color: #E02929;
+`;
+
 var Upload = styled.button`
   font-family: 'Nanum Gothic Coding', monospace;
   border: 2.4px solid black;
@@ -120,9 +142,38 @@ var Upload = styled.button`
   };
 `;
 
+var RequireEmailMessage = styled.span`
+  color: #E02929;
+  font-family: 'Nanum Gothic Coding', monospace;
+  position: absolute;
+  top: 75;
+  left: 335;
+`;
+
+var RequireMessage = styled.span`
+  color: #E02929;
+  font-family: 'Nanum Gothic Coding', monospace;
+  position: absolute;
+  top: 75;
+  left: 335;
+`;
+
+var RequireEmail = styled.span`
+  color: #E02929;
+`;
+
+var RequireUserName = styled.span`
+  color: #E02929;
+`;
+
 var Images = styled.img`
   width: 150px;
   height: 150px;
+`;
+
+var YourAnswerLabel = styled.label`
+  font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var ImageContainer = styled.div`
@@ -261,7 +312,7 @@ var ModalContent = styled.div`
   margin: 2% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 700px;
+  width: 900px;
   position: relative;
   justify-content: center;
   border-radius: 10px;

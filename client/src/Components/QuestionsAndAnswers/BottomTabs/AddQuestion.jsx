@@ -10,22 +10,28 @@ var AddQuestion = ({chosenProduct, productId, postQuest, toggleModel}) => {
   var [questionEntry, setQuestionEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
+  var [emailRequire, setEmailRequire] = useState(false);
+  var [require, setRequire] = useState(false);
 
   var postQuestion = (e) => {
 
-    e.preventDefault()
+    e.preventDefault();
+
+    setEmailRequire(false);
+    setRequire(false);
+
     var body = {body: questionEntry, name: username, email: email, product_id: productId};
 
     if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
-      alert(`Please don't leave any fields blank.`)
-    } else {
-      postQuest(body)
+      setRequire(true);
+    } else if (email.indexOf('@gmail.com') > 0 || email.indexOf('@yahoo.com') > 0 || email.indexOf('@aol.com') > 0 || email.indexOf('@email.com') > 0 ) {
+      postQuest(body);
       toggleModel(false);
+    } else {
+      setEmailRequire(true);
     };
 
-    if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
-      alert('Error, length too long for the email, name, or question body.')
-    }
+
   }
 
   return (
@@ -35,22 +41,25 @@ var AddQuestion = ({chosenProduct, productId, postQuest, toggleModel}) => {
      <ModalHeader>
        <ModalH2> Submit Your Question </ModalH2>
        <ModalSubtitleContainer>
+           {require && <RequireMessage>Please do not leave any fields blank!</RequireMessage>}
+           {emailRequire && <EmailRequireMessage>Please use a valid email address!</EmailRequireMessage>}
            <ProductName> Product: {chosenProduct.name} </ProductName>
        </ModalSubtitleContainer>
        <ModalBody>
        <UserInfoContainer>
          <UserNameContainer>
-         <UserNameLabel> User Nickname</UserNameLabel>
+         <UserNameLabel> User Nickname<NameRequireSpan>*</NameRequireSpan></UserNameLabel>
            <UserNameInput required='' value={username} onChange={e => setUsername(e.target.value)} maxlength='60' placeholder='Example: jack543!' />
            <NameWarningSpan>For privacy reasons, do not use <br/> your full name </NameWarningSpan>
          </UserNameContainer>
          <EmailContainer>
-           <EmailLabel> Email Address </EmailLabel>
+           <EmailLabel> Email Address<EmailRequireSpan>*</EmailRequireSpan> </EmailLabel>
            <EmailInput required='' value={email} onChange={e => setEmail(e.target.value)} maxlength='60' placeholder='Example: jack@email.com'/>
-           <EmailWarningSpan> For authentication reasons, you will not be emailed</EmailWarningSpan>
+           <EmailWarningSpan> For authentication reasons, you will not be <br/>emailed</EmailWarningSpan>
          </EmailContainer>
 
        </UserInfoContainer>
+       <QuestionLabel>Your Questiion<QuestionRequireSpan>*</QuestionRequireSpan></QuestionLabel>
        <QuestionText required='' maxlength= '1000' onChange={e => setQuestionEntry(e.target.value)} value={questionEntry} placeholder='Add your question here...'> </QuestionText>
        <BottomButtonContainers>
            <SubmitButton onClick={postQuestion} > Post </SubmitButton>
@@ -76,6 +85,33 @@ var StyleBackground = styled.div`
   backdrop-filter: blur(8px);
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+`;
+
+var QuestionRequireSpan = styled.span`
+  color: #E02929;
+`;
+
+var EmailRequireSpan = styled.span`
+  color: #E02929;
+`;
+
+var NameRequireSpan = styled.span`
+  color: #E02929;
+`;
+
+var QuestionLabel = styled.label`
+  font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
+`;
+
+
+
+var EmailRequireMessage = styled.span`
+  color: #E02929;
+  font-family: 'Nanum Gothic Coding', monospace;
+  position: absolute;
+  top: 75;
+  left: 250;
 `;
 
 var UserNameContainer = styled.div`
@@ -117,6 +153,14 @@ var EmailLabel = styled.label`
 var UserNameInput = styled.input`
   width: 175px;
   font-family: 'Nanum Gothic Coding', monospace;
+`;
+
+var RequireMessage = styled.span`
+  color: #E02929;
+  font-family: 'Nanum Gothic Coding', monospace;
+  position: absolute;
+  top: 75;
+  left: 235;
 `;
 
 var SubmitButton = styled.button`
