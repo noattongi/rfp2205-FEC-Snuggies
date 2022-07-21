@@ -39,12 +39,21 @@ const StarRating = (props) => {
   useEffect(() => {
     let rating = 0;
     let data = props.reviewData;
-    if (typeof data === 'object') {
-      rating = (data["1"] * 1) + (data["2"] * 2) + (data["3"] * 3) + (data["4"] * 4) + (data["5"] * 5);
-      // Multiply each data[rating] by 1 turns it into a number (it is originally type string)
-      setAverageRating(rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1));
-    } else if(typeof data ==='number') {
-      setAverageRating(data)
+    // Previous implementation where metadata was used; scrapped because metadata is inconsistent with retrieved review data from API
+    // if (typeof data === 'object') {
+    //   rating = (data["1"] * 1) + (data["2"] * 2) + (data["3"] * 3) + (data["4"] * 4) + (data["5"] * 5);
+    //   // Multiply each data[rating] by 1 turns it into a number (it is originally type string)
+    //   setAverageRating(rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1));
+    // } else if(typeof data ==='number') {
+    //   setAverageRating(data)
+    // }
+
+    // Iterate through each review to calculate the average rating from all of the (unreported, shown) reviews
+    if (Array.isArray(data) && data.length) {
+      for (let i = 0; i < data.length; i++) {
+        rating += (data[i].rating * 1); // Multiplying by 1 in case review.rating is a string
+      }
+      setAverageRating(rating / data.length);
     }
   }, [props.reviewData]);
 
