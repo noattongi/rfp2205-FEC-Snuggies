@@ -42,7 +42,7 @@ var AddToCart = (props) => {
         quantityOptions.push(noStock);
       } else {
         for (let i = 1; i <= style.skus[chosenSize].quantity && i < 16; i++) {
-          let newOption = <option value={i} key={`quantity${i}`} selected={i === 1}>{i}</option>;
+          let newOption = <option value={i} key={`quantity${i}`}>{i}</option>;
           quantityOptions.push(newOption);
         }
       }
@@ -86,7 +86,7 @@ var AddToCart = (props) => {
         </SizeDropdownContainer>
         <QuantityDropdownContainer>
           {clickedWithoutQuantity && <WarningText id="quantityWarning">Please select quantity</WarningText>}
-          <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} onChange={(event) => {setChosenQuantity(event.target.value); setClickedWithoutQuantity(false);}}>
+          <QuantityDropdown name="quantity" id="quantity-select" disabled={!chosenSize} value="1" onChange={(event) => {setChosenQuantity(event.target.value); setClickedWithoutQuantity(false);}}>
             <option value="0">-</option>
             {/* Add options for the quantity based on how many are available for the selected size */}
             {quantityOptions.map((quantity) => {
