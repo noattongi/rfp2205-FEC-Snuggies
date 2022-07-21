@@ -70,15 +70,15 @@ const OutfitList = (props) => {
     }
   }, [outfitId])
   async function getStars(id) {
-    return axios.get('/snuggie/reviews/meta', { params: { product_id: id }})
+    return axios.get('/snuggie/reviews/', {params: {product_id: id, count: 500, sort: "relevant"}})
         .then((res) => {
-          console.log('res data', res.data)
+          console.log('res.data', res.data)
           return res.data;
         })
         .catch((error) => {
           console.log('Error in getting review metadata from server', error);
         })
-  }
+      }
 
   async function starsArray() {
     var temp = [];

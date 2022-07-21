@@ -21,8 +21,8 @@ const OutfitCards = (props) => {
   const getRatings = (id) => {
     if (props.reviewData !== []) {
       for (var i = 0; i < props.reviewData.length; i++) {
-        if (props.reviewData[i].product_id == id) {
-          return props.reviewData[i].ratings
+        if (props.reviewData[i].product == id) {
+          return props.reviewData[i].results
         }
       }
     }
