@@ -14,18 +14,18 @@ var ReviewList = (props) => {
   const [allReviews, setAllReviews] = useState()
   const [activeFilters, setActiveFilters] = useState([])
   const [allProps, setAllProps] = useState()
-  // console.log(props, 'these are all of your propps review list')
+
   var toggleModal = (event) => {
     setIsOpen(!isOpen);
-  }
+  };
 
   var moreReviewClick = (event) => {
     setReviewCount(reviewCount + 2);
-  }
+  };
 
-    var changeSortClick = (event) => {
+  var changeSortClick = (event) => {
     props.changeSortedBy(event.target.value);
-  }
+  };
   useEffect(() => {
     if(props.productReviews) {
       setAllReviews(props.productReviews)
