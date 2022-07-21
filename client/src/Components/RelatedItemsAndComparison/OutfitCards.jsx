@@ -7,7 +7,7 @@ import StarRating from '../SharedComponents/StarRating.jsx';
 const OutfitCards = (props) => {
   const [products, setProducts] = useState([])
   useEffect(() => {
-    setProducts(props.outfitProd.slice(props.outfitIndex, props.outfitIndex + 4))
+    setProducts(props.outfitProd.slice(props.outfitIndex, props.outfitIndex + 3))
   }, [props.outfitProd, props.outfitId])
 
   async function handleDeleteClick(id) {
@@ -42,12 +42,18 @@ const OutfitCards = (props) => {
     {Boolean(products !== []) ? products?.map((prod) => {
       return (
           <CardBox key={prod.id}>
-            <div onClick = {(e) => {handleDeleteClick(prod.id)}}>❌</div>
+            <DeleteModaContainer>
+              <DeleteModalDiv onClick = {(e) => {handleDeleteClick(prod.id)}}>❌</DeleteModalDiv>
+            </DeleteModaContainer>
             <ThumbnailImage src={getUrl(prod.id)} />
-            <p>{prod.category}</p>
-            <p>{prod.name}</p>
-            <p>{prod.default_price}</p>
-            <StarRating reviewData={getRatings(prod.id)}/>
+            <TextContainer>
+              <p>{prod.category}</p>
+              <p>{prod.name}</p>
+              <p>{prod.default_price}</p>
+            </TextContainer>
+            <RatingDiv>
+              <StarRating reviewData={getRatings(prod.id)}/>
+            </RatingDiv>
             </CardBox>
        )}): null}
        </>
@@ -60,22 +66,47 @@ export default OutfitCards;
 const CardBox = styled.div`
   position: flex;
   justify-content: flex-start;
-  border: 1px solid black;
+  border: 3px solid black;
+  border-radius: 10px;
   text-align: center;
   margin: 20px;
-  width: 19%;
+  width: 284px;
+  height: 403px;
+  padding: 5px;
+  background-color: #607B7D;
 `;
-
 const ThumbnailImage = styled.img`
   object-fit: cover;
   overflow: hidden;
-  width: 62px;
-  height: 62px;
+  width: 244px;
+  height: 244px;
+  margin: 10px;
   background-color: white;
-
-  border: solid;
+  border: solid 2px;
   border-color: black;
-  :hover {
-    cursor: pointer;
-  }
+  border-radius: 10px;
+`;
+
+const RatingDiv = styled.div`
+  background-color: #3a606e;
+  border: solid 2px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+`;
+
+const DeleteModalDiv = styled.div`
+  position: absolute;
+  font-size: 25px;
+  margin: 15px 20px 0px 0px;
+`;
+const DeleteModaContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const TextContainer = styled.div`
+  font-size: 18px;
+  line-height: 5px;
 `;

@@ -97,8 +97,9 @@ const CardBox = styled.div`
   border-radius: 10px;
   text-align: center;
   margin: 20px;
-  width: 25%;
-  padding: 5px;
+  width: 254px;
+  height: 403px;
+  padding: 10px;
   background-color: #607B7D;
   :hover {
     cursor: pointer;
@@ -110,9 +111,9 @@ const CardBox = styled.div`
 const ThumbnailImage = styled.img`
   object-fit: cover;
   overflow: hidden;
-  width: 244px;
-  height: 244px;
-  margin: 10px;
+  width: 251px;
+  height: 251px;
+  margin: 0px 0px 10px 0px;
   background-color: white;
   border: solid 2px;
   border-color: black;
@@ -147,7 +148,7 @@ const HoverDiv = styled.div`
 const StarModalDiv = styled.div`
   position: absolute;
   font-size: 25px;
-  margin: 15px 15px 0px 0px;
+  margin: 5px 5px 0px 0px;
 `;
 const StarModalContainer = styled.div`
   display: flex;

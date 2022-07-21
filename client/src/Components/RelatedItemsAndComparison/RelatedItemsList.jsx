@@ -136,12 +136,12 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 15px;
-`
+  justify-content: center;
+  margin 0px;
+`;
 
 const CarouselContainer = styled.div`
   display: flex;
-  place-content: center flex-end;
   width: 24px;
 `;
 

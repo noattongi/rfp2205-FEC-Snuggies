@@ -11,7 +11,7 @@ const OutfitCarouselLeft = (props) => {
   }
   return (
     <>
-      {Boolean(props.outfitProd[props.outfitIndex + 3] && props.outfitIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
+      {Boolean(props.outfitProd[props.outfitIndex + 2] && props.outfitIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
     </>
   )
 }

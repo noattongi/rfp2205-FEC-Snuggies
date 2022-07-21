@@ -11,7 +11,7 @@ const RelatedCarouselLeft = (props) => {
   }
   return (
     <>
-      {Boolean(props.relatedProd[props.relatedIndex + 3] && props.relatedIndex > 0) ? <button onClick={handleBack}>⬅️</button> : null}
+      {Boolean(props.relatedProd[props.relatedIndex + 3] && props.relatedIndex > 0) ? <LeftClick className="fa-solid fa-arrow-left" onClick={handleBack}></LeftClick> : null}
     </>
   )
 }
@@ -19,3 +19,10 @@ const RelatedCarouselLeft = (props) => {
 export default RelatedCarouselLeft;
 
 // styled component
+const LeftClick = styled.button`
+  align-self: center;
+  border: solid 2px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+`;

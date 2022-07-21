@@ -11,7 +11,7 @@ const RelatedCarouselRight = (props) => {
   }
   return (
     <>
-      {Boolean(props.relatedProd[props.relatedIndex + 4]) ? <button onClick={handleCarousel}>➡️</button> : null}
+      {Boolean(props.relatedProd[props.relatedIndex + 4]) ? <RightClick className="fa-solid fa-arrow-right" onClick={handleCarousel}></RightClick> : null}
     </>
   )
 }
@@ -19,3 +19,10 @@ const RelatedCarouselRight = (props) => {
 export default RelatedCarouselRight;
 
 // styled component
+const RightClick = styled.button`
+  align-self: center;
+  border: solid 2px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+`;

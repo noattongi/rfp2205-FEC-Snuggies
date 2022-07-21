@@ -98,19 +98,21 @@ const OutfitList = (props) => {
   }, [outfitId])
   return (
     <div>
-      <h3>Outfit List</h3>
+      <h3>Your Outfit</h3>
+      <OutfitListContainer>
       <Row>
         <CarouselContainer>
           {Boolean(outfitId.length > 4) ? <OutfitCarouselLeft outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
-        <AddContainer>
-          <button onClick={(e) => {addOutfitId(props.productId)}}>+</button>
+        <AddContainer onClick={(e) => {addOutfitId(props.productId)}}>
+          <AddText> ADD TO OUTFIT +</AddText>
         </AddContainer>
           <OutfitCards outfitId={outfitId} outfitProd={outfitProd} setOutfitId={setOutfitId} outfitIndex={outfitIndex} styles={styles} reviewData={reviewData}/>
         <CarouselContainer>
           {Boolean(outfitId.length > 4) ? <OutfitCarouselRight outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
         </CarouselContainer>
       </Row>
+      </OutfitListContainer>
     </div>
   )
 }
@@ -121,15 +123,47 @@ export default OutfitList;
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-`
+  width: 100%;
+  padding: 15px;
+`;
 
 const CarouselContainer = styled.div`
-  display: flex;
-  place-content: center flex-end;
+width: 24px;
 `;
 
 const AddContainer = styled.div`
-display: flex;
-place-content : center flex-end;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px 20px 20px 0px;
+  width: 284px;
+  height: 403px;
+  padding: 5px;
+  background-color: #607B7D;
+  :hover {
+    cursor: pointer;
+    border-color: #EF8354;
+    color: #EF8354;
+  }
+`;
+
+const OutfitListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #3a606e;
+`;
+
+const AddText = styled.p`
+  font-weight: bold;
+  font-size: 75px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
