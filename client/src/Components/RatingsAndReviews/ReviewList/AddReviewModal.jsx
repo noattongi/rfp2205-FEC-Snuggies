@@ -154,7 +154,6 @@ var AddReviewModal = (props) => {
 
   var changeRating = (rating) => {
     setRating(rating)
-    console.log(rating)
   }
 
 

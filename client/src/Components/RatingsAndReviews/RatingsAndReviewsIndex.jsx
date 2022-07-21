@@ -24,67 +24,51 @@ var RatingsAndReviewsIndex = (props) => {
   const [filteredArray, setFilteredArray] = useState([])
   const [ratingFilter, setRatingFilter] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
   const [filterbyNums, setfilterbyNums] = useState([])
+  const [ratingNumArray, setRatingNumArray] = useState([])
 
-  const filterToggle = async (ratingNum) => {
-    setRatingFilter({...ratingFilter, [`${ratingNum}`] : !ratingFilter[`${ratingNum}`]});
+  const filterToggle =  (ratingNum) => {
+    console.log(ratingNum)
+     setRatingFilter({...ratingFilter, [ratingNum] : !ratingFilter[ratingNum]});
   }
 
 
-  var filterTheReviews =  (ratingNum) => {
-
-    // let reduced = reviews.filter((review) => {
-    //   return (
-    //     (fiveRatingFilter === true && review.rating === 5)  ||
-    //     (fourRatingFilter === true && review.rating === 4) ||
-    //     (threeRatingFilter === true && review.rating === 3) ||
-    //     (twoRatingFilter === true && review.rating === 2) ||
-    //     (oneRatingFilter === true && review.rating === 1)
-    //   )
-    // });
-    return filterToggle(ratingNum)
-    .then((ratingNum) => {
-      console.log(ratingFilter, 'did this work')
-
-    var reduced = reviews?.reduce((filtered, review) => {
-      if ((ratingFilter['5'] === true && review.rating === 5)) {
-        filtered.push(review);
-     };
-      //  if ((ratingFilter['5'] === true && review.rating === 5)  ||
-      //     (ratingFilter['4'] === true && review.rating === 4) ||
-      //     (ratingFilter['3'] === true && review.rating === 3) ||
-      //     (ratingFilter['2'] === true && review.rating === 2) ||
-      //     (ratingFilter['1'] === true && review.rating === 1)) {
-      //       filtered.push(review);
-      //    };
-        return filtered;
-      }, []);
-      return reduced
-    })
-      .then((reducedData) => {
-              // setReviews(reduced)
-      setFilteredArray(reducedData);//set filter Array with filtered data
-      console.log(reducedData, "this is your reduced")
-      return reducedData;
+  var filterTheReviews = (ratingNum) => {
+    if(ratingNumArray.includes(ratingNum)) {
+      var newArr = ratingNumArray.filter((e) => {
+        return e !== ratingNum
       })
-
-    .catch((error) => {
-      console.log(error, 'in filterThereviews')
-    })
+      setRatingNumArray(newArr)
+    } else {
+      var array = [...ratingNumArray, ratingNum]
+      console.log(array, 'arrrayyyy')
+      setRatingNumArray(array)
+      console.log(ratingNumArray, 'after')
+    }
+     return filterToggle(ratingNum)
     }
 
 
-
+  var filterDoublecheck = ratingNumArray.length > 0
 
 
   const getProductReviews = (productId, sortedBy) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
     .then((response) => {
-      setReviews(response.data.results);
       return response.data.results
     })
-    // .then((response) => {
-    //   console.log(response, 'REspponnsee')
-    // })
+    .then((response) => {
+      if(ratingNumArray.length > 0)  {
+        var filteredReviews = response.filter( (review) => {
+          return ratingNumArray.includes(review.rating)
+        })
+        return filteredReviews
+
+      }
+      return response
+    })
+    .then((data) => {
+      setReviews(data);
+    })
     .catch((error) => {
       console.log('Error in getProductReviews', error);
     })
@@ -93,15 +77,14 @@ var RatingsAndReviewsIndex = (props) => {
   const getReviewsMeta = (productId) => {
     return axios.get('/snuggie/reviews/meta', {params: {product_id: productId}})
     .then((response) => {
-      // console.log(response.data, 'metttaaa datataaaa')
     setMeta(response.data);
     var starTotal = Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5']);
     setStarCount(starTotal);
-    setFiveStarCount(Number(response.data.ratings['1']));
-    setFourStarCount(Number(response.data.ratings['2']));
+    setFiveStarCount(Number(response.data.ratings['5']));
+    setFourStarCount(Number(response.data.ratings['4']));
     setThreeStarCount(Number(response.data.ratings['3']));
-    setTwoStarCount(Number(response.data.ratings['4']));
-    setOneStarCount(Number(response.data.ratings['5']));
+    setTwoStarCount(Number(response.data.ratings['2']));
+    setOneStarCount(Number(response.data.ratings['1']));
     })
     .catch((error) => {
       console.log('Error in get meta data client side', error)
@@ -163,23 +146,16 @@ var RatingsAndReviewsIndex = (props) => {
       getReviewsMeta(props.productId);
     }
 
-  }, [props.productId, sortby, filteredArray, starCount, ratings]);
+  }, [props.productId, sortby, filteredArray, starCount, ratings, ratingFilter,ratingNumArray]);
 
-  var filterCheck = () => {
-    if(filteredArray.length > 0) {
-      return filteredArray
-    } else {
-      return reviews
-    }
-  }
 
   // console.log(meta, 'reviiiews')
   return (
     <div id="Reviews">
       Ratings &amp; Reviews
     <RRContainer>
-    <OBContainer><OverAllBreakDown metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
-    <ReviewList productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
+    <OBContainer><OverAllBreakDown filterTheReviews={filterTheReviews} metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
+    <ReviewList ratingNumArray={ratingNumArray} ratingFilter={ratingFilter} productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>
   )

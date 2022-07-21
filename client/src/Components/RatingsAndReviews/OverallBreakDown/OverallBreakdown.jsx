@@ -13,6 +13,7 @@ const OverAllBreakDown = (props) => {//done
 	const [filterArray, setFilterArray] = useState([])
 
 
+
 	var filterOnClick = (event) => {
 		var numValue = Number(event.target.getAttribute('value'));
 		return props.filterTheReviews(numValue);
@@ -50,20 +51,25 @@ useEffect(() => {
 		  </RBStarsNum>
 		<RBRecommended> {recommendProduct}% of reviews recommend this product</RBRecommended>
 		<AllStarsBodyContainer>
-			<SingleBar>
-				<BarText><u>5 stars</u> </BarText><StarBreakDown done={props.fiveTotal}/>
+			<SingleBar >
+				<BarText ><u value='5' onClick={filterOnClick} >5 stars</u> </BarText><StarBreakDown done={props.fiveTotal}/>
+				{props.metaData.ratings && <BarText>({props.metaData.ratings[5]})</BarText>}
 			</SingleBar>
 			<SingleBar>
-			<BarText><u>4 stars</u></BarText><StarBreakDown done={props.fourTotal}/>
+			  <BarText ><u value='4' onClick={filterOnClick}>4 stars</u></BarText><StarBreakDown done={props.fourTotal}/>
+			  {props.metaData.ratings && <BarText>({props.metaData.ratings[4]})</BarText>}
 			</SingleBar>
 			<SingleBar>
-			<BarText><u>3 stars</u></BarText><StarBreakDown done={props.threeTotal}/>
+			<BarText><u value='3' onClick={filterOnClick} >3 stars</u></BarText><StarBreakDown done={props.threeTotal}/>
+			{props.metaData.ratings && <BarText>({props.metaData.ratings[3]})</BarText>}
 			</SingleBar>
 			<SingleBar>
-			<BarText><u>2 stars</u></BarText><StarBreakDown done={props.twoTotal}/>
+			<BarText ><u value='2' onClick={filterOnClick}>2 stars</u></BarText><StarBreakDown done={props.twoTotal}/>
+			{props.metaData.ratings && <BarText>({props.metaData.ratings[2]})</BarText>}
 			</SingleBar>
 			<SingleBar>
-			<BarText><u>1 stars</u></BarText><StarBreakDown done={props.oneTotal}/>
+			<BarText ><u value='1' onClick={filterOnClick}>1 stars</u></BarText><StarBreakDown done={props.oneTotal}/>
+			{props.metaData.ratings && <BarText>({props.metaData.ratings[1]})</BarText>}
 			</SingleBar>
 		</AllStarsBodyContainer>
 		<ProductBreakDown characteristics={props.metaData.characteristics}/>
