@@ -19,6 +19,9 @@ var SearchQuestions = ({search}) => {
 var FormInput = styled.input`
   width: 50%;
   padding: 5px;
+  font-family: 'Nanum Gothic Coding', monospace;
+  border: 2px solid black;
+  border-radius: 5px;
 `;
 
 export default SearchQuestions

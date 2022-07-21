@@ -9,7 +9,11 @@ var MoreAnsweredQuestions = ({loadMore}) => {
 
 // styled components
 var MoreAnsweredQuestionsButton = styled.button`
+  font-family: 'Nanum Gothic Coding', monospace;
   border-radius: 5px;
+  :hover {
+    cursor: pointer;
+  };
 `;
 
 export default MoreAnsweredQuestions

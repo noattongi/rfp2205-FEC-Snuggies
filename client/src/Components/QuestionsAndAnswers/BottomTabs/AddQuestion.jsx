@@ -67,7 +67,7 @@ var StyleBackground = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
-  z-index: 11;
+  z-index: 44;
   left: 0;
   top: 0;
   width: 100%;

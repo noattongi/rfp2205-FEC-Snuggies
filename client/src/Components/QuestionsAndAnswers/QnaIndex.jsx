@@ -35,16 +35,26 @@ var QnaIndex = ({ chosenProduct, productId }) => {
     }
   }, [productId]);
 
+
+  var answerArr = [];
+
+  question.results?.forEach((each) => {
+    for (var key in each.answers) {
+      answerArr.push(each.answers[key])
+    }
+  });
+
+  console.log('what is answeArr', answerArr)
+
+
   var search = (query) => {
+
     var query = query.toLowerCase();
 
     if (query.length > 2) {
-      var filtered = defaultQ.results.filter((e) =>  e.question_body.toLowerCase().includes(query)) ;
-      setFilter(filtered)
-      console.log('default', defaultQ)
-      console.log('filtered', filtered)
-      console.log('q state', question)
-      console.log('questionSort', questionSort[0])
+      var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query))
+
+      setFilter(answerFilter)
     };
 
     if (query.length < 2) {
@@ -115,28 +125,37 @@ var QnaIndex = ({ chosenProduct, productId }) => {
 var QnAContainer = styled.section`
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 3px solid black;
   background-color: rgb(255, 255, 255);
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
   padding-bottom: 25px;
   width: 900px;
-  border-radius: 5px;
+
+  border-radius: 10px;
   box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
 
 var Header = styled.h1`
-  padding-left: 325px;
+  padding-left: 265px;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-weight: bold;
+  font-size: 35px;
 `;
 
 var AddQuestionButton = styled.button`
+  font-family: 'Nanum Gothic Coding', monospace;
   border-radius: 5px;
+  :hover {
+    cursor: pointer;
+  };
 `;
 
 var BottomTabContainer = styled.section`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 var QuestionScrollDiv = styled.div`

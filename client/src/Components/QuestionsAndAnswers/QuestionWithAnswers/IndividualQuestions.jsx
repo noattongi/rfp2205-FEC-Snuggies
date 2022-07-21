@@ -27,7 +27,7 @@ var IndividualQuestions = ({chosenProduct, productId, urlImage, setURLImage, que
   return (
     <QnAContainer>
       <QuestionHeaderContainer>
-        <QuestionSpan> Q: {question.question_body} </QuestionSpan>
+        <QuestionSpan> Q: <QuestionBody>{question.question_body}</QuestionBody> </QuestionSpan>
         <HelpfulAndAddAnswerContainer>
          <AddAnswerSpan onClick={() => setToggleModal(!toggleModal)}> Add Answer </AddAnswerSpan>
           {toggleModal && <AddAnswer productId={productId} chosenProduct={chosenProduct} urlImage={urlImage} setURLImage={setURLImage} postAnswer={postAnswerfunc} toggleModal={setToggleModal}q={question}/>}
@@ -52,40 +52,51 @@ var IndividualQuestions = ({chosenProduct, productId, urlImage, setURLImage, que
 var QnAContainer = styled.div`
   padding-top: 1rem;
   padding-bottom; 1rem;
-  border-bottom: 2px solid grey;
+  border-bottom: 3px solid black;
   height: 300px;
 `;
 
 var VotedHelpfulSpan = styled.span`
-  color: blue;
+  color: #007185;
 `;
 
 var VotedYesSpan = styled.span`
   text-decoration: underline;
-  color:blue;
+  color: #007185;
   padding-left: 6px;
   padding-right: 2px;
 `;
 
 var YesQuestionSpan = styled.span`
   text-decoration: underline;
+  color
   :hover {
     cursor: pointer;
-    color: blue;
+    color: #007185;
   };
   padding-left: 6px;
   padding-right: 2px;
 `;
 
 var AddAnswerSpan = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
   text-decoration: underline;
-  color: blue;
+  color: #007185;
   padding-left: 4.5px;
   padding-right: 4.5px;
+  font-size: 15px;
+  :hover {
+    cursor: pointer;
+    color: #007185;
+  };
 `;
 
+var QuestionBody = styled.span`
+  color: #007185;
+`;
 
 var QuestionSpan = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
   display: flex;
   font-weight: bold;
   flex-wrap: wrap;
@@ -93,11 +104,13 @@ var QuestionSpan = styled.span`
 `;
 
 var HelpfulAnswerSpan = styled.div`
+  font-family: 'Nanum Gothic Coding', monospace;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-left: 4.5px;
   padding-right: 4.5px;
+  font-size: 15px;
 `;
 
 var AnswerListContainer = styled.div`
@@ -116,6 +129,5 @@ var HelpfulAndAddAnswerContainer = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   width: 50%
-
 `;
 export default IndividualQuestions

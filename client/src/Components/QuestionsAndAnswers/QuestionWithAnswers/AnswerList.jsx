@@ -28,7 +28,7 @@ export default function AnswerList ({answerList}) {
     setLen(2)
   }
   return (
-    <div>
+    <AnswerListContainer>
       <AnswerSpan> A: </AnswerSpan>
       <ScrollAnswers>
         {sortAnswer.slice(0, len).map((each) => {
@@ -39,7 +39,7 @@ export default function AnswerList ({answerList}) {
         {sortAnswer.length > 2 && len < sortAnswer.length && <LoadMoreAnswersButton onClick={showMoreAnswers} > Load More Answers </LoadMoreAnswersButton>}
        </ScrollAnswers>
        {len > 2 && <CollapseAnswerButton onClick={collapseAnswers}> Collapse Answers </CollapseAnswerButton> }
-    </div>
+    </AnswerListContainer>
   )
 };
 
@@ -54,34 +54,41 @@ var ScrollAnswers = styled.div`
   height: 200px;
 `;
 
+var AnswerListContainer = styled.div`
+
+`;
+
 var AnswerSpan = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
   height: 1rem;
   font-weight: bold;
 
 `;
 
 var CollapseAnswerButton = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
   padding: 9px;
   border: none;
   background: none;
   width: 9%;
   text-decoration: underline;
-  color: blue;
+  color: #007185;
   :hover {
     cursor: pointer;
-    color: blue;
+    color: #007185;
   };
 `;
 
 var LoadMoreAnswersButton = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
   border: none;
   background: none;
   width: 20%;
   text-decoration: underline;
-  color: blue;
+  color: #007185;
   :hover {
     cursor: pointer;
-    color: blue;
+    color: #007185;
   };
 `;
 
