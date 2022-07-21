@@ -141,7 +141,7 @@ var YesAnswerSpan = styled.span`
   text-decoration: underline;
   :hover {
     cursor: pointer;
-    color: blue;
+    color: #007185;
   };
   padding-left: 5px;
   padding-right: 2px;

@@ -40,7 +40,7 @@ var CloseIcon = styled.i`
     cursor: pointer;
   };
   height: 30px;
-  right: 300px;
+  right: 20px;
 `;
 
 var ModalContent = styled.div`
@@ -49,8 +49,7 @@ var ModalContent = styled.div`
   margin: 2% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 60%;
-  height: 80%
+  width: 800px;
   position: relative;
   justify-content: center;
 `

@@ -57,7 +57,7 @@ var QnAContainer = styled.div`
 `;
 
 var VotedHelpfulSpan = styled.span`
-  color: #007185;
+
 `;
 
 var VotedYesSpan = styled.span`
@@ -65,11 +65,11 @@ var VotedYesSpan = styled.span`
   color: #007185;
   padding-left: 6px;
   padding-right: 2px;
+
 `;
 
 var YesQuestionSpan = styled.span`
   text-decoration: underline;
-  color
   :hover {
     cursor: pointer;
     color: #007185;

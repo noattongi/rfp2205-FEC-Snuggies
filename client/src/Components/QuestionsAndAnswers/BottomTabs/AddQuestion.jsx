@@ -31,7 +31,7 @@ var AddQuestion = ({chosenProduct, productId, postQuest, toggleModel}) => {
   return (
     <StyleBackground>
     <ModalContent>
-   <CloseButton onClick={() => toggleModel(false)}> x </CloseButton>
+   <CloseIcon className='fa-solid fa-xmark' onClick={() => toggleModel(false)}>  </CloseIcon>
      <ModalHeader>
        <ModalH2> Submit Your Question </ModalH2>
        <ModalSubtitleContainer>
@@ -131,24 +131,20 @@ var BottomButtonContainers = styled.div`
   justify-content: space-between;
   padding-top: 10px;
 `;
-var CloseButton = styled.button`
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  height: 38px;
+
+var CloseIcon = styled.i`
   position: absolute;
-  right: 50px;
+  display: flex;
+  font-size: 35px;
   :hover {
-    color: black;
+    color: #EF8354;
     text-decoration: none;
     cursor: pointer;
   };
-  :focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  height: 30px;
+  right: 20px;
 `;
+
 var ModalBody = styled.div`
   display: flex;
   flex-direction: column;
@@ -183,9 +179,11 @@ var ModalContent = styled.div`
   margin: 2% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 700px;
   justify-content: center;
   position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
 
 export default AddQuestion

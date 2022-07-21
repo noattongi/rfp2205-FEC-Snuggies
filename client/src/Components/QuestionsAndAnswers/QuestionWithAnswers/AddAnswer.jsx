@@ -46,7 +46,7 @@ var AddAnswer = ({chosenProduct, productId, urlImage, setURLImage, q, toggleModa
     <div>
       <StyleBackground>
          <ModalContent>
-        <CloseButton onClick={() => toggleModal(false)}> x </CloseButton>
+        <CloseIcon className="fa-solid fa-xmark" onClick={() => toggleModal(false)}></CloseIcon>
           <ModalHeader>
             <ModalH2> Submit Your Answer </ModalH2>
             <ModalSubtitleContainer>
@@ -135,6 +135,7 @@ var UploadLabel = styled.label`
   border-radius: 0.1rem;
   cursor: pointer;
   border: 1px solid black;
+  font-family: 'Nanum Gothic Coding', monospace;
 `
 
 var EmailContainer = styled.div`
@@ -148,10 +149,12 @@ var UploadButton = styled.button`
 
 var NameWarningSpan = styled.span`
   font-size 12px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var EmailWarningSpan = styled.span`
   font-size 12px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 var UserInfoContainer = styled.div`
   display: flex;
@@ -161,14 +164,17 @@ var UserInfoContainer = styled.div`
 
 var UserNameLabel = styled.label`
   font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var EmailLabel = styled.label`
   font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var UserNameInput = styled.input`
   width: 175px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var SubmitButton = styled.button`
@@ -176,11 +182,13 @@ var SubmitButton = styled.button`
 `;
 
 var EmailInput = styled.input`
-width: 280px;
+  width: 280px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 var AnswerBody = styled.textarea`
   width: 700px;
   height: 200px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var BottomButtonContainers = styled.div`
@@ -188,23 +196,16 @@ var BottomButtonContainers = styled.div`
   justify-content: space-between;
   padding-top: 10px;
 `;
-var CloseButton = styled.button`
-  color: #aaa;
+var CloseIcon = styled.i`
   font-size: 28px;
-  font-weight: bold;
   height: 38px;
+  padding-top: 20px;
   position: absolute;
-  right: 50px;
+  right: 23px;
   :hover {
-    color: black;
-    text-decoration: none;
     cursor: pointer;
   };
-  :focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+
 `;
 var ModalBody = styled.div`
   display: flex;
@@ -216,7 +217,7 @@ var ModalHeader = styled.div`
 `;
 
 var ModalH2 = styled.h2`
-
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var ModalSubtitleContainer = styled.div`
@@ -228,10 +229,11 @@ var ModalSubtitleContainer = styled.div`
 
 var ProductName = styled.h3`
   width: 250px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var QuestionBody = styled.h3`
-
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var ModalContent = styled.div`
@@ -240,8 +242,10 @@ var ModalContent = styled.div`
   margin: 2% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 700px;
   position: relative;
   justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
 export default AddAnswer

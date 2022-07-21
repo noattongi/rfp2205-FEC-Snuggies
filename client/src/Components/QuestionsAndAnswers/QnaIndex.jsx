@@ -35,18 +35,7 @@ var QnaIndex = ({ chosenProduct, productId }) => {
     }
   }, [productId]);
 
-
-  var answerArr = [];
-
-  question.results?.forEach((each) => {
-    for (var key in each.answers) {
-      answerArr.push(each.answers[key])
-    }
-  });
-
-  console.log('what is answeArr', answerArr)
-
-
+  console.log('question', question)
   var search = (query) => {
 
     var query = query.toLowerCase();
@@ -54,14 +43,24 @@ var QnaIndex = ({ chosenProduct, productId }) => {
     if (query.length > 2) {
       var filtered = defaultQ.results.filter((e) => e.question_body.toLowerCase().includes(query))
 
-      setFilter(answerFilter)
+      var answers = [];
+
+      for (var i = 0; i < question.results.length; i++) {
+        var currentQ = question.results[i];
+        for (var key in currentQ.answers) {
+          if (currentQ.answers[key].body.toLowerCase().includes(query)) {
+            answers.push(currentQ)
+          }
+        }
+      }
+      setFilter(filtered.concat(answers))
     };
 
     if (query.length < 2) {
       setFilter()
     };
 
-    if (filtered.length === 0) {
+    if (filtered.length === 0 && answers.length === 0) {
       setNoSearch(true);
     } else {
       setNoSearch(false);
