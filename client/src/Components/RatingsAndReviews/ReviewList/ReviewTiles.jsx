@@ -9,10 +9,9 @@ import styled from 'styled-components';
 import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
-  // console.log(props, 'theses are props')
-  const[helpful, setHelpful] = useState(props.reviews.helpfulness)
+  const [helpful, setHelpful] = useState(props.reviews.helpfulness)
   const [yesVote, setYesVote] = useState(false);
-  const[notHelpful, setNotHelpful] = useState(0)
+  const [notHelpful, setNotHelpful] = useState(0)
   const [noVote, setNoVote] = useState(false);
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
@@ -20,13 +19,12 @@ var ReviewTiles = (props) => {
   var formatDate = (date) => {
     var dateISO = parseISO(date.slice(0, 10))
     var formattedDate = (`${format(dateISO, 'MMMM, dd, yyyy')}`)
-    return formattedDate
+    return formattedDate;
   }
 
 
   var seeMoreClick = (event) => {
-    // setReviewBodyRender(props.reviews.body)
-    setSeeMore(false)
+    setSeeMore(false);
   }
 
    var onHelpfulClick = () => {
@@ -34,7 +32,7 @@ var ReviewTiles = (props) => {
       props.upVoteHelpfulness(props.reviews.review_id);
       setHelpful(helpful + 1);
       setYesVote(true);
-      setNoVote(true)
+      setNoVote(true);
    }
 
    var onNotHelpfulClick = () => {

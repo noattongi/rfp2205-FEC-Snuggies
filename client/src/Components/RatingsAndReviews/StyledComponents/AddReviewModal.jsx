@@ -41,7 +41,6 @@ const StyleBackground =styled.div`
 
 
 const ModalBody = styled.div`
-
   flex: 50%;
   display: flex;
   justify-content: center;

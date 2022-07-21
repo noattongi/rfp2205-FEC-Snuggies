@@ -11,9 +11,8 @@ import OverAllBreakDown from '../RatingsAndReviews/OverallBreakDown/OverallBreak
 
 
 var RatingsAndReviewsIndex = (props) => {
-
   const [sortby, setSortBy] = useState('relevant');
-  const [reviews, setReviews] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [starCount, setStarCount] = useState(0);
   const [fiveStarCount, setFiveStarCount] = useState(0);
@@ -22,11 +21,50 @@ var RatingsAndReviewsIndex = (props) => {
   const [twoStarCount, setTwoStarCount] = useState(0);
   const [oneStarCount, setOneStarCount] = useState(0);
   const [ratings, setRatings] = useState({});
+  const [filteredArray, setFilteredArray] = useState([])
+  const [ratingFilter, setRatingFilter] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
+  const [filterbyNums, setfilterbyNums] = useState([])
+  const [ratingNumArray, setRatingNumArray] = useState([])
+
+  const filterToggle =  (ratingNum) => {
+    console.log(ratingNum)
+     setRatingFilter({...ratingFilter, [ratingNum] : !ratingFilter[ratingNum]});
+  }
+  var resetFilters = async () => {
+    setRatingNumArray([])
+  }
+
+  var filterTheReviews = async (ratingNum) => {
+    if(ratingNumArray.includes(ratingNum)) {
+      var newArr = ratingNumArray.filter((e) => {
+        return e !== ratingNum
+      })
+      await setRatingNumArray(newArr)
+    } else {
+      var array = [...ratingNumArray, ratingNum]
+      setRatingNumArray(array)
+      console.log(ratingNumArray, 'after')
+    }
+     return filterToggle(ratingNum)
+    }
+
 
   const getProductReviews = (productId, sortedBy) => {
     return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: sortedBy}})
     .then((response) => {
-      return setReviews(response.data);
+      return response.data.results
+    })
+    .then((response) => {
+      if(ratingNumArray.length > 0)  {
+        var filteredReviews = response.filter( (review) => {
+          return ratingNumArray.includes(review.rating)
+        })
+        return filteredReviews
+      }
+      return response
+    })
+    .then((data) => {
+      setReviews(data);
     })
     .catch((error) => {
       console.log('Error in getProductReviews', error);
@@ -36,15 +74,14 @@ var RatingsAndReviewsIndex = (props) => {
   const getReviewsMeta = (productId) => {
     return axios.get('/snuggie/reviews/meta', {params: {product_id: productId}})
     .then((response) => {
-      // console.log(response.data, 'metttaaa datataaaa')
     setMeta(response.data);
     var starTotal = Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5']);
     setStarCount(starTotal);
-    setFiveStarCount(Number(response.data.ratings['1']));
-    setFourStarCount(Number(response.data.ratings['2']));
+    setFiveStarCount(Number(response.data.ratings['5']));
+    setFourStarCount(Number(response.data.ratings['4']));
     setThreeStarCount(Number(response.data.ratings['3']));
-    setTwoStarCount(Number(response.data.ratings['4']));
-    setOneStarCount(Number(response.data.ratings['5']));
+    setTwoStarCount(Number(response.data.ratings['2']));
+    setOneStarCount(Number(response.data.ratings['1']));
     })
     .catch((error) => {
       console.log('Error in get meta data client side', error)
@@ -55,7 +92,8 @@ var RatingsAndReviewsIndex = (props) => {
     // console.log(postReviewObj)
     return axios.post('/snuggie/reviews', postReviewObj)
     .then((response) => {
-      getProductReviews(props.productId, sortby)
+      var filtered = getProductReviews(props.productId, sortby)
+      return filtered
       console.log(response, 'response in postReview func')
     })
     .catch((error) => {
@@ -66,7 +104,7 @@ var RatingsAndReviewsIndex = (props) => {
   var upVoteHelpfulness = (reviewid) => {
       return axios.put('/snuggie/reviews/helpfulness', {review_id: reviewid})
       .then((response) => {
-        getProductReviews(props.productId, sortby)
+        // getProductReviews(props.productId, sortby)
       })
       .catch((error) => {
         console.log('Error within updating reviews helpfulness from Client Side')
@@ -95,21 +133,26 @@ var RatingsAndReviewsIndex = (props) => {
     return average.toString();
   }
 
+  var filteredReviews = (filteredReviews) => {
+    setFilteredArray(filteredReviews)
+  }
+
   useEffect(() => {
     if (props.productId) {
       getProductReviews(props.productId, sortby);
       getReviewsMeta(props.productId);
     }
 
-  }, [props.productId, sortby, starCount, ratings]);
+  }, [props.productId, sortby, filteredArray, starCount, ratings, ratingFilter,ratingNumArray]);
+
 
   // console.log(meta, 'reviiiews')
   return (
     <div id="Reviews">
       Ratings &amp; Reviews
     <RRContainer>
-    <OBContainer><OverAllBreakDown metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
-    <ReviewList productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
+    <OBContainer><OverAllBreakDown resetFilters={resetFilters} filterTheReviews={filterTheReviews} metaData={meta} reviewData={meta.ratings} fiveTotal={barTotal(fiveStarCount)} fourTotal={barTotal(fourStarCount)} threeTotal={barTotal(threeStarCount)} twoTotal={barTotal(twoStarCount)} oneTotal={barTotal(oneStarCount)}/></OBContainer>
+    <ReviewList ratingNumArray={ratingNumArray} ratingFilter={ratingFilter} productReviews={reviews} metaData={meta} sortedBy={sortby} changeSortedBy={changeSortedBy} postReview={postReview} chosenProduct={props.chosenProduct} upVoteHelpfulness={upVoteHelpfulness} reportReview={reportReview}/>
     </RRContainer>
     </div>
   )

@@ -11,6 +11,7 @@ var App = () => {
   // Hooks for what specific product is being displayed
   const [productId, setProductId] = useState();
   const [chosenProduct, setChosenProduct] = useState({});
+  const [reviewData, setReviewData] = useState([]);
 
   var storage = {
     _productId: productId,
@@ -47,7 +48,13 @@ var App = () => {
     if (productId) {
       axios.get('/snuggie/products', { params: {product_id: productId} })
         .then((results) => {
-          setChosenProduct(results.data);
+          return setChosenProduct(results.data);
+        })
+        .then(() => {
+          return axios.get('/snuggie/reviews/', {params: {product_id: productId, count: 500, sort: "relevant"}})
+        })
+        .then((response) => {
+          setReviewData(response.data.results);
         })
         .catch((error) => {
           console.log('An error occurred when initializing data received from server:', error);
@@ -59,7 +66,7 @@ var App = () => {
     <GlobalContext.Provider value={storage}>
         <div>navbar</div>
         <h1>ANNOUNCEMENTS GO HERE</h1>
-        <Overview productId={productId} chosenProduct={chosenProduct} />
+        <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
         <br/>
         <RInC data-test-id='RInCIndex' productId={productId} setProductId={setProductId} chosenProduct={chosenProduct}/>
         <br/>
