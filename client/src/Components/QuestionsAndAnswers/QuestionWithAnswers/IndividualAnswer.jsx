@@ -1,28 +1,20 @@
 import React, {useState} from 'react';
 import { format, parseISO } from 'date-fns';
 import styled from 'styled-components';
-var axios = require('axios')
-
-// one container (column)
-// four items inside - Answer, Photos(situational), Bottom Info Container, Load More Answers
-
-// Answer is a span
-// Photo Containers (Row)
-// Bottom Info Container (Row)
-  // Poster, Date, Helpfulness, Report
-
-
-
-// **If photos length !== 0, render photos
+import ImageModal from './ImageModal.jsx';
+import Placeholder from '../../../assets/Placeholder.jpeg'
+var axios = require('axios');
 
 export default function IndividualAnswer({answer}) {
 
   var [helpful, setHelpful] = useState(answer.helpfulness);
   var [report, setReport] = useState(true);
   var [yesVote, setYesVote] = useState(false);
+  var [toggleImage, setToggleImage] = useState(false);
+  var [url, setUrl] = useState('');
+
   var parse = (date) => {
     var dateISO = parseISO(date.slice(0,10));
-
     return format(dateISO, "MMMM dd, yyyy")
   };
 
@@ -49,7 +41,12 @@ export default function IndividualAnswer({answer}) {
     })
     setReport(false);
   }
-  // console.log('what is answer', answer.photos)
+
+  var handleToggle = (e) => {
+    e.preventDefault();
+    setToggleImage(true);
+    setUrl(e.target.src)
+  }
 
   return (
     <IndividualAnswerContainer>
@@ -58,9 +55,10 @@ export default function IndividualAnswer({answer}) {
         <ImageSection>
         {answer.photos.map((each, i) => {
           return (
-            <Images key={i} src={each}  />
+            <Images onClick={handleToggle} key={i} src={each || Placeholder}  />
           )
         })}
+        {toggleImage && <ImageModal toggleImage={setToggleImage} url={url}/>}
       </ImageSection>
         <BottomInfoContainer>
           <PosterAndDateSpan> By {answer.answerer_name} on {parse(answer.date)} </PosterAndDateSpan>
@@ -85,7 +83,8 @@ export default function IndividualAnswer({answer}) {
 var IndividualAnswerContainer = styled.section`
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 450px;
+  padding: 10px 0 10px 0;
 `;
 
 var VotedSpan = styled.span`
@@ -101,13 +100,13 @@ var ImageSection = styled.div`
 var Images = styled.img`
   width: 75px;
   height: 75px;
-  padding: 10px;
-  border-radius: 15px;
-
+  margin: 10px;
+  border-radius: 12px;
+  object-fit: cover;
   :hover {
     cursor: pointer;
-    border: 1px solid black;
-    padding: 2px;
+    border: 2px solid black;
+    border-color: #EF8354;
   }
 `;
 
@@ -131,7 +130,7 @@ var YesAnswerSpan = styled.span`
   text-decoration: underline;
   :hover {
     cursor: pointer;
-    color: blue;
+    color: #007185;
   };
   padding-left: 5px;
   padding-right: 2px;
@@ -145,6 +144,7 @@ var ReportedSpan = styled.span`
 `;
 
 var AnswerSpan = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
   height: 1rem;
   padding-bottom: 5px;
 `;
@@ -155,11 +155,13 @@ var ImageContainer = styled.div`
 `;
 
 var BottomInfoContainer = styled.div`
+  font-family: 'Nanum Gothic Coding', monospace;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   width: 200px%;
-  font-size: 12px;
+  font-size: 10.5px;
+  padding-top: 2px;
 `;
 
 //adjust
@@ -180,7 +182,7 @@ var ReportSpan = styled.span`
   text-decoration: underline;
   :hover {
     cursor: pointer;
-    color: blue;
+    color: #007185;
   };
   padding-left: 7px;
   padding-right: 1px;

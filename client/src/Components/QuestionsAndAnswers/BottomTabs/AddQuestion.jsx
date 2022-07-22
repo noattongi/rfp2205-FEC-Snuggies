@@ -7,53 +7,62 @@ var AddQuestion = ({chosenProduct, productId, postQuest, toggleModel}) => {
   var storage = useContext(GlobalContext);
   // var { _productId, _chosenProduct } = storage;
 
-  var [answerEntry, setAnswerEntry] = useState('');
+  var [questionEntry, setQuestionEntry] = useState('');
   var [username, setUsername] = useState('');
   var [email, setEmail] = useState('');
+  var [emailRequire, setEmailRequire] = useState(false);
+  var [require, setRequire] = useState(false);
 
   var postQuestion = (e) => {
 
-    e.preventDefault()
-    var body = {body: answerEntry, name: username, email: email, product_id: productId};
+    e.preventDefault();
+
+    setEmailRequire(false);
+    setRequire(false);
+
+    var body = {body: questionEntry, name: username, email: email, product_id: productId};
 
     if (body.body.length === 0 || body.name.length === 0 || body.email.length === 0) {
-      alert(`Please don't leave any fields blank.`)
-    } else {
-      postQuest(body)
+      setRequire(true);
+    } else if (email.indexOf('@gmail.com') > 0 || email.indexOf('@yahoo.com') > 0 || email.indexOf('@aol.com') > 0 || email.indexOf('@email.com') > 0 ) {
+      postQuest(body);
       toggleModel(false);
+    } else {
+      setEmailRequire(true);
     };
 
-    if (body.body.length > 60 || body.name.length > 1000 || body.email.length > 60) {
-      alert('Error, length too long for the email, name, or question body.')
-    }
+
   }
 
   return (
     <StyleBackground>
     <ModalContent>
-   <CloseButton onClick={() => toggleModel(false)}> x </CloseButton>
+   <CloseIcon className='fa-solid fa-xmark' onClick={() => toggleModel(false)}>  </CloseIcon>
      <ModalHeader>
        <ModalH2> Submit Your Question </ModalH2>
        <ModalSubtitleContainer>
-           <ProductName> About the {chosenProduct.name}  </ProductName>
+           {require && <RequireMessage>Please do not leave any fields blank!</RequireMessage>}
+           {emailRequire && <EmailRequireMessage>Please use a valid email address!</EmailRequireMessage>}
+           <ProductName> Product: {chosenProduct.name} </ProductName>
        </ModalSubtitleContainer>
        <ModalBody>
        <UserInfoContainer>
          <UserNameContainer>
-         <UserNameLabel> User Nickname</UserNameLabel>
+         <UserNameLabel> User Nickname<NameRequireSpan>*</NameRequireSpan></UserNameLabel>
            <UserNameInput required='' value={username} onChange={e => setUsername(e.target.value)} maxlength='60' placeholder='Example: jack543!' />
            <NameWarningSpan>For privacy reasons, do not use <br/> your full name </NameWarningSpan>
          </UserNameContainer>
          <EmailContainer>
-           <EmailLabel> Email Address </EmailLabel>
+           <EmailLabel> Email Address<EmailRequireSpan>*</EmailRequireSpan> </EmailLabel>
            <EmailInput required='' value={email} onChange={e => setEmail(e.target.value)} maxlength='60' placeholder='Example: jack@email.com'/>
-           <EmailWarningSpan> For authentication reasons, you will not be emailed</EmailWarningSpan>
+           <EmailWarningSpan> For authentication reasons, you will not be <br/>emailed</EmailWarningSpan>
          </EmailContainer>
 
        </UserInfoContainer>
-       <AnswerBody required='' maxlength= '1000' onChange={e => setAnswerEntry(e.target.value)} value={answerEntry} placeholder='Add your answer here...'> </AnswerBody>
+       <QuestionLabel>Your Questiion<QuestionRequireSpan>*</QuestionRequireSpan></QuestionLabel>
+       <QuestionText required='' maxlength= '1000' onChange={e => setQuestionEntry(e.target.value)} value={questionEntry} placeholder='Add your question here...'> </QuestionText>
        <BottomButtonContainers>
-           <SubmitButton onClick={postQuestion} > Submit! </SubmitButton>
+           <SubmitButton onClick={postQuestion} > Post </SubmitButton>
        </BottomButtonContainers>
        </ModalBody>
     </ModalHeader>
@@ -67,7 +76,7 @@ var StyleBackground = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
-  z-index: 11;
+  z-index: 44;
   left: 0;
   top: 0;
   width: 100%;
@@ -78,6 +87,33 @@ var StyleBackground = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
+var QuestionRequireSpan = styled.span`
+  color: #E02929;
+`;
+
+var EmailRequireSpan = styled.span`
+  color: #E02929;
+`;
+
+var NameRequireSpan = styled.span`
+  color: #E02929;
+`;
+
+var QuestionLabel = styled.label`
+  font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
+`;
+
+
+
+var EmailRequireMessage = styled.span`
+  color: #E02929;
+  font-family: 'Nanum Gothic Coding', monospace;
+  position: absolute;
+  top: 75;
+  left: 250;
+`;
+
 var UserNameContainer = styled.div`
   display: flex;
   flex-direction: column
@@ -86,15 +122,17 @@ var UserNameContainer = styled.div`
 
 var EmailContainer = styled.div`
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 `;
 
 var NameWarningSpan = styled.span`
   font-size 12px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var EmailWarningSpan = styled.span`
   font-size 12px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 var UserInfoContainer = styled.div`
   display: flex;
@@ -104,51 +142,69 @@ var UserInfoContainer = styled.div`
 
 var UserNameLabel = styled.label`
   font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var EmailLabel = styled.label`
   font-weight: bold;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var UserNameInput = styled.input`
   width: 175px;
+  font-family: 'Nanum Gothic Coding', monospace;
+`;
+
+var RequireMessage = styled.span`
+  color: #E02929;
+  font-family: 'Nanum Gothic Coding', monospace;
+  position: absolute;
+  top: 75;
+  left: 235;
 `;
 
 var SubmitButton = styled.button`
-
+  font-family: 'Nanum Gothic Coding', monospace;
+  border: 2.4px solid black;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7.5px;
+  background-color: white;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  };
 `;
 
 var EmailInput = styled.input`
-width: 280px;
+  width: 280px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
-var AnswerBody = styled.textarea`
+var QuestionText = styled.textarea`
   width: 700px;
   height: 300px;
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var BottomButtonContainers = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-top: 10px;
 `;
-var CloseButton = styled.button`
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  height: 38px;
+
+var CloseIcon = styled.i`
   position: absolute;
-  right: 50px;
+  display: flex;
+  font-size: 35px;
   :hover {
-    color: black;
+    color: #EF8354;
     text-decoration: none;
     cursor: pointer;
   };
-  :focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  height: 30px;
+  right: 20px;
 `;
+
 var ModalBody = styled.div`
   display: flex;
   flex-direction: column;
@@ -159,22 +215,24 @@ var ModalHeader = styled.div`
 `;
 
 var ModalH2 = styled.h2`
-  padding-left: 150px;
+  font-family: 'Nanum Gothic Coding', monospace;
+  padding-left: 245px;
 `;
 
 var ModalSubtitleContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 500px;
+  width: 600px;
   justify-content: space-around;
 `;
 
 var ProductName = styled.h3`
-
+  font-family: 'Nanum Gothic Coding', monospace;
+  padding-right: 411.5px;
 `;
 
 var QuestionBody = styled.h3`
-
+  font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 var ModalContent = styled.div`
@@ -183,9 +241,11 @@ var ModalContent = styled.div`
   margin: 2% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 700px;
   justify-content: center;
   position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
 
 export default AddQuestion
@@ -193,125 +253,3 @@ export default AddQuestion
 
 
 
-
-
-// styled components
-// var StyledBackground = styled.div`
-//   display: flex;
-//   position: fixed;
-//   flex-direction: column;
-//   z-index: 10;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow: auto;
-//   backdrop-filter: blur(8px);
-//   background-color: rgb(0,0,0);
-//   background-color: rgba(0,0,0,0.4);
-// `;
-
-// var ModalSquare = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   padding-left: 250px;
-//   padding-right: 250px;
-// `;
-
-// var UserNameLabel = styled.label`
-//   font-weight: bold;
-// `;
-
-// var EmailLabel = styled.label`
-//   font-weight: bold;
-// `;
-
-// var EmailInfoContainer = styled.div`
-//   display:flex;
-//   flex-direction: column;
-// `;
-// var ModalHeader = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// var ModalH2 = styled.h2`
-
-// `;
-
-// var ModalBody = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// var ProductName = styled.h3`
-
-// `;
-
-// var TopContainer = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-// `;
-
-// var UserInfoContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// var ModalContent = styled.div`
-//   display: block;
-//   background-color: #fefefe;
-//   margin: 2% auto;
-//   padding: 20px;
-//   border: 1px solid #888;
-//   width: 80%;
-// `;
-
-// var CloseButton = styled.button`
-//   color: #aaa;
-//   font-size: 28px;
-//   font-weight: bold;
-//   height: 38px;
-//   position: absolute;
-//   left: 175px;
-//   :hover {
-//     color: black;
-//     text-decoration: none;
-//     cursor: pointer;
-//   };
-//   :focus {
-//     color: black;
-//     text-decoration: none;
-//     cursor: pointer;
-//   }
-// `
-
-
-
-
-// <StyledBackground>
-// <ModalContent>
-//   <ModalSquare>
-// <CloseButton onClick={() => toggleModel(false)}> x </CloseButton>
-//   <ModalBody>
-//     <ModalHeader>
-//       <ModalH2> Ask Your Question Here </ModalH2>
-//       <ProductName> About the [Product Name] </ProductName>
-//     </ModalHeader>
-//       <TopContainer>
-
-//       <UserInfoContainer>
-//         <UserNameLabel>User Nickname</UserNameLabel>
-//       </UserInfoContainer>
-
-//       <EmailInfoContainer>
-//         <EmailLabel> Email Address </EmailLabel>
-//       </EmailInfoContainer>
-//       </TopContainer>
-
-//   </ModalBody>
-//   </ModalSquare>
-// </ModalContent>
-// </StyledBackground>

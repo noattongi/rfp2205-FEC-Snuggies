@@ -4,6 +4,8 @@ import Overview from './Components/ProductOverview/Overview.jsx';
 import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
+import Navbar from './Navbar.jsx';
+
 export const GlobalContext = React.createContext()
 
 var App = () => {
@@ -12,6 +14,7 @@ var App = () => {
   const [productId, setProductId] = useState();
   const [chosenProduct, setChosenProduct] = useState({});
   const [reviewData, setReviewData] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   var storage = {
     _productId: productId,
@@ -24,6 +27,7 @@ var App = () => {
     axios.get('/snuggie/products') // No query/parameters, so this endpoint returns ALL products
       // Then get the specific product
       .then((results) => {
+        setAllProducts(results.data)
         return axios.get('/snuggie/products', { params: {product_id: results.data[0].id} });
       })
       // Then set the hooks
@@ -62,17 +66,26 @@ var App = () => {
     }
   }, [productId]);
 
+  var submit = (query) => {
+    var filtered = allProducts.filter((e) => e.name.toLowerCase().includes(query.toLowerCase()));
+
+    var index = Math.floor(Math.random() * filtered.length);
+
+    setProductId(filtered[index].id);
+    setChosenProduct(filtered[index]);
+  };
+
   return(
     <GlobalContext.Provider value={storage}>
-        <div>navbar</div>
-        <h1>ANNOUNCEMENTS GO HERE</h1>
-        <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
-        <br/>
-        <RInC data-test-id='RInCIndex' productId={productId} setProductId={setProductId} chosenProduct={chosenProduct}/>
-        <br/>
-        <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
-        <br/>
-        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
+      <div> <Navbar submitFunc={submit} /> </div>
+      {/* <h1>ANNOUNCEMENTS GO HERE</h1> */}
+      <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
+      <br/>
+      <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
+      <br/>
+      <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
+      <br/>
+      <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
     </GlobalContext.Provider>
   )
 }
