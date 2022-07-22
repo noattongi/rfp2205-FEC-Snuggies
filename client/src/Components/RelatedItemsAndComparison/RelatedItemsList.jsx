@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import RelatedCards from './RelatedCards.jsx';
-import RelatedCarousel from './RelatedCarousel.jsx';
+import RelatedCarouselRight from './RelatedCarouselRight.jsx';
+import RelatedCarouselLeft from './RelatedCarouselLeft.jsx';
 import styled from 'styled-components';
 
 const RelatedItemsList = (props) => {
@@ -16,6 +17,7 @@ const RelatedItemsList = (props) => {
     if (props.productId) {
       getRelated(props.productId)
       .then((data) => {
+        console.log('data', data)
         var temp = []
         data.forEach((id) => {
           temp.push(props.getProduct(id))
@@ -74,7 +76,7 @@ const RelatedItemsList = (props) => {
   }, [relatedId])
 
   async function getStars(id) {
-    return axios.get('/snuggie/reviews/meta', { params: { product_id: id }})
+    return axios.get('/snuggie/reviews/', {params: {product_id: id, count: 500, sort: "relevant"}})
         .then((res) => {
           return res.data;
         })
@@ -101,13 +103,18 @@ const RelatedItemsList = (props) => {
 
   return (
     <>
-      <h3>Related List</h3>
-        <Row>
-          <RelatedCards relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} chosenProduct={props.chosenProduct} styles={styles} reviewData={reviewData}/>
+    <h3>Related List</h3>
+    <RelatedItemsListContainer>
           <CarouselContainer>
-            {Boolean(relatedId.length > 4) ? <RelatedCarousel relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
+            {Boolean(relatedId.length > 4) ? <RelatedCarouselLeft relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
           </CarouselContainer>
-        </Row>
+            <Row>
+            <RelatedCards setRelatedIndex={setRelatedIndex} relatedProd = {relatedProd} setProductId={props.setProductId} relatedIndex={relatedIndex} productId={props.productId} styles={styles} reviewData={reviewData} chosenProduct={props.chosenProduct}/>
+            </Row>
+          <CarouselContainer>
+            {Boolean(relatedId.length > 4) ? <RelatedCarouselRight relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
+          </CarouselContainer>
+    </RelatedItemsListContainer>
     </>
   )
 }
@@ -115,13 +122,24 @@ const RelatedItemsList = (props) => {
 export default RelatedItemsList;
 
 // styled components
+const RelatedItemsListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #3a606e;
+`;
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-`
+  width: 100%;
+  justify-content: center;
+  margin 0px;
+`;
 
 const CarouselContainer = styled.div`
   display: flex;
-  place-content : center flex-end;
+  width: 24px;
 `;
+

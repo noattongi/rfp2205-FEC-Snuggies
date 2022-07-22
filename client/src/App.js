@@ -68,7 +68,7 @@ var App = () => {
         <h1>ANNOUNCEMENTS GO HERE</h1>
         <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
         <br/>
-        <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
+        <RInC data-test-id='RInCIndex' productId={productId} setProductId={setProductId} chosenProduct={chosenProduct}/>
         <br/>
         <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
         <br/>
