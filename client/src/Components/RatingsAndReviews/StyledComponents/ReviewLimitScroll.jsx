@@ -10,8 +10,9 @@ overflow: auto
 
 const ReviewTile = styled.div`
 border-bottom: 2px solid grey;
+padding-bottom: 10px;
 padding-top: 20px;
-padding-bottom: 20px;
+margin-right: 40px;
 `
 
 

@@ -13,12 +13,18 @@ const UserandDate = styled.div`
   opacity: 0.7;
   padding-bottom: 20px;
   padding-right: 20px;
+  opacity: 0.9;
+  font-family: 'Cormorant Garamond', serif;
 `;
+
+
 
 const Summary = styled.div`
   padding-bottom: 20px;
   padding-bottom: 20px;
-  font-weight: bold;
+  font-weight: bolder;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 `;
 //might need to add another div for reviewBody
 const ReviewBody = styled.div`
@@ -26,6 +32,8 @@ padding-bottom: 20px;
 padding-bottom: 20px;
 width: 90%;
 word-wrap: break-word;
+font-size: 14px;
+font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 const RecommendProduct = styled.div`
@@ -41,6 +49,7 @@ font-size: 12px;
 `;
 
 var AnswerHelpfulnessSpan = styled.span`
+padding-bottom:10px;
 `;
 
 
@@ -77,7 +86,7 @@ var ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  z-index: 11;
+
 
 `;
 
@@ -85,6 +94,12 @@ const RT_StarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   `;
+  const SeeMore = styled.div`
+  :hover {
+    cursor: pointer;
+    color: #E02929;
+  };
+  `;
 
-export { RT_StarContainer, TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ImageContainer, ShrinkImg};
+export { SeeMore, RT_StarContainer, TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ImageContainer, ShrinkImg};
 

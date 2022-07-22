@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ReviewListContainer = styled.div`
-  border-style: dotted;
   width:100%;
   max-height:100vh;
   overflow: auto
@@ -12,10 +11,10 @@ const RL_TopContainer = styled.div`
   flex-direction: row;
   opacity: 0.9;
   text-align: center;
-  padding-left: 40px;
+  padding-left: 36px;
   padding-right: 30px;
-  padding-top: 10px;
-  padding-bottom:10px;
+  margin-top: 40px;
+  padding-bottom:40px;
   font-family: 'Nanum Gothic Coding', monospace;
 `;
 
@@ -36,7 +35,6 @@ const RL_MoreButton = styled.button`
   opacity: 0.9;
   text-align: center;
   padding-right: 5px;
-
   font-family: 'Nanum Gothic Coding', monospace;
 `;
 const RL_SubmitButton = styled.button`
@@ -49,6 +47,13 @@ const RL_SubmitButton = styled.button`
   font-family: 'Nanum Gothic Coding', monospace;
 `;
 
+const RL_Sort = styled.div`
+font-weight: bolder;
+font-size: 14px;
+ont-family: 'Roboto',sans-serif;
+padding-right: 5px;
+`;
 
 
-export {RL_SubmitButton, RL_MoreButton, RL_BotContainer, ReviewListContainer, RL_TopContainer}
+
+export {RL_Sort, RL_SubmitButton, RL_MoreButton, RL_BotContainer, ReviewListContainer, RL_TopContainer}

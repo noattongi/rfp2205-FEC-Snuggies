@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
   const BodyContainer =styled.div`
+
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-
+    padding-bottom: 15px;
   `;
 
   const AllStarsBodyContainer =styled.div`
@@ -24,7 +25,7 @@ import styled from 'styled-components';
 	  position: relative;
 	  margin: 11px 0;
 	  height: 13px;
-	  width: 165px;
+	  width: 140px;
     border-radius: 25px;
   `;
 
@@ -52,8 +53,9 @@ import styled from 'styled-components';
 
   const Range = styled.input`
   -webkit-appearance: none;
-  width: 216px;
+  width: 245px;
   background: transparent;
+  padding-left:24px;
 
 
   &::-webkit-slider-thumb {

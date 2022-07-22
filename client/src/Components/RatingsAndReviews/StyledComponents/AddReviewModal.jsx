@@ -3,7 +3,7 @@ const StyleBackground =styled.div`
   backdrop-filter: blur(8px);
   display: block;
   position: fixed;
-  z-index: 20;
+  z-index: 29;
   padding-top: 100px;
   left: 0;
   top: 0;

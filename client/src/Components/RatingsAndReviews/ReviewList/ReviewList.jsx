@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 import AddReviewModal from './AddReviewModal.jsx'
 import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
-import {RL_MoreButton, RL_SubmitButton, RL_BotContainer,ReviewListContainer, RL_TopContainer} from '../StyledComponents/ReviewListStyle.jsx'
+import {RL_Sort, RL_MoreButton, RL_SubmitButton, RL_BotContainer,ReviewListContainer, RL_TopContainer} from '../StyledComponents/ReviewListStyle.jsx'
 
 var ReviewList = (props) => {
   const [reviewCount, setReviewCount] = useState(2);
@@ -34,7 +34,7 @@ var ReviewList = (props) => {
   return (
     <ReviewListContainer>
       <RL_TopContainer>
-        {allReviews && <div>{allReviews.length} reviews, sorted by</div>}
+        {allReviews && <RL_Sort>{allReviews.length} reviews, sorted by</RL_Sort>}
           <select onChange={changeSortClick}>
             <option value="relevant" >Relevance</option>
             <option value="helpful" >Helpful</option>

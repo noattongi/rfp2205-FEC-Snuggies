@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ImagePool from './ImagePool.jsx';
 import { format, parseISO } from 'date-fns';
 import {ReviewTile} from '../StyledComponents/ReviewLimitScroll.jsx';
-import {RT_StarContainer, TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan, ImageContainer} from '../StyledComponents/ReviewTile.jsx';
+import {SeeMore, RT_StarContainer, TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, BottomInfoContainer, ReportSpan, AnswerHelpfulnessSpan, YesAnswerSpan, ImageContainer} from '../StyledComponents/ReviewTile.jsx';
 import styled from 'styled-components';
 import StarRating from '../../SharedComponents/StarRating.jsx'
 
@@ -61,13 +61,14 @@ var ReviewTiles = (props) => {
      <TopContainer>
         <RT_StarContainer><StarRating reviewData={props.reviews.rating}/></RT_StarContainer>
         <UserandDate>
-          <span>{props.reviews.reviewer_name}   </span>
-          <span> {`,  ${formatDate(props.reviews.date)}`}</span>
+          <div>{props.reviews.reviewer_name}   </div>
+          <div> {`,  ${formatDate(props.reviews.date)}`}</div>
         </UserandDate>
       </TopContainer>
     <Summary>{props.reviews.summary.substr(0, 60)}</Summary>
     <ReviewBody>{seeMoreRendered(seeMore)}
-    <div>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</div>
+    <SeeMore>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</SeeMore>
+    </ReviewBody>
     <ImageContainer>
     {props.reviews.photos.map((photo, index) => {
       return(
@@ -76,7 +77,6 @@ var ReviewTiles = (props) => {
       )
   })}
     </ImageContainer>
-    </ReviewBody>
     {props.reviews.recommend && <RecommendProduct>✅ I recommend this product</RecommendProduct>}
     {props.reviews.response !== null && <div>Response from seller {props.reviews.response}</div>}
     <BottomInfoContainer>
@@ -90,7 +90,7 @@ var ReviewTiles = (props) => {
       <span> | </span>
       {/* {/* {!noVote && <YesAnswerSpan onClick={onNotHelpfulClick}>No</YesAnswerSpan> }
       {!noVote &&  <span>({notHelpful})</span>} */}
-      <YesAnswerSpan>No (0)</YesAnswerSpan>
+      <YesAnswerSpan>No </YesAnswerSpan>
       <span> (0) </span>
      </AnswerHelpfulnessSpan>
       <span> | </span>

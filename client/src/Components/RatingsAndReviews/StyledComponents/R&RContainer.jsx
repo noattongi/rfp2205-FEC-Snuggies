@@ -7,6 +7,7 @@ const RRContainer = styled.div`
  background-color: rgb(255, 255, 255);
  width: 1360px;
  border-radius: 5px;
+
  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
  font-family: 'Nanum Gothic Coding', monospace;
 `;
@@ -31,7 +32,7 @@ const BarText = styled.span`
 font-size: 14px;
 font-weight:bold;
 white-space: nowrap;
-margin-top: 14px;
+margin-top: 12px;
 padding-right: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 margin-right: 20px
@@ -46,7 +47,7 @@ display: flex;
 flex-direction: row;
 opacity: 0.9;
 text-align: center;
-margin-top: 10px;
+margin-top: 36px;
 padding-right: 40px;
 padding-left: 23px;
 font-family: 'Nanum Gothic Coding', monospace;
@@ -54,13 +55,13 @@ font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 const RBRecommended = styled.div`
-padding-left: 26px;
+
+padding-left: 25px;
 font-Size: 12px;
 opacity: 0.6;
 margin-bottom: 5px;
 margin-bottom: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
-
 `;
 
 const NumRatingTitle = styled.div`
@@ -78,6 +79,7 @@ font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 const OBStar = styled.div`
+position relative;
 display: flex;
 font-size: 15px;
 flex-direction: row;
@@ -86,7 +88,7 @@ opacity: 0.9;
 text-align: left;
 margin-bottom: 5px;
 padding-bottom: 20px;
-padding-top: 5px;
+margin-top: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 
 `;
@@ -97,11 +99,12 @@ const PBContainer = styled.div`
   flex-direction: column;
   margin-top: 30px;
   font-family: 'Nanum Gothic Coding', monospace;
-  padding-left: 26px;
-  border:solid;
+
 `;
 
 const CharName = styled.div`
+font-weight: bolder;
+padding-left: 26px;
 opacity: 0.9;
 font-size: 14px;
 padding-bottom: 8px;
@@ -109,17 +112,20 @@ font-family: 'Nanum Gothic Coding', monospace;
 
 `;
 const CharRating = styled.div`
+padding-left: 25px;
 opacity: 0.9;
 font-size: 11px;
 padding-bottom: 8px;
 font-family: 'Nanum Gothic Coding', monospace;
-
+justify-content: space-between;
 `;
 
 const CharContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-right: 32px;
+  margin-left: 2px;
   margin-top: 6px;
   margin-bottom: 6px;
   font-family: 'Nanum Gothic Coding', monospace;
@@ -129,7 +135,8 @@ const FilterContainer = styled.div`
   display: flex;
   flex-direction: Column;
   height: 40px;
-
+  padding-left:17px;
+  justify-content: start;
   font-family: 'Nanum Gothic Coding', monospace;
 `;
 
@@ -137,7 +144,6 @@ const FilterContainer = styled.div`
 const PBCharContainer = styled.div`
 display: flex;
 flex-direction: column;
-border: 1px solid black;
 
 font-family: 'Nanum Gothic Coding', monospace;
 `;
@@ -164,10 +170,10 @@ const RemoveFilter = styled.div`
     color: #E02929;
   };
 `;
-const RatingBarText = styled.span`
+const RatingBarText = styled.div`
 
 font-size: 12px;
-margin-top: 14px;
+margin-top: 11px;
 padding-right: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 margin-right: 20px

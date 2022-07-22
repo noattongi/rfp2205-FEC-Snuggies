@@ -23,6 +23,7 @@ const OverAllBreakDown = (props) => {//done
       var newArr = ratingArray.filter((e) => {
         return e !== numValue
       })
+
        setRatingArray(newArr)
     } else {
       var array = [...ratingArray, numValue]
@@ -57,7 +58,7 @@ useEffect(() => {
 		var recommendedAverage = (props.metaData.recommended.true / recommendTotal);
 		setRecommendProduct((Math.floor(recommendedAverage * 100)));
 	}
-}, [props.reviewData, props.metadata, ratingArray, filterTracker]);
+}, [props.reviewData, props.metadata, ratingArray, filterTracker, ratingText]);
 
   var handleRemoveClick =  ((event) => {
 		setRatingArray([])
@@ -74,12 +75,21 @@ useEffect(() => {
 		  </RBStarsNum>
 			<FilterContainer>
 				<SingleFilterContainer>
-			    {/* {ratingArray.length > 0 && <div>Filters applied</div>} */}
+			    {/* {ratingArray.length > 0 && <div>Filters applied</div>}
 				  {filterTracker['1'] && <SingleFilter>1 Star</SingleFilter>}
 				  {filterTracker['2'] && <SingleFilter>2 Star</SingleFilter>}
 				  {filterTracker['3'] && <SingleFilter>3 Star</SingleFilter>}
 				  {filterTracker['4'] && <SingleFilter>4 Star</SingleFilter>}
-				  {filterTracker['5'] && <SingleFilter>5 Star</SingleFilter>}
+				  {filterTracker['5'] && <SingleFilter>5 Star</SingleFilter>} */}
+
+           {ratingArray.map(filter => {
+             return (
+               <SingleFilter key={filter}>
+                 {filter} Star
+               </SingleFilter>
+             )
+           })}
+
 				</SingleFilterContainer>
 				{ratingArray.length > 0 && <RemoveFilter onClick={handleRemoveClick}>Remove all Filters</RemoveFilter>}
       </FilterContainer>
