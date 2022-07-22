@@ -140,7 +140,6 @@ var QnAContainer = styled.section`
   padding-bottom: 50px;
   padding-bottom: 25px;
   width: 900px;
-
   border-radius: 10px;
   box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
