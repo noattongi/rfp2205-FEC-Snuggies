@@ -33,6 +33,8 @@ export default function Navbar({submitFunc}) {
   )
 };
 
+
+
 // styled components;
 var NavbarContainer = styled.nav`
   display: flex;
@@ -41,6 +43,7 @@ var NavbarContainer = styled.nav`
   background-color: #3a606e;
   margin: 1px;
   height: 50px;
+  width: 1351px;
   border-radius: 5px;
   position: relative;
 `;

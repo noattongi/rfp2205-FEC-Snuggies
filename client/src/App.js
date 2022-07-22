@@ -4,7 +4,9 @@ import Overview from './Components/ProductOverview/Overview.jsx';
 import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
-import Navbar from './Navbar.jsx'
+import Navbar from './Navbar.jsx';
+import { IndexContainer } from './Navbar.jsx';
+
 export const GlobalContext = React.createContext()
 
 var App = () => {
@@ -80,15 +82,15 @@ var App = () => {
 
   return(
     <GlobalContext.Provider value={storage}>
-        <div> <Navbar submitFunc={submit} /> </div>
-        {/* <h1>ANNOUNCEMENTS GO HERE</h1> */}
-        <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
-        <br/>
-        <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
-        <br/>
-        <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
-        <br/>
-        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
+      <div> <Navbar submitFunc={submit} /> </div>
+      {/* <h1>ANNOUNCEMENTS GO HERE</h1> */}
+      <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
+      <br/>
+      <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
+      <br/>
+      <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
+      <br/>
+      <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
     </GlobalContext.Provider>
   )
 }
