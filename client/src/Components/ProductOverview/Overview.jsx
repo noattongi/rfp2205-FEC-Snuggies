@@ -10,7 +10,6 @@ var Overview = (props) => {
 
   const [styles, setStyles] = useState([]);
   const [chosenStyle, setChosenStyle] = useState({});
-  const [reviews, setReviews] = useState({});
 
   // Upon component mounting, send a GET request and get all the relevant data (this may need to be refactored if the team decides to house all client-side request handling in the main App file)
   useEffect(() => {
@@ -22,7 +21,6 @@ var Overview = (props) => {
           return setStyles(results.data.results);
         })
         // Send axios request to get all the review data that is relevant for the specific product
-        // Then set the reviews state
         .catch((error) => {
           console.log('An error occurred when initializing data received from server:', error);
         });
@@ -33,7 +31,7 @@ var Overview = (props) => {
     <div>
       <ProductOverviewContainer>
         <Gallery chosenStyle={chosenStyle} />
-        <Information product={props.chosenProduct} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reviews={reviews} />
+        <Information product={props.chosenProduct} styles={styles} chosenStyle={chosenStyle}  setChosenStyle={setChosenStyle} reviewData={props.reviewData} />
       </ProductOverviewContainer>
 
       {props.chosenProduct.description &&
