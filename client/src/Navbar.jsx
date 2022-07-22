@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-export default function Navbar() {
+export default function Navbar({submitFunc}) {
+
+  var [entry, setEntry] = useState('');
+
+  var handleSubmit = (e) =>{
+    e.preventDefault();
+    submitFunc(entry);
+    console.log('what is entry', e.target.value)
+  };
 
   return (
     <NavbarContainer>
@@ -9,9 +17,12 @@ export default function Navbar() {
       <LogoSpan> Strings </LogoSpan>
       </LogoContainer>
       <SearchContainer>
-      <Search type="input"></Search>
-      <SearchBlock></SearchBlock>
-      <SearchLogo className='fa-solid fa-magnifying-glass'> </SearchLogo>
+        <form>
+      <Search placeholder='Search for a product...' onChange={e => setEntry(e.target.value)} value={entry} type="input"></Search>
+      <SearchButton onClick={handleSubmit} ></SearchButton>
+      <SearchLogo  onClick={handleSubmit} className='fa-solid fa-magnifying-glass'> </SearchLogo>
+      {/* <input onClick={handleSubmit} type='submit' hidden id='secretButton' ></input> */}
+        </form>
       </SearchContainer>
       <LinksContainer>
         <RelatedItemsSpan> <Ra href='#RelatedItems'>Related Items</Ra> </RelatedItemsSpan>
@@ -40,6 +51,9 @@ var Ra = styled.a`
   };
   :hover {
     color: #EF8354;
+  };
+  :link {
+    color: white;
   }
 `;
 
@@ -50,23 +64,30 @@ var Reva = styled.a`
   :hover {
     color: #EF8354;
   }
+  :link {
+    color: white;
+  }
 `;
 
 var SearchLogo = styled.i`
   position: absolute;
   right: -20;
   font-size: 25px;
-  bottom: 13
+  bottom: 13;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-var SearchBlock = styled.span`
+var SearchButton = styled.button`
   background-color: #EF8354;
-  height: 35.3px;
+  height: 35.6px;
   width: 35.5px;
   position: absolute;
   right: -24.8;
   top: 7.4;
   border-radius: 0 5px 5px 0;
+
 `;
 
 var LogoSpan = styled.span`
@@ -92,6 +113,9 @@ var Search = styled.input`
   margin: 6px 4px 4px 4px;
   position: relative;
   right: -30px;
+  :focus {
+    outline: 1.5px solid #EF8354;
+  }
 `;
 var Qa = styled.a`
   :visited {
@@ -99,6 +123,9 @@ var Qa = styled.a`
   };
   :hover {
     color: #EF8354;
+  };
+  :link {
+    color: white;
   }
 `;
 

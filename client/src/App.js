@@ -13,6 +13,7 @@ var App = () => {
   const [productId, setProductId] = useState();
   const [chosenProduct, setChosenProduct] = useState({});
   const [reviewData, setReviewData] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   var storage = {
     _productId: productId,
@@ -25,6 +26,7 @@ var App = () => {
     axios.get('/snuggie/products') // No query/parameters, so this endpoint returns ALL products
       // Then get the specific product
       .then((results) => {
+        setAllProducts(results.data)
         return axios.get('/snuggie/products', { params: {product_id: results.data[0].id} });
       })
       // Then set the hooks
@@ -63,9 +65,20 @@ var App = () => {
     }
   }, [productId]);
 
+  console.log('all', allProducts)
+
+  var submit = (query) => {
+    console.log('query', query)
+    var filtered = allProducts.filter((e) => e.name.toLowerCase().includes(query.toLowerCase()));
+
+    setProductId(filtered[0].id);
+    setChosenProduct(filtered[0]);
+    console.log('what is', filtered)
+  };
+
   return(
     <GlobalContext.Provider value={storage}>
-        <div> <Navbar/> </div>
+        <div> <Navbar submitFunc={submit} /> </div>
         {/* <h1>ANNOUNCEMENTS GO HERE</h1> */}
         <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
         <br/>
