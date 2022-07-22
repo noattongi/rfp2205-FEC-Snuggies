@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import StarBreakDown from '../OverallBreakDown/RatingsBreakdown.jsx'
 import StarRating from '../../SharedComponents/StarRating.jsx'
 import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
-import {OBStar,RRContainer, SingleBar, BarText, RBStarsNum, RBRecommended, OBContainer, NumRatingTitle} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
+import {RatingBarText, RemoveFilter, SingleFilterContainer, SingleFilter, FilterContainer, OBStar,RRContainer, SingleBar, BarText, RBStarsNum, RBRecommended, OBContainer, NumRatingTitle} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
 
 const OverAllBreakDown = (props) => {//done
@@ -13,6 +13,7 @@ const OverAllBreakDown = (props) => {//done
 	const [recommendProduct, setRecommendProduct] = useState(0);
 	const [filterArray, setFilterArray] = useState([])
 	const [ratingArray, setRatingArray] = useState([])
+	const [ratingText, setRatingText] = useState([])
 	const [filterTracker, setFilterTracker] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
 
 
@@ -22,12 +23,18 @@ const OverAllBreakDown = (props) => {//done
       var newArr = ratingArray.filter((e) => {
         return e !== numValue
       })
+
        setRatingArray(newArr)
     } else {
       var array = [...ratingArray, numValue]
       setRatingArray(array)
     }
+    var currStar = numValue + ` Star`
+		var arrayText = [...ratingText, currStar]
+		setRatingText(arrayText)
+
 		setFilterTracker({...filterTracker, [numValue] : !filterTracker[numValue]});
+		console.log(ratingText, "issss this right")
 		return props.filterTheReviews(numValue);
 	}
 
@@ -51,7 +58,7 @@ useEffect(() => {
 		var recommendedAverage = (props.metaData.recommended.true / recommendTotal);
 		setRecommendProduct((Math.floor(recommendedAverage * 100)));
 	}
-}, [props.reviewData, props.metadata, ratingArray, filterTracker]);
+}, [props.reviewData, props.metadata, ratingArray, filterTracker, ratingText]);
 
   var handleRemoveClick =  ((event) => {
 		setRatingArray([])
@@ -66,36 +73,47 @@ useEffect(() => {
 			  <NumRatingTitle>{averageStars && averageStars}</NumRatingTitle>
 		    <OBStar><StarRating reviewData={props.reviewData} /></OBStar>
 		  </RBStarsNum>
-			<div>
-			  {ratingArray.length > 0 && <div>Filters applied</div>}
-				{filterTracker['1'] && <div>1 Star</div>}
-				{filterTracker['2'] && <div>2 Star</div>}
-				{filterTracker['3'] && <div>3 Star</div>}
-				{filterTracker['4'] && <div>4 Star</div>}
-				{filterTracker['5'] && <div>5 Star</div>}
-				{ratingArray.length > 0 && <div onClick={handleRemoveClick}>Remove all Filters</div>}
-      </div>
+			<FilterContainer>
+				<SingleFilterContainer>
+			    {/* {ratingArray.length > 0 && <div>Filters applied</div>}
+				  {filterTracker['1'] && <SingleFilter>1 Star</SingleFilter>}
+				  {filterTracker['2'] && <SingleFilter>2 Star</SingleFilter>}
+				  {filterTracker['3'] && <SingleFilter>3 Star</SingleFilter>}
+				  {filterTracker['4'] && <SingleFilter>4 Star</SingleFilter>}
+				  {filterTracker['5'] && <SingleFilter>5 Star</SingleFilter>} */}
+
+           {ratingArray.map(filter => {
+             return (
+               <SingleFilter key={filter}>
+                 {filter} Star
+               </SingleFilter>
+             )
+           })}
+
+				</SingleFilterContainer>
+				{ratingArray.length > 0 && <RemoveFilter onClick={handleRemoveClick}>Remove all Filters</RemoveFilter>}
+      </FilterContainer>
 		<RBRecommended> {recommendProduct}% of reviews recommend this product</RBRecommended>
 		<AllStarsBodyContainer>
 			<SingleBar >
 				<BarText ><u value='5' onClick={filterOnClick} >5 stars</u> </BarText><StarBreakDown done={props.fiveTotal}/>
-				{props.metaData.ratings && <BarText>({props.metaData.ratings[5]})</BarText>}
+				{props.metaData.ratings && <RatingBarText>({props.metaData.ratings[5]})</RatingBarText>}
 			</SingleBar>
 			<SingleBar>
 			  <BarText ><u value='4' onClick={filterOnClick}>4 stars</u></BarText><StarBreakDown done={props.fourTotal}/>
-			  {props.metaData.ratings && <BarText>({props.metaData.ratings[4]})</BarText>}
+			  {props.metaData.ratings && <RatingBarText>({props.metaData.ratings[4]})</RatingBarText>}
 			</SingleBar>
 			<SingleBar>
 			<BarText><u value='3' onClick={filterOnClick} >3 stars</u></BarText><StarBreakDown done={props.threeTotal}/>
-			{props.metaData.ratings && <BarText>({props.metaData.ratings[3]})</BarText>}
+			{props.metaData.ratings && <RatingBarText>({props.metaData.ratings[3]})</RatingBarText>}
 			</SingleBar>
 			<SingleBar>
 			<BarText ><u value='2' onClick={filterOnClick}>2 stars</u></BarText><StarBreakDown done={props.twoTotal}/>
-			{props.metaData.ratings && <BarText>({props.metaData.ratings[2]})</BarText>}
+			{props.metaData.ratings && <RatingBarText>({props.metaData.ratings[2]})</RatingBarText>}
 			</SingleBar>
 			<SingleBar>
 			<BarText ><u value='1' onClick={filterOnClick}>1 stars</u></BarText><StarBreakDown done={props.oneTotal}/>
-			{props.metaData.ratings && <BarText>({props.metaData.ratings[1]})</BarText>}
+			{props.metaData.ratings && <RatingBarText>({props.metaData.ratings[1]})</RatingBarText>}
 			</SingleBar>
 		</AllStarsBodyContainer>
 		<ProductBreakDown characteristics={props.metaData.characteristics}/>

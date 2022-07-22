@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 const Scroll = styled.div`
-width:90%% ;
-height:600px;
+width:100%% ;
+max-height:85vh;
 overflow:scroll;
 overflow-y:scroll;
-overflow-x:hidden;
 overflow: auto
 `;
-
+//margin 
 const ReviewTile = styled.div`
 border-bottom: 2px solid grey;
+padding-bottom: 10px;
 padding-top: 20px;
-padding-bottom: 20px;
+margin-right: 40px;
 `
 
 

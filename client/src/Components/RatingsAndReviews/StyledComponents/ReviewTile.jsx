@@ -12,24 +12,31 @@ const UserandDate = styled.div`
   color: grey
   opacity: 0.7;
   padding-bottom: 20px;
-  padding-bottom: 20px;
+  padding-right: 20px;
+  opacity: 0.9;
+  font-family: 'Cormorant Garamond', serif;
 `;
+
+
 
 const Summary = styled.div`
   padding-bottom: 20px;
   padding-bottom: 20px;
-  font-weight: bold;
+  font-weight: bolder;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 `;
 //might need to add another div for reviewBody
 const ReviewBody = styled.div`
 padding-bottom: 20px;
 padding-bottom: 20px;
-width: 80%;
+width: 90%;
 word-wrap: break-word;
+font-size: 14px;
+font-family: 'Nanum Gothic Coding', monospace;
 `;
 
 const RecommendProduct = styled.div`
-padding-bottom: 20px;
 padding-bottom: 20px;
 `
 
@@ -42,8 +49,7 @@ font-size: 12px;
 `;
 
 var AnswerHelpfulnessSpan = styled.span`
-   padding-left: 7px;
-  padding-right: 7px;
+padding-bottom:10px;
 `;
 
 
@@ -62,6 +68,7 @@ var HelpfulAnswerSpan = styled.div`
 `;
 
 var YesAnswerSpan = styled.span`
+  margin-left:2px;
   text-decoration: underline;
   :hover {
     cursor: pointer;
@@ -69,9 +76,11 @@ var YesAnswerSpan = styled.span`
   };
 `;
 var ShrinkImg = styled.img`
-  width: 75px;
-  height: 75px;
-  padding: 10px;
+width: 75px;
+height: 75px;
+margin: 10px;
+border-radius: 12px;
+object-fit: cover;
   z-index: 12;
 
 `;
@@ -79,11 +88,20 @@ var ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  z-index: 11;
+
 
 `;
 
+const RT_StarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  `;
+  const SeeMore = styled.div`
+  :hover {
+    cursor: pointer;
+    color: #E02929;
+  };
+  `;
 
-
-export { TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ImageContainer, ShrinkImg};
+export { SeeMore, RT_StarContainer, TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ImageContainer, ShrinkImg};
 

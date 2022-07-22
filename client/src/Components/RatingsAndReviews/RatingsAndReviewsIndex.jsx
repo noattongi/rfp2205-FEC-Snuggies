@@ -93,9 +93,11 @@ var RatingsAndReviewsIndex = (props) => {
     return axios.post('/snuggie/reviews', postReviewObj)
     .then((response) => {
       var filtered = getProductReviews(props.productId, sortby)
-      return filtered
       console.log(response, 'response in postReview func')
+      return filtered
+
     })
+
     .catch((error) => {
       console.log( error,'Error in Post ProductReviews')
     })
