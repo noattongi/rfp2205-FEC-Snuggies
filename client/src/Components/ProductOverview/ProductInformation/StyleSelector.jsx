@@ -40,13 +40,13 @@ var Styles = (props) => {
                 return (
                   <ChosenStyleContainer key="ChosenStyleContainer" >
                     <ChosenIcon className="fa-solid fa-check" key="ChosenStyleIcon" />
-                    <StyleThumbnail className="chosenStyle" alt="StyleThumbnail" id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url || Placeholder} onClick={() => {props.setChosenStyle(style)}} />
+                    <StyleThumbnail className="chosenStyle" alt="StyleThumbnail" id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url || Placeholder} onerror={({currentTarget}) => {currentTarget.onerror = null; currentTarget.src = Placeholder}} onClick={() => {props.setChosenStyle(style)}} />
                   </ChosenStyleContainer>
                 );
               }
               // Else just render the thumbnail without the special border
               return (
-                <StyleThumbnail alt="StyleThumbnail" id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url || Placeholder} onClick={() => {props.setChosenStyle(style)}} />
+                <StyleThumbnail alt="StyleThumbnail" id={style.style_id} key={style.style_id} src={style.photos[0].thumbnail_url || Placeholder} onerror={({currentTarget}) => {currentTarget.onerror = null; currentTarget.src = Placeholder}} onClick={() => {props.setChosenStyle(style)}} />
               );
             })}
           </StyleThumbnailContainer>
