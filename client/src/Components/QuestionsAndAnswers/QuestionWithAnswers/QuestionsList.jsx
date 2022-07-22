@@ -28,6 +28,7 @@ var QuestionsList = ({productId, chosenProduct, urlImage, setURLImage, questions
 var QnAListContainer = styled.section`
   display: flex;
   flex-direction: column;
+  margin: 0 0 0 30px;
 `;
 
 //questionable?

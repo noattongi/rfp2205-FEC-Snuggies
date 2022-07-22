@@ -35,7 +35,7 @@ var IndividualQuestions = ({chosenProduct, productId, urlImage, setURLImage, que
           <HelpfulAnswerSpan>
              Helpful?
            {!vote && <YesQuestionSpan onClick={upVote}>Yes</YesQuestionSpan>}
-           {!vote && <span>({helpful})</span>}
+           {!vote && <VoteHelpfulSpan>({helpful})</VoteHelpfulSpan>}
            {vote && <VotedYesSpan>Yes</VotedYesSpan>}
            {vote && <VotedHelpfulSpan>({helpful})</VotedHelpfulSpan>}
            </HelpfulAnswerSpan>
@@ -57,19 +57,26 @@ var QnAContainer = styled.div`
 `;
 
 var VotedHelpfulSpan = styled.span`
-
+  font-size: 18px;
+  color: #007185;
 `;
 
 var VotedYesSpan = styled.span`
   text-decoration: underline;
   color: #007185;
+  font-size: 18px;
   padding-left: 6px;
   padding-right: 2px;
 
 `;
 
+var VoteHelpfulSpan = styled.span`
+  font-size: 18px;
+`;
+
 var YesQuestionSpan = styled.span`
   text-decoration: underline;
+  font-size: 18px;
   :hover {
     cursor: pointer;
     color: #007185;
@@ -84,7 +91,7 @@ var AddAnswerSpan = styled.span`
   color: #007185;
   padding-left: 4.5px;
   padding-right: 4.5px;
-  font-size: 15px;
+  font-size: 18px;
   :hover {
     cursor: pointer;
     color: #007185;
@@ -98,6 +105,7 @@ var QuestionBody = styled.span`
 var QuestionSpan = styled.span`
   font-family: 'Nanum Gothic Coding', monospace;
   display: flex;
+  font-size: 20px;
   font-weight: bold;
   flex-wrap: wrap;
   width: 60%;
@@ -110,7 +118,7 @@ var HelpfulAnswerSpan = styled.div`
   justify-content: space-between;
   padding-left: 4.5px;
   padding-right: 4.5px;
-  font-size: 15px;
+  font-size: 18px;
 `;
 
 var AnswerListContainer = styled.div`

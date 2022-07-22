@@ -5,7 +5,10 @@ import styled from 'styled-components';
 // add Individual Answer
 export default function AnswerList ({answerList}) {
 
+  var [toggleModal, setToggleModal] = useState(false);
+
   var answer = [];
+
   for (var key in answerList) {
     answer.push(answerList[key])
   };
@@ -26,14 +29,21 @@ export default function AnswerList ({answerList}) {
   var collapseAnswers = (e) => {
     e.preventDefault();
     setLen(2)
-  }
+  };
+
+  var list = Object.values(answerList).length;
+
   return (
     <AnswerListContainer>
-      <AnswerSpan> A: </AnswerSpan>
+      {list === 0 &&
+      <NoAnswerContainer>
+        <NoAnswerSpan> There are 0 answers  </NoAnswerSpan>
+        <NoAnswerSpan2>Add an answer to this question! </NoAnswerSpan2>
+        </NoAnswerContainer>}
       <ScrollAnswers>
-        {sortAnswer.slice(0, len).map((each) => {
+        {sortAnswer.slice(0, len).map((each, i) => {
           return (
-            <IndividualAnswer len={len} key={each.id} answer={each} />
+            <IndividualAnswer index={i} len={len} key={each.id} answer={each} />
           )
         })}
         {sortAnswer.length > 2 && len < sortAnswer.length && <LoadMoreAnswersButton onClick={showMoreAnswers} > Load More Answers </LoadMoreAnswersButton>}
@@ -58,13 +68,6 @@ var AnswerListContainer = styled.div`
 
 `;
 
-var AnswerSpan = styled.span`
-  font-family: 'Nanum Gothic Coding', monospace;
-  height: 1rem;
-  font-weight: bold;
-
-`;
-
 var CollapseAnswerButton = styled.span`
   font-family: 'Nanum Gothic Coding', monospace;
   padding-bottom: 9px;
@@ -77,6 +80,28 @@ var CollapseAnswerButton = styled.span`
     cursor: pointer;
     color: #007185;
   };
+`;
+
+var NoAnswerContainer = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+`;
+
+var NoAnswerSpan = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-size: 25px;
+  position: absolute;
+  left: 520;
+  top: 40;
+`;
+
+var NoAnswerSpan2 = styled.span`
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-size: 25px;
+  position: absolute;
+  left: 450;
+  top: 80;
 `;
 
 var LoadMoreAnswersButton = styled.span`

@@ -5,7 +5,7 @@ import ImageModal from './ImageModal.jsx';
 import Placeholder from '../../../assets/Placeholder.jpeg'
 var axios = require('axios');
 
-export default function IndividualAnswer({answer}) {
+export default function IndividualAnswer({index, answer}) {
 
   var [helpful, setHelpful] = useState(answer.helpfulness);
   var [report, setReport] = useState(true);
@@ -51,7 +51,9 @@ export default function IndividualAnswer({answer}) {
   return (
     <IndividualAnswerContainer>
       <IndividualAnswerBody>
-        <AnswerSpan> {answer.body} </AnswerSpan>
+        {index === 0 && <AnswerSpan>A: {answer.body}</AnswerSpan>}
+        {index !== 0 && <AnswerSpan>{answer.body}</AnswerSpan>}
+        {/* <AnswerSpan>{answer.body}</AnswerSpan> */}
         <ImageSection>
         {answer.photos.map((each, i) => {
           return (
@@ -88,7 +90,8 @@ var IndividualAnswerContainer = styled.section`
 `;
 
 var VotedSpan = styled.span`
-  color: blue;
+  color: #007185;
+  font-size: 12.3px;
 `;
 
 var ImageSection = styled.div`
@@ -114,7 +117,8 @@ var Images = styled.img`
 
 var YesAnswerSpanVoted = styled.span`
   text-decoration: underline;
-  color: blue;
+  color: #007185;
+  font-size: 12.3px;
   padding-left: 5px;
   padding-right: 2px;
 `;
@@ -128,6 +132,7 @@ var IndividualAnswerBody = styled.div`
 
 var YesAnswerSpan = styled.span`
   text-decoration: underline;
+  font-size: 12.3px;
   :hover {
     cursor: pointer;
     color: #007185;
@@ -139,6 +144,7 @@ var YesAnswerSpan = styled.span`
 var ReportedSpan = styled.span`
   text-decoration: underline;
   color: red;
+  font-size: 12.3px;
   padding-left: 7px;
   padding-right: 1px;
 `;
@@ -147,6 +153,7 @@ var AnswerSpan = styled.span`
   font-family: 'Nanum Gothic Coding', monospace;
   height: 1rem;
   padding-bottom: 5px;
+  font-size: 20px;
 `;
 
 var ImageContainer = styled.div`
@@ -167,6 +174,7 @@ var BottomInfoContainer = styled.div`
 //adjust
 var PosterAndDateSpan = styled.span`
   height: 1.2rem;
+  font-size: 12.3px;
   padding-left: 1px;
   padding-right: 7px;
 `;
@@ -175,11 +183,13 @@ var PosterAndDateSpan = styled.span`
 var AnswerHelpfulnessSpan = styled.span`
   padding-left: 7px;
   padding-right: 7px;
+  font-size: 12.3px;
 `;
 
 //adjust
 var ReportSpan = styled.span`
   text-decoration: underline;
+  font-size: 12.3px;
   :hover {
     cursor: pointer;
     color: #007185;

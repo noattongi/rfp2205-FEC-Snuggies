@@ -135,11 +135,7 @@ var QnAContainer = styled.section`
   flex-direction: column;
   border: 3px solid black;
   background-color: rgb(255, 255, 255);
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 50px;
-  padding-bottom: 25px;
-  width: 900px;
+  width: 1354px;
   border-radius: 10px;
   box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
 `;
@@ -149,6 +145,8 @@ var Header = styled.h1`
   font-family: 'Nanum Gothic Coding', monospace;
   font-weight: bold;
   font-size: 35px;
+  position: relative;
+  left: 220;
 `;
 
 var AddQuestionButton = styled.button`
@@ -157,7 +155,9 @@ var AddQuestionButton = styled.button`
   font-weight: bold;
   border-radius: 5px;
   padding: 10px;
+  font-size: 17px;
   background-color: white;
+  margin: 10px;
   :hover {
     cursor: pointer;
     background-color: #EF8354;
@@ -177,7 +177,7 @@ var QuestionScrollDiv = styled.div`
   height: 500px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 20px;
+
 `;
 
 var ImageSupreme = styled.img`
