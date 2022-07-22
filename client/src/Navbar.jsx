@@ -108,7 +108,7 @@ var SearchContainer = styled.span`
 `;
 
 var Search = styled.input`
-  height: 5.5vh;
+  height: 36px;
   posiiton:absolute;
   width: 50vw;
   border-radius: 5.5px;

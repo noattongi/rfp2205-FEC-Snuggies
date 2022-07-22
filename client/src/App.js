@@ -5,7 +5,6 @@ import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
 import Navbar from './Navbar.jsx';
-import { IndexContainer } from './Navbar.jsx';
 
 export const GlobalContext = React.createContext()
 
