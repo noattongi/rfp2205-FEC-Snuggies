@@ -21,10 +21,10 @@ const RInCIndex = (props) => {
   }
 
   return (
-    <RInCContainer>
-      <RelatedItemsList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} chosenProduct={props.chosenProduct}/>
-      <OutfitList getProduct = {getProduct} productId={props.productId} setProductId={props.setProductId} chosenProduct={props.chosenProduct}/>
-    </RInCContainer>
+    <div id='RelatedItems'>
+      <RelatedItemsList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct} />
+      <OutfitList getProduct = {getProduct} productId={props.productId} chosenProduct={props.chosenProduct} setProductId={props.setProductId} setChosenProduct={props.setChosenProduct}/>
+    </div>
   )
 }
 
