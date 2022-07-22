@@ -103,7 +103,9 @@ const RelatedItemsList = (props) => {
 
   return (
     <>
-    <h3>Related List</h3>
+    <Header>
+      <h3>Related List</h3>
+    </Header>
     <RelatedItemsListContainer>
           <CarouselContainer>
             {Boolean(relatedId.length > 4) ? <RelatedCarouselLeft relatedIndex={relatedIndex} setRelatedIndex={setRelatedIndex} relatedProd={relatedProd}/> : null}
@@ -122,13 +124,14 @@ const RelatedItemsList = (props) => {
 export default RelatedItemsList;
 
 // styled components
+const Header = styled.div`
+  font-size: 20px;
+  font-weight: 300;
+`;
 const RelatedItemsListContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border: 3px solid black;
-  border-radius: 10px;
   width: 100%;
-  background-color: #3a606e;
 `;
 const Row = styled.div`
   display: flex;

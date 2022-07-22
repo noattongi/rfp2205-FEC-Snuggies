@@ -98,7 +98,9 @@ const OutfitList = (props) => {
   }, [outfitId])
   return (
     <div>
-      <h3>Your Outfit</h3>
+      <Header>
+        <h3>Your Outfit</h3>
+      </Header>
       <OutfitListContainer>
         <CarouselContainer>
           {Boolean(outfitId.length > 3) ? <OutfitCarouselLeft outfitProd={outfitProd} setOutfitIndex={setOutfitIndex} outfitIndex={outfitIndex} outfitId={outfitId}/> : null}
@@ -154,10 +156,8 @@ const AddContainer = styled.div`
 const OutfitListContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border: 3px solid black;
-  border-radius: 10px;
   width: 100%;
-  background-color: #3a606e;
+
 `;
 
 const AddText = styled.p`
@@ -167,4 +167,9 @@ const AddText = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Header = styled.div`
+  font-size: 20px;
+  font-weight: 300;
 `;
