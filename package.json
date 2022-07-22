@@ -6,6 +6,7 @@
   "scripts": {
     "server-start": "nodemon server.js -w",
     "client-start": "webpack --config webpack.config.js -w",
+    "build":"npx webpack --config webpack.config.js && npm run server-start",
     "test": "jest",
     "test:coverage": "jest --config ./jest.config.js --coverage"
   },
