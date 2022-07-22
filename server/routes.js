@@ -111,20 +111,30 @@ router.put('/reviews/report', (request, response) => {
   })
 });
 
+// related items and comparison
+const relatedCache = {};
 router.get('/related', (request, response) => {
+  console.log('hi')
   if (!request.query.product_id) {
-    response.send(500);
+    response.sendStatus(500);
   } else {
-    API.getRelatedProducts(request.query.product_id)
+    console.log('cache', relatedCache)
+    if (!relatedCache[request.query.product_id]) {
+      API.getRelatedProducts(request.query.product_id)
       .then((results) => {
+        console.log('did not use cache')
+        relatedCache[request.query.product_id] = results.data
         response.sendStatus(200).send(results.data)
       })
       .catch((error) => {
         console.log('Error in getting related products', error);
-        response.send(500);
+        response.sendStatus(500);
       })
+    } else {
+      console.log('this id came from cache', request.query.product_id)
+      response.sendStatus(200).send(relatedCache[request.query.product_id])
+    }
   }
-
 });
 
 router.get('/qa/questions', (request, response) => {
