@@ -31,3 +31,9 @@ const RInCIndex = (props) => {
 export default RInCIndex;
 
 // styled components
+const RInCContainer = styled.div`
+  display: flex;
+  font-family: 'Nanum Gothic Coding', monospace;
+  flex-direction: column;
+  width: 1354px;
+`;

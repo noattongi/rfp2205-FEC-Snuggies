@@ -1,0 +1,28 @@
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import ReactDOM from 'react-dom';
+import styled from 'styled-components'
+
+const OutfitCarouselLeft = (props) => {
+  // conditional render if more than four cards
+  // when click, display currentView from [0, 3] -> [1, 4]
+  async function handleBack() {
+      return props.setOutfitIndex(Number(props.outfitIndex) - 1)
+  }
+  return (
+    <>
+      {Boolean(props.outfitProd[props.outfitIndex + 2] && props.outfitIndex > 0) ? <LeftClick className="fa-solid fa-arrow-left" onClick={handleBack}></LeftClick> : null}
+    </>
+  )
+}
+
+export default OutfitCarouselLeft;
+
+// styled component
+const LeftClick = styled.button`
+  align-self: center;
+  border: solid 2px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+`;
