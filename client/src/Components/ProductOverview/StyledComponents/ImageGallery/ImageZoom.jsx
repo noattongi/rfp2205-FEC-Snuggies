@@ -4,11 +4,26 @@
 import styled from 'styled-components';
 
 // Container to hold everything in the ImageZoom component
-const ImageZoomContainer = styled.div`
+const ImageZoomContainer = styled.section`
   display: flex;
   justify-content: center;
-  position: relative;
-  width: 100vw;
+  position: absolute;
+  width: 1353px;
+  height: 740px;
+  background-color: #828e82;
+  z-index: 15;
+  border: solid 3px;
+  border-radius: 10px 10px 10px 10px;
+  border-color: #120309;
+`;
+
+// Overlay that hold image zoom (magnifier)
+const ImageZoomOverlay = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 15;
+  width: 1353px;
   height: 740px;
 `;
 
@@ -26,7 +41,7 @@ const Magnifier = styled.div`
   position: absolute;
   pointer-events: none;
   height: 740px;
-  width: 100vw;
+  width: 1353px;
   top: 0;
   left: 0;
   background-image: url(${(props) => props.imageUrl});
@@ -50,8 +65,7 @@ const Magnifier = styled.div`
                             }
                           }}px;
   background-color: #828e82;
-  border: solid 3px black;
   z-index: 25;
 `;
 
-export { ImageZoomContainer, ZoomedImage, Magnifier };
+export { ImageZoomContainer, ImageZoomOverlay, ZoomedImage, Magnifier };
