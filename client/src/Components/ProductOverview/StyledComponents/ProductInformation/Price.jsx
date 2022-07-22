@@ -20,7 +20,7 @@ const Price_struck = styled.span`
 
 // The sale price
 const Price_sale = styled.span`
-  color: red;
+  color: #EF8354;
   font-size: 24;
   font-weight: bold;
   margin-bottom: 12px;
