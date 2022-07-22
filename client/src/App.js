@@ -5,6 +5,7 @@ import QnaIndex from './Components/QuestionsAndAnswers/QnaIndex.jsx';
 import RatingsAndReviewsIndex from './Components/RatingsAndReviews/RatingsAndReviewsIndex.jsx'
 import RInC from './Components/RelatedItemsAndComparison/RInCIndex.jsx';
 import Navbar from './Navbar.jsx';
+import styled from 'styled-components';
 
 export const GlobalContext = React.createContext()
 
@@ -80,17 +81,27 @@ var App = () => {
 
   return(
     <GlobalContext.Provider value={storage}>
-      <div> <Navbar submitFunc={submit} /> </div>
-      {/* <h1>ANNOUNCEMENTS GO HERE</h1> */}
-      <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
-      <br/>
-      <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
-      <br/>
-      <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
-      <br/>
-      <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
+      <AppWrapper>
+        <div> <Navbar submitFunc={submit} /> </div>
+        {/* <h1>ANNOUNCEMENTS GO HERE</h1> */}
+        <Overview productId={productId} chosenProduct={chosenProduct} reviewData={reviewData} />
+        <br/>
+        <RInC productId={productId} chosenProduct={chosenProduct} setProductId={setProductId} setChosenProduct={setChosenProduct}/>
+        <br/>
+        <QnaIndex productId= {productId} chosenProduct={chosenProduct} />
+        <br/>
+        <RatingsAndReviewsIndex productId={productId} chosenProduct={chosenProduct}/>
+      </AppWrapper>
     </GlobalContext.Provider>
   )
 }
 
 export default App;
+
+const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #828e82;
+`;
