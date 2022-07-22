@@ -10,7 +10,7 @@ var Thumbnail = (props) => {
 
 
   return (
-    <ThumbnailImage alt="ImageThumbnail" src={props.thumbnail.thumbnail_url || Placeholder} onClick={() => {props.setChosenImageIndex(props.index)}} />
+    <ThumbnailImage alt="ImageThumbnail" src={props.thumbnail.thumbnail_url || Placeholder} onerror={({currentTarget}) => {currentTarget.onerror = null; currentTarget.src = Placeholder}} onClick={() => {props.setChosenImageIndex(props.index)}} />
   );
 }
 

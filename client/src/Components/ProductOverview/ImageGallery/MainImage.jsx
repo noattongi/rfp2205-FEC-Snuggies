@@ -31,7 +31,7 @@ var MainImage = (props) => {
             }}
           />
         </ExpandedOverlay>
-        <Image src={props.chosenImageUrl || Placeholder} onClick={() => { console.log('Zoom!'); props.setZoomed(!props.zoomed);}} />
+        <Image src={props.chosenImageUrl || Placeholder} onerror={({currentTarget}) => {currentTarget.onerror = null; currentTarget.src = Placeholder}} onClick={() => { console.log('Zoom!'); props.setZoomed(!props.zoomed);}} />
       </ExpandedView>
     );
   // Else render the default view
@@ -44,7 +44,7 @@ var MainImage = (props) => {
             {props.chosenImageIndex < props.maxIndex && <RightArrow className="fa-solid fa-arrow-right" onClick={() => {props.setChosenImageIndex(props.chosenImageIndex + 1)}} />}
             <FullScreen className="fa-solid fa-expand" onClick={() => {console.log('Expand!'); props.setExpanded(true);}} />
           </DefaultOverlay>
-          <Image id="MainImage" src={props.chosenImageUrl || Placeholder} onClick={() => {console.log('Expand!'); props.setExpanded(true);}} />
+          <Image id="MainImage" src={props.chosenImageUrl || Placeholder} onerror={({currentTarget}) => {currentTarget.onerror = null; currentTarget.src = Placeholder}} onClick={() => {console.log('Expand!'); props.setExpanded(true);}} />
         </DefaultView>
       </div>
     );
