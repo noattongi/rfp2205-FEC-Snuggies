@@ -35,7 +35,6 @@ var QnaIndex = ({ chosenProduct, productId }) => {
     }
   }, [productId]);
 
-  console.log('question', question)
   var search = (query) => {
 
     var query = query.toLowerCase();
@@ -114,7 +113,7 @@ var QnaIndex = ({ chosenProduct, productId }) => {
   };
 
   return (
-    <QnAContainer>
+    <QnAContainer id='QnA'>
         <Header> Questions and Answers </Header>
         <SearchQuestions search={search}/>
         {noSearch && <h2> NO SEARCH RESULT</h2>}

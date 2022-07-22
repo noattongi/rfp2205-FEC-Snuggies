@@ -32,6 +32,9 @@ var MagnifyingIcon = styled.i`
   position: relative;
   left: 410;
   top: 5.8;
+  :hover {
+    cursor: pointer;
+  };
 `;
 
 export default SearchQuestions
