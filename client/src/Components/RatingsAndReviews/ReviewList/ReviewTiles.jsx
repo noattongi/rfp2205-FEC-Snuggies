@@ -90,7 +90,7 @@ var ReviewTiles = (props) => {
       <span> | </span>
       {/* {/* {!noVote && <YesAnswerSpan onClick={onNotHelpfulClick}>No</YesAnswerSpan> }
       {!noVote &&  <span>({notHelpful})</span>} */}
-      <YesAnswerSpan>No </YesAnswerSpan>
+      <YesAnswerSpan>No</YesAnswerSpan>
       <span> (0) </span>
      </AnswerHelpfulnessSpan>
       <span> | </span>

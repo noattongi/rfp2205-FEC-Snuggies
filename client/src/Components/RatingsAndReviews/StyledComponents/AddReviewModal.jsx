@@ -87,7 +87,6 @@ padding-right: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 `;
 const AM_TopContainer = styled.div`
-border:solid;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -96,10 +95,97 @@ align-items: center;
 `;
 
 const AM_FormContainer = styled.div`
-
+border-color:green;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+justify-content: start;
 `;
 const AM_InputContainer = styled.div`
+border-color:red;
+flex-direction: column;
+justify-content: start;
+display: flex;
+`;
+
+const AM_StarContainer = styled.div`
+border:solid;
+display: block;
+flex-direction: row;
+align-items: left;
+align-text: left;
+display: flex;
+`;
+const AM_Label = styled.label`
+font-size: 15px;
+font-weight:bold;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-right: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+display: flex;
+align-items: left;
+`;
+const AM_Stars = styled.div`
+align-items: left;
+border:solid;
+font-size: 16px;
+font-weight:bold;
+padding-top: 5px;
+padding-bottom: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+
+`;
+const CharContainer = styled.div`
+
+font-size: 15px;
+font-weight:bold;
+padding-top: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+display: flex;
+align-items: left;
+flex-direction:column;
+`;
+const SingleCharact = styled.div`
+
+font-size: 15px;
+font-weight:bold;
+padding-right: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+display: flex;
+align-items: left;
+flex-direction:column;
+`;
+
+const AM_CharTop = styled.div`
+
+font-size: 15px;
+font-weight:bold;
+padding-right: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+display: flex;
+align-items: left;
+`;
+const AM_NoneSelect = styled.div`
+
+font-size: 12px;
+font-weight:bold;
+padding-right: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+display: flex;
+flex-direction:row;
+`;
+const AM_CharName = styled.div`
+left:0
+flex-direction:row;
+position: absolute;
+
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
 
 `;
 
-export {AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+
+export {AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

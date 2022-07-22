@@ -189,5 +189,9 @@ const SingleFilterContainer = styled.div`
 
   font-family: 'Nanum Gothic Coding', monospace;
 `;
+const radioGroup = styled.div`
 
-export {RatingBarText, RemoveFilter, SingleFilterContainer, SingleFilter, FilterContainer, PBCharContainer, CharContainer,CharRating, CharName, PBContainer, RRContainer, SingleBar, BarText, OBContainer, RBStarsNum, RBRecommended, NumRatingTitle, OBStar}
+  font-family: 'Nanum Gothic Coding', monospace;
+`;
+
+export {radioGroup, RatingBarText, RemoveFilter, SingleFilterContainer, SingleFilter, FilterContainer, PBCharContainer, CharContainer,CharRating, CharName, PBContainer, RRContainer, SingleBar, BarText, OBContainer, RBStarsNum, RBRecommended, NumRatingTitle, OBStar}
