@@ -76,9 +76,11 @@ var YesAnswerSpan = styled.span`
   };
 `;
 var ShrinkImg = styled.img`
-  width: 75px;
-  height: 75px;
-  padding: 10px;
+width: 75px;
+height: 75px;
+margin: 10px;
+border-radius: 12px;
+object-fit: cover;
   z-index: 12;
 
 `;

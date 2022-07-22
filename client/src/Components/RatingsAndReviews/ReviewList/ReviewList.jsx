@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 import AddReviewModal from './AddReviewModal.jsx'
 import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
-import {RL_Sort, RL_MoreButton, RL_SubmitButton, RL_BotContainer,ReviewListContainer, RL_TopContainer} from '../StyledComponents/ReviewListStyle.jsx'
+import {AddReviewButton, RL_Sort, RL_MoreButton, RL_SubmitButton, RL_BotContainer,ReviewListContainer, RL_TopContainer} from '../StyledComponents/ReviewListStyle.jsx'
 
 var ReviewList = (props) => {
   const [reviewCount, setReviewCount] = useState(2);
@@ -56,9 +56,9 @@ var ReviewList = (props) => {
       </Scroll>
       <RL_BotContainer>
       {allReviews && allReviews.length > 2 && reviewCount < allReviews.length && <RL_MoreButton onClick={moreReviewClick} >More Reviews</RL_MoreButton>}
-        <RL_SubmitButton
+        <RL_MoreButton
           onClick={toggleModal}
-        >Add a Review</RL_SubmitButton>
+        >Add a Review</RL_MoreButton>
       {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} charData={props.metaData.characteristics} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
       </RL_BotContainer>
   </ReviewListContainer>

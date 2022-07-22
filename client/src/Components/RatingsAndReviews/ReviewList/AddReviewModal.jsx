@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
+import {UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
@@ -283,7 +283,7 @@ var AddReviewModal = (props) => {
               </BodyContainerModal>
             </form>
             <AM_Label>Upload Image
-              <button onClick={openPhotoUpload} > Upload Cloud</button>
+              <UploadCloud onClick={openPhotoUpload} > Upload Cloud</UploadCloud>
               {/* <input type="file" name="myImage" onChange={onImageChange} />
                <ImageContainer><ShrinkImg src={selectedImage} /></ImageContainer> */}
             </AM_Label>
@@ -310,7 +310,7 @@ var AddReviewModal = (props) => {
             For authentication reasons, you will not be emailed
           </AM_InputContainer>
           <div>
-            <button onClick={onSubmitClick} >Submit</button>
+            <UploadCloud onClick={onSubmitClick} >Submit</UploadCloud>
           </div>
           </AM_FormContainer>
         </Container>

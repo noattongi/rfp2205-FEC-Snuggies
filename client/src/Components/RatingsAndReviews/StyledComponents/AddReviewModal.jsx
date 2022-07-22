@@ -7,11 +7,12 @@ const StyleBackground =styled.div`
   padding-top: 100px;
   left: 0;
   top: 0;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 80%;
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+  max-width:1000px;
 
   `;
 
@@ -53,25 +54,26 @@ const ModalBody = styled.div`
   `;
 
   const ProductName = styled.div`
-  width: 400px;
+  width: 50px;
   text-align:center;
   display:flex;
   justify-content: center;
   font-family: 'Nanum Gothic Coding',monospace;
   font-weight: bold;
+  white-space: nowrap;
   font-size: 22px;
 
 
 `;
 const WriteTitle = styled.div`
-width: 400px;
+width: 150px;
 text-align:center;
 display:flex;
 justify-content: center;
 font-family: 'Nanum Gothic Coding',monospace;
 font-weight: bold;
 font-size: 45px;
-
+white-space: nowrap;
 padding-bottom: 10px;
 `;
 
@@ -191,19 +193,16 @@ padding-top: 5px;
 input[type=radio] {
   display: block;
   margin: 0 auto;
-  justify-content: center;
+
 }
 label {
-  font-size: 6px;
+  font-size: 5px;
   display: inline-block;
 }
 `;
 const OverallRadioContainer = styled.label`
-input[type=radio] {
 
-  justify-content: center;
 
-}
 flex-direction:row;
 display: flex;
 
@@ -242,6 +241,23 @@ flex-direction:column;
 display: flex;
 
 `;
+const UploadCloud = styled.button`
+border-radius: 5px;
+  border: 2.4px solid black;
+  font-weight: bold;
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  font-size: 15px;
+  flex-direction: row;
+  opacity: 0.9;
+  margin: 5px;
+  text-align: center;
+  font-family: 'Nanum Gothic Coding', monospace;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  };
+`;
 
-
-export {AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+export {UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
