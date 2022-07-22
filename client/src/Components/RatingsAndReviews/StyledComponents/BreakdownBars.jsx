@@ -23,10 +23,11 @@ import styled from 'styled-components';
   const Progress =styled.div`
 	  background-color: lightgray;
 	  position: relative;
-	  margin: 11px 0;
-	  height: 13px;
+	  margin: 2px 0;
+	  height: 10px;
 	  width: 140px;
     border-radius: 25px;
+    border: 1px solid black;
   `;
 
 

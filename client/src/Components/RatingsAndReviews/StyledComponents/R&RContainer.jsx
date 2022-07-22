@@ -32,7 +32,7 @@ const BarText = styled.span`
 font-size: 14px;
 font-weight:bold;
 white-space: nowrap;
-margin-top: 12px;
+margin-top: 3px;
 padding-right: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 margin-right: 20px
@@ -66,7 +66,7 @@ font-family: 'Nanum Gothic Coding', monospace;
 
 const NumRatingTitle = styled.div`
 display: flex;
-font-weight: bolder;
+font-weight: bold;
 font-size: 40px;
 flex-direction: row;
 justify-content: space-between;
@@ -172,7 +172,7 @@ const RemoveFilter = styled.div`
 const RatingBarText = styled.div`
 
 font-size: 12px;
-margin-top: 11px;
+margin-top: 1px;
 padding-right: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 margin-right: 20px
