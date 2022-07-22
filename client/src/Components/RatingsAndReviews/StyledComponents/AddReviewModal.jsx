@@ -95,7 +95,6 @@ align-items: center;
 `;
 
 const AM_FormContainer = styled.div`
-border-color:green;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -103,14 +102,12 @@ align-items: center;
 justify-content: start;
 `;
 const AM_InputContainer = styled.div`
-border-color:red;
 flex-direction: column;
 justify-content: start;
 display: flex;
 `;
 
 const AM_StarContainer = styled.div`
-border:solid;
 display: block;
 flex-direction: row;
 align-items: left;
@@ -129,7 +126,6 @@ align-items: left;
 `;
 const AM_Stars = styled.div`
 align-items: left;
-border:solid;
 font-size: 16px;
 font-weight:bold;
 padding-top: 5px;
@@ -177,15 +173,63 @@ display: flex;
 flex-direction:row;
 `;
 const AM_CharName = styled.div`
-left:0
-flex-direction:row;
-position: absolute;
+
+
+
+flex-direction:column;
 
 font-size: 14px;
 font-weight:bold;
 font-family: 'Nanum Gothic Coding', monospace;
 
 `;
+const SingleRadioContainer = styled.label`
 
+input[type=radio] {
+  display: block;
+  margin: 0 auto;
+}
+label {
+  font-size: 10px;
+  display: inline-block;
+}
+`;
+const OverallRadioContainer = styled.label`
 
-export {AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+flex-direction:row;
+display: flex;
+justify-content: space-between;
+`;
+
+const BodyText = styled.textarea`
+  width: 700px;
+  height: 300px;
+  font-family: 'Nanum Gothic Coding', monospace;
+`;
+const BodyContainerModal = styled.label`
+
+flex-direction:column;
+display: flex;
+
+`;
+const BodyName = styled.div`
+flex-direction:column;
+text-align:  left;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+`;
+const BodyCounter = styled.div`
+flex-direction:column;
+text-align:  right;
+font-size: 12px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+`;
+const AM_SummaryContainer = styled.label`
+border:solid;
+flex-direction:column;
+display: flex;
+
+`;
+export {AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

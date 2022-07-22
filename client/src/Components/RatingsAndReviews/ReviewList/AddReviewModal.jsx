@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
+import {AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
@@ -198,92 +198,95 @@ var AddReviewModal = (props) => {
             {<SingleCharact>
             {props.metaData.characteristics.Size && renderChar.Size === '' ? <AM_CharTop><AM_NoneSelect>None Selected</AM_NoneSelect></AM_CharTop>  : <AM_CharTop><AM_CharName>{renderChar.Size}</AM_CharName></AM_CharTop>}
             {props.metaData.Size &&
-            <label><AM_CharName>*Size</AM_CharName>
-               <input type="radio" value="1" name="Size" onChange={onCharChange}/> A size too small
-               <input type="radio" value="2" name="Size" onChange={onCharChange}/> ½ a size too small
-               <input type="radio" value="3" name="Size" onChange={onCharChange}/> Perfect
-               <input type="radio" value="4" name="Size" onChange={onCharChange}/> ½ a size too big
-               <input type="radio" value="5" name="Size" onChange={onCharChange}/> A size too wide
-            </label>
+            <OverallRadioContainer>
+            <AM_CharName>*Size</AM_CharName>
+            <SingleRadioContainer><input type="radio" value="1" name="Size" onChange={onCharChange}/> A size too small</SingleRadioContainer>
+               <SingleRadioContainer><input type="radio" value="2" name="Size" onChange={onCharChange}/> ½ a size too small</SingleRadioContainer>
+               <SingleRadioContainer><input type="radio" value="3" name="Size" onChange={onCharChange}/> Perfect</SingleRadioContainer>
+               <SingleRadioContainer><input type="radio" value="4" name="Size" onChange={onCharChange}/> ½ a size too big</SingleRadioContainer>
+               <SingleRadioContainer><input type="radio" value="5" name="Size" onChange={onCharChange}/> A size too wide</SingleRadioContainer>
+               </OverallRadioContainer>
               }
+
               </SingleCharact>}
               <SingleCharact>
             {props.metaData.characteristics.Width && renderChar.Width === '' ? <span>None Selected</span> : <span>{renderChar.Width}</span>}
             {props.metaData.characteristics.Width &&
-            <label><AM_CharName>*Width</AM_CharName>
-              <input type="radio" value="1" name="Width" onChange={onCharChange}/>Too narrow
-              <input type="radio" value="2" name="Width" onChange={onCharChange}/>Slightly narrow
-              <input type="radio" value="3" name="Width" onChange={onCharChange}/>Perfect
-              <input type="radio" value="4" name="Width" onChange={onCharChange}/>Slightly wide
-              <input type="radio" value="5" name="Width" onChange={onCharChange}/>Too wide
-            </label>
+            <OverallRadioContainer><AM_CharName>*Width</AM_CharName>
+              <SingleRadioContainer><input type="radio" value="1" name="Width" onChange={onCharChange}/>Too narrow</SingleRadioContainer>
+              <SingleRadioContainer><input type="radio" value="2" name="Width" onChange={onCharChange}/>Slightly narrow</SingleRadioContainer>
+              <SingleRadioContainer><input type="radio" value="3" name="Width" onChange={onCharChange}/>Perfect</SingleRadioContainer>
+              <SingleRadioContainer><input type="radio" value="4" name="Width" onChange={onCharChange}/>Slightly wide</SingleRadioContainer>
+              <SingleRadioContainer><input type="radio" value="5" name="Width" onChange={onCharChange}/>Too wide</SingleRadioContainer>
+            </OverallRadioContainer>
               }
               </SingleCharact>
               <SingleCharact>
               {props.metaData.characteristics.Comfort && renderChar.Comfort === '' ? <span>None Selected</span> : <span>{renderChar.Comfort}</span>}
               {props.metaData.characteristics.Comfort &&
-                <label><AM_CharName>*Comfort</AM_CharName>
-                  <input type="radio" value="1" name="Comfort" onChange={onCharChange}/>Uncomfortable
-                  <input type="radio" value="2" name="Comfort" onChange={onCharChange}/>Slightly uncomfortable
-                  <input type="radio" value="3" name="Comfort" onChange={onCharChange}/>Ok
-                  <input type="radio" value="4" name="Comfort" onChange={onCharChange}/>Comfortable
-                  <input type="radio" value="5" name="Comfort" onChange={onCharChange}/>Perfect
-                </label>
+              <OverallRadioContainer>
+                <AM_CharName>*Comfort</AM_CharName>
+                  <SingleRadioContainer><input type="radio" value="1" name="Comfort" onChange={onCharChange}/>Uncomfortable</SingleRadioContainer>
+                  <SingleRadioContainer><input type="radio" value="2" name="Comfort" onChange={onCharChange}/>Slightly uncomfortable</SingleRadioContainer>
+                  <SingleRadioContainer><input type="radio" value="3" name="Comfort" onChange={onCharChange}/>Ok</SingleRadioContainer>
+                  <SingleRadioContainer><input type="radio" value="4" name="Comfort" onChange={onCharChange}/>Comfortable</SingleRadioContainer>
+                  <SingleRadioContainer><input type="radio" value="5" name="Comfort" onChange={onCharChange}/>Perfect</SingleRadioContainer>
+                  </OverallRadioContainer>
               }
               </SingleCharact>
               <SingleCharact>
               {props.metaData.characteristics.Quality && renderChar.Quality === '' ? <span>None Selected</span> : <span>{renderChar.Quality}</span>}
               {props.metaData.characteristics.Quality &&
-                <label><AM_CharName>*Quality</AM_CharName>
-                    <input type="radio" value="1" name="Quality" onChange={onCharChange}/>Poor
-                    <input type="radio" value="2" name="Quality" onChange={onCharChange}/>Below averag
-                    <input type="radio" value="3" name="Quality" onChange={onCharChange}/>What I expected
-                    <input type="radio" value="4" name="Quality" onChange={onCharChange}/>Pretty great
-                    <input type="radio" value="5" name="Quality" onChange={onCharChange}/>Perfect
-                </label>
+                <OverallRadioContainer><AM_CharName>*Quality</AM_CharName>
+                    <SingleRadioContainer><input type="radio" value="1" name="Quality" onChange={onCharChange}/>Poor</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="2" name="Quality" onChange={onCharChange}/>Below average</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="3" name="Quality" onChange={onCharChange}/>What I expected</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="4" name="Quality" onChange={onCharChange}/>Pretty great</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="5" name="Quality" onChange={onCharChange}/>Perfect</SingleRadioContainer>
+                </OverallRadioContainer>
               }
               </SingleCharact>
               <SingleCharact>
               {props.metaData.characteristics.Length && renderChar.Length === '' ? <span>None Selected</span>: <span>{renderChar.Length}</span>}
               {props.metaData.characteristics.Length &&
-                <label><AM_CharName>*Length</AM_CharName>
-                    <input type="radio" value="1" name="Length" onChange={onCharChange}/>Runs Short
-                    <input type="radio" value="2" name="Length" onChange={onCharChange}/>Runs slightly short
-                    <input type="radio" value="3" name="Length" onChange={onCharChange}/>Perfect
-                    <input type="radio" value="4" name="Length" onChange={onCharChange}/>Runs slightly long
-                    <input type="radio" value="5" name="Length" onChange={onCharChange}/>Runs long
-                </label>
+                <OverallRadioContainer><AM_CharName>*Length</AM_CharName>
+                    <SingleRadioContainer><input type="radio" value="1" name="Length" onChange={onCharChange}/>Runs Short</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="2" name="Length" onChange={onCharChange}/>Runs slightly short</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="3" name="Length" onChange={onCharChange}/>Perfect</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="4" name="Length" onChange={onCharChange}/>Runs slightly long</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="5" name="Length" onChange={onCharChange}/>Runs long</SingleRadioContainer>
+                </OverallRadioContainer>
               }
               </SingleCharact>
               {props.metaData.characteristics.Fit  && renderChar.Fit === '' ? <span>None Selected</span> : <span>{renderChar.Fit}</span>}
               {/* {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>} */}
               {props.metaData.characteristics.Fit &&
-                <label><AM_CharName>*Fit</AM_CharName>
-                    <input type="radio" value="1" name="Fit" onChange={onCharChange}/>Runs tight
-                    <input type="radio" value="2" name="Fit" onChange={onCharChange}/>Runs slightly tight
-                    <input type="radio" value="3" name="Fit" onChange={onCharChange}/>Perfect
-                    <input type="radio" value="4" name="Fit" onChange={onCharChange}/>Runs slightly long
-                    <input type="radio" value="5" name="Fit" onChange={onCharChange}/>Runs long
-                </label>
+                <OverallRadioContainer><AM_CharName>*Fit</AM_CharName>
+                    <SingleRadioContainer><input type="radio" value="1" name="Fit" onChange={onCharChange}/>Runs tight</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="2" name="Fit" onChange={onCharChange}/>Runs slightly tight</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="3" name="Fit" onChange={onCharChange}/>Perfect</SingleRadioContainer>
+                    <SingleRadioContainer><input type="radio" value="4" name="Fit" onChange={onCharChange}/>Runs slightly long</SingleRadioContainer>
+                    <SingleRadioContainer> <input type="radio" value="5" name="Fit" onChange={onCharChange}/>Runs long</SingleRadioContainer>
+                </OverallRadioContainer>
               }
 
               </CharContainer>
             <form >
-              <label>Review Summary:
+              <AM_Label><AM_CharName>Review Summary:</AM_CharName>
                 <input type="text" placeholder="Example: Best purchase ever!" value={bodySummary} maxLength = "60" onChange={handleSummaryChange}/>
                 {charCountSummary}/60
-                </label>
+                </AM_Label>
             </form><form >
-              <label>*Review Body:
-                <input type="text" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
-                {charCountBody > 0 ? <span>Minimum required characters left: [{charCountBody}]</span> : <span>Minimum reached</span>}
-              </label>
+              <BodyContainerModal><BodyName>Review Body*:</BodyName>
+                <BodyText type="textarea" placeholder="Why did you like the product or not?" value={reviewBody} maxLength = "1000" onChange={handleReviewBodyChange}/>
+                {charCountBody > 0 ? <BodyCounter>Minimum required characters left: [{charCountBody}]</BodyCounter> : <BodyCounter>Minimum reached</BodyCounter>}
+              </BodyContainerModal>
             </form>
-            <label>Upload Image:
+            <AM_Label>Upload Image:
               <button onClick={openPhotoUpload} > Upload Cloud</button>
               {/* <input type="file" name="myImage" onChange={onImageChange} />
                <ImageContainer><ShrinkImg src={selectedImage} /></ImageContainer> */}
-            </label>
+            </AM_Label>
             <div>
             {photoURL &&
                 photoURL.map((each, i) => {
@@ -294,15 +297,15 @@ var AddReviewModal = (props) => {
               }
               </div>
             <form >
-              <label>*Nickname:
+              <AM_Label>*Nickname:
                 <input type="text" placeholder="Example: jackson11!" value={nickname} maxLength = "60" onChange={handleNicknameChange}/>
-              </label>
+              </AM_Label>
             </form>
             For privacy reasons, do not use your full name or email address
             <form >
-              <label>*Email:
+              <AM_Label>*Email:
                 <input  required type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
-              </label>
+              </AM_Label>
             </form>
             For authentication reasons, you will not be emailed
           </AM_InputContainer>

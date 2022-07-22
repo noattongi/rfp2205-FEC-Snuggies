@@ -29,31 +29,49 @@ const RL_BotContainer = styled.div`
 `;
 const RL_MoreButton = styled.button`
   border-radius: 5px;
+  border: 2.4px solid black;
+  font-weight: bold;
+  background-color: white;
+  padding: 10px;
   display: flex;
   font-size: 15px;
   flex-direction: row;
   opacity: 0.9;
+  margin: 5px;
   text-align: center;
-  padding-right: 5px;
   font-family: 'Nanum Gothic Coding', monospace;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  };
 `;
 const RL_SubmitButton = styled.button`
-  border-radius: 5px;
+border-radius: 5px;
+  border: 2.4px solid black;
+  font-weight: bold;
+  background-color: white;
+  padding: 10px;
   display: flex;
   font-size: 15px;
+  flex-direction: row;
   opacity: 0.9;
+  margin: 5px;
   text-align: center;
-  margin-left: 5px;
   font-family: 'Nanum Gothic Coding', monospace;
+  :hover {
+    cursor: pointer;
+    background-color: #EF8354;
+  };
 `;
 
 const RL_Sort = styled.div`
 font-weight: bolder;
 font-size: 14px;
-ont-family: 'Roboto',sans-serif;
+font-family: 'Roboto',sans-serif;
 padding-right: 5px;
 `;
 
 
 
-export {RL_Sort, RL_SubmitButton, RL_MoreButton, RL_BotContainer, ReviewListContainer, RL_TopContainer}
+
+export { RL_Sort, RL_SubmitButton, RL_MoreButton, RL_BotContainer, ReviewListContainer, RL_TopContainer}

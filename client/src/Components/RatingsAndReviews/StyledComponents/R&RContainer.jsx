@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const RRContainer = styled.div`
  display: flex;
  flex-direction: row;
- border: 1px solid black;
+ border: 3px solid black;
  background-color: rgb(255, 255, 255);
  width: 1360px;
- border-radius: 5px;
+ border-radius: 10px;
 
  box-shadow: 0px 0.4rem 1.5rem rgb(0 0 0 / 25%);
  font-family: 'Nanum Gothic Coding', monospace;

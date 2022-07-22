@@ -68,8 +68,7 @@ var ReviewTiles = (props) => {
     <Summary>{props.reviews.summary.substr(0, 60)}</Summary>
     <ReviewBody>{seeMoreRendered(seeMore)}
     <SeeMore>{props.reviews.body.length > 250 && seeMore && <a onClick={seeMoreClick} style={{cursor: 'pointer'}}>See More</a>}</SeeMore>
-    </ReviewBody>
-    <ImageContainer>
+    </ReviewBody><ImageContainer>
     {props.reviews.photos.map((photo, index) => {
       return(
         <ImagePool key={index}
