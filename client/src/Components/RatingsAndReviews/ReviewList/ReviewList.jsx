@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTiles.jsx'
 import AddReviewModal from './AddReviewModal.jsx'
 import {Scroll} from '../StyledComponents/ReviewLimitScroll.jsx'
-import {ReviewListContainer} from '../StyledComponents/ReviewListStyle.jsx'
+import {AddReviewButton, RL_Sort, RL_MoreButton, RL_SubmitButton, RL_BotContainer,ReviewListContainer, RL_TopContainer} from '../StyledComponents/ReviewListStyle.jsx'
 
 var ReviewList = (props) => {
   const [reviewCount, setReviewCount] = useState(2);
@@ -33,14 +33,14 @@ var ReviewList = (props) => {
   }, [ reviewCount, props.productReviews, activeFilters, props.ratingFilter, props.ratingNumArray, allReviews])
   return (
     <ReviewListContainer>
-      <div>
-        {allReviews && <div>{allReviews.length} reviews, sorted by</div>}
+      <RL_TopContainer>
+        {allReviews && <RL_Sort>{allReviews.length} reviews, sorted by</RL_Sort>}
           <select onChange={changeSortClick}>
-            <option value="relevant" >Relevant</option>
+            <option value="relevant" >Relevance</option>
             <option value="helpful" >Helpful</option>
             <option value="newest" >Newest</option>
           </select>
-      </div>
+      </RL_TopContainer>
       <Scroll>
         <div>
           {allReviews && <ul>
@@ -54,12 +54,13 @@ var ReviewList = (props) => {
           </ul>}
         </div>
       </Scroll>
-      {allReviews && allReviews.length > 2 && reviewCount < allReviews.length && <button onClick={moreReviewClick} >More Reviews</button>}
-        <button
-          className="openModalBtn"
+      <RL_BotContainer>
+      {allReviews && allReviews.length > 2 && reviewCount < allReviews.length && <RL_MoreButton onClick={moreReviewClick} >More Reviews</RL_MoreButton>}
+        <RL_MoreButton
           onClick={toggleModal}
-        >Add a Review</button>
+        >Add a Review</RL_MoreButton>
       {isOpen && <AddReviewModal closeModal={toggleModal} metaData= {props.metaData} charData={props.metaData.characteristics} postReview={props.postReview} chosenProduct={props.chosenProduct}/>}
+      </RL_BotContainer>
   </ReviewListContainer>
   )
 }
