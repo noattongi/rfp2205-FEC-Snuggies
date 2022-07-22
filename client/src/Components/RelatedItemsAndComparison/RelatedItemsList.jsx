@@ -78,7 +78,6 @@ const RelatedItemsList = (props) => {
   async function getStars(id) {
     return axios.get('/snuggie/reviews/', {params: {product_id: id, count: 500, sort: "relevant"}})
         .then((res) => {
-          console.log('res.data', res.data)
           return res.data;
         })
         .catch((error) => {
