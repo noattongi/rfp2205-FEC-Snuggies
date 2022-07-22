@@ -43,7 +43,7 @@ var NavbarContainer = styled.nav`
   background-color: #3a606e;
   margin: 1px;
   height: 50px;
-  width: 1351px;
+  width: 1351.2px;
   border-radius: 5px;
   position: relative;
 `;
