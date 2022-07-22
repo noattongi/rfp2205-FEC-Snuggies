@@ -12,7 +12,7 @@ const StyleBackground =styled.div`
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
-  max-width:1000px;
+  max-width: 1360px;
 
   `;
 
