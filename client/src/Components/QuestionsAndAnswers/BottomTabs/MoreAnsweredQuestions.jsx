@@ -14,6 +14,7 @@ var MoreAnsweredQuestionsButton = styled.button`
   font-weight: bold;
   border-radius: 5px;
   padding: 10px;
+  margin: 10px;
   background-color: white;
   :hover {
     cursor: pointer;
