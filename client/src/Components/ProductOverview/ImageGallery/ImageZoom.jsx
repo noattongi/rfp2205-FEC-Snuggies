@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ImageZoomContainer, Magnifier, ZoomedImage } from '../StyledComponents/ImageGallery/ImageZoom.jsx';
+import { ImageZoomContainer, ImageZoomOverlay, Magnifier, ZoomedImage } from '../StyledComponents/ImageGallery/ImageZoom.jsx';
 
 const ImageZoom = (props) => {
 
@@ -34,13 +34,15 @@ const ImageZoom = (props) => {
 
   return (
     <ImageZoomContainer>
-      <ZoomedImage src={props.imageUrl}
-        onMouseEnter={(event) => { handleMouseEnter(event); }}
-        onMouseLeave={() => { setMagnifying(false); }}
-        onMouseMove={(event) => { handleMouseMove(event) }}
-        onClick={() => { props.setZoomed(false); }}
-      />
-      {magnifying && <Magnifier imageUrl={props.imageUrl} magnifier={magnifier} x={x} y={y} imageWidth={imageWidth} imageHeight={imageHeight} />}
+      <ImageZoomOverlay>
+        <ZoomedImage src={props.imageUrl}
+          onMouseEnter={(event) => { handleMouseEnter(event); }}
+          onMouseLeave={() => { setMagnifying(false); }}
+          onMouseMove={(event) => { handleMouseMove(event) }}
+          onClick={() => { props.setZoomed(false); }}
+        />
+        {magnifying && <Magnifier imageUrl={props.imageUrl} magnifier={magnifier} x={x} y={y} imageWidth={imageWidth} imageHeight={imageHeight} />}
+      </ImageZoomOverlay>
     </ImageZoomContainer>
   );
 }
