@@ -12,7 +12,7 @@ const UserandDate = styled.div`
   color: grey
   opacity: 0.7;
   padding-bottom: 20px;
-  padding-bottom: 20px;
+  padding-right: 20px;
 `;
 
 const Summary = styled.div`
@@ -24,12 +24,11 @@ const Summary = styled.div`
 const ReviewBody = styled.div`
 padding-bottom: 20px;
 padding-bottom: 20px;
-width: 80%;
+width: 90%;
 word-wrap: break-word;
 `;
 
 const RecommendProduct = styled.div`
-padding-bottom: 20px;
 padding-bottom: 20px;
 `
 
@@ -42,8 +41,6 @@ font-size: 12px;
 `;
 
 var AnswerHelpfulnessSpan = styled.span`
-   padding-left: 7px;
-  padding-right: 7px;
 `;
 
 
@@ -62,6 +59,7 @@ var HelpfulAnswerSpan = styled.div`
 `;
 
 var YesAnswerSpan = styled.span`
+  margin-left:2px;
   text-decoration: underline;
   :hover {
     cursor: pointer;
@@ -83,7 +81,10 @@ var ImageContainer = styled.div`
 
 `;
 
+const RT_StarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  `;
 
-
-export { TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ImageContainer, ShrinkImg};
+export { RT_StarContainer, TopContainer, UserandDate, Summary, RecommendProduct, ReviewBody, ReportSpan, AnswerHelpfulnessSpan, BottomInfoContainer , YesAnswerSpan, ImageContainer, ShrinkImg};
 

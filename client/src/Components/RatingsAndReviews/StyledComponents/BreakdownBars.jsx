@@ -14,8 +14,7 @@ import styled from 'styled-components';
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-left: 20px;
   margin: 0;
 
 `;
@@ -23,15 +22,15 @@ import styled from 'styled-components';
   const Progress =styled.div`
 	  background-color: lightgray;
 	  position: relative;
-	  margin: 15px 0;
-	  height: 10px;
+	  margin: 11px 0;
+	  height: 13px;
 	  width: 165px;
-
+    border-radius: 25px;
   `;
 
 
   const Done = styled.div`
-    background: #607B7D;
+    background: mediumseagreen;
 	  box-shadow: 0 3px 3px -5px black, 0 2px 5px grey;
 	  display: flex;
 	  align-items: center;
@@ -40,19 +39,20 @@ import styled from 'styled-components';
 	  width: 0;
 	  opacity: 0;
 	  transition: 1s ease 0.3s;
+    border-radius: 25px;
   `;
 
   const Triangle = styled.div`
     width: 0;
     height: 0;
-    border-left: 6px solid transparent;
+    border-left: 5px solid transparent;
     border-right: 6px solid transparent;
     border-top: 20px solid black;
   `;
 
   const Range = styled.input`
   -webkit-appearance: none;
-  width: 222px;
+  width: 216px;
   background: transparent;
 
 
