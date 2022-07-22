@@ -7,11 +7,12 @@ const StyleBackground =styled.div`
   padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+
   `;
 
   const Container = styled.div`
@@ -20,6 +21,7 @@ const StyleBackground =styled.div`
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  border-radius: 6px;
 
   `;
 
@@ -30,6 +32,8 @@ const StyleBackground =styled.div`
   width: 80%;
   height: 80%;
   max-width: 700px;
+  max-height:800px;
+
   `;
 
   const shrinkImage = styled.div`
@@ -48,9 +52,54 @@ const ModalBody = styled.div`
   font-size: 1rem;
   `;
 
-  const ProductName = styled.h3`
-  width: 250px;
-  align-items: right;
+  const ProductName = styled.div`
+  width: 400px;
+  text-align:center;
+  display:flex;
+  justify-content: center;
+  font-family: 'Nanum Gothic Coding',monospace;
+  font-weight: bold;
+  font-size: 22px;
+
+
+`;
+const WriteTitle = styled.div`
+width: 400px;
+text-align:center;
+display:flex;
+justify-content: center;
+font-family: 'Nanum Gothic Coding',monospace;
+font-weight: bold;
+font-size: 45px;
+
+padding-bottom: 10px;
 `;
 
-export { StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+const CloseButton = styled.button`
+align-items: flex-end;
+border-radius: 5px;
+display: flex;
+font-size: 15px;
+flex-direction: row;
+opacity: 0.9;
+text-align: center;
+padding-right: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+`;
+const AM_TopContainer = styled.div`
+border:solid;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+`;
+
+const AM_FormContainer = styled.div`
+
+`;
+const AM_InputContainer = styled.div`
+
+`;
+
+export {AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

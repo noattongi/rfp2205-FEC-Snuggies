@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
+import {AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
@@ -178,16 +178,15 @@ var AddReviewModal = (props) => {
   };
 
     return (
-      <StyleBackground> <div>
-        <Container><div>
-          <div>
-            <button onClick={props.closeModal}> X </button>
-          </div>
-          <div>
-            <ProductName>Write Your Review</ProductName>
-            <h4>About the {props.chosenProduct.name}</h4>
-          </div>
-          <ModalBody><div>
+      <StyleBackground>
+        <Container>
+            <CloseButton onClick={props.closeModal}> X </CloseButton>
+        <AM_FormContainer>
+          <AM_TopContainer>
+            <WriteTitle>Write Your Review</WriteTitle>
+            <ProductName>About the {props.chosenProduct.name}</ProductName>
+          </AM_TopContainer>
+          <ModalBody>
             *Star Rating:<StarRatingModal onChange={changeRating}/>
             <div>
             <label>Do you recommend this product?
@@ -196,7 +195,7 @@ var AddReviewModal = (props) => {
             </label>
             </div>
             <div>
-            {props.charData.Size && renderChar.Size === '' ? <span>None Selected size</span>  : <span>{renderChar.Size}</span>}
+            {props.charData.Size && renderChar.Size === '' ? <span>None Selected</span>  : <span>{renderChar.Size}</span>}
             {props.metaData.Size &&
             <label>*Size
                <input type="radio" value="1" name="Size" onChange={onCharChange}/> 1
@@ -208,7 +207,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-            {props.charData.Width && renderChar.Width === '' ? <span>None Selected width</span> : <span>{renderChar.Width}</span>}
+            {props.charData.Width && renderChar.Width === '' ? <span>None Selected</span> : <span>{renderChar.Width}</span>}
             {props.metaData.characteristics.Width &&
             <label>*Width
               <input type="radio" value="1" name="Width" onChange={onCharChange}/> 1
@@ -220,7 +219,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {props.charData.Comfort && renderChar.Comfort === '' ? <span>None Selected comfort</span> : <span>{renderChar.Comfort}</span>}
+              {props.charData.Comfort && renderChar.Comfort === '' ? <span>None Selected</span> : <span>{renderChar.Comfort}</span>}
               {props.metaData.characteristics.Comfort &&
                 <label>*Comfort
                   <input type="radio" value="1" name="Comfort" onChange={onCharChange}/> 1
@@ -232,7 +231,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {props.charData.Quality && renderChar.Quality === '' ? <span>None Selected quality</span> : <span>{renderChar.Quality}</span>}
+              {props.charData.Quality && renderChar.Quality === '' ? <span>None Selected</span> : <span>{renderChar.Quality}</span>}
               {props.metaData.characteristics.Quality &&
                 <label>*Quality
                     <input type="radio" value="1" name="Quality" onChange={onCharChange}/> 1
@@ -244,7 +243,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {props.charData.Length && renderChar.Length === '' ? <span>None Selected length</span>: <span>{renderChar.Length}</span>}
+              {props.charData.Length && renderChar.Length === '' ? <span>None Selected</span>: <span>{renderChar.Length}</span>}
               {props.metaData.characteristics.Length &&
                 <label>*Length
                     <input type="radio" value="1" name="Length" onChange={onCharChange}/> 1
@@ -256,7 +255,7 @@ var AddReviewModal = (props) => {
               }
               </div>
               <div>
-              {props.charData.Fit  && renderChar.Fit === '' ? <span>None Selected fit</span> : <span>{renderChar.Fit}</span>}
+              {props.charData.Fit  && renderChar.Fit === '' ? <span>None Selected</span> : <span>{renderChar.Fit}</span>}
               {/* {renderChar.Fit !== '' && <span>{renderChar.Fit}</span>} */}
               {props.metaData.characteristics.Fit &&
                 <label>*Fit
@@ -305,12 +304,13 @@ var AddReviewModal = (props) => {
               </label>
             </form>
             For authentication reasons, you will not be emailed
-          </div></ModalBody>
+          </ModalBody>
           <div>
             <button onClick={onSubmitClick} >Submit</button>
           </div>
-        </div></Container>
-      </div>/></StyleBackground>
+          </AM_FormContainer>
+        </Container>
+      </StyleBackground>
     )
 }
 
