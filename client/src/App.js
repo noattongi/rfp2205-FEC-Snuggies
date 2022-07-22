@@ -71,8 +71,11 @@ var App = () => {
 
     var index = Math.floor(Math.random() * filtered.length);
 
-    setProductId(filtered[index].id);
-    setChosenProduct(filtered[index]);
+    if (query.length > 2) {
+      setProductId(filtered[index].id);
+      setChosenProduct(filtered[index]);
+    };
+
   };
 
   return(

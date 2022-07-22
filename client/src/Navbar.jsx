@@ -42,10 +42,12 @@ var NavbarContainer = styled.nav`
   justify-content: space-between;
   background-color: #3a606e;
   margin: 1px;
-  height: 3.5vw;
-  width: 1351.2px;
+  height: 50px;
+  width: 1352px;
   border-radius: 5px;
   position: relative;
+  border: 3px solid;
+  border-radius: 10px 10px 0px 0;
 `;
 
 var Ra = styled.a`
@@ -108,9 +110,9 @@ var SearchContainer = styled.span`
 `;
 
 var Search = styled.input`
-  height: 2.55vw;
+  height: 37px;
   posiiton:absolute;
-  width: 50vw;
+  width: 600px;
   border-radius: 5.5px;
   font-size: 19px;
   margin: 6px 4px 4px 4px;
