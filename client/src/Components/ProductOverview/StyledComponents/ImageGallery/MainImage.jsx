@@ -97,7 +97,7 @@ const ExpandedView = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
-  width: 100vw;
+  width: 1353px;
   height: 740px;
   background-color: black;
   z-index: 15;
@@ -112,7 +112,7 @@ const ExpandedView = styled.div`
 // An overlay div that'll go over the Expanded View div; this also contains the Left and Right Arrows
 const ExpandedOverlay = styled.div`
   position: absolute;
-  width: 100vw;
+  width: 1353px;
   height: 740px;
   background-color: #828e82;
 `;
