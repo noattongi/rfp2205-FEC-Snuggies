@@ -67,17 +67,13 @@ var App = () => {
     }
   }, [productId]);
 
-  console.log('all', allProducts)
-
   var submit = (query) => {
-    console.log('query', query)
     var filtered = allProducts.filter((e) => e.name.toLowerCase().includes(query.toLowerCase()));
 
     var index = Math.floor(Math.random() * filtered.length);
 
     setProductId(filtered[index].id);
     setChosenProduct(filtered[index]);
-    console.log('what is', filtered)
   };
 
   return(
