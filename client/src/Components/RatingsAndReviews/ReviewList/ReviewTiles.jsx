@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ImagePool from './ImagePool.jsx';
@@ -15,14 +15,16 @@ var ReviewTiles = (props) => {
   const [noVote, setNoVote] = useState(false);
   const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
   const [seeMore, setSeeMore] = useState(true)
-
+  console.log(props.reviews)
   var formatDate = (date) => {
     var dateISO = parseISO(date.slice(0, 10))
     var formattedDate = (`${format(dateISO, 'MMMM, dd, yyyy')}`)
     return formattedDate;
   }
 
+  useEffect(() => {
 
+  }, [helpful])
   var seeMoreClick = (event) => {
     setSeeMore(false);
   }

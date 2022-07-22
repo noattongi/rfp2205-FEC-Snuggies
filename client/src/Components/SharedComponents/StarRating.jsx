@@ -54,6 +54,12 @@ const StarRating = (props) => {
         rating += (data[i].rating * 1); // Multiplying by 1 in case review.rating is a string
       }
       setAverageRating(rating / data.length);
+    } else if(typeof data === 'number') {
+      setAverageRating(data)
+    }  else if(typeof data === 'object' && !Array.isArray(data)) {
+        rating = (data["1"] * 1) + (data["2"] * 2) + (data["3"] * 3) + (data["4"] * 4) + (data["5"] * 5);
+    //   // Multiply each data[rating] by 1 turns it into a number (it is originally type string)
+        setAverageRating(rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1));
     }
   }, [props.reviewData]);
 
