@@ -42,7 +42,7 @@ var NavbarContainer = styled.nav`
   justify-content: space-between;
   background-color: #3a606e;
   margin: 1px;
-  height: 50px;
+  height: 3.5vw;
   width: 1351.2px;
   border-radius: 5px;
   position: relative;
@@ -84,7 +84,7 @@ var SearchLogo = styled.i`
 
 var SearchButton = styled.button`
   background-color: #EF8354;
-  height: 35.6px;
+  height: 35px;
   width: 35.5px;
   position: absolute;
   right: -24.8;
@@ -108,7 +108,7 @@ var SearchContainer = styled.span`
 `;
 
 var Search = styled.input`
-  height: 36px;
+  height: 2.55vw;
   posiiton:absolute;
   width: 50vw;
   border-radius: 5.5px;
