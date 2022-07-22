@@ -71,8 +71,10 @@ var App = () => {
     console.log('query', query)
     var filtered = allProducts.filter((e) => e.name.toLowerCase().includes(query.toLowerCase()));
 
-    setProductId(filtered[0].id);
-    setChosenProduct(filtered[0]);
+    var index = Math.floor(Math.random() * filtered.length);
+
+    setProductId(filtered[index].id);
+    setChosenProduct(filtered[index]);
     console.log('what is', filtered)
   };
 
