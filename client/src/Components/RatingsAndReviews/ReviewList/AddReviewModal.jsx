@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
+import {RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName, ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
@@ -190,10 +190,10 @@ var AddReviewModal = (props) => {
           <AM_StarContainer>
             <AM_Label>Overall rating*</AM_Label><AM_Stars><StarRatingModal onChange={changeRating}/></AM_Stars>
           </AM_StarContainer>
-            <AM_Label>Recommend*
-            <input type="radio" id='Yes' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes
-            <input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No
-            </AM_Label>
+          <ReccomendRadioContainer>Recommend*
+            <SingleRadioContainer><input type="radio" id='Yes' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes</SingleRadioContainer>
+            <SingleRadioContainer><input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No</SingleRadioContainer>
+            </ReccomendRadioContainer>
             <CharContainer>
             {<SingleCharact>
             {props.metaData.characteristics.Size && renderChar.Size === '' ? <AM_CharTop><AM_NoneSelect>None Selected</AM_NoneSelect></AM_CharTop>  : <AM_CharTop><AM_CharName>{renderChar.Size}</AM_CharName></AM_CharTop>}
@@ -282,7 +282,8 @@ var AddReviewModal = (props) => {
                 {charCountBody > 0 ? <BodyCounter>Minimum required characters left: [{charCountBody}]</BodyCounter> : <BodyCounter>Minimum reached</BodyCounter>}
               </BodyContainerModal>
             </form>
-            <AM_Label>Upload Image
+             <UploadContainer>
+            <AM_Label><CharName>Upload Image</CharName>
               <UploadCloud onClick={openPhotoUpload} > Upload Cloud</UploadCloud>
               {/* <input type="file" name="myImage" onChange={onImageChange} />
                <ImageContainer><ShrinkImg src={selectedImage} /></ImageContainer> */}
@@ -296,22 +297,25 @@ var AddReviewModal = (props) => {
                 })
               }
               </div>
+              </UploadContainer>
+             <NickNameContainer>
             <form >
-              <AM_Label>Nickname*
-                <input type="text" placeholder="Example: jackson11!" value={nickname} maxLength = "60" onChange={handleNicknameChange}/>
+              <AM_Label><CharName>Nickname*</CharName>
+                <NicknameInput type="text" placeholder="Example: jackson11!" width='100px' value={nickname} maxLength = "60" onChange={handleNicknameChange}/>
               </AM_Label>
+              <BottomNickname>For privacy reasons, do not use your full name or email address</BottomNickname>
             </form>
-            For privacy reasons, do not use your full name or email address
-            <form >
-              <AM_Label>Email*
-                <input  required type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
+            </NickNameContainer>
+
+              <AM_Label><CharName>Email*</CharName>
+                <NicknameInput  required type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
               </AM_Label>
-            </form>
-            For authentication reasons, you will not be emailed
+
+              <BottomNickname>For authentication reasons, you will not be emailed</BottomNickname>
           </AM_InputContainer>
-          <div>
+          <BodyCounter>
             <UploadCloud onClick={onSubmitClick} >Submit</UploadCloud>
-          </div>
+          </BodyCounter>
           </AM_FormContainer>
         </Container>
       </StyleBackground>

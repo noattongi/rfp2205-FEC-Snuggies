@@ -120,7 +120,7 @@ const AM_Label = styled.label`
 font-size: 15px;
 font-weight:bold;
 padding-top: 5px;
-padding-bottom: 5px;
+padding-bottom: 8px;
 padding-right: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
 display: flex;
@@ -187,12 +187,13 @@ font-family: 'Nanum Gothic Coding', monospace;
 
 `;
 const SingleRadioContainer = styled.label`
-
-padding-bottom: 5px;
-padding-top: 5px;
+font-size: 8px;
+font-family: 'Nanum Gothic Coding', monospace;
+padding:8px;
 input[type=radio] {
   display: block;
   margin: 0 auto;
+  font-size: 5px;
 
 }
 label {
@@ -260,4 +261,53 @@ border-radius: 5px;
   };
 `;
 
-export {UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+const ReccomendRadioContainer = styled.label`
+
+
+flex-direction:row;
+display: flex;
+padding-bottom: 20px;
+`;
+
+const CharName = styled.div`
+
+margin-top: 5px;
+padding-right: 5px;
+
+`;
+const UploadContainer = styled.div`
+font-size: 15px;
+font-weight:bold;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-right: 5px;
+font-family: 'Nanum Gothic Coding', monospace;
+display: block;
+align-items: left;
+margin-top: 5px;
+padding-right: 5px;
+flex-direction: column;
+
+`;
+const NickNameContainer = styled.form`
+flex-direction:row;
+display: flex;
+
+`;
+
+const BottomNickname = styled.form`
+flex-direction:row;
+display: flex;
+
+font-size: 10px;
+`;
+const NicknameInput = styled.input`
+width:245px;
+`;
+const RadioButtonTry = styled.div`
+width:245px;
+`;
+
+
+
+export {RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
