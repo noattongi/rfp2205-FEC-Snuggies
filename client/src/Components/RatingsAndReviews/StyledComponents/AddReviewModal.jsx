@@ -131,7 +131,7 @@ font-weight:bold;
 padding-top: 5px;
 padding-bottom: 5px;
 font-family: 'Nanum Gothic Coding', monospace;
-
+padding-bottom: 5px:
 `;
 const CharContainer = styled.div`
 
@@ -164,7 +164,8 @@ display: flex;
 align-items: left;
 `;
 const AM_NoneSelect = styled.div`
-
+padding-bottom: 5px;
+padding-top: 5px;
 font-size: 12px;
 font-weight:bold;
 padding-right: 5px;
@@ -185,19 +186,27 @@ font-family: 'Nanum Gothic Coding', monospace;
 `;
 const SingleRadioContainer = styled.label`
 
+padding-bottom: 5px;
+padding-top: 5px;
 input[type=radio] {
   display: block;
   margin: 0 auto;
+  justify-content: center;
 }
 label {
-  font-size: 10px;
+  font-size: 6px;
   display: inline-block;
 }
 `;
 const OverallRadioContainer = styled.label`
+input[type=radio] {
 
+  justify-content: center;
+
+}
 flex-direction:row;
 display: flex;
+
 justify-content: space-between;
 `;
 
@@ -218,6 +227,7 @@ text-align:  left;
 font-size: 14px;
 font-weight:bold;
 font-family: 'Nanum Gothic Coding', monospace;
+padding-bottom: 5px;
 `;
 const BodyCounter = styled.div`
 flex-direction:column;
@@ -227,9 +237,11 @@ font-weight:bold;
 font-family: 'Nanum Gothic Coding', monospace;
 `;
 const AM_SummaryContainer = styled.label`
-border:solid;
+padding-top:5px;
 flex-direction:column;
 display: flex;
 
 `;
+
+
 export {AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
