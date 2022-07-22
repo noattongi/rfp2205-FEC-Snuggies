@@ -112,20 +112,19 @@ font-family: 'Nanum Gothic Coding', monospace;
 
 `;
 const CharRating = styled.div`
-padding-left: 25px;
+
 opacity: 0.9;
 font-size: 11px;
 padding-bottom: 8px;
 font-family: 'Nanum Gothic Coding', monospace;
-justify-content: space-between;
 `;
 
 const CharContainer = styled.div`
+padding-left:5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-right: 32px;
-  margin-left: 2px;
+  padding-left: 22px;
   margin-top: 6px;
   margin-bottom: 6px;
   font-family: 'Nanum Gothic Coding', monospace;

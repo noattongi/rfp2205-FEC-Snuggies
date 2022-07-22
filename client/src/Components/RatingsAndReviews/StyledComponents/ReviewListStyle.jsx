@@ -11,10 +11,10 @@ const RL_TopContainer = styled.div`
   flex-direction: row;
   opacity: 0.9;
   text-align: center;
-  padding-left: 36px;
+  padding-left: 37px;
   padding-right: 30px;
   margin-top: 40px;
-  padding-bottom:40px;
+  padding-bottom:35px;
   font-family: 'Nanum Gothic Coding', monospace;
 `;
 
