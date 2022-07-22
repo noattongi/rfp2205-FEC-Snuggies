@@ -20,18 +20,22 @@ var SearchQuestions = ({search}) => {
 
 // styled components
 var FormInput = styled.input`
-  width: 30%;
+  font-size: 20px;
+  font-weight: bold;
+  width: 50%;
+  height: 40px;
   padding: 5px;
   font-family: 'Nanum Gothic Coding', monospace;
   border: 2px solid black;
   border-radius: 5px;
-  position: absolute;
+  margin: 0 0 10px 30px;
 `;
 
 var MagnifyingIcon = styled.i`
   position: relative;
-  left: 410;
-  top: 5.8;
+  font-size: 25px;
+  right: 30;
+  top: 5;
   :hover {
     cursor: pointer;
   };

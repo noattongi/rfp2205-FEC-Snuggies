@@ -11,6 +11,7 @@ var MoreAnsweredQuestions = ({loadMore}) => {
 var MoreAnsweredQuestionsButton = styled.button`
   font-family: 'Nanum Gothic Coding', monospace;
   border: 2.4px solid black;
+  font-size: 17px;
   font-weight: bold;
   border-radius: 5px;
   padding: 10px;

@@ -155,6 +155,7 @@ var AddQuestionButton = styled.button`
   font-weight: bold;
   border-radius: 5px;
   padding: 10px;
+  font-size: 17px;
   background-color: white;
   margin: 10px;
   :hover {

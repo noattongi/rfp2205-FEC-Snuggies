@@ -285,7 +285,12 @@ var ModalHeader = styled.div`
 
 var ModalH2 = styled.h2`
   font-family: 'Nanum Gothic Coding', monospace;
+  color: white;
+  height: 30px;
+  padding-top: 4px;
+  border-radius: 5px;
   padding-left: 250px;
+  background-color: #007185;
 `;
 
 var ModalSubtitleContainer = styled.div`
