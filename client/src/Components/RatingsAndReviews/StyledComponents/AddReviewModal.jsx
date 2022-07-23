@@ -193,39 +193,95 @@ display: flex;
 flex-direction:row;
 `;
 const AM_CharName = styled.div`
-
-
-
 flex-direction:column;
-
 font-size: 14px;
 font-weight:bold;
 font-family: 'Nanum Gothic Coding', monospace;
-
 `;
+
 const SingleRadioContainer = styled.label`
-font-size: 8px;
+font-size: 9px;
 font-family: 'Nanum Gothic Coding', monospace;
 padding:8px;
+border-color: blue;
+border:dotted;
+
 input[type=radio] {
   display: block;
   margin: 0 auto;
   font-size: 5px;
+}
 
+label {
+  font-size: 5px;
+  display: inline-block;
+}
+`;
+const RadioGroupContainer = styled.label`
+font-size: 9px;
+font-family: 'Nanum Gothic Coding', monospace;
+padding:8px;
+border-color: blue;
+border:dotted;
+vertical-align: middle;
+input[type=radio] {
+  display: block;
+  margin: 0 auto;
+  font-size: 5px;
+  vertical-align: middle;
+}
+
+label {
+  vertical-align: middle;
+  font-size: 10px;
+  display: inline-block;
+}
+`;
+const OverallRadioContainer = styled.label`
+input[type=radio] {
+  display: flex;
+
+
+}
+align-items: center;
+border-color: green;
+border:dotted;
+flex-direction:row;
+display: flex;
+justify-content: space-between;
+`;
+
+const RadioButtonTry = styled.div`
+input[type=radio] {
+  display: block;
+  margin: 0 auto;
+  font-size: 5px;
+  vertical-align: middle;
+}
+
+label {
+  font-size: 5px;
+  display: inline-block;
+}
+`;
+const RecommendRadioContainer = styled.label`
+font-size: 9px;
+font-family: 'Nanum Gothic Coding', monospace;
+padding:8px;
+
+input[type=radio] {
+  display: block;
+  margin: 0 auto;
+  font-size: 5px;
 }
 label {
   font-size: 5px;
   display: inline-block;
 }
 `;
-const OverallRadioContainer = styled.label`
 
 
-flex-direction:row;
-display: flex;
 
-justify-content: space-between;
-`;
 
 const BodyText = styled.textarea`
   width: 700px;
@@ -233,7 +289,6 @@ const BodyText = styled.textarea`
   font-family: 'Nanum Gothic Coding', monospace;
 `;
 const BodyContainerModal = styled.label`
-
 flex-direction:column;
 display: flex;
 
@@ -279,8 +334,6 @@ border-radius: 5px;
 `;
 
 const ReccomendRadioContainer = styled.label`
-
-
 flex-direction:row;
 display: flex;
 padding-bottom: 20px;
@@ -321,12 +374,10 @@ font-size: 10px;
 const NicknameInput = styled.input`
 width:178px;
 `;
-const RadioButtonTry = styled.div`
-width:245px;
-`;
+
 const EmailInput = styled.input`
 width:200px;
 `;
 
 
-export {EmailInput, ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+export {RadioGroupContainer, RecommendRadioContainer, EmailInput, ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

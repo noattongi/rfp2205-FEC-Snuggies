@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {EmailInput, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName, ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
+import {RadioGroupContainer, RecommendRadioContainer, EmailInput, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName, ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
@@ -191,8 +191,8 @@ var AddReviewModal = (props) => {
             <AM_Label>Overall rating*</AM_Label><AM_Stars><StarRatingModal onChange={changeRating}/></AM_Stars>
           </AM_StarContainer>
           <ReccomendRadioContainer>Recommend*
-            <SingleRadioContainer><input type="radio" id='Yes' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes</SingleRadioContainer>
-            <SingleRadioContainer><input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No</SingleRadioContainer>
+            <RecommendRadioContainer><input type="radio" id='Yes' value="Yes" name="recommend" onChange={recommendOnChange}/> Yes</RecommendRadioContainer>
+            <RecommendRadioContainer><input  type="radio" id='Noo' value="No" name="recommend" onChange={recommendOnChange}/> No</RecommendRadioContainer>
             </ReccomendRadioContainer>
             <CharContainer>
             {<SingleCharact>
