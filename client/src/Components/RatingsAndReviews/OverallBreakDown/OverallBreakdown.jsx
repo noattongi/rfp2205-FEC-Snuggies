@@ -7,34 +7,32 @@ import {Done, Progress, BodyContainer, AllStarsBodyContainer} from '../../Rating
 import {RatingBarText, RemoveFilter, SingleFilterContainer, SingleFilter, FilterContainer, OBStar,RRContainer, SingleBar, BarText, RBStarsNum, RBRecommended, OBContainer, NumRatingTitle} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
 
-const OverAllBreakDown = (props) => {//done
-	// console.log(props, 'porps in overall breakdown')
+const OverAllBreakDown = (props) => {
 	const [averageStars, setAverageStars] = useState(0);
 	const [recommendProduct, setRecommendProduct] = useState(0);
-	const [filterArray, setFilterArray] = useState([])
-	const [ratingArray, setRatingArray] = useState([])
-	const [ratingText, setRatingText] = useState([])
-	const [filterTracker, setFilterTracker] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
+	const [filterArray, setFilterArray] = useState([]);
+	const [ratingArray, setRatingArray] = useState([]);
+	const [ratingText, setRatingText] = useState([]);
+	const [filterTracker, setFilterTracker] = useState({'5':false, '4':false, '3':false, '2':false, '1':false});
 
 
 	var filterOnClick = (event) => {
 		var numValue = Number(event.target.getAttribute('value'));
 		if(ratingArray.includes(numValue)) {
       var newArr = ratingArray.filter((e) => {
-        return e !== numValue
+        return e !== numValue;
       })
 
-       setRatingArray(newArr)
+       setRatingArray(newArr);
     } else {
-      var array = [...ratingArray, numValue]
-      setRatingArray(array)
+      var array = [...ratingArray, numValue];
+      setRatingArray(array);
     }
-    var currStar = numValue + ` Star`
-		var arrayText = [...ratingText, currStar]
-		setRatingText(arrayText)
+    var currStar = numValue + ` Star`;
+		var arrayText = [...ratingText, currStar];
+		setRatingText(arrayText);
 
 		setFilterTracker({...filterTracker, [numValue] : !filterTracker[numValue]});
-		console.log(ratingText, "issss this right")
 		return props.filterTheReviews(numValue);
 	}
 
@@ -47,7 +45,7 @@ useEffect(() => {
 	  let rating = 0;
 	  let data = props.reviewData;
 	  rating = (data["1"] * 1) + (data["2"] * 2) + (data["3"] * 3) + (data["4"] * 4) + (data["5"] * 5);
-	  var average = rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1)
+	  var average = rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1);
 		var roundedAverage = Math.floor(average * 4) / 4
 		setAverageStars(roundedAverage);
 	}
@@ -61,7 +59,7 @@ useEffect(() => {
 }, [props.reviewData, props.metadata, ratingArray, filterTracker, ratingText]);
 
   var handleRemoveClick =  ((event) => {
-		setRatingArray([])
+		setRatingArray([]);
     setFilterTracker({'5':false, '4':false, '3':false, '2':false, '1':false})
     props.resetFilters()
 	})
@@ -75,13 +73,6 @@ useEffect(() => {
 		  </RBStarsNum>
 			<FilterContainer>
 				<SingleFilterContainer>
-			    {/* {ratingArray.length > 0 && <div>Filters applied</div>}
-				  {filterTracker['1'] && <SingleFilter>1 Star</SingleFilter>}
-				  {filterTracker['2'] && <SingleFilter>2 Star</SingleFilter>}
-				  {filterTracker['3'] && <SingleFilter>3 Star</SingleFilter>}
-				  {filterTracker['4'] && <SingleFilter>4 Star</SingleFilter>}
-				  {filterTracker['5'] && <SingleFilter>5 Star</SingleFilter>} */}
-
            {ratingArray.map(filter => {
              return (
                <SingleFilter key={filter}>
@@ -120,5 +111,5 @@ useEffect(() => {
 		</OBContainer>
 	)
 }
-export default OverAllBreakDown
+export default OverAllBreakDown;
 

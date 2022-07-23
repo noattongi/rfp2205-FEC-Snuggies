@@ -16,7 +16,9 @@ const OBContainer = styled.div`
   display: inline-block;
   font-family: 'Nanum Gothic Coding', monospace;
 `;
+
 //Rating Breakdown
+
 const SingleBar = styled.div`
 padding-left: 6px;
 display: flex;

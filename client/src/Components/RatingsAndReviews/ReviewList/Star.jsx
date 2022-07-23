@@ -22,7 +22,7 @@ const FilledStarModal = styled.i`
   z-index: 10;
 `;
 
-const Star = (props) => {//({ filled, onClick })ZZ
+const Star = (props) => {
 
 
   return (

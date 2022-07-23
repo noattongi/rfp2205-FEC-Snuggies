@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { StyleBackground, Container, Image, ShrinkImage} from '../StyledComponents/AddReviewModal.jsx';
-import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
+import { StyleBackgroundImage, ImageContainer, Image, ShrinkImage} from '../StyledComponents/AddReviewModal.jsx';
+import { ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 var ImageModal = (props) => {
 
   const [isImageOpen, setIsImageOpen] = useState(false);
@@ -11,16 +11,12 @@ var ImageModal = (props) => {
   }
 
   return (
-    <StyleBackground>
-    <div>
-      <Container>
-      <div>
+    <StyleBackgroundImage>
+      <ImageContainer>
       <button onClick={props.closeImageModal}> X </button>
           <Image src={props.pic} />
-      </div>
-      </Container>
-    </div>
-    </StyleBackground>
+      </ImageContainer>
+    </StyleBackgroundImage>
   );
 }
 

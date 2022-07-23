@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import {Done, Progress, BodyContainer, Triangle, Range} from '../../RatingsAndReviews/StyledComponents/BreakdownBars.jsx'
 import {PBContainer, CharName, CharRating, CharContainer, PBCharContainer} from '../../RatingsAndReviews/StyledComponents/R&RContainer.jsx'
 
-const ProductBreakDown = (props) => {//done
-  // console.log(props)
+const ProductBreakDown = (props) => {
+
   const [sizeSliderValue, setSizeSliderValue] = useState(0);
   const [widthSliderValue, setWidthSliderValue] = useState(0);
   const [comfortSliderValue, setComfortSliderValue] = useState(0);
