@@ -45,7 +45,7 @@ useEffect(() => {
 	  let rating = 0;
 	  let data = props.reviewData;
 	  rating = (data["1"] * 1) + (data["2"] * 2) + (data["3"] * 3) + (data["4"] * 4) + (data["5"] * 5);
-	  var average = rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1)
+	  var average = rating / (data["1"] * 1 + data["2"] * 1 + data["3"] * 1 + data["4"] * 1 + data["5"] * 1);
 		var roundedAverage = Math.floor(average * 4) / 4
 		setAverageStars(roundedAverage);
 	}
@@ -59,7 +59,7 @@ useEffect(() => {
 }, [props.reviewData, props.metadata, ratingArray, filterTracker, ratingText]);
 
   var handleRemoveClick =  ((event) => {
-		setRatingArray([])
+		setRatingArray([]);
     setFilterTracker({'5':false, '4':false, '3':false, '2':false, '1':false})
     props.resetFilters()
 	})
@@ -111,5 +111,5 @@ useEffect(() => {
 		</OBContainer>
 	)
 }
-export default OverAllBreakDown
+export default OverAllBreakDown;
 

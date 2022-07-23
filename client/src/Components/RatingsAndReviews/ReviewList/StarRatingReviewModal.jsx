@@ -34,22 +34,22 @@ const StarRatingModal = (props) => { //onCHange
 
    const changeRatingText = (newRating) => {
     if(newRating === 5) {
-      setRatingText(' - Great')
+      setRatingText(' - Great');
     } else if (newRating === 4) {
-        setRatingText(' - Good')
+        setRatingText(' - Good');
     } else if (newRating === 3) {
       setRatingText(' - Average')
     } else if (newRating === 2) {
-      setRatingText(' - Good')
+      setRatingText(' - Good');
     } else if (newRating === 1) {
-      setRatingText(' - Poor')
+      setRatingText(' - Poor');
     }
    }
 
 
   const changeRating = (newRating) => {
     setRating(newRating);
-    changeRatingText(newRating)
+    changeRatingText(newRating);
     props.onChange?.(newRating);
   };
 
@@ -70,5 +70,7 @@ const StarRatingModal = (props) => { //onCHange
 
   );
 }
+
+
 
 export default StarRatingModal;

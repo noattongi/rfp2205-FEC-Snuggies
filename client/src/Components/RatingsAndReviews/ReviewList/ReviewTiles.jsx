@@ -9,41 +9,42 @@ import styled from 'styled-components';
 import StarRating from '../../SharedComponents/StarRating.jsx'
 
 var ReviewTiles = (props) => {
-  const [helpful, setHelpful] = useState(props.reviews.helpfulness)
+  const [helpful, setHelpful] = useState(props.reviews.helpfulness);
   const [yesVote, setYesVote] = useState(false);
   const [notHelpful, setNotHelpful] = useState(0)
   const [noVote, setNoVote] = useState(false);
-  const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250))
+  const [reviewBodyRender, setReviewBodyRender] = useState(props.reviews.body?.substr(0, 250));
   const [seeMore, setSeeMore] = useState(true)
   var formatDate = (date) => {
-    var dateISO = parseISO(date.slice(0, 10))
-    var formattedDate = (`${format(dateISO, 'MMMM, dd, yyyy')}`)
+  var dateISO = parseISO(date.slice(0, 10))
+
+  var formattedDate = (`${format(dateISO, 'MMMM, dd, yyyy')}`)
     return formattedDate;
   }
 
   useEffect(() => {
-
   }, [helpful])
+
   var seeMoreClick = (event) => {
     setSeeMore(false);
   }
 
-   var onHelpfulClick = () => {
+  var onHelpfulClick = () => {
 
-      props.upVoteHelpfulness(props.reviews.review_id);
-      setHelpful(helpful + 1);
-      setYesVote(true);
-      setNoVote(true);
+    props.upVoteHelpfulness(props.reviews.review_id);
+    setHelpful(helpful + 1);
+    setYesVote(true);
+    setNoVote(true);
    }
 
    var onNotHelpfulClick = () => {
     setNotHelpful(notHelpful + 1);
     setNoVote(true);
     setYesVote(true);
- }
+  }
 
-   var onReportClick = () => {
-      props.reportReview(props.reviews.review_id);
+  var onReportClick = () => {
+    props.reportReview(props.reviews.review_id);
    }
 
   var seeMoreRendered = (seeMore) => {

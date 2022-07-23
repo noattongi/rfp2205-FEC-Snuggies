@@ -203,8 +203,6 @@ const SingleRadioContainer = styled.label`
 font-size: 9px;
 font-family: 'Nanum Gothic Coding', monospace;
 padding:8px;
-border-color: blue;
-border:dotted;
 
 input[type=radio] {
   display: block;
@@ -221,8 +219,7 @@ const RadioGroupContainer = styled.label`
 font-size: 9px;
 font-family: 'Nanum Gothic Coding', monospace;
 padding:8px;
-border-color: blue;
-border:dotted;
+
 vertical-align: middle;
 input[type=radio] {
   display: block;
@@ -244,8 +241,7 @@ input[type=radio] {
 
 }
 align-items: center;
-border-color: green;
-border:dotted;
+
 flex-direction:row;
 display: flex;
 justify-content: space-between;
@@ -315,7 +311,7 @@ display: flex;
 
 `;
 const UploadCloud = styled.button`
-border-radius: 5px;
+  border-radius: 5px;
   border: 2.4px solid black;
   font-weight: bold;
   background-color: white;
@@ -378,6 +374,48 @@ width:178px;
 const EmailInput = styled.input`
 width:200px;
 `;
+const FitContainer = styled.div`
+flex-direction:column;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+padding-right:44px;
+`;
 
+const QualityContainer = styled.div`
+flex-direction:column;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+padding-right:21px;
+`;
+const LengthContainer = styled.div`
+flex-direction:column;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+padding-right:25px;
+`;
+const ComfortContainer = styled.div`
+flex-direction:column;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+padding-right:3px;
+`;
+const SizeContainer = styled.div`
+flex-direction:column;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+padding-right:20px;
+`;
+const WidthContainer = styled.div`
+flex-direction:column;
+font-size: 14px;
+font-weight:bold;
+font-family: 'Nanum Gothic Coding', monospace;
+padding-right:20px;
+`;
 
-export {RadioGroupContainer, RecommendRadioContainer, EmailInput, ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+export {QualityContainer, LengthContainer, SizeContainer, WidthContainer, ComfortContainer, FitContainer, RadioGroupContainer, RecommendRadioContainer, EmailInput, ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
