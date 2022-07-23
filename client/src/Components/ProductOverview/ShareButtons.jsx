@@ -35,6 +35,26 @@ const PinterestButton = styled.div`
   width: 80px;
   height: 20px;
 `;
+const WhiteLink = styled.a`
+  :link {
+    color: white;
+    text-decoration: none;
+  }
+  :visited {
+    color: white;
+    text-decoration: none;
+  }
+`;
+const RedLink = styled.a`
+  :link {
+    color: #c3423f;
+    text-decoration: none;
+  }
+  :visited {
+    color: #c3423f;
+    text-decoration: none;
+  }
+`;
 
 const Socials = styled.div`
   width: 120px;
@@ -48,14 +68,14 @@ const Socials = styled.div`
 const Facebook = () => {
   return (
     <FacebookButton data-href="https://www.youtube.com/watch?v=eY52Zsg-KVI" data-layout="button" data-size="small">
-      <div href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DeY52Zsg-KVI&amp;src=sdkpreparse" target="_blank" className="fb-xfbml-parse-ignore fb-share-button fa-brands fa-facebook"></div>
+      <WhiteLink href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DeY52Zsg-KVI&amp;src=sdkpreparse" target="_blank" className="fb-xfbml-parse-ignore fb-share-button fa-brands fa-facebook"></WhiteLink>
     </FacebookButton>
   );
 }
 const Twitter = () => {
   return (
     <TwitterButton>
-      <div href=" https://twitter.com/intent/tweet?text=Check%20out%20this%20cool%20product%20I%20found%21&hashtags=Strings%2CCoolProduct%2CShopping" target="_blank" className="twitter-share-button fa-brands fa-twitter" data-show-count="false"></div>
+      <WhiteLink href=" https://twitter.com/intent/tweet?text=Check%20out%20this%20cool%20product%20I%20found%21&hashtags=Strings%2CCoolProduct%2CShopping" target="_blank" className="twitter-share-button fa-brands fa-twitter" data-show-count="false"></WhiteLink>
       <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
     </TwitterButton>
   );
@@ -63,7 +83,7 @@ const Twitter = () => {
 const Pinterest = () => {
   return (
     <PinterestButton>
-      <div href="//www.pinterest.com/pin/create/button/" target="_blank" className="pinterest fa-brands fa-pinterest" count-layout="none"></div>
+      <RedLink href="//www.pinterest.com/pin/create/button/" target="_blank" className="pinterest fa-brands fa-pinterest" count-layout="none"></RedLink>
     </PinterestButton>
   );
 }
