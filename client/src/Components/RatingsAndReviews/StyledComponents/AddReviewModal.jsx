@@ -14,6 +14,19 @@ background-color: rgb(0,0,0);
 background-color: rgba(0,0,0,0.4);
   `;
 
+  const StyleBackgroundImage =styled.div`
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+   z-index: 30;
+  `;
   const Container = styled.div`
   background-color: #fefefe;
   margin: auto;
@@ -23,7 +36,13 @@ background-color: rgba(0,0,0,0.4);
   border-radius: 6px;
 
   `;
+  const ImageContainer = styled.div`
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
 
+  `;
   const Image = styled.img`
   margin: auto;
   justify-content: center;
@@ -308,4 +327,4 @@ width:245px;
 
 
 
-export {RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+export {ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

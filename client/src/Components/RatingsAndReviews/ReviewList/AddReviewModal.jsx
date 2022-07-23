@@ -5,7 +5,7 @@ import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReview
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
 var AddReviewModal = (props) => {
-   console.log(props, 'hellooooo')
+
   const [isOpen, setIsOpen] = useState(false);
   const [bodySummary, setbodySummary] =  useState('');
   const [reviewBody, setReviewBody] =  useState('');
@@ -91,7 +91,7 @@ var AddReviewModal = (props) => {
   }
 
   var onImageChange = event => {
-    console.log(event.target.files[0]);
+
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setPostedImage(img.name);
@@ -127,11 +127,11 @@ var AddReviewModal = (props) => {
   }
 
   var onSubmitClick = (event) => {
-    console.log(recommendInput, reviewBody, nickname, email, reviewBody.length, characteristics)
+
     if((!isValidEmail(email) || recommendInput === null || reviewBody.length < 50  || nickname === '' || reviewBody.length < 50 || email === '' || characteristics === {}) ){
         alert("Please review the mandatory data!")
     } else {
-      console.log(photoURL, productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
+
       props.postReview({
       product_id: productID,//hardcoded
       rating: rating,//hardcoded
@@ -154,7 +154,7 @@ var AddReviewModal = (props) => {
 
   var changeRating = (rating) => {
     setRating(rating)
-    console.log(rating)
+
   }
 
 
@@ -165,11 +165,11 @@ var AddReviewModal = (props) => {
     uploadPreset: 'FECPRESET'
   }, (error, result) => {
     if (!error && result && result.event === 'success') {
-      console.log('data', result.info.url)
+
       array.push(result.info.url);
       setPhotoURL(array)
       // setURLImage([...urlImage, result.info.url])
-      console.log('what is photoURL', photoURL)
+
     }
   });
 
