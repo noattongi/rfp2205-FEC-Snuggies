@@ -1,19 +1,17 @@
 import styled from 'styled-components';
 const StyleBackground =styled.div`
-  backdrop-filter: blur(8px);
-  display: block;
-  position: fixed;
-  z-index: 29;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 80%;
-  height: 80%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-  max-width: 1360px;
-
+display: flex;
+position: fixed;
+flex-direction: column;
+z-index: 44;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+backdrop-filter: blur(8px);
+background-color: rgb(0,0,0);
+background-color: rgba(0,0,0,0.4);
   `;
 
   const Container = styled.div`
