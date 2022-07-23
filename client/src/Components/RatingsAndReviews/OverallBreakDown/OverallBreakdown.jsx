@@ -10,27 +10,27 @@ import ProductBreakDown from '../OverallBreakDown/ProductBreakdown.jsx'
 const OverAllBreakDown = (props) => {
 	const [averageStars, setAverageStars] = useState(0);
 	const [recommendProduct, setRecommendProduct] = useState(0);
-	const [filterArray, setFilterArray] = useState([])
-	const [ratingArray, setRatingArray] = useState([])
-	const [ratingText, setRatingText] = useState([])
-	const [filterTracker, setFilterTracker] = useState({'5':false, '4':false, '3':false, '2':false, '1':false})
+	const [filterArray, setFilterArray] = useState([]);
+	const [ratingArray, setRatingArray] = useState([]);
+	const [ratingText, setRatingText] = useState([]);
+	const [filterTracker, setFilterTracker] = useState({'5':false, '4':false, '3':false, '2':false, '1':false});
 
 
 	var filterOnClick = (event) => {
 		var numValue = Number(event.target.getAttribute('value'));
 		if(ratingArray.includes(numValue)) {
       var newArr = ratingArray.filter((e) => {
-        return e !== numValue
+        return e !== numValue;
       })
 
-       setRatingArray(newArr)
+       setRatingArray(newArr);
     } else {
-      var array = [...ratingArray, numValue]
-      setRatingArray(array)
+      var array = [...ratingArray, numValue];
+      setRatingArray(array);
     }
-    var currStar = numValue + ` Star`
-		var arrayText = [...ratingText, currStar]
-		setRatingText(arrayText)
+    var currStar = numValue + ` Star`;
+		var arrayText = [...ratingText, currStar];
+		setRatingText(arrayText);
 
 		setFilterTracker({...filterTracker, [numValue] : !filterTracker[numValue]});
 		return props.filterTheReviews(numValue);

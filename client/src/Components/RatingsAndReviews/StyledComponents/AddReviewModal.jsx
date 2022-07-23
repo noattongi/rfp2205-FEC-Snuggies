@@ -306,25 +306,27 @@ padding-right: 5px;
 flex-direction: column;
 
 `;
-const NickNameContainer = styled.form`
+const NickNameContainer = styled.div`
 flex-direction:row;
 display: flex;
 
 `;
 
-const BottomNickname = styled.form`
+const BottomNickname = styled.div`
 flex-direction:row;
 display: flex;
 
 font-size: 10px;
 `;
 const NicknameInput = styled.input`
-width:245px;
+width:178px;
 `;
 const RadioButtonTry = styled.div`
 width:245px;
 `;
+const EmailInput = styled.input`
+width:200px;
+`;
 
 
-
-export {ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};
+export {EmailInput, ImageContainer, StyleBackgroundImage, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName,ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton,  StyleBackground, Container, ModalBody, Image, shrinkImage, ProductName};

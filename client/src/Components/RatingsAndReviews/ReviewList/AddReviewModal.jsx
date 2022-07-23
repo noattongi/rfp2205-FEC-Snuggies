@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName, ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
+import {EmailInput, RadioButtonTry, NicknameInput, BottomNickname, NickNameContainer, UploadContainer, CharName, ReccomendRadioContainer, UploadCloud, AM_SummaryContainer, BodyCounter, BodyName, BodyContainerModal, BodyText, OverallRadioContainer, SingleRadioContainer, RL_Sort, AM_CharName, AM_NoneSelect, AM_CharTop, SingleCharact, CharContainer, AM_Stars, AM_Label, AM_StarContainer, AM_InputContainer, AM_FormContainer, WriteTitle, AM_TopContainer, CloseButton, StyleBackground, Container, ModalBody, ProductName } from '../StyledComponents/AddReviewModal.jsx';
 import StarRatingModal from '../../RatingsAndReviews/ReviewList/StarRatingReviewModal.jsx'
 import {ImageContainer, ShrinkImg} from '../StyledComponents/ReviewTile.jsx'
 
@@ -91,7 +91,7 @@ var AddReviewModal = (props) => {
   }
 
   var onImageChange = event => {
-
+    console.log(event.target.files[0]);
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setPostedImage(img.name);
@@ -127,11 +127,11 @@ var AddReviewModal = (props) => {
   }
 
   var onSubmitClick = (event) => {
-
+    console.log(recommendInput, reviewBody, nickname, email, reviewBody.length, characteristics)
     if((!isValidEmail(email) || recommendInput === null || reviewBody.length < 50  || nickname === '' || reviewBody.length < 50 || email === '' || characteristics === {}) ){
         alert("Please review the mandatory data!")
     } else {
-
+      console.log(photoURL, productID, rating, bodySummary, bodySummary, bodySummary, bodySummary, reviewBody, recommendInput, nickname, email, characteristics)
       props.postReview({
       product_id: productID,//hardcoded
       rating: rating,//hardcoded
@@ -154,7 +154,7 @@ var AddReviewModal = (props) => {
 
   var changeRating = (rating) => {
     setRating(rating)
-
+    console.log(rating)
   }
 
 
@@ -165,11 +165,11 @@ var AddReviewModal = (props) => {
     uploadPreset: 'FECPRESET'
   }, (error, result) => {
     if (!error && result && result.event === 'success') {
-
+      console.log('data', result.info.url)
       array.push(result.info.url);
       setPhotoURL(array)
       // setURLImage([...urlImage, result.info.url])
-
+      console.log('what is photoURL', photoURL)
     }
   });
 
@@ -308,7 +308,7 @@ var AddReviewModal = (props) => {
             </NickNameContainer>
 
               <AM_Label><CharName>Email*</CharName>
-                <NicknameInput  required type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
+                <EmailInput  required type="email" name="email" id="email" placeholder="Example: jackson11@email.com" value={email} maxLength = "60" onChange={handleEmailChange}/>
               </AM_Label>
 
               <BottomNickname>For authentication reasons, you will not be emailed</BottomNickname>
