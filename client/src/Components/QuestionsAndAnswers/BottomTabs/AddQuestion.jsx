@@ -110,7 +110,7 @@ var EmailRequireMessage = styled.span`
   color: #E02929;
   font-family: 'Nanum Gothic Coding', monospace;
   position: absolute;
-  top: 75;
+  top: 90;
   left: 250;
 `;
 
@@ -159,7 +159,7 @@ var RequireMessage = styled.span`
   color: #E02929;
   font-family: 'Nanum Gothic Coding', monospace;
   position: absolute;
-  top: 75;
+  top: 90;
   left: 235;
 `;
 
