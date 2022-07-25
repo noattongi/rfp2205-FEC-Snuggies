@@ -299,12 +299,12 @@ var AddReviewModal = (props) => {
               </div>
               </UploadContainer>
              <NickNameContainer>
-            <form >
+
               <AM_Label><CharName>Nickname*</CharName>
                 <NicknameInput type="text" placeholder="Example: jackson11!" width='100px' value={nickname} maxLength = "60" onChange={handleNicknameChange}/>
               </AM_Label>
               <BottomNickname>For privacy reasons, do not use your full name or email address</BottomNickname>
-            </form>
+
             </NickNameContainer>
 
               <AM_Label><CharName>Email*</CharName>

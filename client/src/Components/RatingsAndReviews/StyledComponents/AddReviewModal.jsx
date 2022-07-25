@@ -293,7 +293,7 @@ display: flex;
 
 `;
 
-const BottomNickname = styled.form`
+const BottomNickname = styled.div`
 flex-direction:row;
 display: flex;
 
